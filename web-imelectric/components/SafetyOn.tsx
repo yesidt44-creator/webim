@@ -59,6 +59,7 @@ export const SafetyOn = () => {
             <KpiCard
               label="Disponibilidad Auditoría"
               value="Instantánea"
+              valueClassName="text-base leading-tight tracking-tight sm:text-lg md:text-xl lg:text-2xl break-words"
               desc="Toda la información disponible sin buscar en archivos físicos."
             />
             <KpiCard label="Pérdida Documental" value="0%" desc="Cero alteración o extravío de permisos y certificados." />
@@ -140,10 +141,21 @@ export const SafetyOn = () => {
   );
 };
 
-const KpiCard = ({ label, value, desc }: { label: string; value: string; desc: string }) => (
-  <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6 transition-all hover:border-emerald-500/30">
+const KpiCard = ({
+  label,
+  value,
+  desc,
+  valueClassName = "text-3xl",
+}: {
+  label: string;
+  value: string;
+  desc: string;
+  /** Valores largos (p. ej. «Instantánea») necesitan un escalado menor que «100%». */
+  valueClassName?: string;
+}) => (
+  <div className="min-w-0 rounded-2xl border border-slate-800 bg-slate-900 p-6 transition-all hover:border-emerald-500/30">
     <div className="mb-1 text-[10px] font-bold tracking-widest text-slate-500 uppercase">{label}</div>
-    <div className="mb-2 text-3xl font-extrabold text-white">{value}</div>
+    <div className={`mb-2 font-extrabold text-white ${valueClassName}`}>{value}</div>
     <p className="text-xs leading-tight text-slate-500">{desc}</p>
   </div>
 );
