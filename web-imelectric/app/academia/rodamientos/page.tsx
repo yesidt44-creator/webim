@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 import { BearingAcademy } from "@/components/BearingAcademy";
 
 export const metadata: Metadata = {
@@ -42,8 +44,9 @@ export const metadata: Metadata = {
 export default function RodamientosPage() {
   return (
     <main className="min-h-screen bg-slate-950 text-white">
+      <Navbar />
       {/* Hero */}
-      <section className="border-b border-slate-800 bg-slate-950 px-6 py-14">
+      <section className="border-b border-slate-800 bg-slate-950 px-6 pt-36 pb-14">
         <div className="mx-auto max-w-4xl">
           <nav className="mb-6 flex items-center gap-2 text-xs text-slate-500" aria-label="Breadcrumb">
             <a href="/" className="transition hover:text-slate-300">Inicio</a>
@@ -179,6 +182,7 @@ export default function RodamientosPage() {
           </div>
         </div>
       </section>
+      <Footer />
     </main>
   );
 }
