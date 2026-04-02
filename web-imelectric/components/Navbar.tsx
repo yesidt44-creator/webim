@@ -66,19 +66,19 @@ export const Navbar = () => {
                 </h4>
                 <div className="space-y-4">
                   <MenuLink
-                    href="/#fixai"
+                    href="/fixai-cmms"
                     icon={<Wrench size={18} />}
                     title="FixAI CMMS"
                     desc="Mantenimiento ISO 14224"
                   />
                   <MenuLink
-                    href="/#safety-on"
+                    href="/safety-on"
                     icon={<ShieldCheck size={18} />}
                     title="Safety On"
                     desc="Blindaje Legal HSE"
                   />
                   <MenuLink
-                    href="/#nexvia"
+                    href="/nexvia"
                     icon={<Truck size={18} />}
                     title="Nexvia"
                     desc="Gestión de Flotas e ISO 9001"
@@ -166,13 +166,13 @@ export const Navbar = () => {
         >
           <p className="mb-3 text-[10px] font-bold tracking-widest text-slate-400 uppercase">Plataformas SaaS IA</p>
           <ul className="space-y-1 border-b border-slate-100 pb-4">
-            <MobileNavRow href="/#fixai" onNavigate={closeMobile}>
+            <MobileNavRow href="/fixai-cmms" onNavigate={closeMobile}>
               FixAI CMMS
             </MobileNavRow>
-            <MobileNavRow href="/#safety-on" onNavigate={closeMobile}>
+            <MobileNavRow href="/safety-on" onNavigate={closeMobile}>
               Safety On
             </MobileNavRow>
-            <MobileNavRow href="/#nexvia" onNavigate={closeMobile}>
+            <MobileNavRow href="/nexvia" onNavigate={closeMobile}>
               Nexvia
             </MobileNavRow>
           </ul>
