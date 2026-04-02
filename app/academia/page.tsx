@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://imelectric.es/academia",
+  },
+};
 import { Footer } from "@/components/Footer";
 import { ReliabilityCalculator } from "@/components/ReliabilityCalculator";
 import { Ishikawa } from "@/components/Ishikawa";

@@ -22,6 +22,10 @@ const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 const clarityProjectId = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID;
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://imelectric.es"),
+  alternates: {
+    canonical: "/",
+  },
   title: "IMELECTRIC — Inteligencia en movimiento industrial",
   description: "Software industrial, EAM, SST y servicios de respuesta crítica para sectores de alto riesgo.",
 };

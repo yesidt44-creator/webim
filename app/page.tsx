@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://imelectric.es",
+  },
+};
 import { Hero } from "@/components/Hero";
 import { PainPoints } from "@/components/PainPoints";
 import { FixAI } from "@/components/FixAI";
