@@ -5,6 +5,35 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://imelectric.es/academia",
   },
+  title: "Academia Técnica IMELECTRIC — Confiabilidad, RCM, FMECA y SST Industrial",
+  description:
+    "Herramientas interactivas gratuitas para ingenieros: calculadora MTBF y MTTR online, matriz FMECA, diagrama Ishikawa, simulador trabajo en alturas (Resolución 4272) y biblioteca normativa SST. ISO 55001, RCM y confiabilidad industrial.",
+  keywords: [
+    "academia ingeniería industrial",
+    "herramientas confiabilidad gratis",
+    "calculadora MTBF online",
+    "calcular MTTR online",
+    "FMECA online gratis",
+    "diagrama Ishikawa online",
+    "RCM Colombia",
+    "resolución 4272 trabajo alturas",
+    "decreto 1072 SG-SST",
+    "resolución 0312 2019",
+    "ISO 55001 gestión activos",
+    "confiabilidad R(t) exponencial",
+    "análisis causa raíz industrial",
+    "herramientas ingeniero mantenimiento",
+    "IMELECTRIC academia",
+  ],
+  openGraph: {
+    title: "Academia Técnica IMELECTRIC — Confiabilidad, FMECA, SST y RCM",
+    description:
+      "Herramientas gratuitas para ingenieros: calculadora MTBF, matriz FMECA, Ishikawa, simulador alturas y biblioteca normativa SST.",
+    url: "https://imelectric.es/academia",
+    siteName: "IMELECTRIC",
+    locale: "es_ES",
+    type: "website",
+  },
 };
 import { Footer } from "@/components/Footer";
 import { ReliabilityCalculator } from "@/components/ReliabilityCalculator";
@@ -29,16 +58,29 @@ export default function AcademiaPage() {
         </div>
       </section>
 
-      <nav className="sticky top-20 z-40 border-b border-slate-800 bg-slate-950/90 py-4 backdrop-blur-md print:hidden">
-        <div className="mx-auto flex max-w-7xl gap-8 px-6">
-          <a
-            href="#confiabilidad"
-            className="text-sm font-bold text-slate-400 transition-colors hover:text-blue-500"
-          >
+      <nav className="sticky top-20 z-40 border-b border-slate-800 bg-slate-950/90 py-3 backdrop-blur-md print:hidden" aria-label="Navegación academia">
+        <div className="mx-auto flex max-w-7xl flex-wrap gap-x-6 gap-y-2 px-6">
+          <a href="#confiabilidad" className="text-sm font-bold text-slate-400 transition-colors hover:text-blue-500">
             Confiabilidad
           </a>
           <a href="#sst" className="text-sm font-bold text-slate-400 transition-colors hover:text-emerald-500">
             Seguridad (SST)
+          </a>
+          <span className="hidden text-slate-700 sm:block">|</span>
+          <a href="/academia/calculadora-mtbf" className="text-sm text-slate-500 transition-colors hover:text-blue-400">
+            Calculadora MTBF
+          </a>
+          <a href="/academia/fmeca" className="text-sm text-slate-500 transition-colors hover:text-blue-400">
+            FMECA
+          </a>
+          <a href="/academia/ishikawa" className="text-sm text-slate-500 transition-colors hover:text-blue-400">
+            Ishikawa
+          </a>
+          <a href="/academia/trabajo-en-alturas" className="text-sm text-slate-500 transition-colors hover:text-emerald-400">
+            Trabajo en Alturas
+          </a>
+          <a href="/academia/rodamientos" className="text-sm text-slate-500 transition-colors hover:text-orange-400">
+            Rodamientos
           </a>
         </div>
       </nav>

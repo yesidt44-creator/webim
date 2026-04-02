@@ -1,5 +1,3 @@
-"use client";
-
 import type { ReactNode } from "react";
 import {
   ShieldAlert,
@@ -7,112 +5,208 @@ import {
   Scale,
   UserCheck,
   Zap,
-  ArrowRight,
   Lock,
   CheckCircle2,
 } from "lucide-react";
-import { ContactModal } from "./ContactModal";
+import { SafetyOnCta } from "./SafetyOnCta";
+
+const safetyOnJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Safety On",
+  alternateName: [
+    "software gestión HSE",
+    "software HSE Colombia",
+    "software SST Colombia",
+    "permisos de trabajo digitales",
+    "gestión seguridad industrial digital",
+  ],
+  applicationCategory: "BusinessApplication",
+  applicationSubCategory: "HSE, SST, Seguridad Industrial, Permisos de Trabajo",
+  operatingSystem: "Web, Android, iOS",
+  description:
+    "Safety On es el software de gestión HSE y SST para Colombia y Latinoamérica. Digitaliza permisos de trabajo, incluyendo trabajo en alturas, con trazabilidad forense SHA-256, firma electrónica con GPS y cumplimiento normativo en tiempo real. Blindaje legal ante auditorías regulatorias.",
+  keywords:
+    "software gestión HSE, seguridad industrial digital, permisos de trabajo digitales, software HSE Colombia, gestión seguridad industrial, trabajo en alturas digital, software SST Colombia, permisos trabajo altura, trazabilidad HSE, blindaje jurídico HSE",
+  offers: {
+    "@type": "Offer",
+    availability: "https://schema.org/InStock",
+    priceCurrency: "USD",
+    price: "0",
+    priceSpecification: {
+      "@type": "PriceSpecification",
+      description: "Precio según auditoría de viabilidad. Contactar para demo.",
+    },
+  },
+  provider: {
+    "@type": "Organization",
+    name: "IMELECTRIC",
+    url: "https://imelectric.es",
+    areaServed: ["Colombia", "Latinoamérica"],
+    knowsAbout: [
+      "Gestión HSE",
+      "SST Colombia",
+      "Permisos de trabajo en alturas",
+      "Seguridad industrial digital",
+      "Trazabilidad forense",
+      "Ley 1581 Habeas Data",
+    ],
+  },
+  featureList: [
+    "Permisos de trabajo digitales con firma forense SHA-256",
+    "Gestión de trabajo en alturas con verificación de competencias",
+    "Trazabilidad HSE minuto a minuto con GPS y timestamp",
+    "Verificación automática de certificados y avales vigentes",
+    "Análisis de riesgo asistido por IA con alertas normativas",
+    "Cumplimiento Resolución 0312 y Decreto 1072",
+    "Blindaje legal ante auditorías regulatorias",
+    "Cero pérdida documental: S3 Object Lock Technology",
+  ],
+};
 
 export const SafetyOn = () => {
   return (
-    <section id="safety-on" className="scroll-mt-28 overflow-hidden border-t border-slate-900 bg-slate-950 py-24">
+    <section
+      id="safety-on"
+      aria-labelledby="safetyon-heading"
+      className="scroll-mt-28 overflow-hidden border-t border-slate-900 bg-slate-950 py-24"
+      itemScope
+      itemType="https://schema.org/SoftwareApplication"
+    >
+      {/* JSON-LD estructurado para Google */}
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(safetyOnJsonLd) }}
+      />
+
       <div className="mx-auto max-w-7xl px-6">
-        {/* Cabecera: El Concepto de Blindaje */}
+        {/* Cabecera */}
         <div className="mb-20 grid items-center gap-12 lg:grid-cols-2">
           <div>
-            <div className="mb-4 flex items-center gap-2 text-emerald-500">
-              <ShieldAlert size={20} />
-              <span className="text-xs font-bold tracking-widest uppercase">Blindaje Jurídico y Operativo HSE</span>
-            </div>
-            <h2 className="mb-8 text-4xl leading-tight font-extrabold text-white md:text-6xl">
-              Safety On: Su póliza de <span className="text-emerald-500">seguridad digital.</span>
+            <p className="mb-4 flex items-center gap-2 text-emerald-500 text-xs font-bold tracking-widest uppercase">
+              <ShieldAlert size={20} aria-hidden="true" />
+              Software de Gestión HSE y SST — Blindaje Jurídico y Operativo
+            </p>
+            <h2
+              id="safetyon-heading"
+              className="mb-8 text-4xl leading-tight font-extrabold text-white md:text-6xl"
+              itemProp="name"
+            >
+              Safety On: <span className="text-emerald-500">seguridad industrial digital</span> para Colombia y Latinoamérica.
             </h2>
-            <p className="mb-8 text-lg leading-relaxed text-slate-400">
-              Transformamos la gestión HSE de reactiva a preventiva. Un sistema inteligente que garantiza que cada permiso
-              de trabajo y análisis de riesgo esté respaldado por evidencia forense inalterable y cumplimiento normativo en
-              tiempo real.
+            <p className="mb-8 text-lg leading-relaxed text-slate-400" itemProp="description">
+              Transformamos la <strong>gestión HSE y SST</strong> de reactiva a preventiva. Un{" "}
+              <strong>software de seguridad industrial digital</strong> que garantiza que cada{" "}
+              <strong>permiso de trabajo</strong> —incluyendo <strong>trabajo en alturas</strong>— esté respaldado por
+              evidencia forense inalterable y cumplimiento normativo en tiempo real. Disponible para empresas en{" "}
+              <strong>Colombia</strong> y <strong>Latinoamérica</strong>.
             </p>
 
             <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-6">
-              <h4 className="mb-2 flex items-center gap-2 font-bold text-emerald-400">
-                <Scale size={18} /> Protección ante Incidentes
-              </h4>
+              <h3 className="mb-2 flex items-center gap-2 font-bold text-emerald-400">
+                <Scale size={18} aria-hidden="true" /> Protección legal ante incidentes y auditorías
+              </h3>
               <p className="text-sm text-slate-400">
-                Ante cualquier auditoría regulatoria o incidente, reconstruya minuto a minuto quién aprobó qué, cuándo y
-                bajo qué condiciones. Un nivel de trazabilidad que el papel no puede ofrecer.
+                Ante cualquier auditoría regulatoria o incidente, reconstruya minuto a minuto quién aprobó qué,
+                cuándo y bajo qué condiciones. <strong className="text-slate-300">Trazabilidad HSE</strong> que el
+                papel no puede ofrecer.
               </p>
             </div>
           </div>
 
-          {/* Zona de KPIs de Impacto */}
-          <div className="grid grid-cols-2 gap-4">
+          {/* KPIs de Impacto */}
+          <div className="grid grid-cols-2 gap-4" aria-label="Indicadores de impacto Safety On">
             <KpiCard
-              label="Blindaje Legal"
+              label="Blindaje Legal HSE"
               value="100%"
-              desc="Cadena de decisión documentada e inalterable."
+              desc="Cadena de decisión documentada e inalterable ante entes reguladores."
             />
             <KpiCard
-              label="Reducción Desviaciones"
+              label="Reducción Desviaciones SST"
               value="-40%"
-              desc="IA verifica cumplimiento antes de autorizar labores."
+              desc="IA verifica cumplimiento normativo antes de autorizar labores de riesgo."
             />
             <KpiCard
               label="Disponibilidad Auditoría"
               value="Instantánea"
               valueClassName="text-base leading-tight tracking-tight sm:text-lg md:text-xl lg:text-2xl break-words"
-              desc="Toda la información disponible sin buscar en archivos físicos."
+              desc="Toda la información de permisos disponible sin buscar en archivos físicos."
             />
-            <KpiCard label="Pérdida Documental" value="0%" desc="Cero alteración o extravío de permisos y certificados." />
+            <KpiCard
+              label="Pérdida Documental"
+              value="0%"
+              desc="Cero alteración o extravío de permisos de trabajo y certificados SST."
+            />
           </div>
         </div>
 
         {/* Módulos Técnicos */}
-        <div className="mb-20 grid gap-8 md:grid-cols-3">
+        <h3 className="sr-only">Módulos de Safety On — software HSE Colombia</h3>
+        <ul
+          className="mb-20 grid gap-8 md:grid-cols-3 list-none p-0"
+          aria-label="Módulos del software HSE Safety On"
+          itemProp="featureList"
+        >
           <Feature
             icon={<Fingerprint size={24} />}
-            title="Firma Forense SHA-256"
-            desc="Validación legal inalterable con GPS y timestamp para cada ejecutor y aprobador."
+            title="Permisos de trabajo digitales con firma SHA-256"
+            desc="Validación legal inalterable con GPS y timestamp para cada ejecutor y aprobador de permisos de trabajo en alturas y trabajos críticos."
           />
           <Feature
             icon={<UserCheck size={24} />}
-            title="Verificación de Competencias"
-            desc="Cruce automático de certificados, cursos de alturas y avales vigentes en tiempo real."
+            title="Verificación de competencias SST"
+            desc="Cruce automático de certificados, cursos de trabajo en alturas y avales vigentes para garantizar personal competente."
           />
           <Feature
             icon={<Zap size={24} />}
-            title="Análisis Asistido por IA"
-            desc="Agentes entrenados en normativas HSE que alertan sobre riesgos omitidos en el análisis inicial."
+            title="Análisis de riesgo asistido por IA"
+            desc="Agentes entrenados en normativas HSE colombianas que alertan sobre riesgos omitidos antes de autorizar labores."
           />
-        </div>
+        </ul>
 
         {/* Bloque: Trazabilidad Forense S3 */}
         <div className="relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 p-10">
-          <div className="absolute top-0 right-0 rounded-full bg-emerald-500/5 p-32 blur-[120px]"></div>
+          <div
+            className="absolute top-0 right-0 rounded-full bg-emerald-500/5 p-32 blur-[120px]"
+            aria-hidden="true"
+          />
           <div className="relative z-10 grid items-center gap-12 md:grid-cols-2">
             <div>
-              <div className="mb-4 flex items-center gap-2 text-emerald-400">
-                <Lock size={20} />
-                <span className="text-xs font-bold tracking-widest uppercase">S3 Object Lock Technology</span>
-              </div>
-              <h3 className="mb-6 text-3xl font-bold">Integridad de la prueba</h3>
-              <p className="mb-6 leading-relaxed text-slate-400">
-                Una vez que un permiso es firmado, el documento se bloquea a nivel de infraestructura. Nadie, ni siquiera
-                un administrador, puede alterar la evidencia original. Este es el estándar que exigen las aseguradoras y
-                entes de control.
+              <p className="mb-4 flex items-center gap-2 text-emerald-400 text-xs font-bold tracking-widest uppercase">
+                <Lock size={20} aria-hidden="true" />
+                S3 Object Lock — Trazabilidad HSE inalterable
               </p>
-              <div className="space-y-3">
-                <div className="flex items-center gap-2 text-sm text-slate-300">
-                  <CheckCircle2 size={16} className="text-emerald-500" />
-                  <span>Cumplimiento Ley 1581 (Habeas Data)</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm text-slate-300">
-                  <CheckCircle2 size={16} className="text-emerald-500" />
-                  <span>Trazabilidad completa Minute-by-Minute</span>
-                </div>
-              </div>
+              <h3 className="mb-6 text-3xl font-bold">
+                Integridad documental: el estándar de la <strong>gestión de seguridad industrial digital</strong>
+              </h3>
+              <p className="mb-6 leading-relaxed text-slate-400">
+                Una vez firmado un <strong>permiso de trabajo</strong>, el documento se bloquea a nivel de
+                infraestructura. Nadie, ni siquiera un administrador, puede alterar la evidencia original. Este es
+                el estándar que exigen las aseguradoras y entes de control en Colombia.
+              </p>
+              <ul className="space-y-3 list-none p-0">
+                <li className="flex items-center gap-2 text-sm text-slate-300">
+                  <CheckCircle2 size={16} className="text-emerald-500 shrink-0" aria-hidden="true" />
+                  <span>Cumplimiento <strong>Ley 1581</strong> (Habeas Data) y <strong>Decreto 1072</strong></span>
+                </li>
+                <li className="flex items-center gap-2 text-sm text-slate-300">
+                  <CheckCircle2 size={16} className="text-emerald-500 shrink-0" aria-hidden="true" />
+                  <span><strong>Trazabilidad HSE</strong> completa minuto a minuto</span>
+                </li>
+                <li className="flex items-center gap-2 text-sm text-slate-300">
+                  <CheckCircle2 size={16} className="text-emerald-500 shrink-0" aria-hidden="true" />
+                  <span>Cumplimiento <strong>Resolución 0312</strong> de estándares mínimos SST</span>
+                </li>
+              </ul>
             </div>
-            <div className="rounded-2xl border border-slate-800 bg-slate-950 p-6 font-mono text-[10px] text-emerald-500/70">
-              <div className="mb-2 border-b border-slate-800 pb-2 text-slate-500">// FORENSIC_LOG_VERIFICATION</div>
+            <div
+              className="rounded-2xl border border-slate-800 bg-slate-950 p-6 font-mono text-[10px] text-emerald-500/70"
+              aria-label="Log forense de ejemplo Safety On"
+            >
+              <div className="mb-2 border-b border-slate-800 pb-2 text-slate-500">
+                // FORENSIC_LOG — PERMISO_TRABAJO_ALTURAS
+              </div>
               <div className="space-y-1">
                 <p>&gt; TIMESTAMP: 2026-03-23T18:50:42Z</p>
                 <p>&gt; EVENT: PERMIT_APPROVAL_SIGNED</p>
@@ -127,14 +221,10 @@ export const SafetyOn = () => {
 
         {/* CTA */}
         <div className="mt-20 text-center">
-          <ContactModal>
-            <button
-              type="button"
-              className="mx-auto flex items-center gap-2 rounded-xl bg-emerald-600 px-10 py-4 font-bold text-white shadow-lg shadow-emerald-900/50 transition hover:bg-emerald-500"
-            >
-              Agendar Auditoría de Viabilidad HSE <ArrowRight size={20} />
-            </button>
-          </ContactModal>
+          <p className="mb-6 text-slate-400">
+            Su <strong className="text-white">software SST para Colombia</strong> listo para auditoría regulatoria.
+          </p>
+          <SafetyOnCta />
         </div>
       </div>
     </section>
@@ -150,7 +240,6 @@ const KpiCard = ({
   label: string;
   value: string;
   desc: string;
-  /** Valores largos (p. ej. «Instantánea») necesitan un escalado menor que «100%». */
   valueClassName?: string;
 }) => (
   <div className="min-w-0 rounded-2xl border border-slate-800 bg-slate-900 p-6 transition-all hover:border-emerald-500/30">
@@ -161,9 +250,9 @@ const KpiCard = ({
 );
 
 const Feature = ({ icon, title, desc }: { icon: ReactNode; title: string; desc: string }) => (
-  <div className="group rounded-2xl border border-slate-800 bg-slate-900/50 p-8 transition-all hover:bg-slate-900">
-    <div className="mb-4 text-emerald-500 transition-transform group-hover:scale-110">{icon}</div>
+  <li className="group rounded-2xl border border-slate-800 bg-slate-900/50 p-8 transition-all hover:bg-slate-900">
+    <div className="mb-4 text-emerald-500 transition-transform group-hover:scale-110" aria-hidden="true">{icon}</div>
     <h4 className="mb-2 font-bold text-white">{title}</h4>
     <p className="text-sm leading-relaxed text-slate-500">{desc}</p>
-  </div>
+  </li>
 );
