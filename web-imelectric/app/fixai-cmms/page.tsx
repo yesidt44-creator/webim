@@ -7,35 +7,35 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://imelectric.es/fixai-cmms",
   },
-  title: "FixAI CMMS — Software de Mantenimiento Industrial con IA | IMELECTRIC",
+  title: "Fix AI — Software de Mantenimiento Industrial para Contratistas SAP PM | IMELECTRIC",
   description:
-    "El primer CMMS con inteligencia artificial para oil & gas en Colombia y Latinoamérica. Digitalice órdenes de trabajo, aplique ISO 14224 automáticamente y obtenga KPIs de MTBF y MTTR en tiempo real. Funciona offline en campo.",
+    "Fix AI es una PWA de gestión de mantenimiento industrial con IA para contratistas que operan bajo SAP PM. Reporte de campo offline, exportación IW41, supervisión digital y módulo Falion de confiabilidad. Sin doble digitación, sin penalizaciones por OTs sin cerrar.",
   keywords: [
-    "FixAI CMMS",
-    "CMMS con IA",
-    "software mantenimiento industrial Colombia",
-    "CMMS Colombia",
-    "CMMS Latinoamérica",
-    "software mantenimiento oil gas",
-    "ISO 14224 Colombia",
-    "mantenimiento con inteligencia artificial",
-    "órdenes de trabajo digitales",
-    "MTBF MTTR Colombia",
-    "confiabilidad industrial Colombia",
-    "mantenimiento preventivo planificado",
-    "CMMS offline campo",
-    "mantenimiento upstream oil gas",
-    "software EAM Colombia",
-    "gestión activos industriales",
-    "mantenimiento predictivo Colombia",
-    "CMMS Ecopetrol",
-    "software mantenimiento minería Colombia",
-    "digitalización mantenimiento industrial",
+    "Fix AI CMMS",
+    "software mantenimiento contratistas SAP PM",
+    "PWA mantenimiento industrial Colombia",
+    "reporte OT digital Colombia",
+    "CMMS Oil Gas Colombia contratistas",
+    "exportación IW41 SAP mantenimiento",
+    "software mantenimiento offline campo",
+    "Falion IA confiabilidad mantenimiento",
+    "gestión mantenimiento Colombia",
+    "CMMS contratistas Latinoamérica",
+    "digitalización OTs mantenimiento",
+    "software mantenimiento SAP PM Colombia",
+    "CMMS sin integración API",
+    "mantenimiento campo sin internet",
+    "software planeación mantenimiento Colombia",
+    "backlog mantenimiento digital",
+    "reporte técnico mantenimiento electrónico",
+    "gestión contratos mantenimiento Colombia",
+    "CMMS Oil Gas Colombia",
+    "Fix AI IMELECTRIC",
   ],
   openGraph: {
-    title: "FixAI CMMS — Software de Mantenimiento Industrial con IA",
+    title: "Fix AI — Mantenimiento Industrial para Contratistas SAP PM | IMELECTRIC",
     description:
-      "CMMS con IA para oil & gas en Colombia y Latinoamérica. ISO 14224, offline-first, KPIs MTBF/MTTR en tiempo real.",
+      "PWA con IA para contratistas de mantenimiento. Reporte offline, exportación IW41, supervisión y módulo Falion de confiabilidad. Sin doble digitación.",
     url: "https://imelectric.es/fixai-cmms",
     siteName: "IMELECTRIC",
     locale: "es_ES",
@@ -49,42 +49,42 @@ const faqJsonLd = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "¿Qué es un CMMS y para qué sirve en la industria?",
+      name: "¿Qué es Fix AI y en qué se diferencia de un CMMS tradicional?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Un CMMS (Computerized Maintenance Management System) es un software que centraliza la gestión del mantenimiento industrial: órdenes de trabajo, historial de equipos, mantenimiento preventivo, inventario de repuestos y KPIs de confiabilidad. FixAI CMMS añade inteligencia artificial para clasificar fallas automáticamente bajo la norma ISO 14224 y asistir a técnicos en campo con lenguaje natural.",
+        text: "Fix AI es una aplicación web progresiva (PWA) de gestión de mantenimiento industrial con inteligencia artificial, diseñada específicamente para contratistas de mantenimiento que operan bajo entornos SAP PM. A diferencia de un CMMS tradicional, Fix AI no requiere integraciones API ni licencias adicionales del ERP del operador: importa el programa semanal, acompaña la ejecución en campo y exporta los reportes listos para cargar directamente en SAP PM (IW38/IW41). También puede operar como CMMS completo cuando la organización lo necesita.",
       },
     },
     {
       "@type": "Question",
-      name: "¿FixAI CMMS funciona sin conexión a internet en campo?",
+      name: "¿Fix AI funciona sin conexión a internet en campo?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Sí. FixAI CMMS fue diseñado con arquitectura offline-first para operaciones de upstream oil & gas donde la cobertura de red es intermitente o inexistente. Los técnicos pueden registrar órdenes de trabajo, adjuntar fotos y firmar electrónicamente sin conexión. Los datos se sincronizan automáticamente al recuperar señal.",
+        text: "Sí. Fix AI fue diseñado con arquitectura offline-first para operar en zonas con cobertura de red intermitente o inexistente, comunes en operaciones Oil & Gas upstream en Colombia. Los técnicos pueden registrar órdenes de trabajo, adjuntar fotos y firmar electrónicamente sin señal. Los datos se sincronizan automáticamente al recuperar conexión, sin pérdida de información.",
       },
     },
     {
       "@type": "Question",
-      name: "¿Qué es la norma ISO 14224 y cómo la aplica FixAI?",
+      name: "¿Cómo funciona la exportación a SAP PM sin integración API?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "ISO 14224 es el estándar internacional para la recopilación e intercambio de datos de confiabilidad y mantenimiento en las industrias del petróleo, gas y petroquímica. FixAI CMMS aplica esta taxonomía automáticamente al registrar fallas, clasificando equipos por clase, tipo y subsistema. Esto permite calcular MTBF (Mean Time Between Failures), MTTR (Mean Time To Repair) y realizar análisis de confiabilidad comparables entre sitios.",
+        text: "Fix AI genera un archivo de exportación compatible con el formato de carga masiva de SAP PM (compatible con transacciones IW38/IW41). El planeador importa ese archivo directamente en SAP sin necesidad de re-digitar ningún dato. Esto elimina la figura del 'digitador SAP' y el riesgo de errores de transcripción. Para ERP distintos a SAP, el formato de exportación es configurable según los requerimientos del operador.",
       },
     },
     {
       "@type": "Question",
-      name: "¿En qué sectores industriales de Colombia es aplicable FixAI CMMS?",
+      name: "¿Qué es el módulo Falion de Fix AI?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "FixAI CMMS es aplicable en upstream y midstream oil & gas (incluidas operaciones de Ecopetrol y contratistas), minería, generación eléctrica, manufactura y cualquier sector industrial en Colombia y Latinoamérica que requiera gestión de activos con trazabilidad forense y cumplimiento normativo.",
+        text: "Falion es el módulo de inteligencia artificial de Fix AI. Analiza el historial acumulado de reportes de campo para identificar equipos críticos, hallazgos recurrentes y patrones de falla bajo demanda del supervisor o planeador. Es un insumo directo para tomar mejores decisiones operativas y para negociar futuros contratos con datos propios — algo que los contratistas raramente tienen disponible de forma estructurada.",
       },
     },
     {
       "@type": "Question",
-      name: "¿Qué diferencia a FixAI de otros CMMS disponibles en el mercado?",
+      name: "¿Fix AI aplica solo para Oil & Gas o sirve en otros sectores?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "FixAI CMMS se diferencia por tres factores: (1) es el primer CMMS con asistente de inteligencia artificial en lenguaje natural diseñado específicamente para el contexto latinoamericano; (2) integra taxonomía ISO 14224 de forma nativa y automática, no como configuración manual; (3) su arquitectura offline-first lo hace viable en zonas remotas de upstream donde los CMMS tradicionales basados en la nube fallan.",
+        text: "Fix AI aplica en cualquier industria que requiera gestión de mantenimiento en campo: Oil & Gas, manufactura, minería, energía eléctrica y más. Su arquitectura está diseñada para personalizarse según los procesos, checklists, roles y flujos de aprobación de cada cliente. El punto de partida habitual es el sector Oil & Gas porque ahí la brecha entre ejecución y registro administrativo tiene el mayor costo operativo.",
       },
     },
   ],
@@ -109,17 +109,18 @@ export default function FixAICmmsPage() {
             <span className="text-slate-400">FixAI CMMS</span>
           </nav>
           <div className="mb-3 text-xs font-bold tracking-widest text-blue-500 uppercase">
-            Plataforma SaaS IA — Mantenimiento Industrial
+            PWA · Gestión de Mantenimiento Industrial con IA
           </div>
           <h1 className="mb-4 text-3xl font-extrabold leading-tight text-white sm:text-4xl md:text-5xl">
-            FixAI CMMS: el software de mantenimiento industrial con inteligencia artificial
+            Fix AI: todo registrado, nada se te escapa
           </h1>
           <p className="max-w-3xl text-base leading-relaxed text-slate-400 sm:text-lg">
-            Diseñado para operaciones de oil &amp; gas en Colombia y Latinoamérica. ISO 14224 automático,
-            offline-first en campo y KPIs de confiabilidad en tiempo real.
+            Software de mantenimiento industrial con IA para contratistas que operan bajo SAP PM.
+            Reporte de campo offline, exportación IW41, supervisión digital y módulo Falion de
+            confiabilidad — sin doble digitación ni integraciones complejas.
           </p>
           <div className="mt-6 flex flex-wrap gap-2">
-            {["CMMS con IA","ISO 14224","Offline-First","MTBF · MTTR","Colombia · Latinoamérica"].map(tag => (
+            {["SAP PM compatible","Offline-First","Exportación IW41","Falion IA","Colombia · Latinoamérica"].map(tag => (
               <span key={tag} className="rounded-full border border-slate-800 bg-slate-900 px-3 py-1 text-xs text-slate-400">{tag}</span>
             ))}
           </div>
@@ -133,7 +134,7 @@ export default function FixAICmmsPage() {
       <section className="border-t border-slate-800 bg-slate-900/30 px-6 py-16">
         <div className="mx-auto max-w-3xl">
           <h2 className="mb-10 text-2xl font-bold text-white">
-            Preguntas frecuentes sobre FixAI CMMS
+            Preguntas frecuentes sobre Fix AI
           </h2>
           <div className="space-y-6">
             {faqJsonLd.mainEntity.map((faq, i) => (

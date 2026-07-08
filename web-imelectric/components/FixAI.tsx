@@ -1,32 +1,34 @@
-import type { ReactNode } from "react";
+import Image from "next/image";
 import {
-  Cpu,
+  Smartphone,
   WifiOff,
-  CalendarDays,
-  Lock,
-  Mic,
+  ShieldCheck,
+  RefreshCw,
   LayoutDashboard,
-  FileText,
-  CheckCircle2,
-  TrendingDown,
-  Timer,
-  Wallet,
-  ClipboardList,
+  Sparkles,
+  Lock,
+  Package,
+  Layers,
 } from "lucide-react";
 import { FixAICta } from "./FixAICta";
 
 const fixAiJsonLd = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  name: "FixAI CMMS",
-  alternateName: ["CMMS con IA", "Software mantenimiento industrial", "CMMS Colombia", "CMMS Latinoamérica"],
+  name: "Fix AI",
+  alternateName: [
+    "FixAI CMMS",
+    "Fix AI PWA mantenimiento",
+    "software mantenimiento contratistas SAP PM",
+    "CMMS contratistas Oil Gas Colombia",
+  ],
   applicationCategory: "BusinessApplication",
-  applicationSubCategory: "CMMS, EAM, Mantenimiento Industrial",
-  operatingSystem: "Web, Android, iOS",
+  applicationSubCategory: "CMMS, EAM, Mantenimiento Industrial, SAP PM",
+  operatingSystem: "Web, PWA, Android, iOS",
   description:
-    "FixAI CMMS es el software de mantenimiento industrial con inteligencia artificial para upstream oil & gas en Colombia y Latinoamérica. Digitaliza órdenes de trabajo, aplica taxonomía ISO 14224, funciona offline-first y genera KPIs de confiabilidad (MTBF, MTTR) en tiempo real.",
+    "Fix AI es una PWA de gestión de mantenimiento industrial con IA diseñada para contratistas que operan bajo SAP PM. Digitaliza el ciclo completo de ejecución: reporte de campo offline, supervisión, exportación IW38/IW41 y módulo Falion de análisis de confiabilidad.",
   keywords:
-    "CMMS con IA, FixAI CMMS, software mantenimiento industrial, mantenimiento con inteligencia artificial, CMMS Colombia, CMMS Latinoamérica, ISO 14224, mantenimiento oil gas, MTBF, MTTR, confiabilidad industrial",
+    "Fix AI CMMS, software mantenimiento contratistas SAP PM, PWA mantenimiento industrial, reporte OT digital Colombia, CMMS Oil Gas Colombia, mantenimiento offline campo, Falion IA confiabilidad, exportación IW41 SAP, gestión mantenimiento Colombia",
   offers: {
     "@type": "Offer",
     availability: "https://schema.org/InStock",
@@ -42,38 +44,59 @@ const fixAiJsonLd = {
     name: "IMELECTRIC",
     url: "https://imelectric.es",
     areaServed: ["Colombia", "Latinoamérica"],
-    knowsAbout: ["Mantenimiento industrial", "ISO 14224", "Oil & Gas", "CMMS", "EAM", "Confiabilidad"],
+    knowsAbout: [
+      "Mantenimiento industrial",
+      "SAP PM",
+      "CMMS contratistas",
+      "Oil & Gas Colombia",
+      "Confiabilidad industrial",
+      "ERP mantenimiento",
+    ],
   },
   featureList: [
-    "Órdenes de trabajo digitales con foto y firma electrónica",
-    "Taxonomía automática ISO 14224 para oil & gas",
-    "Modo offline-first para zonas sin cobertura en upstream",
-    "Mantenimiento preventivo planificado con alertas automáticas",
-    "Dashboard KPIs: disponibilidad, MTBF y MTTR en tiempo real",
-    "Asistente de IA en lenguaje natural para supervisores",
-    "Candado digital EDSO (bloqueo y etiquetado)",
-    "Roles diferenciados para técnicos y supervisores",
+    "Reporte de campo con foto, firma electrónica y hash de trazabilidad",
+    "Modo offline-first para zonas sin cobertura",
+    "Supervisión y aprobación digital de reportes antes de ERP",
+    "Exportación nativa compatible con SAP PM IW38/IW41",
+    "Dashboard en tiempo real: backlog, OTs sin tratar y avance por frente",
+    "Falion: módulo de IA para análisis de confiabilidad y hallazgos recurrentes",
+    "Aislamiento de datos por empresa (multiproyecto)",
+    "Control de repuestos y consumibles por orden de trabajo",
   ],
 };
 
-const SavingsStat = ({
-  value,
-  label,
-  hint,
-  icon,
-}: {
-  value: string;
-  label: string;
-  hint: string;
-  icon: ReactNode;
-}) => (
-  <div className="rounded-2xl border border-slate-800 bg-slate-950/80 p-6 transition-colors hover:border-blue-500/40">
-    <div className="mb-3 flex items-center justify-between gap-2">
-      <span className="text-3xl font-extrabold tracking-tight text-blue-400 md:text-4xl">{value}</span>
-      <div className="text-blue-500/80" aria-hidden="true">{icon}</div>
-    </div>
+type FeatureCardProps = {
+  icon: React.ReactNode;
+  title: string;
+  desc: string;
+  accent?: "blue" | "emerald" | "violet";
+};
+
+const FeatureCard = ({ icon, title, desc, accent = "blue" }: FeatureCardProps) => {
+  const colors = {
+    blue:    "text-blue-500 group-hover:bg-blue-500/10 border-blue-500/20",
+    emerald: "text-emerald-500 group-hover:bg-emerald-500/10 border-emerald-500/20",
+    violet:  "text-violet-400 group-hover:bg-violet-500/10 border-violet-500/20",
+  };
+  return (
+    <li className="group flex flex-col gap-4 rounded-2xl border border-slate-800 bg-slate-900/50 p-6 transition-all hover:border-slate-700 hover:bg-slate-900">
+      <div className={`flex h-10 w-10 items-center justify-center rounded-xl border transition-colors ${colors[accent]}`} aria-hidden="true">
+        {icon}
+      </div>
+      <div>
+        <h4 className="mb-1.5 font-bold text-white">{title}</h4>
+        <p className="text-sm leading-relaxed text-slate-500">{desc}</p>
+      </div>
+    </li>
+  );
+};
+
+type StatProps = { value: string; label: string; sub: string };
+const Stat = ({ value, label, sub }: StatProps) => (
+  <div className="rounded-2xl border border-slate-800 bg-slate-950/80 p-6 transition-colors hover:border-blue-500/30">
+    <div className="mb-2 text-3xl font-extrabold tracking-tight text-blue-400 md:text-4xl">{value}</div>
     <p className="text-sm font-bold text-white">{label}</p>
-    <p className="mt-2 text-xs leading-relaxed text-slate-500">{hint}</p>
+    <p className="mt-1.5 text-xs leading-relaxed text-slate-500">{sub}</p>
   </div>
 );
 
@@ -86,7 +109,6 @@ export const FixAI = () => {
       itemScope
       itemType="https://schema.org/SoftwareApplication"
     >
-      {/* JSON-LD estructurado para Google */}
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -94,194 +116,293 @@ export const FixAI = () => {
       />
 
       <div className="mx-auto max-w-7xl px-6">
-        {/* Cabecera + indicadores de ahorro */}
+
+        {/* ── HERO ────────────────────────────────────────────── */}
         <div className="mb-20 grid items-start gap-12 lg:grid-cols-2">
           <div className="max-w-3xl">
-            <p className="mb-4 flex items-center gap-2 text-blue-500 text-xs font-bold tracking-widest uppercase">
-              <Cpu size={20} aria-hidden="true" />
-              CMMS de Campo con Inteligencia Artificial
+
+            {/* Logo */}
+            <div className="mb-8 inline-flex items-center rounded-2xl border border-slate-800 bg-white px-6 py-4 shadow-lg">
+              <Image
+                src="/fixai-logo.png"
+                alt="Fix AI — Software de mantenimiento industrial"
+                width={180}
+                height={60}
+                className="h-10 w-auto object-contain"
+                priority
+                unoptimized
+              />
+            </div>
+
+            <p className="mb-3 text-xs font-bold tracking-widest text-blue-500 uppercase">
+              PWA · Gestión de Mantenimiento Industrial con IA
             </p>
+
             <h2
               id="fixai-heading"
-              className="mb-8 text-4xl leading-tight font-extrabold text-white md:text-6xl"
+              className="mb-6 text-4xl font-extrabold leading-tight text-white md:text-5xl"
               itemProp="name"
             >
-              FixAI CMMS: software de mantenimiento industrial con IA para Colombia y Latinoamérica.
+              Todo registrado.<br />
+              <span className="text-blue-400">Nada se te escapa.</span>
             </h2>
+
             <p className="mb-6 text-lg leading-relaxed text-slate-400" itemProp="description">
-              El primer <strong>CMMS con inteligencia artificial</strong> diseñado para el{" "}
-              <strong>mantenimiento oil &amp; gas</strong> en el upstream latinoamericano. Digitalice órdenes de
-              trabajo en campo, aplique la norma <strong>ISO 14224</strong> de forma automática y elimine el papeleo
-              donde los sistemas complejos fallan. Disponible para empresas en <strong>Colombia</strong> y toda{" "}
-              <strong>Latinoamérica</strong>.
+              Gestión de mantenimiento industrial con inteligencia artificial, diseñada para{" "}
+              <strong className="text-white">contratistas de mantenimiento</strong> que operan bajo entornos{" "}
+              <strong className="text-white">SAP PM</strong> — y para cualquier organización que necesite
+              un <strong className="text-white">CMMS completo</strong> adaptado a su operación real.
             </p>
-            <div className="flex flex-wrap gap-2 rounded-xl border border-slate-800 bg-slate-900/50 p-4 text-sm text-slate-300">
-              <span className="font-bold text-blue-400">Diferencial clave:</span>
-              <span>Mantenimiento Preventivo Planificado con alertas automáticas y trazabilidad forense digital.</span>
+
+            {/* El problema */}
+            <div className="rounded-2xl border border-amber-500/20 bg-amber-500/5 p-5">
+              <p className="mb-2 text-xs font-bold tracking-widest text-amber-500 uppercase">El problema que resolvemos</p>
+              <p className="text-sm leading-relaxed text-slate-300">
+                Los contratistas de mantenimiento Oil &amp; Gas enfrentan un reto diario: la ejecución en campo
+                y el registro administrativo viven separados. Reportes en papel, Excel sin control, y una persona
+                dedicada solo a re-digitar en SAP — con el riesgo constante de penalizaciones por órdenes que
+                no cierran a tiempo. <strong className="text-white">Fix AI existe para cerrar esa brecha.</strong>
+              </p>
             </div>
           </div>
 
+          {/* Stats */}
           <div className="rounded-3xl border border-slate-800 bg-slate-900 p-6 shadow-2xl md:p-8">
             <p className="mb-2 text-xs font-bold tracking-widest text-slate-500 uppercase">Impacto medible (referencial)</p>
-            <h3 className="mb-6 text-lg font-bold text-white">
-              Ahorro y eficiencia con el software de mantenimiento industrial FixAI CMMS
+            <h3 className="mb-6 text-base font-bold text-white">
+              Lo que cambia cuando el campo y el ERP hablan el mismo idioma
             </h3>
             <div className="grid gap-4 sm:grid-cols-2">
-              <SavingsStat
-                value="30%"
-                label="Menos tiempo improductivo"
-                hint="Reducción de paradas y retrabajo vinculada a mejor planificación y datos confiables."
-                icon={<TrendingDown size={22} />}
+              <Stat
+                value="0"
+                label="Doble digitación"
+                sub="Del reporte de campo directamente al formato de carga IW41 — sin reingreso manual de datos."
               />
-              <SavingsStat
-                value="25%"
-                label="Ahorro en costos operativos"
-                hint="Menos horas administrativas, menos reprocesos y mejor uso de cuadrillas y repuestos."
-                icon={<Wallet size={22} />}
+              <Stat
+                value="100%"
+                label="Trazabilidad por OT"
+                sub="Cada reporte lleva hash, timestamp y firma electrónica con validez legal desde el primer minuto."
               />
-              <SavingsStat
-                value="85%"
-                label="Menos tiempo en reportes"
-                hint="De papel o Excel a formularios guiados con fotos y firma en un solo flujo móvil."
-                icon={<Timer size={22} />}
-              />
-              <SavingsStat
-                value="40%"
+              <Stat
+                value="↑ 40%"
                 label="Más OTs cerradas a tiempo"
-                hint="Priorización visible, alertas de preventivo y trazabilidad que aceleran el cierre auditado."
-                icon={<ClipboardList size={22} />}
+                sub="Visibilidad en tiempo real del backlog y estado por frente para que el planeador actúe antes, no después."
+              />
+              <Stat
+                value="Offline"
+                label="Funciona sin señal"
+                sub="El técnico reporta, toma fotos y firma sin cobertura. La sincronización es automática al recuperar red."
               />
             </div>
-            <p className="mt-6 text-[11px] leading-relaxed text-slate-600">
-              Porcentajes orientativos según madurez de datos y adopción en planta; su ingeniero IMELECTRIC los
-              aterriza en una auditoría de viabilidad gratuita.
-            </p>
           </div>
         </div>
 
-        {/* Taxonomía Industrial ISO 14224 */}
+        {/* ── QUÉ ES FIX AI ───────────────────────────────────── */}
         <div className="group relative mb-20 overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 p-10">
-          <div
-            className="absolute top-0 right-0 rounded-full bg-blue-500/5 p-32 blur-[120px] transition-colors group-hover:bg-blue-500/10"
-            aria-hidden="true"
-          />
-          <div className="relative z-10">
-            <CheckCircle2 className="mb-6 text-blue-500" size={32} aria-hidden="true" />
-            <h3 className="mb-4 text-3xl font-bold">Taxonomía Industrial ISO 14224 integrada</h3>
-            <p className="mb-8 max-w-3xl leading-relaxed text-slate-400">
-              FixAI CMMS clasifica automáticamente equipos y modos de falla bajo el estándar global{" "}
-              <strong>ISO 14224</strong>. La jerarquía operativa unificada{" "}
-              <code className="rounded bg-slate-800 px-2 py-1 font-mono text-sm text-white">
-                Equipos &gt; Clase &gt; Tipo &gt; Subsistema
-              </code>{" "}
-              permite análisis de confiabilidad cuantitativo, reportes MTBF/MTTR comparables entre sitios y handover
-              claro entre turnos y contratistas.
-            </p>
-            <ul className="mb-8 flex flex-wrap gap-3 list-none p-0" aria-label="Métricas ISO 14224">
-              <li className="rounded-lg border border-blue-500/30 bg-blue-500/10 px-4 py-2 text-sm font-bold text-blue-300">
-                +35% consistencia de datos de falla
-              </li>
-              <li className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm font-bold text-emerald-300">
-                −50% tiempo armando informes RCA / KPI
-              </li>
-              <li className="rounded-lg border border-slate-700 bg-slate-800/80 px-4 py-2 font-mono text-xs text-slate-400">
-                Ejemplo: BOMBA-CENTRIFUGA-01 &gt; Transmisión
-              </li>
-            </ul>
-            <ul className="max-w-2xl space-y-3 text-sm text-slate-400">
-              <li className="flex gap-2">
-                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-blue-500" aria-hidden="true" />
-                <span>
-                  Misma taxonomía en campo y en oficina: menos reinterpretación y menos errores al consolidar datos de
-                  mantenimiento industrial.
+          <div className="absolute top-0 right-0 rounded-full bg-blue-500/5 p-40 blur-[120px] transition-colors group-hover:bg-blue-500/10" aria-hidden="true" />
+          <div className="relative z-10 grid gap-8 lg:grid-cols-2 lg:items-center">
+            <div>
+              <p className="mb-3 text-xs font-bold tracking-widest text-blue-500 uppercase">¿Qué es Fix AI?</p>
+              <h3 className="mb-4 text-2xl font-bold text-white md:text-3xl">
+                Una PWA que digitaliza todo el ciclo de ejecución de mantenimiento
+              </h3>
+              <p className="mb-5 leading-relaxed text-slate-400">
+                Fix AI es una <strong className="text-white">aplicación web progresiva (PWA)</strong> que acompaña
+                al técnico desde que recibe la orden de trabajo en campo hasta que el reporte queda listo para
+                cargarse en el ERP. Funciona de forma nativa junto a{" "}
+                <strong className="text-white">SAP PM</strong> o cualquier otro ERP que use el operador,{" "}
+                <em>sin licencias adicionales ni acceso API</em>.
+              </p>
+              <p className="leading-relaxed text-slate-400">
+                Y cuando la operación lo requiere, Fix AI puede ir un paso más allá:{" "}
+                <strong className="text-white">convertirse en el CMMS principal</strong> de la organización,
+                asumiendo la gestión completa de mantenimiento.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              {[
+                { label: "SAP PM compatible", color: "blue" },
+                { label: "Exportación IW38/IW41", color: "blue" },
+                { label: "Sin integración API", color: "emerald" },
+                { label: "PWA nativa móvil", color: "emerald" },
+                { label: "Multisector", color: "violet" },
+                { label: "CMMS completo opcional", color: "violet" },
+              ].map(({ label, color }) => (
+                <span key={label} className={`rounded-full border px-4 py-2 text-sm font-semibold ${
+                  color === "blue"    ? "border-blue-500/30 bg-blue-500/10 text-blue-300" :
+                  color === "emerald" ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-300" :
+                  "border-violet-500/30 bg-violet-500/10 text-violet-300"
+                }`}>
+                  {label}
                 </span>
-              </li>
-              <li className="flex gap-2">
-                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-blue-500" aria-hidden="true" />
-                <span>
-                  Base sólida para MTBF, MTTR, Pareto de modos de falla y decisiones de mantenimiento basadas en
-                  evidencia verificable.
-                </span>
-              </li>
-            </ul>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Módulos del CMMS */}
-        <h3 className="sr-only">Módulos operativos de FixAI CMMS</h3>
-        <ul
-          className="mb-20 grid gap-6 md:grid-cols-2 lg:grid-cols-4 list-none p-0"
-          aria-label="Módulos de FixAI CMMS"
-          itemProp="featureList"
-        >
-          <ValueCard
-            icon={<FileText size={24} />}
-            title="Órdenes de Trabajo digitales"
-            desc="Con fotos, firma electrónica y trazabilidad desde cualquier dispositivo móvil."
-          />
-          <ValueCard
-            icon={<Cpu size={24} />}
-            title="IA y análisis ISO 14224"
-            desc="Clasificación automática de fallas para modelos de confiabilidad y análisis probabilístico."
-          />
-          <ValueCard
-            icon={<WifiOff size={24} />}
-            title="Offline-First en campo"
-            desc="Funciona al 100% sin cobertura de red en operaciones upstream oil & gas."
-          />
-          <ValueCard
-            icon={<CalendarDays size={24} />}
-            title="Mantenimiento Preventivo"
-            desc="Alertas automáticas por tiempo, condición o contadores de operación."
-          />
-          <ValueCard
-            icon={<LayoutDashboard size={24} />}
-            title="Dashboard KPIs en tiempo real"
-            desc="Disponibilidad, MTBF y MTTR auditables para supervisores y gerencias."
-          />
-          <ValueCard
-            icon={<Mic size={24} />}
-            title="Asistente de IA"
-            desc="Consultas en lenguaje natural para supervisores técnicos y equipos de mantenimiento."
-          />
-          <ValueCard
-            icon={<Lock size={24} />}
-            title="Candado digital EDSO"
-            desc="Trazabilidad completa de bloqueo y etiquetado para seguridad operativa."
-          />
-          <ValueCard
-            icon={<CheckCircle2 size={24} />}
-            title="Roles diferenciados"
-            desc="Perfiles para técnicos de campo y supervisores con control de acceso y trazabilidad."
-          />
-        </ul>
-
-        {/* CTA */}
-        <div className="relative mt-20 overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 p-12 text-center">
-          <div
-            className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-blue-500 to-emerald-500"
-            aria-hidden="true"
-          />
-          <h3 className="mb-4 text-3xl font-bold">
-            ¿Listo para implementar un CMMS con IA en su planta industrial?
-          </h3>
-          <p className="mx-auto mb-8 max-w-xl text-slate-400">
-            FixAI es el <strong className="text-white">software de mantenimiento industrial con inteligencia
-            artificial</strong> que su operación necesita para pasar del mantenimiento reactivo al proactivo,
-            con trazabilidad digital, cumplimiento <strong className="text-white">ISO 14224</strong> y disponible
-            hoy en <strong className="text-white">Colombia y Latinoamérica</strong>.
-          </p>
-          <FixAICta />
+        {/* ── SCREENSHOTS ─────────────────────────────────────── */}
+        <div className="mb-20">
+          <div className="mb-10 text-center">
+            <p className="mb-2 text-xs font-bold tracking-widest text-slate-500 uppercase">Fix AI en acción</p>
+            <h3 className="text-2xl font-bold text-white">Así lo ve el técnico en campo y el planeador en oficina</h3>
+          </div>
+          <div className="flex flex-wrap justify-center gap-8">
+            <div className="flex flex-col items-center gap-3">
+              <div className="overflow-hidden rounded-3xl border border-slate-700 shadow-2xl shadow-blue-950/50" style={{ width: 240 }}>
+                <Image
+                  src="/fixai-screen-1.png"
+                  alt="Fix AI — Tablero de planeación con KPIs: OTs semana, cumplimiento, backlog y sesiones pendientes"
+                  width={540}
+                  height={960}
+                  className="w-full object-cover"
+                  unoptimized
+                />
+              </div>
+              <p className="text-center text-xs text-slate-500">Dashboard del planeador — KPIs y cumplimiento semanal</p>
+            </div>
+            <div className="flex flex-col items-center gap-3">
+              <div className="overflow-hidden rounded-3xl border border-slate-700 shadow-2xl shadow-blue-950/50" style={{ width: 240 }}>
+                <Image
+                  src="/fixai-screen-2.png"
+                  alt="Fix AI — Formulario de ejecución de OT con clasificación, fecha y encabezado de la orden de trabajo"
+                  width={540}
+                  height={960}
+                  className="w-full object-cover"
+                  unoptimized
+                />
+              </div>
+              <p className="text-center text-xs text-slate-500">Ejecución de OT en campo — paso a paso guiado</p>
+            </div>
+          </div>
         </div>
+
+        {/* ── FEATURES ────────────────────────────────────────── */}
+        <div className="mb-20">
+          <div className="mb-10 text-center">
+            <p className="mb-2 text-xs font-bold tracking-widest text-blue-500 uppercase">Funcionalidades principales</p>
+            <h3 className="text-2xl font-bold text-white md:text-3xl">Todo lo que necesita el contratista para operar sin fricción</h3>
+          </div>
+          <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 list-none p-0" aria-label="Funcionalidades de Fix AI" itemProp="featureList">
+            <FeatureCard
+              icon={<Smartphone size={20} />}
+              title="Reporte de campo sin fricción"
+              desc="Evidencia fotográfica, hallazgos técnicos, repuestos y firma electrónica con hash + timestamp desde el celular. Código único de trazabilidad por reporte."
+              accent="blue"
+            />
+            <FeatureCard
+              icon={<WifiOff size={20} />}
+              title="Funciona sin conexión"
+              desc="100% offline en campo. El técnico reporta, toma fotos y firma sin señal. Sincronización automática al recuperar conexión. Ninguna captura se pierde."
+              accent="blue"
+            />
+            <FeatureCard
+              icon={<ShieldCheck size={20} />}
+              title="Supervisión con control real"
+              desc="El supervisor audita y aprueba cada reporte antes de que pase al ERP. Calidad de información blindada. Supervisor en campo, no corrigiendo papeles."
+              accent="emerald"
+            />
+            <FeatureCard
+              icon={<RefreshCw size={20} />}
+              title="Ciclo nativo con el ERP"
+              desc="Importación del programa semanal → ejecución → exportación lista para IW38/IW41 de SAP PM o el formato de cualquier otro ERP. Sin doble digitación."
+              accent="emerald"
+            />
+            <FeatureCard
+              icon={<Layers size={20} />}
+              title="Se adapta a cualquier industria"
+              desc="Arquitectura personalizable según procesos, checklists, roles y flujos de aprobación. Oil & Gas, manufactura, energía y más."
+              accent="blue"
+            />
+            <FeatureCard
+              icon={<LayoutDashboard size={20} />}
+              title="Visibilidad total para el planeador"
+              desc="Dashboard en tiempo real con backlog, órdenes sin tratar, parciales y avance por frente — disponible 24/7, actualizado al instante."
+              accent="blue"
+            />
+            <FeatureCard
+              icon={<Sparkles size={20} />}
+              title="Falion — IA de confiabilidad"
+              desc="Módulo de IA que analiza el historial de reportes para identificar equipos críticos y hallazgos recurrentes. Insumo directo para decisiones operativas y negociación de contratos."
+              accent="violet"
+            />
+            <FeatureCard
+              icon={<Package size={20} />}
+              title="Control de repuestos"
+              desc="Seguimiento diario de materiales por orden de trabajo y ejecutor con costos asociados. Soporte directo para la facturación al operador."
+              accent="blue"
+            />
+          </ul>
+        </div>
+
+        {/* ── PARA QUIÉN ──────────────────────────────────────── */}
+        <div className="mb-20 grid gap-6 sm:grid-cols-2">
+          <div className="rounded-2xl border border-blue-500/20 bg-blue-500/5 p-8">
+            <div className="mb-3 flex items-center gap-3">
+              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-500/20">
+                <Lock size={16} className="text-blue-400" aria-hidden="true" />
+              </div>
+              <h4 className="font-bold text-white">Para el contratista</h4>
+            </div>
+            <p className="text-sm leading-relaxed text-slate-400">
+              Fix AI nace pensado para el <strong className="text-slate-200">contratista de mantenimiento</strong> que
+              opera bajo outsourcing — en entornos SAP PM, con otro ERP, o sin uno. Horas documentadas,
+              cumplimiento de OTs y evidencia lista para facturar. Cada funcionalidad está diseñada para
+              su rentabilidad y su cumplimiento contractual.
+            </p>
+          </div>
+          <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-8">
+            <div className="mb-3 flex items-center gap-3">
+              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-500/20">
+                <LayoutDashboard size={16} className="text-emerald-400" aria-hidden="true" />
+              </div>
+              <h4 className="font-bold text-white">Para el operador dueño del activo</h4>
+            </div>
+            <p className="text-sm leading-relaxed text-slate-400">
+              La información operacional real que Fix AI captura en campo —ejecución, hallazgos, tiempos,
+              condición de equipos— es exactamente el insumo que una compañía necesita para{" "}
+              <strong className="text-slate-200">ajustar su plan de mantenimiento a su realidad operativa</strong>,
+              sin que esa información se pierda en estructuras jerárquicas. Una vía directa desde el campo
+              hasta quien toma las decisiones.
+            </p>
+          </div>
+        </div>
+
+        {/* ── SEGURIDAD ───────────────────────────────────────── */}
+        <div className="mb-20 rounded-3xl border border-slate-800 bg-slate-900 p-8 md:p-10">
+          <Lock className="mb-4 text-slate-500" size={28} aria-hidden="true" />
+          <h3 className="mb-3 text-xl font-bold text-white">Seguridad y cumplimiento</h3>
+          <ul className="grid gap-3 sm:grid-cols-3 list-none p-0">
+            {[
+              { label: "Aislamiento por empresa", desc: "Datos de cada proyecto completamente separados a nivel de base de datos. Ideal para operaciones con múltiples clientes o proyectos." },
+              { label: "Ley 1581 Habeas Data", desc: "Cumplimiento de la normativa colombiana de protección de datos personales, con consentimiento explícito del usuario." },
+              { label: "Auditoría de acciones críticas", desc: "Registro inmutable de cada acción relevante: firma, aprobación, exportación. Trazabilidad forense completa." },
+            ].map(item => (
+              <li key={item.label} className="rounded-xl border border-slate-800 bg-slate-950/60 p-4">
+                <p className="mb-1 text-sm font-bold text-slate-200">{item.label}</p>
+                <p className="text-xs leading-relaxed text-slate-500">{item.desc}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* ── CTA ─────────────────────────────────────────────── */}
+        <div className="relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 p-12 text-center">
+          <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-blue-500 to-emerald-500" aria-hidden="true" />
+          <div className="absolute top-0 right-0 rounded-full bg-blue-500/5 p-40 blur-[100px]" aria-hidden="true" />
+          <div className="relative z-10">
+            <h3 className="mb-4 text-3xl font-bold text-white">
+              ¿Listo para que el campo y el ERP hablen el mismo idioma?
+            </h3>
+            <p className="mx-auto mb-8 max-w-xl text-slate-400">
+              Fix AI funciona con <strong className="text-white">SAP PM</strong> o como{" "}
+              <strong className="text-white">CMMS independiente</strong>. Sin licencias adicionales,
+              sin integraciones complejas — operativo en días, no en meses.
+            </p>
+            <FixAICta />
+          </div>
+        </div>
+
       </div>
     </section>
   );
 };
-
-const ValueCard = ({ icon, title, desc }: { icon: ReactNode; title: string; desc: string }) => (
-  <li className="group flex flex-col gap-4 rounded-2xl border border-slate-800 bg-slate-900/50 p-8 transition-all hover:bg-slate-900">
-    <div className="text-blue-500 transition-transform group-hover:scale-110" aria-hidden="true">{icon}</div>
-    <h4 className="font-bold text-white">{title}</h4>
-    <p className="flex-grow text-sm leading-relaxed text-slate-500">{desc}</p>
-  </li>
-);

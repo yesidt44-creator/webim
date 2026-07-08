@@ -5,19 +5,20 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://imelectric.es",
   },
-  title: "IMELECTRIC — CMMS con IA y Software HSE | Colombia y Latinoamérica",
+  title: "IMELECTRIC — Fix AI, Safety On y Nexvia | Software Industrial Colombia",
   description:
-    "FixAI CMMS y Safety On: software de mantenimiento industrial con IA y gestión HSE para oil & gas en Colombia y Latinoamérica. Permisos de trabajo digitales, ISO 14224, trazabilidad HSE y KPIs de confiabilidad en tiempo real.",
+    "Fix AI: PWA de mantenimiento industrial con IA para contratistas SAP PM. Safety On: software HSE y SST con permisos digitales. Nexvia: gestión de flotas HSEQ. Soluciones para Oil & Gas, manufactura y transporte en Colombia y Latinoamérica.",
   keywords: [
-    // FixAI CMMS
-    "CMMS con IA",
-    "FixAI CMMS",
-    "software mantenimiento industrial",
-    "mantenimiento con inteligencia artificial",
+    // Fix AI
+    "Fix AI CMMS",
+    "software mantenimiento contratistas SAP PM",
+    "PWA mantenimiento industrial Colombia",
+    "CMMS contratistas Oil Gas Colombia",
+    "exportación IW41 SAP mantenimiento",
+    "Falion IA confiabilidad",
+    "software mantenimiento offline campo",
     "CMMS Colombia",
-    "CMMS Latinoamérica",
-    "ISO 14224",
-    "mantenimiento oil gas",
+    "mantenimiento oil gas Colombia",
     "mantenimiento upstream",
     "órdenes de trabajo digitales",
     "MTBF MTTR",
