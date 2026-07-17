@@ -1,4 +1,5 @@
 import { headers } from "next/headers";
+import Link from "next/link";
 import type { Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://imelectric.es/nexvia",
   },
-  title: "Nexvia — Tu Flota Bajo Control | HSEQ, Talleres, Conductores y EV para Colombia | IMELECTRIC",
+  title: "Nexvia — Flotas HSEQ para Colombia | IMELECTRIC",
   description:
     "Nexvia: plataforma HSEQ offline-first para PyMEs de transporte colombiano. 4 líneas: HSEQ, Talleres, Personales y EV. Scoring de riesgo sin hardware extra (acelerómetro), pasaporte digital del vehículo, inspección preoperacional e ISO 9001.",
   keywords: [
@@ -108,7 +109,7 @@ export default async function NexviaPage() {
       <section className="border-b border-slate-800 bg-slate-950 px-6 pt-36 pb-12">
         <div className="mx-auto max-w-7xl">
           <nav className="mb-6 flex items-center gap-2 text-xs text-slate-500" aria-label="Breadcrumb">
-            <a href="/" className="transition hover:text-slate-300">Inicio</a>
+            <Link href="/" className="transition hover:text-slate-300">Inicio</Link>
             <span>/</span>
             <span className="text-slate-400">Nexvia</span>
           </nav>
@@ -163,7 +164,7 @@ export default async function NexviaPage() {
           </h3>
           <div className="flex flex-wrap justify-center gap-3">
             {[
-              { href: "/fixai-cmms", label: "FixAI CMMS — Mantenimiento con IA" },
+              { href: "/fixai-cmms", label: "Fix AI — Mantenimiento con IA" },
               { href: "/veriwork",   label: "Veriwork — Gestión HSE verificable" },
               { href: "/academia",   label: "Academia Técnica" },
               { href: "/",           label: "← Inicio" },

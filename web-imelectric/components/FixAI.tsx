@@ -30,16 +30,6 @@ const fixAiJsonLd = {
     "Fix AI es una PWA de gestión de mantenimiento industrial con IA diseñada para contratistas. Digitaliza el ciclo completo de ejecución: reporte de campo offline, supervisión, exportación compatible con el ERP del operador y módulo Falion de análisis de confiabilidad.",
   keywords:
     "Fix AI CMMS, software mantenimiento industrial Colombia, PWA mantenimiento industrial, reporte OT digital Colombia, CMMS Oil Gas Colombia, mantenimiento offline campo, Falion IA confiabilidad, gestión mantenimiento Colombia",
-  offers: {
-    "@type": "Offer",
-    availability: "https://schema.org/InStock",
-    priceCurrency: "USD",
-    price: "0",
-    priceSpecification: {
-      "@type": "PriceSpecification",
-      description: "Precio según auditoría de viabilidad. Contactar para demo técnica.",
-    },
-  },
   provider: {
     "@type": "Organization",
     name: "IMELECTRIC",
@@ -288,19 +278,19 @@ export const FixAI = async () => {
             <FeatureCard
               icon={<Smartphone size={20} />}
               title="Reporte de campo sin fricción"
-              desc="Evidencia fotográfica, hallazgos técnicos, repuestos y firma electrónica con hash + timestamp desde el celular. Código único de trazabilidad por reporte."
+              desc="Evidencia fotográfica, hallazgos técnicos, repuestos y firma electrónica con hash SHA-256 + timestamp desde el celular. Código único de trazabilidad por reporte."
               accent="blue"
             />
             <FeatureCard
               icon={<WifiOff size={20} />}
               title="Funciona sin conexión"
-              desc="100% offline en campo. El técnico reporta, toma fotos y firma sin señal. Sincronización automática al recuperar conexión. Ninguna captura se pierde."
+              desc="Operación offline completa en campo. El técnico reporta, toma fotos y firma sin señal. Sincronización automática al recuperar conexión. Ninguna captura se pierde."
               accent="blue"
             />
             <FeatureCard
               icon={<ShieldCheck size={20} />}
               title="Supervisión con control real"
-              desc="El supervisor audita y aprueba cada reporte antes de que pase al ERP. Calidad de información blindada. Supervisor en campo, no corrigiendo papeles."
+              desc="El supervisor audita y aprueba cada reporte antes de que pase al ERP. Calidad de información controlada. Supervisor en campo, no corrigiendo papeles."
               accent="emerald"
             />
             <FeatureCard

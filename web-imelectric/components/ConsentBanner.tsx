@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useSyncExternalStore } from "react";
 import Link from "next/link";
 import { getConsent, setConsent } from "@/lib/consent";
 
@@ -8,24 +8,31 @@ interface Props {
   onConsent: (choice: "accepted" | "rejected") => void;
 }
 
-export const ConsentBanner = ({ onConsent }: Props) => {
-  const [visible, setVisible] = useState(false);
+function subscribeConsent(onStoreChange: () => void) {
+  if (typeof window === "undefined") return () => {};
+  const handler = () => onStoreChange();
+  window.addEventListener("imelectric-consent", handler);
+  window.addEventListener("storage", handler);
+  return () => {
+    window.removeEventListener("imelectric-consent", handler);
+    window.removeEventListener("storage", handler);
+  };
+}
 
-  useEffect(() => {
-    if (getConsent() === null) {
-      setVisible(true);
-    }
-  }, []);
+function needsBanner() {
+  return getConsent() === null;
+}
+
+export const ConsentBanner = ({ onConsent }: Props) => {
+  const visible = useSyncExternalStore(subscribeConsent, needsBanner, () => false);
 
   const handleAccept = () => {
     setConsent("accepted");
-    setVisible(false);
     onConsent("accepted");
   };
 
   const handleReject = () => {
     setConsent("rejected");
-    setVisible(false);
     onConsent("rejected");
   };
 

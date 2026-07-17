@@ -32,16 +32,6 @@ const nexviaJsonLd = {
     "Nexvia es el software de gestión de flotas e HSEQ para PyMEs de transporte en Colombia. Digitaliza inspecciones preoperacionales, evaluaciones de riesgo, trazabilidad de seguridad industrial y cumplimiento ISO 9001 con tecnología offline-first para zonas sin cobertura.",
   keywords:
     "software gestión flotas Colombia, HSEQ Colombia, seguridad industrial digital, gestión seguridad industrial, software SST Colombia, trazabilidad HSEQ, seguridad vial digital, ISO 9001 transporte, permisos trabajo transporte, inspección preoperacional digital",
-  offers: {
-    "@type": "Offer",
-    availability: "https://schema.org/InStock",
-    priceCurrency: "USD",
-    price: "0",
-    priceSpecification: {
-      "@type": "PriceSpecification",
-      description: "Sistema nativo colombiano accesible para PyMEs. Contactar para cotización según tamaño de flota.",
-    },
-  },
   provider: {
     "@type": "Organization",
     name: "IMELECTRIC",
@@ -60,10 +50,10 @@ const nexviaJsonLd = {
   featureList: [
     "Inspecciones preoperacionales digitales con validación de competencias",
     "Evaluación de riesgo con matriz de 8 criterios y fatiga del conductor",
-    "Trazabilidad HSEQ 100% auditable e inalterable",
+    "Trazabilidad HSEQ auditable, diseñada para detectar alteraciones",
     "Operación offline-first para zonas sin cobertura en Colombia",
     "Encuestas de satisfacción por código QR vinculadas al viaje",
-    "Blindaje legal ante incidentes y auditorías regulatorias",
+    "Evidencia documental ante incidentes y auditorías regulatorias",
     "Verificación automática de certificados y avales de conductores",
     "Cumplimiento ISO 9001 para transporte y logística",
   ],
@@ -189,9 +179,9 @@ export const Nexvia = async () => {
                     <CheckCircle2 size={20} />
                   </div>
                   <div>
-                    <span className="block font-bold text-white">Blindaje legal ante incidentes viales</span>
+                    <span className="block font-bold text-white">Evidencia documental ante incidentes viales</span>
                     <p className="mt-1 text-xs text-slate-400">
-                      Toda la cadena de decisión documentada e inalterable: <strong className="text-slate-300">trazabilidad HSE</strong> para protección ante auditorías regulatorias.
+                      Toda la cadena de decisión documentada, diseñada para que no pueda modificarse sin dejar rastro: <strong className="text-slate-300">trazabilidad HSE</strong> ante auditorías regulatorias.
                     </p>
                   </div>
                 </li>
@@ -214,7 +204,7 @@ export const Nexvia = async () => {
                   <div>
                     <span className="block font-bold text-white">Diseñado para el bolsillo de la PyME colombiana</span>
                     <p className="mt-1 text-xs text-slate-400">
-                      El único <strong className="text-slate-300">software HSEQ Colombia</strong> nativo diseñado para
+                      Software HSEQ <strong className="text-slate-300">diseñado nativamente para Colombia</strong>, pensado para
                       las realidades operativas y normativas del transporte colombiano, sin el costo de soluciones enterprise.
                     </p>
                   </div>
@@ -297,7 +287,7 @@ export const Nexvia = async () => {
             ¿Listo para digitalizar su flota con seguridad industrial hoy mismo?
           </h3>
           <p className="mx-auto mb-8 max-w-xl text-slate-400">
-            Nexvia es el único <strong className="text-white">software HSEQ</strong> nativo colombiano que integra
+            Nexvia es software HSEQ <strong className="text-white">diseñado nativamente para Colombia</strong> que integra
             transporte, <strong className="text-white">seguridad industrial digital</strong> e ISO 9001 en una sola
             plataforma.
           </p>

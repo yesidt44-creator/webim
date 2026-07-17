@@ -41,6 +41,9 @@ export const Footer = () => {
                 height={48}
                 className="opacity-80"
               />
+              <p className="mt-2 max-w-[140px] text-[10px] leading-snug text-slate-600">
+                Certificado ISO 9001 por LL-C Certification
+              </p>
             </div>
           </div>
 
@@ -50,7 +53,7 @@ export const Footer = () => {
             <ul className="space-y-3 text-sm">
               <li>
                 <Link href="/#fixai" className={linkClass}>
-                  FixAI CMMS
+                  Fix AI
                 </Link>
               </li>
               <li>
@@ -81,9 +84,9 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* Knowledge Hub / Academia */}
+          {/* Academia Técnica / Academia */}
           <div>
-            <h4 className="mb-6 text-sm font-bold tracking-wide text-white uppercase">Knowledge Hub</h4>
+            <h4 className="mb-6 text-sm font-bold tracking-wide text-white uppercase">Academia Técnica</h4>
             <ul className="space-y-3 text-sm">
               <li>
                 <Link href="/academia" className={`${linkClass} font-semibold text-slate-300`}>
@@ -91,18 +94,18 @@ export const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/academia#confiabilidad" className={linkClass}>
-                  Confiabilidad & herramientas
+                <Link href="/academia/calculadora-mtbf" className={linkClass}>
+                  Calculadora MTBF / MTTR
                 </Link>
               </li>
               <li>
-                <Link href="/academia#sst" className={linkClass}>
-                  SST, alturas & normativa
+                <Link href="/academia/trabajo-en-alturas" className={linkClass}>
+                  Trabajo en alturas y normativa
                 </Link>
               </li>
               <li>
-                <Link href="/#excelencia" className={linkClass}>
-                  Fundamentos en inicio
+                <Link href="/academia/rca-rcm-fmea-diferencias" className={linkClass}>
+                  RCA, RCM y FMEA
                 </Link>
               </li>
             </ul>

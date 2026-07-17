@@ -21,8 +21,9 @@ export const Hero = () => {
           <span className="text-blue-400">Tu equipo sigue tomando las decisiones.</span>
         </h1>
         <p className="mb-8 max-w-lg text-lg leading-relaxed text-slate-400">
-          <strong className="text-white">Fix AI</strong>, <strong className="text-white">Veriwork</strong>,{" "}
-          <strong className="text-white">Nexvia</strong> y <strong className="text-white">Shield AI</strong> automatizan
+          <strong className="text-white">Fix AI</strong>, <strong className="text-white">Falion</strong>,{" "}
+          <strong className="text-white">Veriwork</strong>, <strong className="text-white">Nexvia</strong> y{" "}
+          <strong className="text-white">Shield AI</strong> automatizan
           el reporte, la trazabilidad y el cumplimiento normativo de tu operación — para que tu equipo
           deje de perder horas en tareas repetitivas y las invierta en lo que requiere criterio humano: revisar, aprobar y firmar.
         </p>

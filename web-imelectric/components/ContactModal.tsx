@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -16,17 +18,25 @@ const PRIORITY_LABELS: Record<string, string> = {
 };
 
 export const ContactModal = ({ children }: { children: React.ReactNode }) => {
+  const pathname = usePathname();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [open, setOpen] = useState(false);
   const [fullName, setFullName] = useState("");
   const [company, setCompany] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [message, setMessage] = useState("");
   const [priority, setPriority] = useState("");
+  const [authorized, setAuthorized] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!priority) {
       window.alert("Seleccione una prioridad técnica.");
+      return;
+    }
+    if (!authorized) {
+      window.alert("Debe autorizar el tratamiento de sus datos personales para continuar.");
       return;
     }
     const priorityLabel = PRIORITY_LABELS[priority] || priority;
@@ -39,7 +49,11 @@ export const ContactModal = ({ children }: { children: React.ReactNode }) => {
         fullName,
         company,
         email,
+        phone: phone.trim() || undefined,
+        message: message.trim() || undefined,
         priority: priorityLabel,
+        sourcePage: pathname || "/",
+        consent: authorized,
         _hp: hpValue,
       });
 
@@ -49,7 +63,10 @@ export const ContactModal = ({ children }: { children: React.ReactNode }) => {
         setFullName("");
         setCompany("");
         setEmail("");
+        setPhone("");
+        setMessage("");
         setPriority("");
+        setAuthorized(false);
       } else if (result.status === "mailto") {
         openMailtoContact(fullName, company, email, priorityLabel);
         window.alert(
@@ -140,6 +157,22 @@ export const ContactModal = ({ children }: { children: React.ReactNode }) => {
 
               <div className="space-y-2">
                 <label className="text-xs font-semibold tracking-wider text-slate-400 uppercase">
+                  Teléfono <span className="normal-case tracking-normal text-slate-600">(opcional)</span>
+                </label>
+                <Input
+                  type="tel"
+                  name="phone"
+                  autoComplete="tel"
+                  inputMode="tel"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  placeholder="+57 300 000 0000"
+                  className="min-h-12 bg-slate-900 text-base text-white border-slate-700"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-xs font-semibold tracking-wider text-slate-400 uppercase">
                   Prioridad técnica
                 </label>
                 <Select value={priority} onValueChange={setPriority} required>
@@ -155,10 +188,42 @@ export const ContactModal = ({ children }: { children: React.ReactNode }) => {
                 </Select>
               </div>
 
+              <div className="space-y-2">
+                <label className="text-xs font-semibold tracking-wider text-slate-400 uppercase">
+                  Mensaje <span className="normal-case tracking-normal text-slate-600">(opcional)</span>
+                </label>
+                <textarea
+                  name="message"
+                  rows={3}
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  placeholder="Contexto breve de su operación o necesidad…"
+                  className="w-full rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-base text-white placeholder:text-slate-600 focus:border-blue-500 focus:outline-none"
+                />
+              </div>
+
+              <label className="flex items-start gap-3 pt-1 text-xs leading-relaxed text-slate-400">
+                <input
+                  type="checkbox"
+                  name="consent"
+                  required
+                  checked={authorized}
+                  onChange={(e) => setAuthorized(e.target.checked)}
+                  className="mt-0.5 h-4 w-4 shrink-0 rounded border-slate-600 bg-slate-900 accent-blue-600"
+                />
+                <span>
+                  Autorizo el tratamiento de mis datos personales conforme a la{" "}
+                  <Link href="/privacidad" target="_blank" className="text-blue-400 underline hover:text-blue-300">
+                    Política de Tratamiento de Datos
+                  </Link>
+                  .
+                </span>
+              </label>
+
               <Button
                 type="submit"
-                disabled={isSubmitting}
-                className="mt-4 h-12 w-full bg-blue-600 text-base font-bold text-white transition-all hover:bg-blue-700"
+                disabled={isSubmitting || !authorized}
+                className="mt-4 h-12 w-full bg-blue-600 text-base font-bold text-white transition-all hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {isSubmitting ? (
                   "Enviando…"
@@ -168,6 +233,14 @@ export const ContactModal = ({ children }: { children: React.ReactNode }) => {
                   </>
                 )}
               </Button>
+
+              <p className="text-center text-xs text-slate-500">
+                Usaremos estos datos únicamente para responder tu solicitud.{" "}
+                <Link href="/privacidad" target="_blank" className="text-slate-400 underline hover:text-slate-300">
+                  Más información
+                </Link>
+                .
+              </p>
             </form>
           </div>
 

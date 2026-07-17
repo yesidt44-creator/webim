@@ -5,7 +5,6 @@ import {
   Brain,
   FileText,
   Shield,
-  CheckCircle2,
   ArrowRight,
   AlertTriangle,
   FlaskConical,
@@ -13,50 +12,6 @@ import {
 import Link from "next/link";
 import { ContactModal } from "./ContactModal";
 import { FalionRoiCalc } from "./FalionRoiCalc";
-
-const falionJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: "Falion",
-  alternateName: [
-    "Falion análisis confiabilidad",
-    "Falion RCA industrial",
-    "software RCA mantenimiento Colombia",
-    "análisis causa raíz automatizado",
-  ],
-  applicationCategory: "BusinessApplication",
-  applicationSubCategory: "Confiabilidad Industrial, RCA, FMECA, Weibull, RAM, CBM",
-  operatingSystem: "Web",
-  description:
-    "Falion asiste el análisis de causa raíz (RCA), FMECA, Weibull, RAM y confiabilidad industrial con los datos reales de los activos del cliente — no con conocimiento genérico. El ingeniero revisa, valida y firma. Falion propone; la decisión siempre es del experto.",
-  keywords:
-    "Falion RCA industrial, análisis causa raíz Colombia, software confiabilidad industrial, FMECA automatizado, Weibull análisis, RAM confiabilidad, CBM mantenimiento basado condición, LCC costo ciclo vida, PST-IA seguridad funcional, CMMS confiabilidad Colombia",
-  provider: {
-    "@type": "Organization",
-    name: "IMELECTRIC",
-    url: "https://imelectric.es",
-    areaServed: ["Colombia", "Latinoamérica"],
-    knowsAbout: [
-      "Análisis de causa raíz RCA",
-      "FMECA análisis preventivo",
-      "Distribución de Weibull mantenimiento",
-      "Confiabilidad RAM industrial",
-      "Mantenimiento basado en condición CBM",
-      "ISO 14224",
-      "GTC-45",
-    ],
-  },
-  featureList: [
-    "RCA con árbol de causas basado en historial real de activos",
-    "Análisis Weibull con advertencia de baja confianza estadística (guardrails)",
-    "FMECA con índice de criticidad",
-    "Entregable en Word auditable con trazabilidad normativa (GTC-45, RETIE, ISO 14224, API)",
-    "Grounding en datos propios — no en internet",
-    "El ingeniero revisa y aprueba; Falion nunca ejecuta cambios automáticamente en el CMMS",
-    "8 módulos de análisis: RCA, Weibull, FMECA, RAM, CBM, LCC, PST-IA, Chat RAG",
-    "Integración de datos con Fix AI CMMS",
-  ],
-};
 
 const differentiators = [
   {
@@ -162,7 +117,7 @@ export const Falion = () => {
             <p className="mb-2 text-xs font-bold tracking-widest text-slate-500 uppercase">Según fuentes especializadas en confiabilidad industrial</p>
             <div className="mb-4 text-5xl font-extrabold text-blue-400">1–3</div>
             <p className="text-lg font-bold text-white">días hábiles por RCA completo</p>
-            <p className="mt-2 text-sm text-slate-400">Un RCA "rápido" de 1–2 horas solo aplica a fallas simples con evidencia ya disponible. Falion compite contra el ciclo real de días que consume un caso completo.</p>
+            <p className="mt-2 text-sm text-slate-400">Un RCA &ldquo;rápido&rdquo; de 1–2 horas solo aplica a fallas simples con evidencia ya disponible. Falion compite contra el ciclo real de días que consume un caso completo.</p>
           </div>
         </motion.div>
 

@@ -1,4 +1,5 @@
 import { headers } from "next/headers";
+import Link from "next/link";
 import type { Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://imelectric.es/fixai-cmms",
   },
-  title: "Fix AI — Software de Mantenimiento Industrial con IA para Contratistas | IMELECTRIC",
+  title: "Fix AI — CMMS con IA para contratistas | IMELECTRIC",
   description:
     "Fix AI es una PWA de gestión de mantenimiento industrial con IA para contratistas. Reporte de campo offline, exportación compatible con el ERP del operador, supervisión digital y módulo Falion de confiabilidad. Sin doble digitación, sin penalizaciones por OTs sin cerrar.",
   keywords: [
@@ -106,9 +107,9 @@ export default async function FixAICmmsPage() {
       <section className="border-b border-slate-800 bg-slate-950 px-6 pt-36 pb-12">
         <div className="mx-auto max-w-7xl">
           <nav className="mb-6 flex items-center gap-2 text-xs text-slate-500" aria-label="Breadcrumb">
-            <a href="/" className="transition hover:text-slate-300">Inicio</a>
+            <Link href="/" className="transition hover:text-slate-300">Inicio</Link>
             <span>/</span>
-            <span className="text-slate-400">FixAI CMMS</span>
+            <span className="text-slate-400">Fix AI</span>
           </nav>
           <div className="mb-3 text-xs font-bold tracking-widest text-blue-500 uppercase">
             PWA · Gestión de Mantenimiento Industrial con IA

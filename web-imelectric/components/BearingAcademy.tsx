@@ -205,7 +205,7 @@ function NomenclatureDecoder() {
   const decode = useCallback((r: string) => {
     const clean = r.trim().toUpperCase();
     const parts: { label: string; value: string; desc: string }[] = [];
-    let remaining = clean;
+    const remaining = clean;
     let widthS = "", diamS = "", boreCode = "";
     const baseMatch = remaining.match(/^([A-Z]*\d+)([\s/-].*)?$/);
     const base = baseMatch ? baseMatch[1] : remaining;
@@ -427,7 +427,7 @@ function BearingSearch() {
         </div>
       )}
       {results.length===0 && query.length>0 && mode==="ref" && (
-        <p className="py-6 text-center text-sm text-slate-500">Sin resultados para <span className="font-mono text-slate-300">"{query}"</span></p>
+        <p className="py-6 text-center text-sm text-slate-500">Sin resultados para <span className="font-mono text-slate-300">&ldquo;{query}&rdquo;</span></p>
       )}
     </div>
   );

@@ -164,7 +164,11 @@ export default function CookiesPage() {
         </Section>
 
         <div className="mt-12 border-t border-slate-800 pt-8 text-xs text-slate-600">
-          <p>IMELECTRIC S.A.S. · Yondó, Antioquia, Colombia · hola@imelectric.es</p>
+          <p>
+            Última actualización: 16 de julio de 2026. Este documento puede ser actualizado; la versión vigente
+            es la publicada en esta página.
+          </p>
+          <p className="mt-2">IMELECTRIC S.A.S. · Yondó, Antioquia, Colombia · contacto@imelectric.es</p>
           <div className="mt-3 flex flex-wrap gap-4">
             <Link href="/privacidad" className="hover:text-slate-400">
               Política de Privacidad

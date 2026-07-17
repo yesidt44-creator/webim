@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { BearingAcademy } from "@/components/BearingAcademy";
@@ -7,7 +8,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://imelectric.es/academia/rodamientos",
   },
-  title: "Rodamientos Industriales — Nomenclatura, Medición e Inspección | IMELECTRIC Academia",
+  title: "Rodamientos industriales | IMELECTRIC",
   description:
     "Guía técnica completa de rodamientos industriales: decodificador de nomenclatura ISO, buscador de referencias cruzadas SKF/FAG/NSK/Timken, guía de medición con calibrador, checklist de inspección visual y modos de falla según ISO 15243. Herramienta gratuita para técnicos e ingenieros de mantenimiento.",
   keywords: [
@@ -49,7 +50,7 @@ export default function RodamientosPage() {
       <section className="border-b border-slate-800 bg-slate-950 px-6 pt-36 pb-14">
         <div className="mx-auto max-w-4xl">
           <nav className="mb-6 flex items-center gap-2 text-xs text-slate-500" aria-label="Breadcrumb">
-            <a href="/" className="transition hover:text-slate-300">Inicio</a>
+            <Link href="/" className="transition hover:text-slate-300">Inicio</Link>
             <span>/</span>
             <a href="/academia" className="transition hover:text-slate-300">Academia</a>
             <span>/</span>

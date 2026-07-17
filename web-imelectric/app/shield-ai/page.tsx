@@ -1,4 +1,5 @@
 import { headers } from "next/headers";
+import Link from "next/link";
 import type { Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -8,9 +9,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://imelectric.es/shield-ai",
   },
-  title: "Shield AI — SG-SST con IA para toda empresa colombiana | Res. 0312 | IMELECTRIC",
+  title: "Shield AI — SG-SST con IA | Res. 0312 | IMELECTRIC",
   description:
-    "Shield AI automatiza el cumplimiento del SG-SST: diagnóstico de brecha contra Res. 0312, generación de evidencia documental, alertas de vencimiento y firma dual con valor legal. Régimen documental 7/21/60. Para toda empresa colombiana obligada por el Decreto 1072.",
+    "Shield AI automatiza el cumplimiento del SG-SST: diagnóstico de brecha contra Res. 0312, generación de evidencia documental, alertas de vencimiento y firma dual con valor legal. Retención documental mínima de 20 años (Decreto 1072). Para toda empresa colombiana obligada por el Decreto 1072.",
   keywords: [
     "Shield AI SG-SST Colombia",
     "software SG-SST Colombia",
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Shield AI — SG-SST con IA para toda empresa colombiana | IMELECTRIC",
     description:
-      "Diagnóstico de brecha Res. 0312, evidencia documental automática, alertas de vencimiento y firma dual. Régimen documental 7/21/60. Sin consultores externos.",
+      "Diagnóstico de brecha Res. 0312, evidencia documental automática, alertas de vencimiento y firma dual. Retención mínima 20 años (Dec. 1072 Art. 2.2.4.6.13). Sin consultores externos.",
     url: "https://imelectric.es/shield-ai",
     siteName: "IMELECTRIC",
     locale: "es_ES",
@@ -48,7 +49,7 @@ const faqJsonLd = {
       name: "¿Qué es el SG-SST y qué empresas colombianas están obligadas a implementarlo?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "El Sistema de Gestión de Seguridad y Salud en el Trabajo (SG-SST) es obligatorio para toda empresa colombiana con al menos un trabajador, según el Decreto 1072 de 2015 y la Resolución 0312 de 2019. La Res. 0312 establece estándares mínimos diferenciados por tamaño de empresa: 7 estándares para empresas de riesgo I y II con hasta 10 trabajadores, 21 para empresas de 11 a 50 trabajadores, y 60 estándares para empresas de más de 50 trabajadores o de clase de riesgo III, IV y V.",
+        text: "El Sistema de Gestión de Seguridad y Salud en el Trabajo (SG-SST) es obligatorio para toda empresa colombiana con al menos un trabajador, según el Decreto 1072 de 2015 y la Resolución 0312 de 2019. La Res. 0312 establece estándares mínimos diferenciados: 7 para empresas de 1 a 10 trabajadores con riesgo I, II o III; 21 para empresas de 11 a 50 trabajadores con riesgo I, II o III; y 60 para empresas de más de 50 trabajadores (cualquier riesgo) o de 50 o menos con riesgo IV o V.",
       },
     },
     {
@@ -64,7 +65,7 @@ const faqJsonLd = {
       name: "¿Cuánto tiempo debe conservarse la documentación del SG-SST en Colombia?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "La normativa colombiana establece periodos de retención diferenciados. Shield AI gestiona el ciclo completo: documentos activos accesibles en línea por 7 años para auditorías inmediatas, archivo histórico de incidentes e investigaciones por 21 años, y retención máxima de hasta 60 años para enfermedades laborales de manifestación tardía. Todo con trazabilidad forense inalterable que permite reconstruir la cadena de custodia documental ante cualquier reclamación.",
+        text: "El Decreto 1072 de 2015 (Art. 2.2.4.6.13) exige conservar por un mínimo de 20 años, contados desde el cese de la relación laboral, documentos clave del SG-SST (perfiles epidemiológicos, conceptos de exámenes médicos, mediciones de ambiente de trabajo, capacitaciones y suministro de EPP). Para el resto de registros, el empleador debe definir su propia tabla de retención documental. Shield AI está diseñado para soportar esa retención mínima de 20 años con trazabilidad que permite detectar si la evidencia fue alterada.",
       },
     },
     {
@@ -103,7 +104,7 @@ export default async function ShieldAIPage() {
       <section className="border-b border-slate-800 bg-slate-950 px-6 pt-36 pb-12">
         <div className="mx-auto max-w-7xl">
           <nav className="mb-6 flex items-center gap-2 text-xs text-slate-500" aria-label="Breadcrumb">
-            <a href="/" className="transition hover:text-slate-300">Inicio</a>
+            <Link href="/" className="transition hover:text-slate-300">Inicio</Link>
             <span>/</span>
             <span className="text-slate-400">Shield AI</span>
           </nav>
@@ -116,7 +117,7 @@ export default async function ShieldAIPage() {
           <p className="max-w-3xl text-base leading-relaxed text-slate-400 sm:text-lg">
             La Res. 0312 obliga a toda empresa colombiana. Shield AI diagnostica brechas, genera evidencia
             documental y alerta antes de que venzan los plazos. El responsable y el representante legal firman.
-            Régimen documental 7/21/60.
+            Régimen documental anclado al Decreto 1072 (Art. 2.2.4.6.13).
           </p>
           <div className="mt-6 flex flex-wrap gap-2">
             {["Res. 0312","Decreto 1072","SG-SST automatizado","Firma dual","Retención 20 años","Toda empresa colombiana"].map(tag => (

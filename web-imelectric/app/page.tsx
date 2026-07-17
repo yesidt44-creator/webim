@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://imelectric.es",
   },
-  title: "IMELECTRIC — Fix AI, Veriwork, Nexvia y Shield AI | Software Industrial Colombia",
+  title: "IMELECTRIC — Software industrial con IA | Colombia",
   description:
     "Fix AI: PWA de mantenimiento industrial con IA para contratistas. Veriwork: gestión HSE y permisos de trabajo verificables. Nexvia: gestión de flotas HSEQ. Shield AI: SG-SST para toda empresa colombiana. Soluciones para Oil & Gas, manufactura y transporte en Colombia y Latinoamérica.",
   keywords: [
@@ -58,17 +58,19 @@ export const metadata: Metadata = {
   openGraph: {
     title: "La IA hace el trabajo repetitivo. Tu equipo toma las decisiones. | IMELECTRIC",
     description:
-      "Fix AI, Veriwork, Nexvia y Shield AI automatizan el reporte, la trazabilidad y el cumplimiento normativo de tu operación — para que tu equipo invierta su tiempo en lo que requiere criterio humano.",
+      "Fix AI, Falion, Veriwork, Nexvia y Shield AI automatizan el reporte, la trazabilidad y el cumplimiento normativo — para que tu equipo invierta su tiempo en lo que requiere criterio humano.",
     url: "https://imelectric.es",
     siteName: "IMELECTRIC",
-    locale: "es_ES",
+    locale: "es_CO",
     type: "website",
+    images: [{ url: "/og-default.png", width: 1200, height: 630, alt: "IMELECTRIC" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Software industrial con IA para contratistas y operadores en Colombia | IMELECTRIC",
+    title: "Software industrial con IA para Colombia | IMELECTRIC",
     description:
-      "Fix AI, Veriwork, Nexvia y Shield AI: mantenimiento, HSE, flotas y SG-SST con IA. La IA acelera, la persona decide.",
+      "5 plataformas: Fix AI, Falion, Veriwork, Nexvia y Shield AI. La IA acelera, la persona decide.",
+    images: ["/og-default.png"],
   },
 };
 import { Hero } from "@/components/Hero";

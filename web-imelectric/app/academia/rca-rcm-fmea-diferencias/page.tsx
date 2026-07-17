@@ -6,7 +6,7 @@ import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://imelectric.es/academia/rca-rcm-fmea-diferencias" },
-  title: "RCA, RCM y FMEA: Diferencias y Cuándo Usar Cada Metodología | IMELECTRIC Academia",
+  title: "RCA, RCM y FMEA: diferencias | IMELECTRIC",
   description:
     "RCA, RCM y FMEA no son sinónimos. Confundirlos es el error más frecuente en departamentos de mantenimiento industrial. Guía práctica: qué problema resuelve cada metodología, cuándo aplicarla y cómo se conectan entre sí.",
   keywords: [
@@ -86,6 +86,40 @@ const MethodCard = ({
   </div>
 );
 
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: 'RCA, RCM y FMEA: diferencias y cuándo usar cada uno',
+  datePublished: "2026-07-01",
+  dateModified: "2026-07-17",
+  author: {
+    "@type": "Organization",
+    name: "Equipo de Ingeniería IMELECTRIC",
+    url: "https://imelectric.es",
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "IMELECTRIC",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://imelectric.es/imelectric-logo.png",
+    },
+  },
+  mainEntityOfPage: 'https://imelectric.es/academia/rca-rcm-fmea-diferencias',
+  // ARTICLE_META_INJECTED
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Inicio", item: "https://imelectric.es/" },
+    { "@type": "ListItem", position: 2, name: "Academia Técnica", item: "https://imelectric.es/academia" },
+    { "@type": "ListItem", position: 3, name: 'RCA, RCM y FMEA', item: 'https://imelectric.es/academia/rca-rcm-fmea-diferencias' },
+  ],
+};
+
 export default async function RcaRcmFmeaPage() {
   const nonce = (await headers()).get("x-nonce") ?? undefined;
 
@@ -96,6 +130,18 @@ export default async function RcaRcmFmeaPage() {
         suppressHydrationWarning
         nonce={nonce}
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        nonce={nonce}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        nonce={nonce}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <Navbar />
 
@@ -112,6 +158,9 @@ export default async function RcaRcmFmeaPage() {
           <h1 className="mb-4 text-4xl font-extrabold tracking-tight md:text-5xl">
             RCA, RCM y FMEA: diferencias reales y cuándo usar cada metodología de confiabilidad
           </h1>
+          <p className="mt-3 text-xs text-slate-500">
+            Publicado: 1 jul 2026 · Actualizado: 17 jul 2026 · Equipo de Ingeniería IMELECTRIC
+          </p>
           <p className="text-lg leading-relaxed text-slate-400">
             Si trabajas en mantenimiento industrial y has participado en una capacitación de confiabilidad, probablemente escuchaste los tres términos en la misma frase — y probablemente también los escuchaste usados como si fueran intercambiables. No lo son.
           </p>
@@ -173,7 +222,7 @@ export default async function RcaRcmFmeaPage() {
 
         <h3 className="mb-3 mt-6 text-xl font-bold text-white">Cuándo NO usar RCA</h3>
         <p className="mb-6 leading-relaxed text-slate-400">
-          El RCA no es predictivo. Si la pregunta es "¿qué podría fallar?" en lugar de "¿por qué falló?", la herramienta correcta es el FMEA. Una trampa frecuente: hacer un RCA de "modos de falla frecuentes" sin que haya ocurrido un evento específico. El resultado es una lista de hipótesis, no un análisis de causa raíz real.
+          El RCA no es predictivo. Si la pregunta es &ldquo;¿qué podría fallar?&rdquo; en lugar de &ldquo;¿por qué falló?&rdquo;, la herramienta correcta es el FMEA. Una trampa frecuente: hacer un RCA de &ldquo;modos de falla frecuentes&rdquo; sin que haya ocurrido un evento específico. El resultado es una lista de hipótesis, no un análisis de causa raíz real.
         </p>
 
         {/* FMEA */}
@@ -212,7 +261,7 @@ export default async function RcaRcmFmeaPage() {
 
         <h3 className="mb-3 mt-6 text-xl font-bold text-white">Qué es</h3>
         <p className="mb-6 leading-relaxed text-slate-400">
-          El RCM es una metodología <strong className="text-slate-200">estratégica</strong> para definir el plan de mantenimiento óptimo de un activo o sistema. Su base es la norma <strong className="text-slate-200">SAE JA1011</strong> (criterios de evaluación de procesos RCM). La pregunta central no es "¿qué tareas de mantenimiento hago?" sino: <em>¿cuál es la función de este activo en su contexto operacional, y cuál es la estrategia de mantenimiento que garantiza esa función al menor costo y riesgo posibles?</em>
+          El RCM es una metodología <strong className="text-slate-200">estratégica</strong> para definir el plan de mantenimiento óptimo de un activo o sistema. Su base es la norma <strong className="text-slate-200">SAE JA1011</strong> (criterios de evaluación de procesos RCM). La pregunta central no es &ldquo;¿qué tareas de mantenimiento hago?&rdquo; sino: <em>¿cuál es la función de este activo en su contexto operacional, y cuál es la estrategia de mantenimiento que garantiza esa función al menor costo y riesgo posibles?</em>
         </p>
 
         <h3 className="mb-3 mt-6 text-xl font-bold text-white">Las 7 preguntas del RCM</h3>
@@ -235,7 +284,7 @@ export default async function RcaRcmFmeaPage() {
 
         <h3 className="mb-3 mt-6 text-xl font-bold text-white">Resultado del RCM</h3>
         <p className="mb-6 leading-relaxed text-slate-400">
-          Un plan diferenciado: tareas preventivas con frecuencia definida, tareas predictivas (vibración, termografía, análisis de aceite), monitoreo de condición, y algunas deliberadamente "correr hasta fallar" cuando el costo del preventivo supera el costo de la falla.
+          Un plan diferenciado: tareas preventivas con frecuencia definida, tareas predictivas (vibración, termografía, análisis de aceite), monitoreo de condición, y algunas deliberadamente &ldquo;correr hasta fallar&rdquo; cuando el costo del preventivo supera el costo de la falla.
         </p>
 
         {/* Cómo se conectan */}
@@ -253,7 +302,7 @@ export default async function RcaRcmFmeaPage() {
         {/* ✅ CORRECCIÓN APLICADA: eliminado el "80%" sin fuente, reemplazado por afirmación cualitativa */}
         <h2 className="mb-4 mt-10 text-2xl font-bold text-white">El error más frecuente en Colombia</h2>
         <p className="mb-4 leading-relaxed text-slate-400">
-          Es común encontrar en operaciones colombianas planes denominados "RCM" que en realidad son mantenimiento preventivo de frecuencia fija, construidos por intuición o copiados de otra planta. Técnicamente son PM (Preventive Maintenance) — no RCM.
+          Es común encontrar en operaciones colombianas planes denominados &ldquo;RCM&rdquo; que en realidad son mantenimiento preventivo de frecuencia fija, construidos por intuición o copiados de otra planta. Técnicamente son PM (Preventive Maintenance) — no RCM.
         </p>
         <p className="mb-6 leading-relaxed text-slate-400">
           El RCM real requiere un análisis funcional formal, la metodología de las 7 preguntas y un proceso de revisión con participación del operador, el mantenedor y el confiabilista. No se hace en una tarde. Esto no significa que sea inalcanzable — significa que hay que ser honesto sobre qué está haciendo la organización y qué no.

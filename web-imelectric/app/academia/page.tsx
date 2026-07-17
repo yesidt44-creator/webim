@@ -1,123 +1,189 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { headers } from "next/headers";
 import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
+import { ArrowRight, Calculator, GitBranch, Grid3X3, HardHat, BookOpen, CircleDot } from "lucide-react";
 
 export const metadata: Metadata = {
   alternates: {
     canonical: "https://imelectric.es/academia",
   },
-  title: "Academia Técnica IMELECTRIC — Confiabilidad, RCM, FMECA y SST Industrial",
+  title: "Academia Técnica | Confiabilidad y SST | IMELECTRIC",
   description:
-    "Herramientas interactivas gratuitas para ingenieros: calculadora MTBF y MTTR online, matriz FMECA, diagrama Ishikawa, simulador trabajo en alturas (Resolución 4272) y biblioteca normativa SST. ISO 55001, RCM y confiabilidad industrial.",
-  keywords: [
-    "academia ingeniería industrial",
-    "herramientas confiabilidad gratis",
-    "calculadora MTBF online",
-    "calcular MTTR online",
-    "FMECA online gratis",
-    "diagrama Ishikawa online",
-    "RCM Colombia",
-    "resolución 4272 trabajo alturas",
-    "decreto 1072 SG-SST",
-    "resolución 0312 2019",
-    "ISO 55001 gestión activos",
-    "confiabilidad R(t) exponencial",
-    "análisis causa raíz industrial",
-    "herramientas ingeniero mantenimiento",
-    "IMELECTRIC academia",
-  ],
+    "Herramientas y artículos técnicos gratuitos: calculadora MTBF/MTTR, FMECA, Ishikawa, trabajo en alturas, biblioteca normativa SST y guías de confiabilidad industrial.",
   openGraph: {
-    title: "Academia Técnica IMELECTRIC — Confiabilidad, FMECA, SST y RCM",
+    title: "Academia Técnica | IMELECTRIC",
     description:
-      "Herramientas gratuitas para ingenieros: calculadora MTBF, matriz FMECA, Ishikawa, simulador alturas y biblioteca normativa SST.",
+      "Herramientas y artículos técnicos para ingenieros: MTBF, FMECA, Ishikawa, SST y confiabilidad.",
     url: "https://imelectric.es/academia",
     siteName: "IMELECTRIC",
-    locale: "es_ES",
+    locale: "es_CO",
     type: "website",
+    images: [{ url: "/og-default.png", width: 1200, height: 630, alt: "IMELECTRIC" }],
   },
 };
-import { Footer } from "@/components/Footer";
-import { ReliabilityCalculator } from "@/components/ReliabilityCalculator";
-import { Ishikawa } from "@/components/Ishikawa";
-import { Fmeca } from "@/components/Fmeca";
-import { SSTAcademy } from "@/components/SSTAcademy";
-import { NormsLibrary } from "@/components/NormsLibrary";
 
-export default function AcademiaPage() {
+const tools = [
+  {
+    href: "/academia/calculadora-mtbf",
+    icon: Calculator,
+    title: "Calculadora MTBF / MTTR",
+    desc: "Calcula MTBF, MTTR, disponibilidad y confiabilidad R(t) desde datos de fallas o desde un MTBF conocido.",
+    color: "text-blue-400",
+  },
+  {
+    href: "/academia/fmeca",
+    icon: Grid3X3,
+    title: "Matriz FMECA",
+    desc: "Analiza modos de falla, efectos y criticidad (S×O×D) en una matriz interactiva.",
+    color: "text-blue-400",
+  },
+  {
+    href: "/academia/ishikawa",
+    icon: GitBranch,
+    title: "Diagrama Ishikawa",
+    desc: "Construye un diagrama de causa raíz 6M para fallas e incidentes operativos.",
+    color: "text-blue-400",
+  },
+  {
+    href: "/academia/trabajo-en-alturas",
+    icon: HardHat,
+    title: "Simulador trabajo en alturas",
+    desc: "Orientación práctica alineada a la Resolución 4272 de 2021 (DCL y controles).",
+    color: "text-emerald-400",
+  },
+  {
+    href: "/academia/rodamientos",
+    icon: CircleDot,
+    title: "Guía de rodamientos",
+    desc: "Nomenclatura, medición e inspección de rodamientos industriales.",
+    color: "text-orange-400",
+  },
+];
+
+const articles = [
+  {
+    href: "/academia/cmms-vs-gmao",
+    title: "CMMS vs GMAO: qué es cada uno",
+    desc: "Diferencias reales, cuándo aplicar cada término y cómo encaja Fix AI.",
+  },
+  {
+    href: "/academia/certificacion-trabajo-en-alturas-colombia",
+    title: "Certificación de trabajo en alturas en Colombia",
+    desc: "Vigencia, requisitos y qué cambió con la Resolución 4272 de 2021.",
+  },
+  {
+    href: "/academia/resolucion-0312-estandares-minimos",
+    title: "Resolución 0312: estándares mínimos por tamaño",
+    desc: "7, 21 o 60 estándares según trabajadores y clase de riesgo.",
+  },
+  {
+    href: "/academia/firma-electronica-vs-firma-digital-colombia",
+    title: "Firma electrónica vs firma digital",
+    desc: "Qué exige la norma colombiana para permisos de trabajo y SG-SST.",
+  },
+  {
+    href: "/academia/rca-rcm-fmea-diferencias",
+    title: "RCA, RCM y FMEA: diferencias",
+    desc: "Cuándo usar cada metodología y cómo se complementan.",
+  },
+];
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Inicio", item: "https://imelectric.es/" },
+    { "@type": "ListItem", position: 2, name: "Academia Técnica", item: "https://imelectric.es/academia" },
+  ],
+};
+
+export default async function AcademiaPage() {
+  const nonce = (await headers()).get("x-nonce") ?? undefined;
+
   return (
     <main className="min-h-screen overflow-x-hidden bg-slate-950 font-sans text-slate-50 selection:bg-blue-500/30">
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        nonce={nonce}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <Navbar />
 
-      <section className="border-b border-slate-800 bg-slate-900 px-6 pt-32 pb-12 print:hidden">
+      <section className="border-b border-slate-800 bg-slate-900 px-6 pt-32 pb-12">
         <div className="mx-auto max-w-7xl">
           <h1 className="mb-6 text-4xl font-extrabold tracking-tight md:text-6xl">
-            Knowledge Hub <span className="text-blue-500">IMELECTRIC</span>
+            Academia Técnica <span className="text-blue-500">IMELECTRIC</span>
           </h1>
           <p className="max-w-3xl text-lg leading-relaxed text-slate-400">
-            Herramientas interactivas, confiabilidad EAM y normativa SST en un solo lugar.
+            Herramientas interactivas y artículos técnicos para ingenieros de mantenimiento, HSE y confiabilidad.
+            Cada recurso tiene su página dedicada.
           </p>
         </div>
       </section>
 
-      <nav className="sticky top-20 z-40 border-b border-slate-800 bg-slate-950/90 py-3 backdrop-blur-md print:hidden" aria-label="Navegación academia">
-        <div className="mx-auto flex max-w-7xl flex-wrap gap-x-6 gap-y-2 px-6">
-          <a href="#confiabilidad" className="text-sm font-bold text-slate-400 transition-colors hover:text-blue-500">
-            Confiabilidad
-          </a>
-          <a href="#sst" className="text-sm font-bold text-slate-400 transition-colors hover:text-emerald-500">
-            Seguridad (SST)
-          </a>
-          <span className="hidden text-slate-700 sm:block">|</span>
-          <a href="/academia/calculadora-mtbf" className="text-sm text-slate-500 transition-colors hover:text-blue-400">
-            Calculadora MTBF
-          </a>
-          <a href="/academia/fmeca" className="text-sm text-slate-500 transition-colors hover:text-blue-400">
-            FMECA
-          </a>
-          <a href="/academia/ishikawa" className="text-sm text-slate-500 transition-colors hover:text-blue-400">
-            Ishikawa
-          </a>
-          <a href="/academia/trabajo-en-alturas" className="text-sm text-slate-500 transition-colors hover:text-emerald-400">
-            Trabajo en Alturas
-          </a>
-          <a href="/academia/rodamientos" className="text-sm text-slate-500 transition-colors hover:text-orange-400">
-            Rodamientos
-          </a>
-        </div>
-      </nav>
-
-      <section className="mx-auto max-w-7xl space-y-32 px-6 py-16">
-        <div id="confiabilidad" className="scroll-mt-40 space-y-12">
-          <div className="flex items-center gap-4">
-            <div className="h-8 w-1 rounded-full bg-blue-600"></div>
-            <div>
-              <h3 className="text-2xl font-black tracking-tighter text-white uppercase">
-                Ingeniería de Confiabilidad
+      <section className="mx-auto max-w-7xl space-y-20 px-6 py-16">
+        <div>
+          <div className="mb-8 flex items-center gap-4">
+            <div className="h-8 w-1 rounded-full bg-blue-600" />
+            <h2 className="text-2xl font-bold text-white">Herramientas</h2>
+          </div>
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {tools.map(({ href, icon: Icon, title, desc, color }) => (
+              <Link
+                key={href}
+                href={href}
+                className="group rounded-2xl border border-slate-800 bg-slate-900 p-6 transition hover:border-blue-500/40"
+              >
+                <Icon className={`mb-4 ${color}`} size={24} />
+                <h3 className="mb-2 text-lg font-bold text-white group-hover:text-blue-400">{title}</h3>
+                <p className="mb-4 text-sm leading-relaxed text-slate-400">{desc}</p>
+                <span className="inline-flex items-center gap-1 text-xs font-bold tracking-widest text-blue-400 uppercase">
+                  Abrir <ArrowRight size={12} />
+                </span>
+              </Link>
+            ))}
+            <Link
+              href="/academia/trabajo-en-alturas#normas"
+              className="group rounded-2xl border border-slate-800 bg-slate-900 p-6 transition hover:border-emerald-500/40"
+            >
+              <BookOpen className="mb-4 text-emerald-400" size={24} />
+              <h3 className="mb-2 text-lg font-bold text-white group-hover:text-emerald-400">
+                Biblioteca normativa SST
               </h3>
-              <p className="mt-1 text-xs text-slate-500">
-                Modelo exponencial, Ishikawa, FMECA y metodologías EAM (ISO 55001)
+              <p className="mb-4 text-sm leading-relaxed text-slate-400">
+                PDFs de Res. 4272, Decreto 1072, Res. 0312, Ley 1581 y RETIE — descarga directa.
               </p>
-            </div>
+              <span className="inline-flex items-center gap-1 text-xs font-bold tracking-widest text-emerald-400 uppercase">
+                Ver normas <ArrowRight size={12} />
+              </span>
+            </Link>
           </div>
-          <ReliabilityCalculator />
-          <Ishikawa />
-          <Fmeca />
         </div>
 
-        <div id="sst" className="scroll-mt-40">
-          <div className="mb-12 flex items-center gap-4">
-            <div className="h-8 w-1 rounded-full bg-emerald-500"></div>
-            <h3 className="text-2xl font-bold tracking-tighter text-white uppercase">
-              Seguridad Operacional y SST
-            </h3>
+        <div>
+          <div className="mb-8 flex items-center gap-4">
+            <div className="h-8 w-1 rounded-full bg-violet-500" />
+            <h2 className="text-2xl font-bold text-white">Artículos técnicos</h2>
           </div>
-          <SSTAcademy />
-          <NormsLibrary />
+          <div className="grid gap-4 md:grid-cols-2">
+            {articles.map(({ href, title, desc }) => (
+              <Link
+                key={href}
+                href={href}
+                className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 transition hover:border-violet-500/30"
+              >
+                <h3 className="mb-1 font-bold text-white">{title}</h3>
+                <p className="text-sm text-slate-400">{desc}</p>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
-      <div className="print:hidden">
-        <Footer />
-      </div>
+      <Footer />
     </main>
   );
 }

@@ -19,8 +19,8 @@ const items = [
   {
     icon: <Zap size={28} />,
     step: "03",
-    heading: "El registro queda inalterable",
-    body: "Una vez firmado, el documento recibe sello de tiempo y firma criptográfica. La cadena de decisión queda documentada minuto a minuto: quién aprobó, qué, cuándo y bajo qué condiciones.",
+    heading: "El registro queda con rastro auditable",
+    body: "Una vez firmado, el documento recibe sello de tiempo y firma criptográfica. La cadena de decisión queda documentada minuto a minuto: quién aprobó, qué, cuándo y bajo qué condiciones. Diseñado para que la evidencia no pueda modificarse sin dejar rastro.",
   },
 ];
 
@@ -84,7 +84,7 @@ export const AiPhilosophy = () => {
             <span className="text-blue-400">La persona decide.</span>
           </h2>
           <p className="text-lg leading-relaxed text-slate-400">
-            Nuestro modelo no es "la IA reemplaza al experto". Es lo contrario: la IA elimina la parte
+            Nuestro modelo no es &ldquo;la IA reemplaza al experto&rdquo;. Es lo contrario: la IA elimina la parte
             tediosa del trabajo del experto — el reporte manual, la búsqueda en normas, la digitación
             repetitiva — para que ese experto pueda dedicarse a lo único que no se puede automatizar:{" "}
             <strong className="text-slate-200">el juicio, la aprobación y la firma.</strong>

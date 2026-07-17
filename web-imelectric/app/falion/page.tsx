@@ -8,7 +8,7 @@ import { ContactModal } from "@/components/ContactModal";
 export const metadata: Metadata = {
   title: "Falion — Análisis de causa raíz RCA asistido por IA | IMELECTRIC",
   description:
-    "Falion asiste el análisis de causa raíz (RCA), FMECA, Weibull y confiabilidad industrial con los datos reales de tu operación. De la falla al informe en 60 segundos. El ingeniero siempre decide.",
+    "Falion asiste el análisis de causa raíz (RCA), FMECA, Weibull y confiabilidad industrial con los datos reales de tu operación. Generación del informe asistido en ~60 segundos (no el ciclo completo de investigación). El ingeniero siempre decide.",
   keywords: [
     "análisis causa raíz Colombia",
     "RCA industrial IA",
@@ -23,9 +23,9 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: "website",
-    title: "Falion — De la falla al informe en 60 segundos",
+    title: "Falion — Informe asistido en ~60 segundos",
     description:
-      "Análisis de causa raíz, FMECA, Weibull y RAM con los datos reales de tu operación. El ingeniero revisa, valida y firma. Falion propone; tú decides.",
+      "Análisis de causa raíz, FMECA, Weibull y RAM con los datos reales de tu operación. El tiempo de 60 s es de generación del informe, no del ciclo completo. El ingeniero revisa, valida y firma.",
     siteName: "IMELECTRIC",
     locale: "es_CO",
     url: "https://imelectric.es/falion",
@@ -55,12 +55,6 @@ const heroJsonLd = {
     "@type": "Organization",
     name: "IMELECTRIC",
     url: "https://imelectric.es",
-  },
-  offers: {
-    "@type": "Offer",
-    availability: "https://schema.org/PreOrder",
-    priceCurrency: "COP",
-    description: "Fase de pruebas activa — acceso limitado.",
   },
   featureList: [
     "RCA con árbol de causas basado en historial real de activos",
@@ -109,7 +103,8 @@ export default async function FalionPage() {
           </h1>
 
           <p className="mx-auto mb-4 max-w-2xl text-lg leading-relaxed text-slate-400 md:text-xl">
-            RCA, FMECA, Weibull y análisis de confiabilidad industrial con los datos reales de tus activos — no con conocimiento genérico de internet.
+            Tiempo de generación del informe asistido — no del ciclo completo de investigación.
+            RCA, FMECA, Weibull y análisis de confiabilidad con los datos reales de tus activos — no con conocimiento genérico de internet.
           </p>
           <p className="mx-auto mb-10 max-w-xl text-base text-slate-500">
             El ingeniero revisa, valida y firma. Falion propone. La decisión siempre es del experto.

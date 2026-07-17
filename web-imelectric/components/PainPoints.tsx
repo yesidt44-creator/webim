@@ -9,7 +9,7 @@ export const PainPoints = () => {
         <div className="mb-16 text-center">
           <h2 className="mb-4 text-3xl font-bold">Nuestra Suite de Soluciones</h2>
           <p className="mx-auto max-w-2xl text-slate-400">
-            Cuatro plataformas SaaS con IA para contratistas industriales, operadores HSEQ, flotas y empresas colombianas con obligación SG-SST.
+            Cinco plataformas SaaS con IA para contratistas industriales, operadores HSEQ, flotas, confiabilidad y empresas colombianas con obligación SG-SST.
           </p>
         </div>
 
@@ -58,7 +58,7 @@ export const PainPoints = () => {
               siendo de la persona competente para hacerlo.
             </p>
             <div className="mb-6 border-t border-slate-800 pt-4 text-xs text-slate-500">
-              Trazabilidad forense inalterable · Cumplimiento Res. 0312 · Dec. 1072
+              Trazabilidad diseñada para detectar alteraciones · Cumplimiento Res. 0312 · Dec. 1072
             </div>
             <a
               href="/veriwork"
@@ -78,7 +78,7 @@ export const PainPoints = () => {
             <p className="mb-6 flex-grow text-sm text-slate-400">
               Tu flota, bajo control, incluso sin internet. HSEQ, Talleres, Personales y EV.
               Scoring de riesgo con el acelerómetro del celular — sin hardware adicional.
-              Pasaporte digital del vehículo y trazabilidad forense SHA-256.
+              Pasaporte digital del vehículo y trazabilidad con hash SHA-256 del documento.
             </p>
             <div className="mb-6 border-t border-slate-800 pt-4 text-xs text-slate-500">
               Offline-first · ISO 9001 · Normativo CO nativo
@@ -101,7 +101,7 @@ export const PainPoints = () => {
             <p className="mb-6 flex-grow text-sm text-slate-400">
               La Res. 0312 obliga a toda empresa colombiana desde 1 trabajador. Shield AI detecta brechas,
               genera la evidencia documental y alerta antes de que venzan los plazos. El responsable
-              revisa y firma. Régimen 7/21/60.
+              revisa y firma. Retención mínima 20 años (Dec. 1072).
             </p>
             <div className="mb-6 border-t border-slate-800 pt-4 text-xs text-slate-500">
               Res. 0312 · Decreto 1072 · Firma dual · Retención 20 años

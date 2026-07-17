@@ -27,19 +27,9 @@ const safetyOnJsonLd = {
   applicationSubCategory: "HSE, SST, Seguridad Industrial, Permisos de Trabajo",
   operatingSystem: "Web, Android, iOS",
   description:
-    "Veriwork es la plataforma de gestión HSE y SST para Colombia y Latinoamérica. La gestión HSE que tu operación puede verificar, no solo archivar. Digitaliza permisos de trabajo con firma criptográfica verificable, cumplimiento normativo en tiempo real y trazabilidad inalterable.",
+    "Veriwork es la plataforma de gestión HSE y SST para Colombia y Latinoamérica. La gestión HSE que tu operación puede verificar, no solo archivar. Digitaliza permisos de trabajo con firma criptográfica verificable, cumplimiento normativo en tiempo real y evidencia diseñada para que no pueda modificarse sin dejar rastro.",
   keywords:
     "Veriwork software HSE, software gestión HSE Colombia, seguridad industrial digital, permisos de trabajo digitales, software HSE Colombia, gestión seguridad industrial, trabajo en alturas digital, software SST Colombia, trazabilidad HSE forense, firma Ed25519 permisos trabajo, PAdES sello de tiempo HSE, firma electrónica seguridad industrial Colombia",
-  offers: {
-    "@type": "Offer",
-    availability: "https://schema.org/InStock",
-    priceCurrency: "USD",
-    price: "0",
-    priceSpecification: {
-      "@type": "PriceSpecification",
-      description: "Precio según auditoría de viabilidad. Contactar para demo.",
-    },
-  },
   provider: {
     "@type": "Organization",
     name: "IMELECTRIC",
@@ -55,13 +45,13 @@ const safetyOnJsonLd = {
     ],
   },
   featureList: [
-    "Permisos de trabajo digitales con firma forense SHA-256",
+    "Permisos de trabajo digitales con hash SHA-256 + firma Ed25519",
     "Gestión de trabajo en alturas con verificación de competencias",
     "Trazabilidad HSE minuto a minuto con GPS y timestamp",
     "Verificación automática de certificados y avales vigentes",
     "Análisis de riesgo asistido por IA con alertas normativas",
     "Cumplimiento Resolución 0312 y Decreto 1072",
-    "Blindaje legal ante auditorías regulatorias",
+    "Evidencia diseñada para que no pueda modificarse sin dejar rastro",
     "Cero pérdida documental: S3 Object Lock Technology",
   ],
 };
@@ -104,7 +94,7 @@ export const SafetyOn = async () => {
               Transformamos la <strong>gestión HSE y SST</strong> de reactiva a preventiva. Un{" "}
               <strong>software de seguridad industrial digital</strong> que garantiza que cada{" "}
               <strong>permiso de trabajo</strong> —incluyendo <strong>trabajo en alturas</strong>— esté respaldado por
-              evidencia forense inalterable y cumplimiento normativo en tiempo real. Disponible para empresas en{" "}
+              evidencia diseñada para que no pueda modificarse sin dejar rastro y cumplimiento normativo en tiempo real. Disponible para empresas en{" "}
               <strong>Colombia</strong> y <strong>Latinoamérica</strong>.
             </p>
 
@@ -126,7 +116,7 @@ export const SafetyOn = async () => {
               label="Trazabilidad HSE"
               value="Completa"
               valueClassName="text-base leading-tight tracking-tight sm:text-lg md:text-xl lg:text-2xl break-words"
-              desc="Cadena de decisión documentada e inalterable ante entes reguladores."
+              desc="Cadena de decisión documentada, diseñada para que no pueda modificarse sin dejar rastro."
             />
             <KpiCard
               label="Verificación normativa"
@@ -159,7 +149,7 @@ export const SafetyOn = async () => {
           <Feature
             icon={<Fingerprint size={24} />}
             title="Firma Ed25519 por empresa — verificable públicamente"
-            desc="Cada permiso lleva firma criptográfica Ed25519 ligada a la empresa emisora, GPS y timestamp. Cualquier parte puede verificar la autenticidad con el enlace o el QR del documento."
+            desc="Cada permiso lleva hash SHA-256 del documento, firma Ed25519 de la empresa y sello de tiempo RFC 3161. La identificación del firmante individual viene del registro de usuario y sus credenciales; la clave de empresa sella la transacción. Cualquier parte puede verificar autenticidad e integridad con el enlace o el QR."
           />
           <Feature
             icon={<UserCheck size={24} />}
@@ -183,15 +173,17 @@ export const SafetyOn = async () => {
             <div>
               <p className="mb-4 flex items-center gap-2 text-emerald-400 text-xs font-bold tracking-widest uppercase">
                 <Lock size={20} aria-hidden="true" />
-                Firma Ed25519 · PAdES · Sello de tiempo · QR verificable
+                Firma Ed25519 · Perfil PAdES · Sello de tiempo · QR verificable
               </p>
               <h3 className="mb-6 text-3xl font-bold">
-                Trazabilidad forense: el registro <strong>no se puede alterar</strong> después de firmado
+                Trazabilidad forense: evidencia diseñada para que no pueda modificarse sin dejar rastro
               </h3>
               <p className="mb-6 leading-relaxed text-slate-400">
-                Cada <strong>permiso de trabajo</strong> lleva firma Ed25519 de la empresa, sello de tiempo PAdES
-                y un QR de verificación pública. Nadie — ni siquiera un administrador — puede alterar la evidencia
-                original. Las actas de alta severidad se refuerzan con protocolo notarial cuando el caso lo requiere.
+                Cada <strong>permiso de trabajo</strong> incluye hash SHA-256 del documento, firma Ed25519 de la
+                empresa, sello de tiempo conforme a RFC 3161 (perfil PAdES) y un QR de verificación pública.
+                La identificación del firmante individual proviene del registro de usuario y sus credenciales;
+                la clave de empresa sella la transacción. El diseño busca que cualquier alteración posterior
+                quede detectable.
               </p>
               <ul className="space-y-3 list-none p-0">
                 <li className="flex items-center gap-2 text-sm text-slate-300">
@@ -213,7 +205,7 @@ export const SafetyOn = async () => {
               aria-label="Log forense de ejemplo Veriwork"
             >
               <div className="mb-2 border-b border-slate-800 pb-2 text-slate-500">
-                // FORENSIC_LOG — PERMISO_TRABAJO_ALTURAS
+                {"// FORENSIC_LOG — PERMISO_TRABAJO_ALTURAS"}
               </div>
               <div className="space-y-1">
                 <p>&gt; TIMESTAMP: 2026-03-23T18:50:42Z</p>
@@ -223,7 +215,7 @@ export const SafetyOn = async () => {
                 <p className="text-emerald-400">&gt; SIG_ALGO: Ed25519 (empresa_key_id: VW-2026-001)</p>
                 <p className="text-emerald-400">&gt; PADES_SEAL: RFC3161 · TSA_HASH: a7f3d...</p>
                 <p className="text-emerald-400">&gt; VERIFY_QR: imelectric.es/v/PT-2026-0492</p>
-                <p className="text-emerald-400">&gt; STATUS: IMMUTABLE · NOTARIAL: NO (low-severity)</p>
+                <p className="text-emerald-400">&gt; STATUS: TAMPER_EVIDENT · NOTARIAL: NO (low-severity)</p>
               </div>
             </div>
           </div>

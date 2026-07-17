@@ -6,7 +6,7 @@ import { Fmeca } from "@/components/Fmeca";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://imelectric.es/academia/fmeca" },
-  title: "Matriz FMECA Online Gratis — Análisis de Modos de Falla y Criticidad | IMELECTRIC",
+  title: "Matriz FMECA online | IMELECTRIC",
   description:
     "Herramienta FMECA online gratuita para ingenieros. Calcula el Número de Prioridad de Riesgo (NPR = Severidad × Ocurrencia × Detección), identifica fallas críticas y aplica metodología RCM. Sin registro.",
   keywords: [

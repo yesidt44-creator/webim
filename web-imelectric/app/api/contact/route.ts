@@ -66,6 +66,17 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Tipo de formulario no válido" }, { status: 400 });
   }
 
+  // ── Prueba de autorización (Art. 9, Ley 1581) ──────────────────────────────
+  const consent = body.consent === true;
+  const receivedAtUtc = new Date().toISOString();
+  const consentProof = [
+    "",
+    "── Prueba de autorización (Habeas Data, Ley 1581/2012) ──",
+    `Consentimiento: ${consent ? "SÍ — el titular autorizó expresamente el tratamiento" : "no registrado"}`,
+    `Fecha/hora de autorización (UTC): ${receivedAtUtc}`,
+    `Formulario de origen: ${formType}`,
+  ].join("\n");
+
   const to = process.env.CONTACT_TO_EMAIL || "contacto@imelectric.es";
   const from = process.env.RESEND_FROM_EMAIL?.trim() || "IMELECTRIC Web <onboarding@resend.dev>";
   const apiKey = process.env.RESEND_API_KEY?.trim();
@@ -79,7 +90,6 @@ export async function POST(request: Request) {
   if (formType === "norm_updates") {
     const email = clamp(body.email);
     const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    const consent = body.consent === true;
 
     if (!emailOk) {
       return NextResponse.json({ error: "Correo válido es obligatorio" }, { status: 400 });
@@ -94,7 +104,7 @@ export async function POST(request: Request) {
       "Nueva suscripción desde la Biblioteca Normativa.",
       "",
       `Correo: ${email}`,
-      "Consentimiento: titular autorizó expresamente el tratamiento para notificaciones de actualización normativa.",
+      consentProof,
       "",
       "No responder a este correo — es solo un aviso interno.",
     ].join("\n");
@@ -113,18 +123,28 @@ export async function POST(request: Request) {
     replyTo = email;
 
     if (formType === "contact") {
+      if (!consent) {
+        return NextResponse.json({ error: "Se requiere autorización expresa del titular" }, { status: 400 });
+      }
       const priority = clamp(body.priority);
       if (!priority) {
         return NextResponse.json({ error: "Seleccione una prioridad técnica" }, { status: 400 });
       }
       subject = `[Web IMELECTRIC] Consulta: ${priority}`;
+      const phone = clamp(body.phone);
+      const message = clamp(body.message);
+      const sourcePage = clamp(body.sourcePage) || "/";
       text = [
         "Nueva consulta desde el formulario de contacto (web IMELECTRIC).",
         "",
         `Nombre: ${fullName}`,
         `Empresa: ${company}`,
         `Correo: ${email}`,
+        `Teléfono: ${phone || "(no indicado)"}`,
         `Prioridad / interés: ${priority}`,
+        `Página de origen: ${sourcePage}`,
+        `Mensaje: ${message || "(sin mensaje)"}`,
+        consentProof,
         "",
         "Responder directamente a este correo usando «Responder» (reply-to configurado).",
       ].join("\n");
@@ -143,6 +163,7 @@ export async function POST(request: Request) {
         `Nombre: ${fullName}`,
         `Empresa: ${company}`,
         `Correo: ${email}`,
+        consentProof,
         "",
         "Responder directamente al interesado usando «Responder».",
       ].join("\n");

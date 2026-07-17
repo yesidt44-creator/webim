@@ -6,7 +6,7 @@ import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://imelectric.es/academia/certificacion-trabajo-en-alturas-colombia" },
-  title: "Certificación de Trabajo en Alturas Colombia: Vigencia y Requisitos — Res. 4272 | IMELECTRIC",
+  title: "Certificación trabajo en alturas | Res. 4272 | IMELECTRIC",
   description:
     "La Res. 4272 de 2021 derogó la Res. 1409 y cambió los requisitos de certificación para trabajo en alturas en Colombia. Vigencia, roles obligatorios, permiso de trabajo y lo que el inspector del Ministerio de Trabajo realmente verifica.",
   keywords: [
@@ -63,6 +63,40 @@ const faqJsonLd = {
   ],
 };
 
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: 'Certificación de trabajo en alturas en Colombia: vigencia y requisitos',
+  datePublished: "2026-07-01",
+  dateModified: "2026-07-17",
+  author: {
+    "@type": "Organization",
+    name: "Equipo de Ingeniería IMELECTRIC",
+    url: "https://imelectric.es",
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "IMELECTRIC",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://imelectric.es/imelectric-logo.png",
+    },
+  },
+  mainEntityOfPage: 'https://imelectric.es/academia/certificacion-trabajo-en-alturas-colombia',
+  // ARTICLE_META_INJECTED
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Inicio", item: "https://imelectric.es/" },
+    { "@type": "ListItem", position: 2, name: "Academia Técnica", item: "https://imelectric.es/academia" },
+    { "@type": "ListItem", position: 3, name: 'Certificación trabajo en alturas', item: 'https://imelectric.es/academia/certificacion-trabajo-en-alturas-colombia' },
+  ],
+};
+
 export default async function CertificacionTrabajoAlturasPage() {
   const nonce = (await headers()).get("x-nonce") ?? undefined;
 
@@ -73,6 +107,18 @@ export default async function CertificacionTrabajoAlturasPage() {
         suppressHydrationWarning
         nonce={nonce}
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        nonce={nonce}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        nonce={nonce}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <Navbar />
 
@@ -89,6 +135,9 @@ export default async function CertificacionTrabajoAlturasPage() {
           <h1 className="mb-4 text-4xl font-extrabold tracking-tight md:text-5xl">
             Certificación de trabajo en alturas en Colombia: vigencia y requisitos reales según la Resolución 4272 de 2021
           </h1>
+          <p className="mt-3 text-xs text-slate-500">
+            Publicado: 1 jul 2026 · Actualizado: 17 jul 2026 · Equipo de Ingeniería IMELECTRIC
+          </p>
           <p className="text-lg leading-relaxed text-slate-400">
             El trabajo en alturas sigue siendo la primera causa de accidentes mortales en la industria colombiana. Y uno de los factores que más se repite en los informes de investigación de accidentes es el mismo: la documentación existía — pero nadie había verificado que estuviera vigente.
           </p>

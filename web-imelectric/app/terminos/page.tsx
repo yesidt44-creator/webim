@@ -16,13 +16,6 @@ const Section = ({ title, children }: { title: string; children: React.ReactNode
   </section>
 );
 
-const Placeholder = ({ label }: { label: string }) => (
-  <span className="rounded bg-amber-500/15 px-2 py-0.5 text-xs font-mono text-amber-400">
-    {/* TODO: texto legal a validar con abogado — {label} */}
-    [PENDIENTE REVISIÓN LEGAL: {label}]
-  </span>
-);
-
 export default function TerminosPage() {
   return (
     <main className="min-h-screen bg-slate-950 py-24">
@@ -32,12 +25,8 @@ export default function TerminosPage() {
           <p className="mb-2 text-xs font-bold tracking-widest text-blue-400 uppercase">Legal</p>
           <h1 className="mb-3 text-3xl font-extrabold text-white md:text-4xl">Términos de Servicio</h1>
           <p className="text-sm text-slate-500">
-            IMELECTRIC S.A.S. · Última actualización: julio 2026 · Vigentes desde: julio 2026
+            IMELECTRIC S.A.S. · Última actualización: 16 de julio de 2026 · Vigentes desde: 16 de julio de 2026
           </p>
-          <div className="mt-4 rounded-xl border border-amber-500/30 bg-amber-500/10 p-4 text-xs text-amber-300">
-            <strong>Nota interna:</strong> Este documento es un borrador estructural con placeholders. Debe ser
-            revisado y aprobado por un abogado antes de publicarse en producción.
-          </div>
         </div>
 
         <Section title="1. Aceptación de los términos">
@@ -56,8 +45,8 @@ export default function TerminosPage() {
           </p>
           <p>
             Correo de contacto:{" "}
-            <a href="mailto:hola@imelectric.es" className="text-blue-400 hover:underline">
-              hola@imelectric.es
+            <a href="mailto:contacto@imelectric.es" className="text-blue-400 hover:underline">
+              contacto@imelectric.es
             </a>
           </p>
         </Section>
@@ -85,13 +74,16 @@ export default function TerminosPage() {
 
         <Section title="5. Limitación de responsabilidad">
           <p>
-            <Placeholder label="Cláusula completa de limitación de responsabilidad — incluyendo: precisión del contenido técnico/normativo publicado, disponibilidad del servicio, errores en herramientas de cálculo, decisiones tomadas con base en información del sitio" />
+            El sitio y su contenido educativo (Academia, calculadoras, artículos) se ofrecen con fines
+            exclusivamente informativos. <strong className="text-slate-200">No constituyen asesoría de
+            ingeniería ni jurídica</strong> para casos específicos. Las decisiones operativas, técnicas o de
+            cumplimiento que el usuario tome con base en las herramientas o contenidos de este sitio son de su
+            exclusiva responsabilidad.
           </p>
           <p>
-            Los contenidos técnicos publicados en la Academia de IMELECTRIC (artículos, calculadoras,
-            herramientas) se proporcionan con fines informativos y educativos. No constituyen asesoría legal,
-            técnica ni normativa. IMELECTRIC no garantiza que los contenidos estén permanentemente actualizados
-            con las últimas versiones de las normas citadas.
+            IMELECTRIC no garantiza que los contenidos estén permanentemente actualizados con las últimas
+            versiones de las normas citadas. Los servicios y productos de software se rigen por los contratos
+            que se suscriban individualmente entre IMELECTRIC y cada cliente.
           </p>
         </Section>
 
@@ -108,8 +100,8 @@ export default function TerminosPage() {
         <Section title="7. Software como Servicio (SaaS)">
           <p>
             Los términos específicos aplicables al uso de Fix AI, Falion, Veriwork, Nexvia y Shield AI como
-            plataformas SaaS se rigen por contratos separados suscritos entre IMELECTRIC y cada cliente.{" "}
-            <Placeholder label="Incluir link a Acuerdo de Nivel de Servicio (SLA) y/o Contrato de Uso de Plataforma si existen o cuando existan" />
+            plataformas SaaS se rigen por los contratos separados que se suscriban entre IMELECTRIC y cada
+            cliente.
           </p>
         </Section>
 
@@ -117,7 +109,7 @@ export default function TerminosPage() {
           <p>
             El tratamiento de datos personales se rige por la{" "}
             <Link href="/privacidad" className="text-blue-400 hover:underline">
-              Política de Privacidad
+              Política de Tratamiento de Datos Personales
             </Link>{" "}
             de IMELECTRIC, conforme a la Ley 1581 de 2012.
           </p>
@@ -125,7 +117,9 @@ export default function TerminosPage() {
 
         <Section title="9. Ley aplicable y jurisdicción">
           <p>
-            <Placeholder label="Cláusula de jurisdicción y ley aplicable — ej. leyes colombianas, sometimiento a jueces y tribunales de Colombia, ciudad específica" />
+            Estos Términos se rigen por las leyes de la República de Colombia. Cualquier controversia derivada
+            del uso de este sitio se someterá a los jueces y tribunales competentes con domicilio en Yondó,
+            Antioquia, Colombia.
           </p>
         </Section>
 
@@ -138,10 +132,14 @@ export default function TerminosPage() {
         </Section>
 
         <div className="mt-12 border-t border-slate-800 pt-8 text-xs text-slate-600">
-          <p>IMELECTRIC S.A.S. · Yondó, Antioquia, Colombia · hola@imelectric.es</p>
+          <p>
+            Última actualización: 16 de julio de 2026. Este documento puede ser actualizado; la versión vigente
+            es la publicada en esta página.
+          </p>
+          <p className="mt-2">IMELECTRIC S.A.S. · Yondó, Antioquia, Colombia · contacto@imelectric.es</p>
           <div className="mt-3 flex flex-wrap gap-4">
             <Link href="/privacidad" className="hover:text-slate-400">
-              Política de Privacidad
+              Política de Tratamiento de Datos
             </Link>
             <Link href="/cookies" className="hover:text-slate-400">
               Política de Cookies

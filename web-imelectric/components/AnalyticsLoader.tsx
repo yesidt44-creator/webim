@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useSyncExternalStore } from "react";
 import Script from "next/script";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { ConsentBanner } from "./ConsentBanner";
@@ -13,18 +13,29 @@ interface Props {
   nonce?: string;
 }
 
-export const AnalyticsLoader = ({ gaMeasurementId, clarityProjectId, nonce }: Props) => {
-  const [analyticsEnabled, setAnalyticsEnabled] = useState(false);
+function subscribeConsent(onStoreChange: () => void) {
+  if (typeof window === "undefined") return () => {};
+  const handler = () => onStoreChange();
+  window.addEventListener("imelectric-consent", handler);
+  window.addEventListener("storage", handler);
+  return () => {
+    window.removeEventListener("imelectric-consent", handler);
+    window.removeEventListener("storage", handler);
+  };
+}
 
-  useEffect(() => {
-    if (getConsent() === "accepted") {
-      setAnalyticsEnabled(true);
-    }
-  }, []);
+function getConsentAccepted() {
+  return getConsent() === "accepted";
+}
+
+export const AnalyticsLoader = ({ gaMeasurementId, clarityProjectId, nonce }: Props) => {
+  const storedAccepted = useSyncExternalStore(subscribeConsent, getConsentAccepted, () => false);
+  const [acceptedThisSession, setAcceptedThisSession] = useState(false);
+  const analyticsEnabled = storedAccepted || acceptedThisSession;
 
   const handleConsent = (choice: "accepted" | "rejected") => {
     if (choice === "accepted") {
-      setAnalyticsEnabled(true);
+      setAcceptedThisSession(true);
     }
   };
 

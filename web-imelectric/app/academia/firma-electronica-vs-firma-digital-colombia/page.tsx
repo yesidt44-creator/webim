@@ -6,7 +6,7 @@ import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://imelectric.es/academia/firma-electronica-vs-firma-digital-colombia" },
-  title: "Firma Electrónica vs Firma Digital Colombia: Permisos de Trabajo y SG-SST | IMELECTRIC",
+  title: "Firma electrónica vs digital Colombia | IMELECTRIC",
   description:
     "En Colombia, firma electrónica y firma digital son dos regímenes legales distintos. Cuál aplica para permisos de trabajo HSE, contratos laborales y documentos del SG-SST — y cuál es la diferencia que sí importa en un juicio laboral.",
   keywords: [
@@ -57,9 +57,43 @@ const faqJsonLd = {
       name: "¿Qué es Ed25519 y qué valor legal tiene en Colombia?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Ed25519 es un algoritmo de firma criptográfica de clave pública que genera una firma computacionalmente infalsificable sin la clave privada. Combinada con un sello de tiempo externo conforme a RFC 3161 (estándar PAdES), equivale funcionalmente a una firma electrónica avanzada con valor probatorio reforzado ante un tribunal colombiano, sin necesidad de certificado de entidad de certificación.",
+        text: "Ed25519 es un algoritmo de firma criptográfica de clave pública. Genera una firma que, sin la clave privada, es computacionalmente inviable de forjar. Combinada con un hash SHA-256 del documento y un sello de tiempo externo conforme a RFC 3161 (perfil PAdES para PDF), equivale funcionalmente a una firma electrónica avanzada con valor probatorio reforzado ante un tribunal colombiano, sin necesidad de certificado de entidad de certificación.",
       },
     },
+  ],
+};
+
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: 'Firma electrónica vs firma digital certificada en Colombia',
+  datePublished: "2026-07-01",
+  dateModified: "2026-07-17",
+  author: {
+    "@type": "Organization",
+    name: "Equipo de Ingeniería IMELECTRIC",
+    url: "https://imelectric.es",
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "IMELECTRIC",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://imelectric.es/imelectric-logo.png",
+    },
+  },
+  mainEntityOfPage: 'https://imelectric.es/academia/firma-electronica-vs-firma-digital-colombia',
+  // ARTICLE_META_INJECTED
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Inicio", item: "https://imelectric.es/" },
+    { "@type": "ListItem", position: 2, name: "Academia Técnica", item: "https://imelectric.es/academia" },
+    { "@type": "ListItem", position: 3, name: 'Firma electrónica vs digital', item: 'https://imelectric.es/academia/firma-electronica-vs-firma-digital-colombia' },
   ],
 };
 
@@ -73,6 +107,18 @@ export default async function FirmaElectronicaPage() {
         suppressHydrationWarning
         nonce={nonce}
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        nonce={nonce}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        nonce={nonce}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <Navbar />
 
@@ -89,6 +135,9 @@ export default async function FirmaElectronicaPage() {
           <h1 className="mb-4 text-4xl font-extrabold tracking-tight md:text-5xl">
             Firma electrónica vs. firma digital certificada en Colombia
           </h1>
+          <p className="mt-3 text-xs text-slate-500">
+            Publicado: 1 jul 2026 · Actualizado: 17 jul 2026 · Equipo de Ingeniería IMELECTRIC
+          </p>
           <p className="text-lg leading-relaxed text-slate-400">
             Cuando un coordinador HSE firma un permiso de trabajo en una tablet, o cuando el representante legal firma el acta de revisión del SG-SST en un sistema digital, la pregunta que nadie hace — hasta que hay un accidente — es: <em>¿esa firma tiene valor legal en Colombia?</em>
           </p>
@@ -162,7 +211,7 @@ export default async function FirmaElectronicaPage() {
         </p>
         <ul className="mb-4 space-y-2">
           {[
-            "Genera una firma de 64 bytes computacionalmente infalsificable sin la clave privada",
+            "Genera una firma de 64 bytes que, sin la clave privada, es computacionalmente inviable de forjar",
             "La verificación es instantánea y puede hacerse offline",
             "La firma está ligada al contenido: si una sola letra cambia, la verificación falla",
           ].map((item) => (
@@ -173,23 +222,23 @@ export default async function FirmaElectronicaPage() {
           ))}
         </ul>
         <p className="mb-6 leading-relaxed text-slate-400">
-          Una firma Ed25519 con sello de tiempo externo conforme a <strong className="text-slate-200">RFC 3161</strong> (el estándar que implementa <strong className="text-slate-200">PAdES</strong>) equivale funcionalmente a una firma electrónica avanzada según la clasificación del Decreto 2364/2012 — con valor probatorio reforzado ante un tribunal colombiano, sin necesidad de certificado de entidad de certificación.
+          Una firma Ed25519 sobre el hash SHA-256 del documento, con sello de tiempo externo conforme a <strong className="text-slate-200">RFC 3161</strong> (perfil <strong className="text-slate-200">PAdES</strong> para PDF), equivale funcionalmente a una firma electrónica avanzada según la clasificación del Decreto 2364/2012 — con valor probatorio reforzado ante un tribunal colombiano, sin necesidad de certificado de entidad de certificación.
         </p>
 
         <h2 className="mb-4 mt-10 text-2xl font-bold text-white">La pregunta práctica</h2>
         <p className="mb-4 leading-relaxed text-slate-400">
-          Si mañana ocurre un accidente en tu operación y el abogado del trabajador accidentado pregunta en el juzgado: <em>"¿Con qué garantía afirman que el permiso de trabajo fue firmado por el coordinador HSE y no fue alterado después?"</em>
+          Si mañana ocurre un accidente en tu operación y el abogado del trabajador accidentado pregunta en el juzgado: <em>&ldquo;¿Con qué garantía afirman que el permiso de trabajo fue firmado por el coordinador HSE y no fue alterado después?&rdquo;</em>
         </p>
         <div className="mb-4 rounded-xl border border-slate-700 bg-slate-900 p-5">
           <p className="mb-2 text-xs font-bold tracking-widest text-red-400 uppercase">Respuesta sin firma criptográfica</p>
           <p className="text-sm text-slate-400">
-            "Aquí está el permiso impreso y firmado a mano que guardamos en una carpeta." → La contraparte preguntará cuándo fue impreso, si tiene tachaduras, y si alguien pudo reemplazar el papel después del accidente.
+            &ldquo;Aquí está el permiso impreso y firmado a mano que guardamos en una carpeta.&rdquo; → La contraparte preguntará cuándo fue impreso, si tiene tachaduras, y si alguien pudo reemplazar el papel después del accidente.
           </p>
         </div>
         <div className="mb-6 rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-5">
           <p className="mb-2 text-xs font-bold tracking-widest text-emerald-400 uppercase">Respuesta con firma Ed25519 + PAdES</p>
           <p className="text-sm text-slate-400">
-            "Aquí está el hash Ed25519 del documento, el sello de tiempo RFC 3161 de las 14:37:42 del día del accidente, el GPS del punto de firma y el UUID del coordinador que lo autorizó — todo verificable públicamente desde este enlace." → La discusión jurídica cambia completamente.
+            &ldquo;Aquí está el hash SHA-256 del documento, la firma Ed25519, el sello de tiempo RFC 3161 de las 14:37:42 del día del accidente, el GPS del punto de firma y el UUID del coordinador que lo autorizó — todo verificable públicamente desde este enlace.&rdquo; → La discusión jurídica cambia completamente.
           </p>
         </div>
 
@@ -198,7 +247,7 @@ export default async function FirmaElectronicaPage() {
           <div className="rounded-2xl border border-emerald-500/20 bg-emerald-600/5 p-5">
             <p className="mb-1 text-xs font-bold tracking-widest text-emerald-400 uppercase">Permisos de trabajo HSE</p>
             <p className="mb-3 text-sm leading-relaxed text-slate-400">
-              Veriwork implementa Ed25519 + PAdES en cada permiso. La firma siempre es de la persona competente.
+              Veriwork implementa hash SHA-256 + firma Ed25519 + sello de tiempo RFC 3161 (perfil PAdES) en cada permiso. La persona competente firma con su usuario; la clave de empresa sella la transacción.
             </p>
             <Link href="/veriwork" className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-4 py-2 text-sm font-bold text-white transition hover:bg-emerald-500">
               Ver Veriwork →

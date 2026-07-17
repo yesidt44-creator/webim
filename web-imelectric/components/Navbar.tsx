@@ -70,7 +70,7 @@ export const Navbar = () => {
                   <MenuLink
                     href="/fixai-cmms"
                     icon={<Wrench size={18} />}
-                    title="FixAI CMMS"
+                    title="Fix AI"
                     desc="Mantenimiento ISO 14224"
                   />
                   <MenuLink
@@ -121,9 +121,9 @@ export const Navbar = () => {
             </div>
           </div>
 
-          <a href="/#nosotros" className="transition hover:text-blue-700">
+          <Link href="/#nosotros" className="transition hover:text-blue-700">
             Sectores
-          </a>
+          </Link>
           <Link
             href="/academia"
             className="font-bold text-blue-400 underline decoration-2 underline-offset-4 transition hover:text-blue-600"
@@ -181,7 +181,7 @@ export const Navbar = () => {
           <p className="mb-3 text-[10px] font-bold tracking-widest text-slate-400 uppercase">Plataformas SaaS IA</p>
           <ul className="space-y-1 border-b border-slate-100 pb-4">
             <MobileNavRow href="/fixai-cmms" onNavigate={closeMobile}>
-              FixAI CMMS
+              Fix AI
             </MobileNavRow>
             <MobileNavRow href="/veriwork" onNavigate={closeMobile}>
               Veriwork
@@ -207,13 +207,13 @@ export const Navbar = () => {
           </ul>
           <ul className="mt-4 space-y-2">
             <li>
-              <a
+              <Link
                 href="/#nosotros"
                 className="block rounded-lg px-3 py-3 text-base font-semibold text-blue-950 hover:bg-slate-50"
                 onClick={closeMobile}
               >
                 Sectores
-              </a>
+              </Link>
             </li>
             <li>
               <Link

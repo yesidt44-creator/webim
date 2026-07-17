@@ -21,7 +21,7 @@ export const Education = () => {
         <div className="mb-4 flex items-center gap-3 text-blue-500">
           <BookOpen size={24} />
           <span className="text-xs font-bold tracking-widest uppercase">
-            Knowledge Hub: Ingeniería y Normativa
+            Academia Técnica: Ingeniería y Normativa
           </span>
         </div>
         <h2 className="mb-6 text-3xl leading-tight font-extrabold md:text-5xl">
@@ -67,7 +67,7 @@ export const Education = () => {
               </div>
               <div className="rounded-2xl border border-slate-800 bg-slate-950 p-6">
                 <h4 className="mb-4 border-b border-slate-800 pb-2 text-sm font-bold tracking-wider text-white uppercase">
-                  Mapa de Aplicación en FixAI
+                  Mapa de Aplicación en Fix AI
                 </h4>
                 <ul className="space-y-4 text-sm text-slate-400">
                   <li className="flex items-start gap-3">
@@ -146,8 +146,8 @@ export const Education = () => {
             <div className="grid gap-10 md:grid-cols-2">
               <div className="space-y-6">
                 <p className="text-lg font-medium leading-relaxed text-white">
-                  El 80% del Costo del Ciclo de Vida (LCC) de un activo físico se compromete irreversiblemente en la fase
-                  de diseño (CAPEX).
+                  Gran parte del Costo del Ciclo de Vida (LCC) de un activo físico se compromete en la fase
+                  de diseño (CAPEX) — antes de que entre en operación.
                 </p>
                 <p className="leading-relaxed text-slate-400">
                   El mantenimiento no comienza al encender la máquina. Comienza en la ingeniería de confiabilidad. Para los
@@ -177,7 +177,7 @@ export const Education = () => {
                       <Settings size={14} /> Mantenimiento Centrado en Confiabilidad (RCM)
                     </h5>
                     <p className="text-xs text-slate-400">
-                      FixAI permite digitalizar el contexto operacional y las consecuencias de fallas para determinar la
+                      Fix AI permite digitalizar el contexto operacional y las consecuencias de fallas para determinar la
                       política óptima.
                     </p>
                   </div>
@@ -206,7 +206,7 @@ export const Education = () => {
             <div className="mb-4 inline-block rounded-full border border-blue-400/30 bg-blue-500/20 px-3 py-1 text-xs font-bold tracking-wide text-blue-300">
               ACCESO GRATUITO PARA INGENIEROS
             </div>
-            <h3 className="mb-4 text-3xl font-bold text-white">Ecosistema de Academia y Herramientas EAM</h3>
+            <h3 className="mb-4 text-3xl font-bold text-white">Academia Técnica — Herramientas EAM</h3>
             <p className="mb-6 leading-relaxed text-slate-300">
               Únase a ingenieros que ya aplican marcos globales en planta: calculadoras RAM, matrices de análisis de fallas
               y recursos listos para usar —sin quedarse solo en la teoría.

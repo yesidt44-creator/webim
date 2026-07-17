@@ -12,4 +12,5 @@ export function getConsent(): ConsentChoice {
 export function setConsent(choice: "accepted" | "rejected"): void {
   if (typeof window === "undefined") return;
   localStorage.setItem(KEY, choice);
+  window.dispatchEvent(new Event("imelectric-consent"));
 }

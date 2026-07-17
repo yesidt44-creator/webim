@@ -28,6 +28,27 @@ export const metadata: Metadata = {
   },
   title: "IMELECTRIC — Inteligencia en movimiento industrial",
   description: "Software industrial, EAM, SST y servicios de respuesta crítica para sectores de alto riesgo.",
+  openGraph: {
+    type: "website",
+    locale: "es_CO",
+    siteName: "IMELECTRIC",
+    title: "IMELECTRIC — Software industrial con IA",
+    description: "Fix AI, Falion, Veriwork, Nexvia y Shield AI para operaciones industriales en Colombia.",
+    images: [
+      {
+        url: "/og-default.png",
+        width: 1200,
+        height: 630,
+        alt: "IMELECTRIC — Software industrial",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "IMELECTRIC — Software industrial con IA",
+    description: "Fix AI, Falion, Veriwork, Nexvia y Shield AI para operaciones industriales en Colombia.",
+    images: ["/og-default.png"],
+  },
 };
 
 export const viewport: Viewport = {
@@ -42,7 +63,7 @@ const organizationJsonLd = {
   name: "IMELECTRIC",
   url: "https://imelectric.es",
   logo: "https://imelectric.es/imelectric-logo.png",
-  sameAs: [],
+  sameAs: ["https://www.linkedin.com/company/imelectric/"],
   description:
     "Empresa colombiana de software industrial con IA. Desarrolla Fix AI (CMMS), Falion (Confiabilidad RCA), Veriwork (HSE), Nexvia (Flotas) y Shield AI (SG-SST) para contratistas industriales y operadores en Colombia y Latinoamérica.",
   areaServed: ["Colombia", "Latinoamérica"],
@@ -66,21 +87,11 @@ const organizationJsonLd = {
   ],
 };
 
-const falionJsonLd = {
+const websiteJsonLd = {
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: "Falion",
-  url: "https://imelectric.es/falion",
-  applicationCategory: "BusinessApplication",
-  applicationSubCategory: "Confiabilidad Industrial, RCA, FMECA, Weibull",
-  operatingSystem: "Web",
-  description:
-    "Sistema de análisis de confiabilidad industrial con IA. Asiste RCA, FMECA, Weibull, RAM, CBM y más, usando los datos reales de los activos del cliente. El ingeniero siempre valida.",
-  provider: {
-    "@type": "Organization",
-    name: "IMELECTRIC",
-    url: "https://imelectric.es",
-  },
+  "@type": "WebSite",
+  name: "IMELECTRIC",
+  url: "https://imelectric.es",
 };
 
 export default async function RootLayout({
@@ -106,7 +117,7 @@ export default async function RootLayout({
           type="application/ld+json"
           suppressHydrationWarning
           nonce={nonce}
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(falionJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
       </head>
       <body className="flex min-h-full flex-col">

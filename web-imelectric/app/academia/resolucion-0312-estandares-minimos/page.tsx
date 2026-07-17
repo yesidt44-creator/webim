@@ -6,7 +6,7 @@ import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://imelectric.es/academia/resolucion-0312-estandares-minimos" },
-  title: "Resolución 0312 de 2019: Estándares Mínimos SG-SST por Tamaño de Empresa | IMELECTRIC",
+  title: "Resolución 0312: estándares SG-SST | IMELECTRIC",
   description:
     "La Resolución 0312 de 2019 obliga a toda empresa colombiana desde 1 trabajador. Explica cuántos estándares aplican según tamaño y clase de riesgo, los errores más comunes y el riesgo real de incumplir ante el Ministerio de Trabajo.",
   keywords: [
@@ -41,7 +41,7 @@ const faqJsonLd = {
       name: "¿Cuántos estándares mínimos SG-SST aplican a mi empresa según la Resolución 0312?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Depende del tamaño y la clase de riesgo: 7 estándares para empresas de 1 a 10 trabajadores con clase de riesgo I, II o III; 21 estándares para empresas de 11 a 50 trabajadores; 60 estándares para empresas de más de 50 trabajadores o con clase de riesgo IV o V.",
+        text: "Depende del tamaño y la clase de riesgo (Arts. 3, 8, 9, 15 y 16 de la Res. 0312): 7 estándares para empresas de 1 a 10 trabajadores con riesgo I, II o III; 21 estándares para empresas de 11 a 50 trabajadores con riesgo I, II o III; y 60 estándares para empresas de más de 50 trabajadores (cualquier riesgo) o de 50 o menos con riesgo IV o V.",
       },
     },
     {
@@ -70,6 +70,40 @@ const EstandarBadge = ({ num, label }: { num: string; label: string }) => (
   </div>
 );
 
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: 'Los estándares mínimos de la Resolución 0312 explicados por tamaño de empresa',
+  datePublished: "2026-07-01",
+  dateModified: "2026-07-17",
+  author: {
+    "@type": "Organization",
+    name: "Equipo de Ingeniería IMELECTRIC",
+    url: "https://imelectric.es",
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "IMELECTRIC",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://imelectric.es/imelectric-logo.png",
+    },
+  },
+  mainEntityOfPage: 'https://imelectric.es/academia/resolucion-0312-estandares-minimos',
+  // ARTICLE_META_INJECTED
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Inicio", item: "https://imelectric.es/" },
+    { "@type": "ListItem", position: 2, name: "Academia Técnica", item: "https://imelectric.es/academia" },
+    { "@type": "ListItem", position: 3, name: 'Resolución 0312', item: 'https://imelectric.es/academia/resolucion-0312-estandares-minimos' },
+  ],
+};
+
 export default async function Resolucion0312Page() {
   const nonce = (await headers()).get("x-nonce") ?? undefined;
 
@@ -80,6 +114,18 @@ export default async function Resolucion0312Page() {
         suppressHydrationWarning
         nonce={nonce}
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        nonce={nonce}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        nonce={nonce}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <Navbar />
 
@@ -96,6 +142,9 @@ export default async function Resolucion0312Page() {
           <h1 className="mb-4 text-4xl font-extrabold tracking-tight md:text-5xl">
             Los estándares mínimos de la Resolución 0312 de 2019 explicados por tamaño de empresa
           </h1>
+          <p className="mt-3 text-xs text-slate-500">
+            Publicado: 1 jul 2026 · Actualizado: 17 jul 2026 · Equipo de Ingeniería IMELECTRIC
+          </p>
           <p className="text-lg leading-relaxed text-slate-400">
             La Resolución 0312 de 2019 define qué debe tener implementado el SG-SST de cada empresa colombiana, y en qué cantidad mínima. No es optativa. No tiene excepción por sector. Y el incumplimiento tiene consecuencias reales.
           </p>
@@ -116,19 +165,17 @@ export default async function Resolucion0312Page() {
 
         {/* Tabla resumen */}
         <div className="mb-8 grid gap-4">
-          {/* ✅ CORRECCIÓN APLICADA: Estándar I incluye riesgo I, II o III (no solo I y II).
-              Estándar III aplica a riesgo IV o V (riesgo III queda en Estándar I para ≤10 trabajadores). */}
           <EstandarBadge num="7" label="Empresas de 1 a 10 trabajadores · Clase de riesgo I, II o III" />
-          <EstandarBadge num="21" label="Empresas de 11 a 50 trabajadores · Cualquier clase de riesgo" />
-          <EstandarBadge num="60" label="Empresas de más de 50 trabajadores · O cualquier tamaño con clase de riesgo IV o V" />
+          <EstandarBadge num="21" label="Empresas de 11 a 50 trabajadores · Clase de riesgo I, II o III" />
+          <EstandarBadge num="60" label="Más de 50 trabajadores (cualquier riesgo) · O hasta 50 trabajadores con riesgo IV o V" />
         </div>
         <p className="mb-6 text-xs leading-relaxed text-slate-600">
-          ⚠️ La clasificación por clase de riesgo la asigna tu ARL. Verifica con el Anexo Técnico oficial de la Res. 0312 si tienes dudas sobre el tramo que aplica a tu empresa.
+          Fuente: Arts. 3, 8, 9, 15 y 16 de la Resolución 0312 de 2019. La clasificación por clase de riesgo la asigna tu ARL.
         </p>
 
         <h3 className="mb-3 mt-8 text-xl font-bold text-white">Estándar I — 7 estándares mínimos</h3>
         <p className="mb-3 leading-relaxed text-slate-400">
-          Aplica a empresas de 10 o menos trabajadores con clase de riesgo I, II o III. Los 7 estándares son:
+          Aplica a empresas de 10 o menos trabajadores con clase de riesgo I, II o III (Art. 3). Los 7 estándares son:
         </p>
         <ul className="mb-6 space-y-2">
           {[
@@ -149,7 +196,7 @@ export default async function Resolucion0312Page() {
 
         <h3 className="mb-3 mt-8 text-xl font-bold text-white">Estándar II — 21 estándares mínimos</h3>
         <p className="mb-4 leading-relaxed text-slate-400">
-          Aplica a empresas de 11 a 50 trabajadores, de cualquier clase de riesgo. Los 21 estándares amplían el Estándar I con requisitos adicionales de documentación, seguimiento y medición. Entre los más frecuentemente incumplidos:
+          Aplica a empresas de 11 a 50 trabajadores con clase de riesgo I, II o III (Art. 9). Los 21 estándares amplían el Estándar I con requisitos adicionales de documentación, seguimiento y medición. Entre los más frecuentemente incumplidos:
         </p>
         <ul className="mb-6 space-y-2">
           {[
@@ -168,7 +215,7 @@ export default async function Resolucion0312Page() {
 
         <h3 className="mb-3 mt-8 text-xl font-bold text-white">Estándar III — 60 estándares mínimos</h3>
         <p className="mb-4 leading-relaxed text-slate-400">
-          Aplica a empresas de más de 50 trabajadores, o empresas con clase de riesgo IV o V (construcción, minería, manufactura pesada, Oil &amp; Gas). Los 60 estándares cubren el ciclo completo PHVA:
+          Aplica a empresas de más de 50 trabajadores (cualquier clase de riesgo) y a empresas de 50 o menos trabajadores clasificadas en riesgo IV o V (Arts. 8, 15 y 16). Los 60 estándares cubren el ciclo completo PHVA:
         </p>
         <ul className="mb-6 space-y-2">
           {[
@@ -218,7 +265,7 @@ export default async function Resolucion0312Page() {
           Para el Estándar I, una empresa organizada con un responsable dedicado puede implementar el SG-SST en dos a cuatro semanas. El volumen documental es manejable. Para el Estándar III, el volumen y la complejidad son significativos.
         </p>
         <p className="mb-6 leading-relaxed text-slate-400">
-          La trampa más común: copiar plantillas de internet, imprimir carpetas y considerar que eso es cumplir. El Ministerio de Trabajo puede detectar esto en una visita de 30 minutos. La diferencia entre "tiene carpetas" y "realmente cumple" está en si los documentos están actualizados, los indicadores se miden y la alta dirección participa activamente en la revisión.
+          La trampa más común: copiar plantillas de internet, imprimir carpetas y considerar que eso es cumplir. El Ministerio de Trabajo puede detectar esto en una visita de 30 minutos. La diferencia entre &ldquo;tiene carpetas&rdquo; y &ldquo;realmente cumple&rdquo; está en si los documentos están actualizados, los indicadores se miden y la alta dirección participa activamente en la revisión.
         </p>
 
         {/* CTA Shield AI */}

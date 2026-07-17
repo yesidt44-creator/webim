@@ -14,47 +14,6 @@ import {
 } from "lucide-react";
 import { ContactModal } from "./ContactModal";
 
-const shieldAiJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: "Shield AI",
-  alternateName: [
-    "Shield AI SG-SST Colombia",
-    "software SG-SST Colombia",
-    "software seguridad social trabajo Colombia",
-    "sistema gestión SST PyME Colombia",
-  ],
-  applicationCategory: "BusinessApplication",
-  applicationSubCategory: "SG-SST, SST, Seguridad y Salud en el Trabajo, Resolución 0312",
-  operatingSystem: "Web",
-  description:
-    "Shield AI es la plataforma SG-SST para toda empresa colombiana obligada por la Res. 0312. Automatiza la generación de evidencia documental, detecta brechas de cumplimiento y emite alertas normativas — la persona responsable revisa, completa y firma. Ciclo de retención de 20 años.",
-  keywords:
-    "Shield AI SG-SST Colombia, software SG-SST Colombia, Resolución 0312 cumplimiento, Decreto 1072 SG-SST digital, sistema gestión seguridad trabajo Colombia, software HSE PyME Colombia, cumplimiento normativo SST Colombia, SG-SST automatizado",
-  provider: {
-    "@type": "Organization",
-    name: "IMELECTRIC",
-    url: "https://imelectric.es",
-    areaServed: ["Colombia"],
-    knowsAbout: [
-      "SG-SST Colombia",
-      "Resolución 0312",
-      "Decreto 1072",
-      "Seguridad y Salud en el Trabajo",
-      "Cumplimiento normativo laboral Colombia",
-    ],
-  },
-  featureList: [
-    "Diagnóstico inicial de brecha SG-SST contra Resolución 0312",
-    "Generación automática de evidencia documental requerida",
-    "Alertas de cumplimiento antes de vencimientos regulatorios",
-    "Firma dual: responsable del SG-SST y representante legal",
-    "Retención documental de 20 años (régimen 7/21/60)",
-    "Tablero de estado de cumplimiento en tiempo real",
-    "Compatible con empresas de todos los tamaños (Res. 0312 estándares mínimos)",
-  ],
-};
-
 const features = [
   {
     icon: <Brain size={22} />,
@@ -79,7 +38,7 @@ const features = [
   {
     icon: <Lock size={22} />,
     title: "Retención documental 20 años",
-    desc: "Ciclo 7/21/60: documentos activos accesibles en línea, archivo a mediano plazo y retención de largo plazo para obligaciones legales. Todo con trazabilidad forense inalterable.",
+    desc: "Diseñado para soportar la conservación mínima de 20 años exigida por el Decreto 1072 (Art. 2.2.4.6.13) para documentos clave del SG-SST, con trazabilidad que permite detectar alteraciones.",
   },
   {
     icon: <ShieldCheck size={22} />,
@@ -91,18 +50,18 @@ const features = [
 const segments = [
   {
     icon: <Building2 size={20} />,
-    name: "PyME de 11–50 trabajadores",
-    desc: "Estándar II: 21 estándares mínimos. Shield AI cubre la totalidad del ciclo documental.",
+    name: "1–10 trabajadores · riesgo I, II o III",
+    desc: "Estándar I: 7 estándares mínimos (Art. 3). Onboarding en una jornada laboral.",
   },
   {
     icon: <Building2 size={20} />,
-    name: "Mediana empresa 51–200 trabajadores",
-    desc: "Estándar III: 60 estándares. Módulo de auditoría interna y plan de mejoramiento incluido.",
+    name: "11–50 trabajadores · riesgo I, II o III",
+    desc: "Estándar II: 21 estándares mínimos (Art. 9). Shield AI cubre el ciclo documental completo.",
   },
   {
     icon: <Building2 size={20} />,
-    name: "Empresa de clase de riesgo I y II",
-    desc: "Estándar I (7 estándares). Onboarding en una jornada laboral.",
+    name: "Más de 50 trabajadores · o riesgo IV/V",
+    desc: "Estándar III: 60 estándares (Arts. 8, 15 y 16). Incluye auditoría interna y plan de mejoramiento.",
   },
 ];
 
@@ -184,28 +143,28 @@ export const ShieldAI = () => {
         >
           <div>
             <p className="mb-2 text-xs font-bold tracking-widest text-violet-400 uppercase">
-              Régimen documental 7 / 21 / 60
+              Decreto 1072 · Art. 2.2.4.6.13
             </p>
             <h3 className="mb-4 text-3xl font-bold text-white">
-              Retención de 20 años — sin buscar en carpetas físicas
+              Retención mínima de 20 años — sin buscar en carpetas físicas
             </h3>
             <p className="mb-6 leading-relaxed text-slate-400">
-              La normativa colombiana exige conservar evidencia del SG-SST por periodos extensos.
-              Shield AI gestiona tres ciclos:
+              El Decreto 1072 exige conservar por al menos 20 años (desde el cese de la relación laboral)
+              documentos clave del SG-SST. Shield AI está diseñado para soportar esa obligación:
             </p>
             <ul className="space-y-4">
               {[
                 {
-                  label: "7 años",
-                  desc: "Documentos activos accesibles en línea para auditorías inmediatas",
+                  label: "20 años",
+                  desc: "Mínimo legal para perfiles epidemiológicos, exámenes médicos, mediciones de ambiente, capacitaciones y EPP",
                 },
                 {
-                  label: "21 años",
-                  desc: "Archivo histórico de incidentes, investigaciones y planes correctivos",
+                  label: "Tabla propia",
+                  desc: "Para el resto de registros, el empleador define su retención documental; Shield AI la soporta",
                 },
                 {
-                  label: "60 años",
-                  desc: "Retención máxima para enfermedades laborales de manifestación tardía",
+                  label: "Trazabilidad",
+                  desc: "Diseñado para que la evidencia no pueda modificarse sin dejar rastro auditable",
                 },
               ].map(({ label, desc }) => (
                 <li key={label} className="flex gap-4">

@@ -3,10 +3,11 @@ import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { SSTAcademy } from "@/components/SSTAcademy";
+import { NormsLibrary } from "@/components/NormsLibrary";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://imelectric.es/academia/trabajo-en-alturas" },
-  title: "Resolución 4272 Trabajo en Alturas — Simulador DCL y Normativa | IMELECTRIC",
+  title: "Simulador Res. 4272 — Alturas | IMELECTRIC",
   description:
     "Simulador de distancia de caída libre (DCL) según Resolución 4272 de 2021. Calcula la claridad mínima para trabajo seguro en alturas. Conceptos RETIE, NFPA y normativa SST Colombia. Herramienta gratuita.",
   keywords: [
@@ -62,6 +63,10 @@ export default function TrabajoEnAlturasPage() {
 
       <div className="mx-auto max-w-7xl px-6 py-16">
         <SSTAcademy />
+
+        <div id="normas" className="scroll-mt-28">
+          <NormsLibrary />
+        </div>
 
         <div className="mt-16 rounded-2xl border border-slate-800 bg-slate-900/50 p-8">
           <h2 className="mb-4 text-xl font-bold text-white">Resolución 4272 de 2021 — Aspectos clave</h2>

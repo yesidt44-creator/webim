@@ -6,7 +6,7 @@ import { ReliabilityCalculator } from "@/components/ReliabilityCalculator";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://imelectric.es/academia/calculadora-mtbf" },
-  title: "¿Cómo calcular MTBF y MTTR? Calculadora Online Gratis | IMELECTRIC",
+  title: "Calculadora MTBF y MTTR | IMELECTRIC",
   description:
     "Calcula MTBF, MTTR, disponibilidad y confiabilidad R(t)=e^(-λ·t) con nuestra herramienta online gratuita. Para ingenieros de mantenimiento en Oil & Gas, manufactura y transporte. Sin registro. Fix AI integra estos KPIs en tiempo real desde campo.",
   keywords: [

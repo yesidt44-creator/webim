@@ -6,7 +6,7 @@ import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://imelectric.es/academia/cmms-vs-gmao" },
-  title: "¿Qué es un CMMS y en qué se diferencia de un GMAO? | IMELECTRIC Academia",
+  title: "CMMS vs GMAO: diferencias | IMELECTRIC",
   description:
     "CMMS y GMAO son el mismo tipo de software con nombres distintos. La diferencia real está en si el sistema se adapta a cómo trabaja tu equipo en campo. Guía práctica para elegir el correcto para mantenimiento industrial en Colombia.",
   keywords: [
@@ -63,6 +63,40 @@ const faqJsonLd = {
   ],
 };
 
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: '¿Qué es un CMMS y en qué se diferencia de un GMAO?',
+  datePublished: "2026-07-01",
+  dateModified: "2026-07-17",
+  author: {
+    "@type": "Organization",
+    name: "Equipo de Ingeniería IMELECTRIC",
+    url: "https://imelectric.es",
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "IMELECTRIC",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://imelectric.es/imelectric-logo.png",
+    },
+  },
+  mainEntityOfPage: 'https://imelectric.es/academia/cmms-vs-gmao',
+  // ARTICLE_META_INJECTED
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Inicio", item: "https://imelectric.es/" },
+    { "@type": "ListItem", position: 2, name: "Academia Técnica", item: "https://imelectric.es/academia" },
+    { "@type": "ListItem", position: 3, name: 'CMMS vs GMAO', item: 'https://imelectric.es/academia/cmms-vs-gmao' },
+  ],
+};
+
 export default async function CmmsVsGmaoPage() {
   const nonce = (await headers()).get("x-nonce") ?? undefined;
 
@@ -73,6 +107,18 @@ export default async function CmmsVsGmaoPage() {
         suppressHydrationWarning
         nonce={nonce}
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        nonce={nonce}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        nonce={nonce}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <Navbar />
 
@@ -89,6 +135,9 @@ export default async function CmmsVsGmaoPage() {
           <h1 className="mb-4 text-4xl font-extrabold tracking-tight md:text-5xl">
             ¿Qué es un CMMS y en qué se diferencia de un GMAO?
           </h1>
+          <p className="mt-3 text-xs text-slate-500">
+            Publicado: 1 jul 2026 · Actualizado: 17 jul 2026 · Equipo de Ingeniería IMELECTRIC
+          </p>
           <p className="text-lg leading-relaxed text-slate-400">
             Si buscaste software de mantenimiento industrial en Colombia y encontraste los dos términos mezclados en resultados diferentes — la confusión es comprensible, y no es un error tuyo.
           </p>
@@ -148,11 +197,11 @@ export default async function CmmsVsGmaoPage() {
           <h2 className="mb-4 mt-10 text-2xl font-bold text-white">La pregunta correcta para elegir</h2>
           <div className="my-6 rounded-2xl border border-blue-500/20 bg-blue-600/5 p-6">
             <p className="text-base italic leading-relaxed text-slate-300">
-              "¿Cuánto tiempo tarda un técnico en reportar una OT cerrada desde campo, y cuánto tarda ese reporte en llegar al ERP del operador sin que nadie lo tenga que volver a transcribir?"
+              &ldquo;¿Cuánto tiempo tarda un técnico en reportar una OT cerrada desde campo, y cuánto tarda ese reporte en llegar al ERP del operador sin que nadie lo tenga que volver a transcribir?&rdquo;
             </p>
           </div>
           <p className="mb-6 leading-relaxed text-slate-400">
-            Si la respuesta es "más de 10 minutos" o "alguien lo transcribe a mano después", tienes un problema de proceso que el software correcto puede resolver.
+            Si la respuesta es &ldquo;más de 10 minutos&rdquo; o &ldquo;alguien lo transcribe a mano después&rdquo;, tienes un problema de proceso que el software correcto puede resolver.
           </p>
 
           {/* CTA Fix AI */}

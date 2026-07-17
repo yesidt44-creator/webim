@@ -54,7 +54,6 @@ export const LeadModal = ({
       if (result.status === "sent") {
         trackEvent("lead_norm_submit", {
           norm_name: normTitle,
-          email_domain: email.includes("@") ? email.split("@")[1] : "",
           has_pdf: Boolean(downloadUrl),
           delivery: "api",
         });
@@ -62,7 +61,6 @@ export const LeadModal = ({
         openMailtoLead(normTitle, fullName, company, email);
         trackEvent("lead_norm_submit", {
           norm_name: normTitle,
-          email_domain: email.includes("@") ? email.split("@")[1] : "",
           has_pdf: Boolean(downloadUrl),
           delivery: "mailto_fallback",
         });
@@ -70,7 +68,6 @@ export const LeadModal = ({
         openMailtoLead(normTitle, fullName, company, email);
         trackEvent("lead_norm_submit", {
           norm_name: normTitle,
-          email_domain: email.includes("@") ? email.split("@")[1] : "",
           has_pdf: Boolean(downloadUrl),
           delivery: "mailto_error",
         });
