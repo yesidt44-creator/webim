@@ -5,16 +5,16 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://imelectric.es",
   },
-  title: "IMELECTRIC — Fix AI, Safety On y Nexvia | Software Industrial Colombia",
+  title: "IMELECTRIC — Fix AI, Veriwork, Nexvia y Shield AI | Software Industrial Colombia",
   description:
-    "Fix AI: PWA de mantenimiento industrial con IA para contratistas SAP PM. Safety On: software HSE y SST con permisos digitales. Nexvia: gestión de flotas HSEQ. Soluciones para Oil & Gas, manufactura y transporte en Colombia y Latinoamérica.",
+    "Fix AI: PWA de mantenimiento industrial con IA para contratistas. Veriwork: gestión HSE y permisos de trabajo verificables. Nexvia: gestión de flotas HSEQ. Shield AI: SG-SST para toda empresa colombiana. Soluciones para Oil & Gas, manufactura y transporte en Colombia y Latinoamérica.",
   keywords: [
     // Fix AI
     "Fix AI CMMS",
-    "software mantenimiento contratistas SAP PM",
+    "software mantenimiento industrial Colombia",
     "PWA mantenimiento industrial Colombia",
     "CMMS contratistas Oil Gas Colombia",
-    "exportación IW41 SAP mantenimiento",
+    "software mantenimiento campo sin internet",
     "Falion IA confiabilidad",
     "software mantenimiento offline campo",
     "CMMS Colombia",
@@ -25,26 +25,30 @@ export const metadata: Metadata = {
     "confiabilidad industrial",
     "trazabilidad técnica",
     "mantenimiento preventivo planificado",
-    // Safety On HSE
-    "software gestión HSE",
+    // Veriwork HSE
+    "Veriwork software HSE",
+    "software gestión HSE Colombia",
     "seguridad industrial digital",
     "permisos de trabajo digitales",
     "software HSE Colombia",
     "gestión seguridad industrial",
     "trabajo en alturas digital",
     "software SST Colombia",
-    "permisos trabajo altura",
     "trazabilidad HSE",
-    // Nexvia — Flotas y HSEQ
+    // Nexvia
     "software gestión flotas Colombia",
     "HSEQ Colombia",
     "seguridad vial digital",
     "inspección preoperacional digital",
     "ISO 9001 transporte",
     "trazabilidad HSEQ",
+    // Shield AI
+    "Shield AI SG-SST Colombia",
+    "software SG-SST Colombia",
+    "Resolución 0312 cumplimiento",
+    "Decreto 1072 SG-SST digital",
     // Home extra
     "ingeniero confiabilidad Colombia",
-    "software mantenimiento Ecopetrol",
     "CMMS oil gas Colombia",
     "mantenimiento predictivo upstream",
     "gestión activos ISO 55001 Colombia",
@@ -52,9 +56,9 @@ export const metadata: Metadata = {
     "IMELECTRIC",
   ],
   openGraph: {
-    title: "FixAI CMMS — Mantenimiento Industrial con IA | IMELECTRIC",
+    title: "La IA hace el trabajo repetitivo. Tu equipo toma las decisiones. | IMELECTRIC",
     description:
-      "El primer CMMS con IA para upstream oil & gas en Latinoamérica. ISO 14224, offline-first y KPIs de confiabilidad en tiempo real.",
+      "Fix AI, Veriwork, Nexvia y Shield AI automatizan el reporte, la trazabilidad y el cumplimiento normativo de tu operación — para que tu equipo invierta su tiempo en lo que requiere criterio humano.",
     url: "https://imelectric.es",
     siteName: "IMELECTRIC",
     locale: "es_ES",
@@ -62,17 +66,19 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "FixAI CMMS — Mantenimiento Industrial con IA | IMELECTRIC",
+    title: "Software industrial con IA para contratistas y operadores en Colombia | IMELECTRIC",
     description:
-      "Software de mantenimiento industrial con IA para oil & gas en Colombia y Latinoamérica. ISO 14224, offline-first, KPIs en tiempo real.",
+      "Fix AI, Veriwork, Nexvia y Shield AI: mantenimiento, HSE, flotas y SG-SST con IA. La IA acelera, la persona decide.",
   },
 };
 import { Hero } from "@/components/Hero";
+import { AiPhilosophy } from "@/components/AiPhilosophy";
 import { PainPoints } from "@/components/PainPoints";
 import { FixAI } from "@/components/FixAI";
 import { Nexvia } from "@/components/Nexvia";
 import { About } from "@/components/About";
 import { SafetyOn } from "@/components/SafetyOn";
+import { ShieldAI } from "@/components/ShieldAI";
 import { IndustrialServices } from "@/components/IndustrialServices";
 import { Education } from "@/components/Education";
 import { Footer } from "@/components/Footer";
@@ -85,6 +91,11 @@ export default function Home() {
       {/* Contenedor principal con padding superior para compensar el Navbar fijo */}
       <div className="pt-[calc(7.125rem*0.75+1rem)]">
         <Hero />
+
+        {/* Sección Filosofía IA — anclada desde el CTA del Hero */}
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-800 to-transparent" />
+
+        <AiPhilosophy />
         
         {/* Separador sutil */}
         <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-800 to-transparent" />
@@ -106,6 +117,10 @@ export default function Home() {
         <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-800 to-transparent" />
 
         <SafetyOn />
+
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-800 to-transparent" />
+
+        <ShieldAI />
 
         <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-800 to-transparent" />
 

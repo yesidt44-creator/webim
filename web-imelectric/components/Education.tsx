@@ -29,7 +29,7 @@ export const Education = () => {
           <span className="text-blue-500">Nuestra Tecnología</span>
         </h2>
         <p className="text-slate-400 max-w-3xl text-lg leading-relaxed">
-          Nuestras soluciones (FixAI, Safety On, Nexvia) no nacen de la intuición del desarrollo de software. Están
+          Nuestras soluciones (Fix AI, Veriwork, Nexvia) no nacen de la intuición del desarrollo de software. Están
           arquitectadas estrictamente sobre los marcos normativos globales de Confiabilidad y Gestión de Activos. Este
           es nuestro mapa de conocimiento aplicado.
         </p>
@@ -187,7 +187,7 @@ export const Education = () => {
                     </h5>
                     <p className="text-xs text-slate-400">
                       Recolección de evidencia forense (fotos, variables, firmas) para erradicar defectos crónicos
-                      mediante Safety On.
+                      mediante Veriwork.
                     </p>
                   </div>
                 </div>

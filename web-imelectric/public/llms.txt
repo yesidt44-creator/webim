@@ -1,0 +1,104 @@
+# IMELECTRIC — llms.txt
+# Contexto para asistentes de IA y crawlers LLM
+# Actualizado: 2026-07
+
+## Empresa
+
+IMELECTRIC es una empresa colombiana de software industrial con IA, con sede en Colombia y operaciones en Latinoamérica. Desarrolla cinco plataformas SaaS para contratistas industriales, operadores HSE, gestores de flotas y empresas con obligación SG-SST.
+
+Filosofía: La IA acelera. La persona decide. Todas las plataformas de IMELECTRIC automatizan tareas repetitivas (reporte, digitación, cálculos normativos) y nunca actúan en nombre de la persona competente. Quien revisa, aprueba y firma siempre es un ser humano.
+
+Sitio web: https://imelectric.es
+Contacto: hola@imelectric.es
+
+---
+
+## Productos
+
+### Fix AI
+- URL: https://imelectric.es/fixai-cmms
+- Tipo: PWA de gestión de mantenimiento industrial (CMMS) con IA
+- Audiencia: Contratistas de mantenimiento en Oil & Gas, manufactura, minería
+- Problema que resuelve: Elimina la doble digitación de órdenes de trabajo (OT). El técnico reporta desde campo offline; el borrador llega al supervisor para revisión y cierre antes de exportar al ERP del operador.
+- Diferenciadores: Offline-first, exportación compatible con ERP del operador (IW38/IW41 y otros formatos). Se complementa con Falion para análisis de confiabilidad.
+- Normativa: ISO 14224 como base de taxonomía de equipos.
+
+### Veriwork
+- URL: https://imelectric.es/veriwork
+- Tipo: Plataforma de gestión HSE con firma verificable
+- Audiencia: Contratistas de alto riesgo (Oil & Gas, construcción, minería), coordinadores HSE, inspectores SST
+- Tagline: La gestión HSE que tu operación puede verificar, no solo archivar.
+- Problema que resuelve: Permisos de trabajo en papel que se pierden, alteran o no se pueden auditar en tiempo real.
+- Diferenciadores: Firma Ed25519 por empresa, sello de tiempo PAdES (RFC 3161), QR de verificación pública, segregación de roles (quien reporta ≠ quien autoriza), alerta normativa antes de la autorización.
+- Normativa: Resolución 0312 de 2019, Decreto 1072 de 2015, Resolución 4272 de 2021 (trabajo en alturas), Decreto 2364 de 2012 (firma electrónica).
+- Nota: Para alta severidad se refuerza con protocolo notarial. Ed25519 + PAdES, no SHA-256 genérico.
+- Diferencia vs Shield AI: Veriwork es para operación HSE en campo (contratistas). Shield AI es para el SG-SST corporativo de cualquier empresa.
+
+### Nexvia
+- URL: https://imelectric.es/nexvia
+- Tipo: Plataforma HSEQ offline-first para gestión de flotas
+- Audiencia: PyMEs de transporte de carga y pasajeros en Colombia
+- Tagline: Tu flota, bajo control, incluso sin internet.
+- 4 líneas: HSEQ / Talleres / Personales / EV (flota eléctrica)
+- Diferenciadores: Scoring de riesgo del conductor sin hardware adicional (usa el acelerómetro del celular), pasaporte digital del vehículo, normativo colombiano nativo, offline-first.
+- Trazabilidad: SHA-256 (especificación confirmada para Nexvia).
+- Normativa: ISO 9001 para transporte, normativa SST transporte Colombia, Ley 1581 (Habeas Data).
+
+### Falion
+- URL: https://imelectric.es/falion
+- Tipo: Sistema de análisis de confiabilidad industrial asistido por IA
+- Estado: En fase de pruebas activa con un operador industrial real
+- Audiencia: Ingenieros de confiabilidad y mantenimiento en Oil & Gas, minería, agroindustria, alimentos, palma, subestaciones eléctricas, manufactura
+- Problema que resuelve: Un RCA completo (recolección de evidencia, análisis formal y documentación) toma típicamente 1–3 días hábiles. Falion asiste cada etapa con los datos reales del activo y produce el informe auditable en minutos — el ingeniero revisa y aprueba.
+- Diferenciadores:
+  1. Grounding en datos propios: dos plantas con el mismo compresor reciben análisis distinto según su historial real de fallas, no el promedio de internet.
+  2. Guardrails de ingeniería: si los datos no alcanzan para una conclusión estadísticamente válida (ej. SIL-2 con <5 fallas), Falion genera advertencia de baja confianza — no una curva falsamente precisa.
+  3. Entregable en Word auditable con trazabilidad normativa (GTC-45, RETIE, ISO 14224, API genérico).
+  4. Flujo de aprobación: Falion propone, el ingeniero decide — nunca ejecuta cambios automáticamente en el CMMS.
+- Módulos confirmados: RCA, Weibull, FMECA, RAM, CBM, LCC, PST-IA, Chat RAG
+- Sectores: Oil & Gas, minería, agroindustria, palma africana, alimentos, subestaciones, manufactura general
+- Relación con Fix AI: Se integra con Fix AI CMMS para tomar datos reales de OTs cerradas en campo.
+- Filosofía: La IA propone análisis basados en datos propios; el ingeniero valida y firma. Falion nunca ejecuta cambios automáticamente.
+
+### Shield AI
+- URL: https://imelectric.es/shield-ai
+- Tipo: Plataforma SG-SST automatizada
+- Audiencia: Toda empresa colombiana obligada por la Resolución 0312 de 2019
+- Problema que resuelve: El 80%+ de las PyMEs colombianas incumplen el SG-SST por falta de tiempo, recursos o conocimiento del sistema normativo.
+- Diferenciadores: Diagnóstico de brecha contra Res. 0312, generación automática de evidencia documental, firma dual (responsable + representante legal), régimen documental 7/21/60 (20 años de retención).
+- Normativa: Resolución 0312 de 2019, Decreto 1072 de 2015, Decreto 2364 de 2012.
+- Diferencia vs Veriwork: Shield AI = SG-SST de la empresa (toda organización). Veriwork = operación HSE en campo.
+
+---
+
+## Tecnología transversal
+
+- Arquitectura offline-first en todas las plataformas (Fix AI, Nexvia, Veriwork).
+- IA como asistente: nunca como agente autónomo con poder de decisión en operaciones de riesgo.
+- Firma electrónica con valor legal en Colombia (Decreto 2364/2012).
+- Trazabilidad forense inalterable por registro.
+
+---
+
+## Lo que IMELECTRIC NO hace
+
+- No es un ERP. Se integra con el ERP del operador.
+- No reemplaza al personal competente para autorizar labores de riesgo.
+- No emite diagnósticos médicos, laborales ni jurídicos.
+- No comparte datos de clientes con terceros para entrenamiento de modelos.
+
+---
+
+## Contenido de aprendizaje
+
+- Academia Técnica: https://imelectric.es/academia
+  - Calculadora MTBF/MTTR: https://imelectric.es/academia/calculadora-mtbf
+  - FMECA interactivo: https://imelectric.es/academia/fmeca
+  - Diagrama Ishikawa: https://imelectric.es/academia/ishikawa
+  - Trabajo en alturas (Res. 4272): https://imelectric.es/academia/trabajo-en-alturas
+  - Rodamientos industriales: https://imelectric.es/academia/rodamientos
+  - CMMS vs GMAO: https://imelectric.es/academia/cmms-vs-gmao
+  - Certificación trabajo en alturas Colombia: https://imelectric.es/academia/certificacion-trabajo-en-alturas-colombia
+  - Resolución 0312 estándares mínimos: https://imelectric.es/academia/resolucion-0312-estandares-minimos
+  - Firma electrónica vs firma digital Colombia: https://imelectric.es/academia/firma-electronica-vs-firma-digital-colombia
+  - RCA, RCM y FMEA diferencias: https://imelectric.es/academia/rca-rcm-fmea-diferencias

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { headers } from "next/headers";
 import {
   Smartphone,
   WifiOff,
@@ -19,16 +20,16 @@ const fixAiJsonLd = {
   alternateName: [
     "FixAI CMMS",
     "Fix AI PWA mantenimiento",
-    "software mantenimiento contratistas SAP PM",
+    "software mantenimiento industrial Colombia",
     "CMMS contratistas Oil Gas Colombia",
   ],
   applicationCategory: "BusinessApplication",
-  applicationSubCategory: "CMMS, EAM, Mantenimiento Industrial, SAP PM",
+  applicationSubCategory: "CMMS, EAM, Mantenimiento Industrial",
   operatingSystem: "Web, PWA, Android, iOS",
   description:
-    "Fix AI es una PWA de gestión de mantenimiento industrial con IA diseñada para contratistas que operan bajo SAP PM. Digitaliza el ciclo completo de ejecución: reporte de campo offline, supervisión, exportación IW38/IW41 y módulo Falion de análisis de confiabilidad.",
+    "Fix AI es una PWA de gestión de mantenimiento industrial con IA diseñada para contratistas. Digitaliza el ciclo completo de ejecución: reporte de campo offline, supervisión, exportación compatible con el ERP del operador y módulo Falion de análisis de confiabilidad.",
   keywords:
-    "Fix AI CMMS, software mantenimiento contratistas SAP PM, PWA mantenimiento industrial, reporte OT digital Colombia, CMMS Oil Gas Colombia, mantenimiento offline campo, Falion IA confiabilidad, exportación IW41 SAP, gestión mantenimiento Colombia",
+    "Fix AI CMMS, software mantenimiento industrial Colombia, PWA mantenimiento industrial, reporte OT digital Colombia, CMMS Oil Gas Colombia, mantenimiento offline campo, Falion IA confiabilidad, gestión mantenimiento Colombia",
   offers: {
     "@type": "Offer",
     availability: "https://schema.org/InStock",
@@ -44,9 +45,8 @@ const fixAiJsonLd = {
     name: "IMELECTRIC",
     url: "https://imelectric.es",
     areaServed: ["Colombia", "Latinoamérica"],
-    knowsAbout: [
+      knowsAbout: [
       "Mantenimiento industrial",
-      "SAP PM",
       "CMMS contratistas",
       "Oil & Gas Colombia",
       "Confiabilidad industrial",
@@ -57,7 +57,7 @@ const fixAiJsonLd = {
     "Reporte de campo con foto, firma electrónica y hash de trazabilidad",
     "Modo offline-first para zonas sin cobertura",
     "Supervisión y aprobación digital de reportes antes de ERP",
-    "Exportación nativa compatible con SAP PM IW38/IW41",
+    "Exportación compatible con el ERP del operador (IW38/IW41 y otros formatos)",
     "Dashboard en tiempo real: backlog, OTs sin tratar y avance por frente",
     "Falion: módulo de IA para análisis de confiabilidad y hallazgos recurrentes",
     "Aislamiento de datos por empresa (multiproyecto)",
@@ -100,7 +100,9 @@ const Stat = ({ value, label, sub }: StatProps) => (
   </div>
 );
 
-export const FixAI = () => {
+export const FixAI = async () => {
+  const nonce = (await headers()).get("x-nonce") ?? undefined;
+
   return (
     <section
       id="fixai"
@@ -112,6 +114,7 @@ export const FixAI = () => {
       <script
         type="application/ld+json"
         suppressHydrationWarning
+        nonce={nonce}
         dangerouslySetInnerHTML={{ __html: JSON.stringify(fixAiJsonLd) }}
       />
 
@@ -149,9 +152,9 @@ export const FixAI = () => {
 
             <p className="mb-6 text-lg leading-relaxed text-slate-400" itemProp="description">
               Gestión de mantenimiento industrial con inteligencia artificial, diseñada para{" "}
-              <strong className="text-white">contratistas de mantenimiento</strong> que operan bajo entornos{" "}
-              <strong className="text-white">SAP PM</strong> — y para cualquier organización que necesite
-              un <strong className="text-white">CMMS completo</strong> adaptado a su operación real.
+              <strong className="text-white">contratistas de mantenimiento</strong> — y para cualquier
+              organización que necesite un{" "}
+              <strong className="text-white">CMMS completo</strong> adaptado a su operación real.
             </p>
 
             {/* El problema */}
@@ -160,7 +163,7 @@ export const FixAI = () => {
               <p className="text-sm leading-relaxed text-slate-300">
                 Los contratistas de mantenimiento Oil &amp; Gas enfrentan un reto diario: la ejecución en campo
                 y el registro administrativo viven separados. Reportes en papel, Excel sin control, y una persona
-                dedicada solo a re-digitar en SAP — con el riesgo constante de penalizaciones por órdenes que
+                dedicada solo a re-digitar en el ERP del operador — con el riesgo constante de penalizaciones por órdenes que
                 no cierran a tiempo. <strong className="text-white">Fix AI existe para cerrar esa brecha.</strong>
               </p>
             </div>
@@ -168,7 +171,7 @@ export const FixAI = () => {
 
           {/* Stats */}
           <div className="rounded-3xl border border-slate-800 bg-slate-900 p-6 shadow-2xl md:p-8">
-            <p className="mb-2 text-xs font-bold tracking-widest text-slate-500 uppercase">Impacto medible (referencial)</p>
+            <p className="mb-2 text-xs font-bold tracking-widest text-slate-500 uppercase">Qué cambia en la operación</p>
             <h3 className="mb-6 text-base font-bold text-white">
               Lo que cambia cuando el campo y el ERP hablan el mismo idioma
             </h3>
@@ -176,17 +179,17 @@ export const FixAI = () => {
               <Stat
                 value="0"
                 label="Doble digitación"
-                sub="Del reporte de campo directamente al formato de carga IW41 — sin reingreso manual de datos."
+                sub="Del reporte de campo directamente al formato de carga del ERP — sin reingreso manual de datos."
               />
               <Stat
-                value="100%"
+                value="Completa"
                 label="Trazabilidad por OT"
-                sub="Cada reporte lleva hash, timestamp y firma electrónica con validez legal desde el primer minuto."
+                sub="Arquitectura diseñada para que cada reporte lleve hash, timestamp y firma desde el primer minuto."
               />
               <Stat
-                value="↑ 40%"
-                label="Más OTs cerradas a tiempo"
-                sub="Visibilidad en tiempo real del backlog y estado por frente para que el planeador actúe antes, no después."
+                value="↑ Cierre de OTs"
+                label="Visibilidad en tiempo real"
+                sub="El planeador ve backlog y estado por frente en tiempo real para actuar antes de que venzan los plazos."
               />
               <Stat
                 value="Offline"
@@ -209,8 +212,7 @@ export const FixAI = () => {
               <p className="mb-5 leading-relaxed text-slate-400">
                 Fix AI es una <strong className="text-white">aplicación web progresiva (PWA)</strong> que acompaña
                 al técnico desde que recibe la orden de trabajo en campo hasta que el reporte queda listo para
-                cargarse en el ERP. Funciona de forma nativa junto a{" "}
-                <strong className="text-white">SAP PM</strong> o cualquier otro ERP que use el operador,{" "}
+                cargarse en el ERP. Compatible con el ERP del operador —incluyendo SAP PM (IW38/IW41) y otros—{" "}
                 <em>sin licencias adicionales ni acceso API</em>.
               </p>
               <p className="leading-relaxed text-slate-400">
@@ -221,8 +223,8 @@ export const FixAI = () => {
             </div>
             <div className="flex flex-wrap gap-3">
               {[
-                { label: "SAP PM compatible", color: "blue" },
-                { label: "Exportación IW38/IW41", color: "blue" },
+                { label: "Compatible con el ERP del operador", color: "blue" },
+                { label: "Exportación IW38/IW41 y otros formatos", color: "blue" },
                 { label: "Sin integración API", color: "emerald" },
                 { label: "PWA nativa móvil", color: "emerald" },
                 { label: "Multisector", color: "violet" },
@@ -304,7 +306,7 @@ export const FixAI = () => {
             <FeatureCard
               icon={<RefreshCw size={20} />}
               title="Ciclo nativo con el ERP"
-              desc="Importación del programa semanal → ejecución → exportación lista para IW38/IW41 de SAP PM o el formato de cualquier otro ERP. Sin doble digitación."
+              desc="Importación del programa semanal → ejecución → exportación lista para el ERP del operador (compatible con IW38/IW41 y otros formatos). Sin doble digitación."
               accent="emerald"
             />
             <FeatureCard
@@ -345,7 +347,7 @@ export const FixAI = () => {
             </div>
             <p className="text-sm leading-relaxed text-slate-400">
               Fix AI nace pensado para el <strong className="text-slate-200">contratista de mantenimiento</strong> que
-              opera bajo outsourcing — en entornos SAP PM, con otro ERP, o sin uno. Horas documentadas,
+              opera bajo outsourcing — con el ERP del operador o sin uno. Horas documentadas,
               cumplimiento de OTs y evidencia lista para facturar. Cada funcionalidad está diseñada para
               su rentabilidad y su cumplimiento contractual.
             </p>
@@ -383,6 +385,18 @@ export const FixAI = () => {
               </li>
             ))}
           </ul>
+          <div className="mt-6 flex items-center gap-4 border-t border-slate-800 pt-5">
+            <Image
+              src="/badges/iso-9001-ll-c.png"
+              alt="Certificación ISO 9001 — LL-C Certification"
+              width={160}
+              height={63}
+              className="opacity-90"
+            />
+            <p className="text-xs leading-relaxed text-slate-500">
+              Respaldo de compañía certificada <strong className="text-slate-400">ISO 9001:2015</strong> por LL-C Certification.
+            </p>
+          </div>
         </div>
 
         {/* ── CTA ─────────────────────────────────────────────── */}
@@ -394,7 +408,7 @@ export const FixAI = () => {
               ¿Listo para que el campo y el ERP hablen el mismo idioma?
             </h3>
             <p className="mx-auto mb-8 max-w-xl text-slate-400">
-              Fix AI funciona con <strong className="text-white">SAP PM</strong> o como{" "}
+              Fix AI funciona con el ERP del operador o como{" "}
               <strong className="text-white">CMMS independiente</strong>. Sin licencias adicionales,
               sin integraciones complejas — operativo en días, no en meses.
             </p>

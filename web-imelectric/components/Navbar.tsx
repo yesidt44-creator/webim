@@ -10,6 +10,8 @@ import {
   Truck,
   PackageSearch,
   CircuitBoard,
+  Brain,
+  FlaskConical,
   Menu,
   X,
 } from "lucide-react";
@@ -72,16 +74,28 @@ export const Navbar = () => {
                     desc="Mantenimiento ISO 14224"
                   />
                   <MenuLink
-                    href="/safety-on"
+                    href="/veriwork"
                     icon={<ShieldCheck size={18} />}
-                    title="Safety On"
-                    desc="Blindaje Legal HSE"
+                    title="Veriwork"
+                    desc="Gestión HSE verificable"
                   />
                   <MenuLink
                     href="/nexvia"
                     icon={<Truck size={18} />}
                     title="Nexvia"
                     desc="Gestión de Flotas e ISO 9001"
+                  />
+                  <MenuLink
+                    href="/shield-ai"
+                    icon={<Brain size={18} />}
+                    title="Shield AI"
+                    desc="SG-SST para toda empresa"
+                  />
+                  <MenuLink
+                    href="/falion"
+                    icon={<FlaskConical size={18} />}
+                    title="Falion"
+                    desc="RCA · Weibull · Confiabilidad"
                   />
                 </div>
               </div>
@@ -169,11 +183,17 @@ export const Navbar = () => {
             <MobileNavRow href="/fixai-cmms" onNavigate={closeMobile}>
               FixAI CMMS
             </MobileNavRow>
-            <MobileNavRow href="/safety-on" onNavigate={closeMobile}>
-              Safety On
+            <MobileNavRow href="/veriwork" onNavigate={closeMobile}>
+              Veriwork
             </MobileNavRow>
             <MobileNavRow href="/nexvia" onNavigate={closeMobile}>
               Nexvia
+            </MobileNavRow>
+            <MobileNavRow href="/shield-ai" onNavigate={closeMobile}>
+              Shield AI
+            </MobileNavRow>
+            <MobileNavRow href="/falion" onNavigate={closeMobile}>
+              Falion — Confiabilidad
             </MobileNavRow>
           </ul>
           <p className="mb-3 mt-4 text-[10px] font-bold tracking-widest text-slate-400 uppercase">Servicios</p>

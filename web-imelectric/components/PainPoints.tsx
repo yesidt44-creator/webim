@@ -1,6 +1,6 @@
 "use client";
 
-import { Wrench, ShieldCheck, Truck, ArrowRight } from "lucide-react";
+import { Wrench, ShieldCheck, Truck, Brain, ArrowRight } from "lucide-react";
 
 export const PainPoints = () => {
   return (
@@ -9,52 +9,62 @@ export const PainPoints = () => {
         <div className="mb-16 text-center">
           <h2 className="mb-4 text-3xl font-bold">Nuestra Suite de Soluciones</h2>
           <p className="mx-auto max-w-2xl text-slate-400">
-            Tecnología que funciona donde las redes complejas fallan, diseñada para operaciones de alto riesgo.
+            Cuatro plataformas SaaS con IA para contratistas industriales, operadores HSEQ, flotas y empresas colombianas con obligación SG-SST.
           </p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-3">
-          {/* FixAI */}
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          {/* Fix AI */}
           <div className="flex flex-col rounded-2xl border border-slate-800 bg-slate-900 p-8 shadow-xl transition-all hover:border-blue-500/50">
             <div className="mb-6 inline-block text-blue-500">
               <Wrench size={40} />
             </div>
-            <h3 className="mb-2 text-2xl font-bold">FixAI CMMS</h3>
-            <p className="mb-4 text-sm font-bold text-blue-400">Mantenimiento con IA</p>
+            <h3 className="mb-2 text-2xl font-bold">Fix AI</h3>
+            <p className="mb-4 text-sm font-bold text-blue-400">PWA de Mantenimiento Industrial</p>
             <p className="mb-6 flex-grow text-sm text-slate-400">
-              Reduce el tiempo de reporte de 20 a 3 minutos. Clasificación automática de fallas (ISO 14224), historial de
-              activos y asistente IA para supervisores. 100% offline.
+              Para contratistas de mantenimiento: reporte de campo offline, exportación lista para el ERP del operador sin
+              doble digitación y módulo <strong className="text-slate-300">Falion</strong> de IA para
+              análisis de confiabilidad. El técnico reporta y firma en segundos; el supervisor revisa y aprueba antes de que el reporte llegue al ERP.
             </p>
             <div className="mb-6 border-t border-slate-800 pt-4 text-xs text-slate-500">
-              ROI: Ahorre &gt;300 horas/mes con 30 técnicos.
+              Sin integraciones API · Sin licencias adicionales · Operativo en días
             </div>
-            <a
-              href="#fixai"
-              className="flex items-center gap-2 text-sm font-bold text-blue-400 transition hover:text-blue-300"
-            >
-              Saber más <ArrowRight size={16} />
-            </a>
+            <div className="flex flex-col gap-2">
+              <a
+                href="/fixai-cmms"
+                className="flex items-center gap-2 text-sm font-bold text-blue-400 transition hover:text-blue-300"
+              >
+                Ver Fix AI <ArrowRight size={16} />
+              </a>
+              <a
+                href="/falion"
+                className="flex items-center gap-2 text-xs font-semibold text-slate-500 transition hover:text-blue-400"
+              >
+                Conoce Falion → <span className="rounded bg-blue-500/10 px-1.5 py-0.5 text-blue-400">RCA · Weibull · FMECA</span>
+              </a>
+            </div>
           </div>
 
-          {/* Safety On */}
+          {/* Veriwork */}
           <div className="flex flex-col rounded-2xl border border-slate-800 bg-slate-900 p-8 shadow-xl transition-all hover:border-emerald-500/50">
             <div className="mb-6 inline-block text-emerald-500">
               <ShieldCheck size={40} />
             </div>
-            <h3 className="mb-2 text-2xl font-bold">Safety On</h3>
-            <p className="mb-4 text-sm font-bold text-emerald-400">Blindaje Legal HSE</p>
+            <h3 className="mb-2 text-2xl font-bold">Veriwork</h3>
+            <p className="mb-4 text-sm font-bold text-emerald-400">Gestión HSE verificable</p>
             <p className="mb-6 flex-grow text-sm text-slate-400">
-              Transforme la gestión HSE. Permisos de trabajo digitales, firmas legales, verificación automática de
-              competencias y trazabilidad forense ante auditorías.
+              Permisos de trabajo digitales con firma criptográfica y verificación pública instantánea. El sistema
+              alerta automáticamente cuando algo se sale de norma — la autorización y la firma del permiso siguen
+              siendo de la persona competente para hacerlo.
             </p>
             <div className="mb-6 border-t border-slate-800 pt-4 text-xs text-slate-500">
-              Impacto: Cero pérdida de documentos y alteraciones.
+              Trazabilidad forense inalterable · Cumplimiento Res. 0312 · Dec. 1072
             </div>
             <a
-              href="#safety-on"
+              href="/veriwork"
               className="flex items-center gap-2 text-sm font-bold text-emerald-400 transition hover:text-emerald-300"
             >
-              Saber más <ArrowRight size={16} />
+              Ver Veriwork <ArrowRight size={16} />
             </a>
           </div>
 
@@ -64,19 +74,43 @@ export const PainPoints = () => {
               <Truck size={40} />
             </div>
             <h3 className="mb-2 text-2xl font-bold">Nexvia</h3>
-            <p className="mb-4 text-sm font-bold text-amber-400">Gestión de Flotas e ISO 9001</p>
+            <p className="mb-4 text-sm font-bold text-amber-400">Gestión de Flotas HSEQ</p>
             <p className="mb-6 flex-grow text-sm text-slate-400">
-              El único sistema nativo para Colombia que integra operación, HSEQ (RV-GSSTA-F-07) y Ley 1581. Checklist
-              offline con firma forense (GPS + SHA-256) y encuestas de satisfacción vía QR.
+              Tu flota, bajo control, incluso sin internet. HSEQ, Talleres, Personales y EV.
+              Scoring de riesgo con el acelerómetro del celular — sin hardware adicional.
+              Pasaporte digital del vehículo y trazabilidad forense SHA-256.
             </p>
             <div className="mb-6 border-t border-slate-800 pt-4 text-xs text-slate-500">
-              Impacto: Auditable 100%. Adiós al Excel y el papel.
+              Offline-first · ISO 9001 · Normativo CO nativo
             </div>
             <a
-              href="#nexvia"
+              href="/nexvia"
               className="flex items-center gap-2 text-sm font-bold text-amber-400 transition hover:text-amber-300"
             >
-              Saber más <ArrowRight size={16} />
+              Ver Nexvia <ArrowRight size={16} />
+            </a>
+          </div>
+
+          {/* Shield AI */}
+          <div className="flex flex-col rounded-2xl border border-slate-800 bg-slate-900 p-8 shadow-xl transition-all hover:border-violet-500/50">
+            <div className="mb-6 inline-block text-violet-400">
+              <Brain size={40} />
+            </div>
+            <h3 className="mb-2 text-2xl font-bold">Shield AI</h3>
+            <p className="mb-4 text-sm font-bold text-violet-400">SG-SST para toda empresa</p>
+            <p className="mb-6 flex-grow text-sm text-slate-400">
+              La Res. 0312 obliga a toda empresa colombiana desde 1 trabajador. Shield AI detecta brechas,
+              genera la evidencia documental y alerta antes de que venzan los plazos. El responsable
+              revisa y firma. Régimen 7/21/60.
+            </p>
+            <div className="mb-6 border-t border-slate-800 pt-4 text-xs text-slate-500">
+              Res. 0312 · Decreto 1072 · Firma dual · Retención 20 años
+            </div>
+            <a
+              href="/shield-ai"
+              className="flex items-center gap-2 text-sm font-bold text-violet-400 transition hover:text-violet-300"
+            >
+              Ver Shield AI <ArrowRight size={16} />
             </a>
           </div>
         </div>

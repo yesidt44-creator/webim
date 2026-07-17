@@ -1,3 +1,4 @@
+import { headers } from "next/headers";
 import type { Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -7,22 +8,20 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://imelectric.es/fixai-cmms",
   },
-  title: "Fix AI — Software de Mantenimiento Industrial para Contratistas SAP PM | IMELECTRIC",
+  title: "Fix AI — Software de Mantenimiento Industrial con IA para Contratistas | IMELECTRIC",
   description:
-    "Fix AI es una PWA de gestión de mantenimiento industrial con IA para contratistas que operan bajo SAP PM. Reporte de campo offline, exportación IW41, supervisión digital y módulo Falion de confiabilidad. Sin doble digitación, sin penalizaciones por OTs sin cerrar.",
+    "Fix AI es una PWA de gestión de mantenimiento industrial con IA para contratistas. Reporte de campo offline, exportación compatible con el ERP del operador, supervisión digital y módulo Falion de confiabilidad. Sin doble digitación, sin penalizaciones por OTs sin cerrar.",
   keywords: [
     "Fix AI CMMS",
-    "software mantenimiento contratistas SAP PM",
+    "software mantenimiento industrial Colombia",
     "PWA mantenimiento industrial Colombia",
     "reporte OT digital Colombia",
     "CMMS Oil Gas Colombia contratistas",
-    "exportación IW41 SAP mantenimiento",
     "software mantenimiento offline campo",
     "Falion IA confiabilidad mantenimiento",
     "gestión mantenimiento Colombia",
     "CMMS contratistas Latinoamérica",
     "digitalización OTs mantenimiento",
-    "software mantenimiento SAP PM Colombia",
     "CMMS sin integración API",
     "mantenimiento campo sin internet",
     "software planeación mantenimiento Colombia",
@@ -33,9 +32,9 @@ export const metadata: Metadata = {
     "Fix AI IMELECTRIC",
   ],
   openGraph: {
-    title: "Fix AI — Mantenimiento Industrial para Contratistas SAP PM | IMELECTRIC",
+    title: "Fix AI — Mantenimiento Industrial con IA para Contratistas | IMELECTRIC",
     description:
-      "PWA con IA para contratistas de mantenimiento. Reporte offline, exportación IW41, supervisión y módulo Falion de confiabilidad. Sin doble digitación.",
+      "PWA con IA para contratistas de mantenimiento. Reporte offline, exportación para el ERP del operador, supervisión y módulo Falion de confiabilidad. Sin doble digitación.",
     url: "https://imelectric.es/fixai-cmms",
     siteName: "IMELECTRIC",
     locale: "es_ES",
@@ -52,7 +51,7 @@ const faqJsonLd = {
       name: "¿Qué es Fix AI y en qué se diferencia de un CMMS tradicional?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Fix AI es una aplicación web progresiva (PWA) de gestión de mantenimiento industrial con inteligencia artificial, diseñada específicamente para contratistas de mantenimiento que operan bajo entornos SAP PM. A diferencia de un CMMS tradicional, Fix AI no requiere integraciones API ni licencias adicionales del ERP del operador: importa el programa semanal, acompaña la ejecución en campo y exporta los reportes listos para cargar directamente en SAP PM (IW38/IW41). También puede operar como CMMS completo cuando la organización lo necesita.",
+        text: "Fix AI es una aplicación web progresiva (PWA) de gestión de mantenimiento industrial con inteligencia artificial diseñada para contratistas. A diferencia de un CMMS tradicional, no requiere integraciones API ni licencias adicionales del ERP del operador: importa el programa semanal, acompaña la ejecución en campo y exporta los reportes listos para cargar en el ERP (compatible con SAP PM IW38/IW41 y otros formatos). También puede operar como CMMS completo cuando la organización lo necesita.",
       },
     },
     {
@@ -65,10 +64,10 @@ const faqJsonLd = {
     },
     {
       "@type": "Question",
-      name: "¿Cómo funciona la exportación a SAP PM sin integración API?",
+      name: "¿Cómo funciona la exportación al ERP del operador sin integración API?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Fix AI genera un archivo de exportación compatible con el formato de carga masiva de SAP PM (compatible con transacciones IW38/IW41). El planeador importa ese archivo directamente en SAP sin necesidad de re-digitar ningún dato. Esto elimina la figura del 'digitador SAP' y el riesgo de errores de transcripción. Para ERP distintos a SAP, el formato de exportación es configurable según los requerimientos del operador.",
+        text: "Fix AI genera un archivo de exportación compatible con el ERP del operador (incluye el formato de carga masiva compatible con SAP PM IW38/IW41 y formatos configurables para otros ERP). El planeador importa ese archivo directamente en el ERP sin necesidad de re-digitar ningún dato. Esto elimina la figura del re-digitador y el riesgo de errores de transcripción.",
       },
     },
     {
@@ -90,12 +89,15 @@ const faqJsonLd = {
   ],
 };
 
-export default function FixAICmmsPage() {
+export default async function FixAICmmsPage() {
+  const nonce = (await headers()).get("x-nonce") ?? undefined;
+
   return (
     <main className="min-h-screen bg-slate-950 text-white">
       <script
         type="application/ld+json"
         suppressHydrationWarning
+        nonce={nonce}
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       <Navbar />
@@ -115,12 +117,12 @@ export default function FixAICmmsPage() {
             Fix AI: todo registrado, nada se te escapa
           </h1>
           <p className="max-w-3xl text-base leading-relaxed text-slate-400 sm:text-lg">
-            Software de mantenimiento industrial con IA para contratistas que operan bajo SAP PM.
-            Reporte de campo offline, exportación IW41, supervisión digital y módulo Falion de
+            Software de mantenimiento industrial con IA para contratistas.
+            Reporte de campo offline, exportación compatible con el ERP del operador, supervisión digital y módulo Falion de
             confiabilidad — sin doble digitación ni integraciones complejas.
           </p>
           <div className="mt-6 flex flex-wrap gap-2">
-            {["SAP PM compatible","Offline-First","Exportación IW41","Falion IA","Colombia · Latinoamérica"].map(tag => (
+            {["Compatible con el ERP del operador","Offline-First","Exportación IW38/IW41","Falion IA","Colombia · Latinoamérica"].map(tag => (
               <span key={tag} className="rounded-full border border-slate-800 bg-slate-900 px-3 py-1 text-xs text-slate-400">{tag}</span>
             ))}
           </div>
@@ -159,7 +161,7 @@ export default function FixAICmmsPage() {
           </h3>
           <div className="flex flex-wrap justify-center gap-3">
             {[
-              { href: "/safety-on",  label: "Safety On — HSE y SST Digital" },
+              { href: "/veriwork",   label: "Veriwork — Gestión HSE verificable" },
               { href: "/nexvia",     label: "Nexvia — Gestión de Flotas HSEQ" },
               { href: "/academia",   label: "Academia Técnica" },
               { href: "/",           label: "← Inicio" },

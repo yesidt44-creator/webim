@@ -22,13 +22,11 @@ export const LeadModal = ({
 }: LeadModalProps) => {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [leadCompany, setLeadCompany] = useState("");
 
   useEffect(() => {
     if (isOpen) {
       setSubmitted(false);
       setLoading(false);
-      setLeadCompany("");
       trackEvent("lead_modal_open", { norm_name: normTitle });
     }
   }, [isOpen, normTitle]);
@@ -40,6 +38,7 @@ export const LeadModal = ({
     const fullName = String(fd.get("fullName") ?? "").trim();
     const company = String(fd.get("company") ?? "").trim();
     const email = String(fd.get("email") ?? "").trim();
+    const hpValue = String(fd.get("_hp") ?? "");
 
     setLoading(true);
     try {
@@ -49,15 +48,12 @@ export const LeadModal = ({
         company,
         email,
         normTitle,
+        _hp: hpValue,
       });
-
-      setLeadCompany(company);
 
       if (result.status === "sent") {
         trackEvent("lead_norm_submit", {
           norm_name: normTitle,
-          company,
-          full_name: fullName,
           email_domain: email.includes("@") ? email.split("@")[1] : "",
           has_pdf: Boolean(downloadUrl),
           delivery: "api",
@@ -66,8 +62,6 @@ export const LeadModal = ({
         openMailtoLead(normTitle, fullName, company, email);
         trackEvent("lead_norm_submit", {
           norm_name: normTitle,
-          company,
-          full_name: fullName,
           email_domain: email.includes("@") ? email.split("@")[1] : "",
           has_pdf: Boolean(downloadUrl),
           delivery: "mailto_fallback",
@@ -76,8 +70,6 @@ export const LeadModal = ({
         openMailtoLead(normTitle, fullName, company, email);
         trackEvent("lead_norm_submit", {
           norm_name: normTitle,
-          company,
-          full_name: fullName,
           email_domain: email.includes("@") ? email.split("@")[1] : "",
           has_pdf: Boolean(downloadUrl),
           delivery: "mailto_error",
@@ -93,7 +85,6 @@ export const LeadModal = ({
   const handleDownloadClick = () => {
     trackEvent("download_norm", {
       norm_name: normTitle,
-      company: leadCompany,
     });
   };
 
@@ -139,6 +130,16 @@ export const LeadModal = ({
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Honeypot — hidden from real users, bots fill it, server rejects silently */}
+              <input
+                type="text"
+                name="_hp"
+                defaultValue=""
+                autoComplete="off"
+                tabIndex={-1}
+                aria-hidden="true"
+                style={{ position: "absolute", opacity: 0, left: "-9999px", width: 0, height: 0 }}
+              />
               <div>
                 <label className="mb-2 block text-[10px] font-bold tracking-widest text-slate-500 uppercase">
                   Nombre completo

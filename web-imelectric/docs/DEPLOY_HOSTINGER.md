@@ -155,3 +155,96 @@ pm2 restart imelectric
 ### Firewall
 
 Abre **80** y **443** para HTTP/HTTPS. El **3000** no hace falta exponerlo si solo Nginx habla con `127.0.0.1:3000`.
+
+---
+
+## Security headers — Nginx (solo el server block de imelectric.es)
+
+> **⚠️ Este VPS aloja 4 sitios.** Los pasos siguientes deben aplicarse **únicamente** al
+> `server {}` block de imelectric.es. No editar `nginx.conf` (sección `http {}`), ni archivos
+> `include` compartidos entre los 4 sitios.
+
+### Paso 1 — Diagnóstico: localizar el archivo correcto
+
+```bash
+# Listar todos los vhosts/sites disponibles:
+ls -la /etc/nginx/sites-available/
+ls -la /etc/nginx/sites-enabled/
+
+# Buscar el server block que contiene imelectric.es:
+grep -rl "imelectric.es" /etc/nginx/sites-available/
+grep -rl "imelectric.es" /etc/nginx/conf.d/
+
+# Confirmar que es un server block independiente (no comparte add_header con otros):
+cat /etc/nginx/sites-available/<NOMBRE_ARCHIVO_ENCONTRADO>
+```
+
+Confirma que el archivo tiene `server_name imelectric.es www.imelectric.es;` (o similar) y que
+**no usa** un `include` de headers compartido con los otros 3 sitios antes de editar.
+
+### Paso 2 — Añadir los headers dentro del server block de imelectric.es
+
+Agrega las siguientes líneas **dentro del bloque `server { }`** correspondiente a imelectric.es,
+**antes de** la directiva `location / { ... }`:
+
+```nginx
+server {
+    # ... tu configuración existente (listen, server_name, SSL, etc.) ...
+
+    # ── Security headers — solo para imelectric.es ─────────────────────────
+    # Estos add_header están dentro de este server block, no en http{} global.
+    add_header Strict-Transport-Security "max-age=31536000" always;
+    add_header X-Content-Type-Options    "nosniff" always;
+    add_header X-Frame-Options           "DENY" always;
+    add_header Referrer-Policy           "strict-origin-when-cross-origin" always;
+    add_header Permissions-Policy        "camera=(), microphone=(), geolocation=(), payment=()" always;
+    add_header Content-Security-Policy   "default-src 'none'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.clarity.ms; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://*.clarity.ms; media-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" always;
+    # ───────────────────────────────────────────────────────────────────────
+
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+```
+
+### Paso 3 — Validar sintaxis ANTES de recargar
+
+```bash
+sudo nginx -t
+```
+
+Resultado esperado:
+```
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+```
+
+**Si hay cualquier error de sintaxis, NO continuar con el paso 4.** Corregir primero.
+Un error de sintaxis en nginx -t que se recargaría tumbaría los 4 sitios del VPS.
+
+### Paso 4 — Recargar Nginx (solo tras confirmar nginx -t exitoso)
+
+```bash
+sudo systemctl reload nginx
+# O equivalente según la versión/setup del VPS:
+# sudo nginx -s reload
+```
+
+### Nota sobre duplicación de headers
+
+Los headers también están configurados en `next.config.ts` (función `headers()`).
+Nginx los agrega como redundancia: si el proceso Next/PM2 cae o responde sin headers,
+Nginx los añade igualmente. No hay problema en que aparezcan dos veces si ambas capas
+los emiten — el navegador usa el primero que recibe.
+
+Si prefieres evitar la duplicación, puedes omitir los `add_header` de Nginx y confiar
+solo en los que emite Next.js — el efecto de seguridad es idéntico mientras el proceso
+Node esté activo.

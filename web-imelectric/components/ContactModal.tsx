@@ -23,13 +23,15 @@ export const ContactModal = ({ children }: { children: React.ReactNode }) => {
   const [email, setEmail] = useState("");
   const [priority, setPriority] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!priority) {
       window.alert("Seleccione una prioridad técnica.");
       return;
     }
     const priorityLabel = PRIORITY_LABELS[priority] || priority;
+    // Read honeypot from the raw form — not from React state (bots fill DOM inputs)
+    const hpValue = String(new FormData(e.currentTarget).get("_hp") ?? "");
     setIsSubmitting(true);
     try {
       const result = await sendWebForm({
@@ -38,6 +40,7 @@ export const ContactModal = ({ children }: { children: React.ReactNode }) => {
         company,
         email,
         priority: priorityLabel,
+        _hp: hpValue,
       });
 
       if (result.status === "sent") {
@@ -79,6 +82,16 @@ export const ContactModal = ({ children }: { children: React.ReactNode }) => {
             </DialogHeader>
 
             <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Honeypot — hidden from real users, bots fill it, server rejects silently */}
+              <input
+                type="text"
+                name="_hp"
+                defaultValue=""
+                autoComplete="off"
+                tabIndex={-1}
+                aria-hidden="true"
+                style={{ position: "absolute", opacity: 0, left: "-9999px", width: 0, height: 0 }}
+              />
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div className="space-y-2">
                   <label className="text-xs font-semibold tracking-wider text-slate-400 uppercase">

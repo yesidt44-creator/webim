@@ -6,9 +6,9 @@ import { ReliabilityCalculator } from "@/components/ReliabilityCalculator";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://imelectric.es/academia/calculadora-mtbf" },
-  title: "Calculadora MTBF, MTTR y Confiabilidad Online Gratis | IMELECTRIC",
+  title: "¿Cómo calcular MTBF y MTTR? Calculadora Online Gratis | IMELECTRIC",
   description:
-    "Calcula MTBF, MTTR, disponibilidad y confiabilidad R(t) con nuestra herramienta online gratuita. Fórmula exponencial R(t)=e^(-λ·t) para ingenieros de mantenimiento industrial. Sin registro.",
+    "Calcula MTBF, MTTR, disponibilidad y confiabilidad R(t)=e^(-λ·t) con nuestra herramienta online gratuita. Para ingenieros de mantenimiento en Oil & Gas, manufactura y transporte. Sin registro. Fix AI integra estos KPIs en tiempo real desde campo.",
   keywords: [
     "calculadora MTBF",
     "calcular MTTR online",
@@ -76,6 +76,23 @@ export default function CalculadoraMtbfPage() {
             La función <code className="rounded bg-slate-800 px-2 py-0.5 font-mono text-sm text-blue-300">R(t) = e^(-λ·t)</code> modela
             la probabilidad de que un equipo opere sin fallas durante el tiempo <em>t</em>, donde λ = 1/MTBF.
           </p>
+        </div>
+
+        {/* CTA hacia Fix AI / Falion */}
+        <div className="mt-10 rounded-2xl border border-blue-500/20 bg-blue-600/5 p-6">
+          <p className="mb-1 text-xs font-bold tracking-widest text-blue-400 uppercase">¿Llevas estos KPIs manualmente?</p>
+          <p className="mb-4 text-sm leading-relaxed text-slate-400">
+            <strong className="text-slate-200">Fix AI</strong> calcula MTBF, MTTR y disponibilidad automáticamente
+            desde las órdenes de trabajo cerradas en campo. El módulo{" "}
+            <strong className="text-slate-200">Falion</strong> cruza los KPIs con el historial de fallas para
+            asistir el análisis de causa raíz sin doble digitación.
+          </p>
+          <Link
+            href="/fixai-cmms"
+            className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-blue-500"
+          >
+            Ver Fix AI →
+          </Link>
         </div>
 
         <div className="mt-8 flex flex-wrap gap-4">

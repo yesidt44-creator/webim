@@ -14,16 +14,17 @@ export const Hero = () => {
         transition={{ duration: 0.6 }}
       >
         <p className="mb-4 text-sm font-semibold leading-snug text-blue-400 sm:text-base">
-          Inteligencia industrial para operaciones que no se detienen
+          Software industrial con IA para contratistas y operadores en Colombia
         </p>
         <h1 className="mb-6 text-5xl font-extrabold tracking-tight md:text-7xl">
-          <span className="text-blue-500">IA</span> en planta,{" "}
-          <span className="text-blue-400">sin depender de la red</span>.
+          La IA hace el trabajo repetitivo.{" "}
+          <span className="text-blue-400">Tu equipo sigue tomando las decisiones.</span>
         </h1>
         <p className="mb-8 max-w-lg text-lg leading-relaxed text-slate-400">
-          El primer CMMS con IA diseñado específicamente para el trabajo de campo en upstream oil &amp; gas
-          latinoamericano. Digitaliza completamente la gestión de órdenes de trabajo, activos y mantenimiento
-          preventivo — funciona sin internet, donde los sistemas complejos fallan.
+          <strong className="text-white">Fix AI</strong>, <strong className="text-white">Veriwork</strong>,{" "}
+          <strong className="text-white">Nexvia</strong> y <strong className="text-white">Shield AI</strong> automatizan
+          el reporte, la trazabilidad y el cumplimiento normativo de tu operación — para que tu equipo
+          deje de perder horas en tareas repetitivas y las invierta en lo que requiere criterio humano: revisar, aprobar y firmar.
         </p>
         <div className="flex flex-wrap gap-4">
           <ContactModal>
@@ -34,10 +35,16 @@ export const Hero = () => {
               Solicitar demo <ArrowRight size={20} />
             </button>
           </ContactModal>
+          <a
+            href="#como-pensamos-la-ia"
+            className="flex items-center gap-2 rounded-lg border border-slate-800 bg-slate-900 px-6 py-4 font-semibold text-slate-300 transition hover:border-blue-500/40 hover:text-blue-300"
+          >
+            Ver cómo pensamos la IA ↓
+          </a>
           <div className="flex flex-wrap items-center gap-4 border-l border-slate-800 pl-4 font-mono text-sm text-slate-500">
             <div className="flex items-center gap-2">
               <Brain size={16} className="text-blue-500" />
-              IA aplicada a activos
+              Compatible con el ERP del operador
             </div>
             <div className="flex items-center gap-2">
               <WifiOff size={16} className="text-blue-500" />
@@ -56,10 +63,10 @@ export const Hero = () => {
         {/* Móvil: dvh + ancho tipo “teléfono” evita barras de URL y lectura UI; desktop: más alto */}
         <div className="flex w-full max-w-full justify-center rounded-3xl border border-slate-800 bg-gradient-to-tr from-blue-600/20 to-purple-600/20 p-2 shadow-2xl backdrop-blur-3xl sm:p-3 md:inline-flex md:w-auto md:p-4">
           <Image
-            src="/fixai-cmms-app.png"
-            alt="FixAI CMMS: Mis OT — suite IMELECTRIC con IA y órdenes de trabajo en campo"
-            width={587}
-            height={1024}
+            src="/fixai-screen-1.png"
+            alt="Fix AI — Tablero de planeación con KPIs de mantenimiento: OTs semana, cumplimiento y backlog"
+            width={540}
+            height={960}
             priority
             sizes="(max-width: 640px) 300px, (max-width: 1024px) 360px, 420px"
             className="mx-auto h-auto w-auto max-w-[min(100%,17.5rem)] rounded-2xl border border-slate-700 object-contain shadow-inner max-sm:max-h-[min(52dvh,28rem)] sm:max-w-[min(100%,20rem)] sm:max-h-[min(58dvh,32rem)] md:max-h-[min(80dvh,720px)] md:max-w-full"

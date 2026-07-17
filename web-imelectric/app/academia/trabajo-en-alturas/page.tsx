@@ -80,8 +80,8 @@ export default function TrabajoEnAlturasPage() {
             Para la gestión digital de{" "}
             <strong className="text-slate-300">permisos de trabajo en alturas</strong> con firma forense y trazabilidad
             HSE, conozca{" "}
-            <Link href="/#safety-on" className="text-emerald-400 underline hover:text-emerald-300">
-              Safety On de IMELECTRIC
+            <Link href="/veriwork" className="text-emerald-400 underline hover:text-emerald-300">
+              Veriwork de IMELECTRIC
             </Link>.
           </p>
         </div>

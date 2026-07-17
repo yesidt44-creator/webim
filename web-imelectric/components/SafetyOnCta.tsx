@@ -14,7 +14,7 @@ export const SafetyOnCta = () => (
       </button>
     </ContactModal>
     <a
-      href="/safety-on"
+      href="/veriwork"
       className="flex items-center gap-2 rounded-xl border border-slate-700 px-8 py-4 text-sm font-semibold text-slate-300 transition hover:border-emerald-500/50 hover:text-emerald-400"
     >
       Ver página completa <ExternalLink size={15} />

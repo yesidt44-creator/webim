@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { checkRateLimit, getClientIp, maskIp } from "@/lib/rateLimit";
 
 export const runtime = "nodejs";
 
@@ -20,6 +21,27 @@ function escapeHtml(s: string): string {
 }
 
 export async function POST(request: Request) {
+  const ip = getClientIp(request);
+  const masked = maskIp(ip);
+
+  // ── Rate limiting ──────────────────────────────────────────────────────────
+  const rl = checkRateLimit(ip);
+  if (!rl.allowed) {
+    console.warn(`[api/contact] RATE_LIMIT ip=${masked} retry_after=${rl.retryAfterSecs}s`);
+    return NextResponse.json(
+      { error: "Demasiadas solicitudes. Intente de nuevo en unos minutos." },
+      {
+        status: 429,
+        headers: {
+          "Retry-After": String(rl.retryAfterSecs),
+          "X-RateLimit-Limit": "5",
+          "X-RateLimit-Remaining": "0",
+        },
+      },
+    );
+  }
+
+  // ── Parse body ─────────────────────────────────────────────────────────────
   let body: Record<string, unknown>;
   try {
     body = await request.json();
@@ -27,18 +49,21 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "JSON inválido" }, { status: 400 });
   }
 
-  const formType = clamp(body.formType);
-  if (formType !== "contact" && formType !== "lead_norm") {
-    return NextResponse.json({ error: "Tipo de formulario no válido" }, { status: 400 });
+  // ── Honeypot ───────────────────────────────────────────────────────────────
+  // Field "_hp" is hidden from real users (opacity:0, tabIndex=-1, aria-hidden).
+  // Bots that fill all form fields will populate it; humans won't.
+  const honeypot = clamp(body._hp);
+  if (honeypot !== "") {
+    // Silent success — don't reveal the gate to the bot.
+    console.warn(`[api/contact] HONEYPOT_BLOCKED ip=${masked} form=${clamp(body.formType)}`);
+    return NextResponse.json({ ok: true, configured: true });
   }
 
-  const fullName = clamp(body.fullName);
-  const company = clamp(body.company);
-  const email = clamp(body.email);
-  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
-  if (!fullName || !company || !emailOk) {
-    return NextResponse.json({ error: "Nombre, empresa y correo válido son obligatorios" }, { status: 400 });
+  // ── Validate form type ─────────────────────────────────────────────────────
+  const formType = clamp(body.formType);
+  const ALLOWED_TYPES = ["contact", "lead_norm", "norm_updates"];
+  if (!ALLOWED_TYPES.includes(formType)) {
+    return NextResponse.json({ error: "Tipo de formulario no válido" }, { status: 400 });
   }
 
   const to = process.env.CONTACT_TO_EMAIL || "contacto@imelectric.es";
@@ -48,41 +73,81 @@ export async function POST(request: Request) {
   let subject: string;
   let text: string;
   let html: string;
+  let replyTo: string | undefined;
 
-  if (formType === "contact") {
-    const priority = clamp(body.priority);
-    if (!priority) {
-      return NextResponse.json({ error: "Seleccione una prioridad técnica" }, { status: 400 });
+  // ── norm_updates: solo requiere email + consent explícito ──────────────────
+  if (formType === "norm_updates") {
+    const email = clamp(body.email);
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const consent = body.consent === true;
+
+    if (!emailOk) {
+      return NextResponse.json({ error: "Correo válido es obligatorio" }, { status: 400 });
     }
-    subject = `[Web IMELECTRIC] Consulta: ${priority}`;
+    if (!consent) {
+      return NextResponse.json({ error: "Se requiere autorización expresa del titular" }, { status: 400 });
+    }
+
+    replyTo = email;
+    subject = "[Web IMELECTRIC] Nueva suscripción a avisos normativos";
     text = [
-      "Nueva consulta desde el formulario de contacto (web IMELECTRIC).",
+      "Nueva suscripción desde la Biblioteca Normativa.",
       "",
-      `Nombre: ${fullName}`,
-      `Empresa: ${company}`,
       `Correo: ${email}`,
-      `Prioridad / interés: ${priority}`,
+      "Consentimiento: titular autorizó expresamente el tratamiento para notificaciones de actualización normativa.",
       "",
-      "Responder directamente a este correo usando «Responder» (reply-to configurado).",
+      "No responder a este correo — es solo un aviso interno.",
     ].join("\n");
     html = `<pre style="font-family:system-ui,sans-serif;font-size:14px;line-height:1.5;">${escapeHtml(text)}</pre>`;
   } else {
-    const normTitle = clamp(body.normTitle);
-    if (!normTitle) {
-      return NextResponse.json({ error: "Falta el título de la norma" }, { status: 400 });
+    // ── contact / lead_norm: requieren fullName + company + email ─────────────
+    const fullName = clamp(body.fullName);
+    const company = clamp(body.company);
+    const email = clamp(body.email);
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    if (!fullName || !company || !emailOk) {
+      return NextResponse.json({ error: "Nombre, empresa y correo válido son obligatorios" }, { status: 400 });
     }
-    subject = `[Web IMELECTRIC] Lead normativa: ${normTitle}`;
-    text = [
-      "Nuevo lead desde Academia / Biblioteca normativa.",
-      "",
-      `Norma: ${normTitle}`,
-      `Nombre: ${fullName}`,
-      `Empresa: ${company}`,
-      `Correo: ${email}`,
-      "",
-      "Responder directamente al interesado usando «Responder».",
-    ].join("\n");
-    html = `<pre style="font-family:system-ui,sans-serif;font-size:14px;line-height:1.5;">${escapeHtml(text)}</pre>`;
+
+    replyTo = email;
+
+    if (formType === "contact") {
+      const priority = clamp(body.priority);
+      if (!priority) {
+        return NextResponse.json({ error: "Seleccione una prioridad técnica" }, { status: 400 });
+      }
+      subject = `[Web IMELECTRIC] Consulta: ${priority}`;
+      text = [
+        "Nueva consulta desde el formulario de contacto (web IMELECTRIC).",
+        "",
+        `Nombre: ${fullName}`,
+        `Empresa: ${company}`,
+        `Correo: ${email}`,
+        `Prioridad / interés: ${priority}`,
+        "",
+        "Responder directamente a este correo usando «Responder» (reply-to configurado).",
+      ].join("\n");
+      html = `<pre style="font-family:system-ui,sans-serif;font-size:14px;line-height:1.5;">${escapeHtml(text)}</pre>`;
+    } else {
+      // lead_norm
+      const normTitle = clamp(body.normTitle);
+      if (!normTitle) {
+        return NextResponse.json({ error: "Falta el título de la norma" }, { status: 400 });
+      }
+      subject = `[Web IMELECTRIC] Lead normativa: ${normTitle}`;
+      text = [
+        "Nuevo lead desde Academia / Biblioteca normativa.",
+        "",
+        `Norma: ${normTitle}`,
+        `Nombre: ${fullName}`,
+        `Empresa: ${company}`,
+        `Correo: ${email}`,
+        "",
+        "Responder directamente al interesado usando «Responder».",
+      ].join("\n");
+      html = `<pre style="font-family:system-ui,sans-serif;font-size:14px;line-height:1.5;">${escapeHtml(text)}</pre>`;
+    }
   }
 
   if (!apiKey) {
@@ -101,7 +166,7 @@ export async function POST(request: Request) {
     const { error } = await resend.emails.send({
       from,
       to: [to],
-      replyTo: email,
+      ...(replyTo ? { replyTo } : {}),
       subject,
       text,
       html,

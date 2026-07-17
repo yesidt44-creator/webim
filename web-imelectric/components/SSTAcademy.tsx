@@ -129,9 +129,9 @@ export const SSTAcademy = () => {
         <div className="mt-12 flex items-start gap-4 rounded-2xl border border-slate-800 bg-slate-950 p-6">
           <ShieldAlert className="shrink-0 text-amber-500" size={24} />
           <div>
-            <h4 className="mb-2 font-bold text-white">Integración con Safety On</h4>
+            <h4 className="mb-2 font-bold text-white">Integración con Veriwork</h4>
             <p className="text-sm leading-relaxed text-slate-400">
-              Nuestra plataforma <strong>Safety On</strong> permite cargar el mapa de áreas clasificadas de su planta.
+              Nuestra plataforma <strong>Veriwork</strong> permite cargar el mapa de áreas clasificadas de su planta.
               Antes de emitir un Permiso de Trabajo (PT), el sistema alerta si el equipo electrónico del contratista cumple
               con la clasificación de la zona.
             </p>

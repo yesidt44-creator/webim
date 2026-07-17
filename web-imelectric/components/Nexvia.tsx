@@ -1,4 +1,6 @@
+import Image from "next/image";
 import type { ReactNode } from "react";
+import { headers } from "next/headers";
 import {
   ShieldCheck,
   WifiOff,
@@ -37,7 +39,7 @@ const nexviaJsonLd = {
     price: "0",
     priceSpecification: {
       "@type": "PriceSpecification",
-      description: "Sistema nativo colombiano, 10–20× más económico que plataformas globales.",
+      description: "Sistema nativo colombiano accesible para PyMEs. Contactar para cotización según tamaño de flota.",
     },
   },
   provider: {
@@ -67,7 +69,8 @@ const nexviaJsonLd = {
   ],
 };
 
-export const Nexvia = () => {
+export const Nexvia = async () => {
+  const nonce = (await headers()).get("x-nonce") ?? undefined;
   return (
     <section
       id="nexvia"
@@ -80,6 +83,7 @@ export const Nexvia = () => {
       <script
         type="application/ld+json"
         suppressHydrationWarning
+        nonce={nonce}
         dangerouslySetInnerHTML={{ __html: JSON.stringify(nexviaJsonLd) }}
       />
 
@@ -95,14 +99,27 @@ export const Nexvia = () => {
             className="mb-8 text-4xl leading-tight font-extrabold text-white md:text-6xl"
             itemProp="name"
           >
-            Nexvia: <span className="text-blue-500">gestión de flotas</span> con seguridad industrial digital para Colombia.
+            Nexvia: <span className="text-blue-500">tu flota, bajo control,</span> incluso sin internet.
           </h2>
-          <p className="text-lg leading-relaxed text-slate-400" itemProp="description">
-            Diseñada para PyMEs de transporte que buscan digitalización total de su operación. Nexvia integra operación,{" "}
-            <strong>seguridad vial digital</strong> y <strong>HSEQ</strong> en una sola fuente de verdad auditable,
-            con cumplimiento <strong>ISO 9001</strong> y <strong>trazabilidad de seguridad industrial</strong> desde
-            el campo.
+          <p className="mb-6 text-lg leading-relaxed text-slate-400" itemProp="description">
+            Plataforma HSEQ offline-first para PyMEs de transporte colombiano. Integra operación,{" "}
+            <strong>seguridad vial digital</strong> e <strong>HSEQ</strong> en una sola fuente de verdad auditable —
+            desde la inspección preoperacional hasta el cierre del viaje, sin depender de señal.
           </p>
+          {/* 4 líneas de producto */}
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {[
+              { label: "HSEQ", desc: "Seguridad vial e industrial" },
+              { label: "Talleres", desc: "Mantenimiento de flota" },
+              { label: "Personales", desc: "Gestión de conductores" },
+              { label: "EV", desc: "Flota eléctrica" },
+            ].map(({ label, desc }) => (
+              <div key={label} className="rounded-xl border border-slate-800 bg-slate-900/60 p-3 text-center">
+                <p className="text-xs font-bold text-blue-400">{label}</p>
+                <p className="mt-1 text-[10px] text-slate-500">{desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Bloque 1: KPIs y Operación Offline */}
@@ -127,31 +144,31 @@ export const Nexvia = () => {
             <div className="grid grid-cols-2 gap-4" aria-label="Indicadores de impacto Nexvia">
               <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
                 <div className="mb-2 flex items-center gap-2 text-xs font-bold tracking-tighter text-blue-400 uppercase">
-                  <Clock size={14} aria-hidden="true" /> Tiempo de Reporte
+                  <Clock size={14} aria-hidden="true" /> Reporte en campo
                 </div>
-                <div className="text-3xl font-extrabold text-white">&lt; 3 min</div>
-                <p className="mt-1 text-[10px] text-slate-500 uppercase">Reducción desde 20 min originales</p>
+                <div className="text-lg font-extrabold text-white leading-tight">Diseñado para ser ágil</div>
+                <p className="mt-1 text-[10px] text-slate-500 uppercase">Formularios guiados que reducen el tiempo de reporte frente al papel</p>
               </div>
               <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
                 <div className="mb-2 flex items-center gap-2 text-xs font-bold tracking-tighter text-emerald-400 uppercase">
-                  <TrendingDown size={14} aria-hidden="true" /> Ahorro Admin
+                  <TrendingDown size={14} aria-hidden="true" /> Ahorro administrativo
                 </div>
-                <div className="text-3xl font-extrabold text-white">+300h</div>
-                <p className="mt-1 text-[10px] text-slate-500 uppercase">Horas/mes liberadas (30 técnicos)</p>
+                <div className="text-lg font-extrabold text-white leading-tight">Menos carga admin</div>
+                <p className="mt-1 text-[10px] text-slate-500 uppercase">Automatización de reportes y checklists libera tiempo del equipo</p>
               </div>
               <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
                 <div className="mb-2 flex items-center gap-2 text-xs font-bold tracking-tighter text-amber-400 uppercase">
                   <ShieldCheck size={14} aria-hidden="true" /> Trazabilidad HSEQ
                 </div>
-                <div className="text-3xl font-extrabold text-white">100%</div>
-                <p className="mt-1 text-[10px] text-slate-500 uppercase">Auditable y legalmente blindado</p>
+                <div className="text-3xl font-extrabold text-white">Completa</div>
+                <p className="mt-1 text-[10px] text-slate-500 uppercase">Cada registro auditable con firma forense y GPS</p>
               </div>
               <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
                 <div className="mb-2 flex items-center gap-2 text-xs font-bold tracking-tighter text-purple-400 uppercase">
                   <Database size={14} aria-hidden="true" /> Digitalización
                 </div>
-                <div className="text-3xl font-extrabold text-white">100%</div>
-                <p className="mt-1 text-[10px] text-slate-500 uppercase">Eliminación total del papel</p>
+                <div className="text-3xl font-extrabold text-white">Total</div>
+                <p className="mt-1 text-[10px] text-slate-500 uppercase">Checklists, inspecciones y permisos: cero papel</p>
               </div>
             </div>
           </div>
@@ -195,10 +212,35 @@ export const Nexvia = () => {
                     <CheckCircle2 size={20} />
                   </div>
                   <div>
-                    <span className="block font-bold text-white">10–20× más económico que plataformas globales</span>
+                    <span className="block font-bold text-white">Diseñado para el bolsillo de la PyME colombiana</span>
                     <p className="mt-1 text-xs text-slate-400">
-                      El único <strong className="text-slate-300">software SST Colombia</strong> nativo diseñado para
-                      las realidades operativas y normativas del transporte colombiano.
+                      El único <strong className="text-slate-300">software HSEQ Colombia</strong> nativo diseñado para
+                      las realidades operativas y normativas del transporte colombiano, sin el costo de soluciones enterprise.
+                    </p>
+                  </div>
+                </li>
+                <li className="flex gap-4">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 p-2 text-blue-500" aria-hidden="true">
+                    <CheckCircle2 size={20} />
+                  </div>
+                  <div>
+                    <span className="block font-bold text-white">Scoring de riesgo sin hardware adicional</span>
+                    <p className="mt-1 text-xs text-slate-400">
+                      El modelo de scoring usa el <strong className="text-slate-300">acelerómetro del celular</strong> del
+                      conductor. No se requieren dispositivos adicionales ni instalación en el vehículo para detectar
+                      patrones de conducción de riesgo.
+                    </p>
+                  </div>
+                </li>
+                <li className="flex gap-4">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 p-2 text-blue-500" aria-hidden="true">
+                    <CheckCircle2 size={20} />
+                  </div>
+                  <div>
+                    <span className="block font-bold text-white">Pasaporte digital del vehículo</span>
+                    <p className="mt-1 text-xs text-slate-400">
+                      Cada vehículo acumula un historial completo: inspecciones, mantenimientos, incidentes y
+                      certificaciones. El pasaporte digital permite auditorías y traspasos sin búsqueda en archivos físicos.
                     </p>
                   </div>
                 </li>
@@ -230,6 +272,20 @@ export const Nexvia = () => {
             text="Encuestas vinculadas al viaje mediante códigos QR para métricas de calidad en tiempo real y cumplimiento ISO 9001."
           />
         </ul>
+
+        {/* Badge ISO 9001 */}
+        <div className="flex items-center justify-center gap-4 py-6">
+          <Image
+            src="/badges/iso-9001-ll-c.png"
+            alt="Certificación ISO 9001 — LL-C Certification"
+            width={140}
+            height={56}
+            className="opacity-90"
+          />
+          <p className="text-xs text-slate-500">
+            Empresa certificada <strong className="text-slate-400">ISO 9001:2015</strong>
+          </p>
+        </div>
 
         {/* CTA */}
         <div className="relative mt-20 overflow-hidden rounded-3xl border border-blue-500/30 bg-blue-600/10 p-12 text-center">

@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { headers } from "next/headers";
 import {
   ShieldAlert,
   Fingerprint,
@@ -13,21 +14,22 @@ import { SafetyOnCta } from "./SafetyOnCta";
 const safetyOnJsonLd = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  name: "Safety On",
+  name: "Veriwork",
   alternateName: [
-    "software gestión HSE",
+    "Veriwork software HSE",
+    "software gestión HSE Colombia",
     "software HSE Colombia",
     "software SST Colombia",
-    "permisos de trabajo digitales",
+    "permisos de trabajo digitales verificables",
     "gestión seguridad industrial digital",
   ],
   applicationCategory: "BusinessApplication",
   applicationSubCategory: "HSE, SST, Seguridad Industrial, Permisos de Trabajo",
   operatingSystem: "Web, Android, iOS",
   description:
-    "Safety On es el software de gestión HSE y SST para Colombia y Latinoamérica. Digitaliza permisos de trabajo, incluyendo trabajo en alturas, con trazabilidad forense SHA-256, firma electrónica con GPS y cumplimiento normativo en tiempo real. Blindaje legal ante auditorías regulatorias.",
+    "Veriwork es la plataforma de gestión HSE y SST para Colombia y Latinoamérica. La gestión HSE que tu operación puede verificar, no solo archivar. Digitaliza permisos de trabajo con firma criptográfica verificable, cumplimiento normativo en tiempo real y trazabilidad inalterable.",
   keywords:
-    "software gestión HSE, seguridad industrial digital, permisos de trabajo digitales, software HSE Colombia, gestión seguridad industrial, trabajo en alturas digital, software SST Colombia, permisos trabajo altura, trazabilidad HSE, blindaje jurídico HSE",
+    "Veriwork software HSE, software gestión HSE Colombia, seguridad industrial digital, permisos de trabajo digitales, software HSE Colombia, gestión seguridad industrial, trabajo en alturas digital, software SST Colombia, trazabilidad HSE forense, firma Ed25519 permisos trabajo, PAdES sello de tiempo HSE, firma electrónica seguridad industrial Colombia",
   offers: {
     "@type": "Offer",
     availability: "https://schema.org/InStock",
@@ -64,11 +66,13 @@ const safetyOnJsonLd = {
   ],
 };
 
-export const SafetyOn = () => {
+export const SafetyOn = async () => {
+  const nonce = (await headers()).get("x-nonce") ?? undefined;
+
   return (
     <section
-      id="safety-on"
-      aria-labelledby="safetyon-heading"
+      id="veriwork"
+      aria-labelledby="veriwork-heading"
       className="scroll-mt-28 overflow-hidden border-t border-slate-900 bg-slate-950 py-24"
       itemScope
       itemType="https://schema.org/SoftwareApplication"
@@ -77,6 +81,7 @@ export const SafetyOn = () => {
       <script
         type="application/ld+json"
         suppressHydrationWarning
+        nonce={nonce}
         dangerouslySetInnerHTML={{ __html: JSON.stringify(safetyOnJsonLd) }}
       />
 
@@ -86,14 +91,14 @@ export const SafetyOn = () => {
           <div>
             <p className="mb-4 flex items-center gap-2 text-emerald-500 text-xs font-bold tracking-widest uppercase">
               <ShieldAlert size={20} aria-hidden="true" />
-              Software de Gestión HSE y SST — Blindaje Jurídico y Operativo
+              Gestión HSE verificable — No solo archivada
             </p>
             <h2
-              id="safetyon-heading"
+              id="veriwork-heading"
               className="mb-8 text-4xl leading-tight font-extrabold text-white md:text-6xl"
               itemProp="name"
             >
-              Safety On: <span className="text-emerald-500">seguridad industrial digital</span> para Colombia y Latinoamérica.
+              Veriwork: <span className="text-emerald-500">la gestión HSE que tu operación puede verificar,</span> no solo archivar.
             </h2>
             <p className="mb-8 text-lg leading-relaxed text-slate-400" itemProp="description">
               Transformamos la <strong>gestión HSE y SST</strong> de reactiva a preventiva. Un{" "}
@@ -116,16 +121,18 @@ export const SafetyOn = () => {
           </div>
 
           {/* KPIs de Impacto */}
-          <div className="grid grid-cols-2 gap-4" aria-label="Indicadores de impacto Safety On">
+          <div className="grid grid-cols-2 gap-4" aria-label="Indicadores de impacto Veriwork">
             <KpiCard
-              label="Blindaje Legal HSE"
-              value="100%"
+              label="Trazabilidad HSE"
+              value="Completa"
+              valueClassName="text-base leading-tight tracking-tight sm:text-lg md:text-xl lg:text-2xl break-words"
               desc="Cadena de decisión documentada e inalterable ante entes reguladores."
             />
             <KpiCard
-              label="Reducción Desviaciones SST"
-              value="-40%"
-              desc="IA verifica cumplimiento normativo antes de autorizar labores de riesgo."
+              label="Verificación normativa"
+              value="Antes de autorizar"
+              valueClassName="text-sm leading-tight tracking-tight sm:text-base md:text-lg break-words"
+              desc="El sistema alerta sobre riesgos y omisiones normativas — la persona competente revisa y autoriza."
             />
             <KpiCard
               label="Disponibilidad Auditoría"
@@ -135,23 +142,24 @@ export const SafetyOn = () => {
             />
             <KpiCard
               label="Pérdida Documental"
-              value="0%"
-              desc="Cero alteración o extravío de permisos de trabajo y certificados SST."
+              value="Diseñado para cero"
+              valueClassName="text-xs leading-tight tracking-tight sm:text-sm md:text-base break-words"
+              desc="Arquitectura diseñada para cero alteración o extravío de permisos de trabajo y certificados SST."
             />
           </div>
         </div>
 
         {/* Módulos Técnicos */}
-        <h3 className="sr-only">Módulos de Safety On — software HSE Colombia</h3>
+        <h3 className="sr-only">Módulos de Veriwork — software HSE Colombia</h3>
         <ul
           className="mb-20 grid gap-8 md:grid-cols-3 list-none p-0"
-          aria-label="Módulos del software HSE Safety On"
+          aria-label="Módulos del software HSE Veriwork"
           itemProp="featureList"
         >
           <Feature
             icon={<Fingerprint size={24} />}
-            title="Permisos de trabajo digitales con firma SHA-256"
-            desc="Validación legal inalterable con GPS y timestamp para cada ejecutor y aprobador de permisos de trabajo en alturas y trabajos críticos."
+            title="Firma Ed25519 por empresa — verificable públicamente"
+            desc="Cada permiso lleva firma criptográfica Ed25519 ligada a la empresa emisora, GPS y timestamp. Cualquier parte puede verificar la autenticidad con el enlace o el QR del documento."
           />
           <Feature
             icon={<UserCheck size={24} />}
@@ -161,11 +169,11 @@ export const SafetyOn = () => {
           <Feature
             icon={<Zap size={24} />}
             title="Análisis de riesgo asistido por IA"
-            desc="Agentes entrenados en normativas HSE colombianas que alertan sobre riesgos omitidos antes de autorizar labores."
+            desc="El sistema analiza el cumplimiento normativo HSE colombiano y alerta sobre riesgos omitidos — la persona competente revisa y es quien autoriza la labor."
           />
         </ul>
 
-        {/* Bloque: Trazabilidad Forense S3 */}
+        {/* Bloque: Trazabilidad Forense — Ed25519 / PAdES */}
         <div className="relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 p-10">
           <div
             className="absolute top-0 right-0 rounded-full bg-emerald-500/5 p-32 blur-[120px]"
@@ -175,15 +183,15 @@ export const SafetyOn = () => {
             <div>
               <p className="mb-4 flex items-center gap-2 text-emerald-400 text-xs font-bold tracking-widest uppercase">
                 <Lock size={20} aria-hidden="true" />
-                S3 Object Lock — Trazabilidad HSE inalterable
+                Firma Ed25519 · PAdES · Sello de tiempo · QR verificable
               </p>
               <h3 className="mb-6 text-3xl font-bold">
-                Integridad documental: el estándar de la <strong>gestión de seguridad industrial digital</strong>
+                Trazabilidad forense: el registro <strong>no se puede alterar</strong> después de firmado
               </h3>
               <p className="mb-6 leading-relaxed text-slate-400">
-                Una vez firmado un <strong>permiso de trabajo</strong>, el documento se bloquea a nivel de
-                infraestructura. Nadie, ni siquiera un administrador, puede alterar la evidencia original. Este es
-                el estándar que exigen las aseguradoras y entes de control en Colombia.
+                Cada <strong>permiso de trabajo</strong> lleva firma Ed25519 de la empresa, sello de tiempo PAdES
+                y un QR de verificación pública. Nadie — ni siquiera un administrador — puede alterar la evidencia
+                original. Las actas de alta severidad se refuerzan con protocolo notarial cuando el caso lo requiere.
               </p>
               <ul className="space-y-3 list-none p-0">
                 <li className="flex items-center gap-2 text-sm text-slate-300">
@@ -192,7 +200,7 @@ export const SafetyOn = () => {
                 </li>
                 <li className="flex items-center gap-2 text-sm text-slate-300">
                   <CheckCircle2 size={16} className="text-emerald-500 shrink-0" aria-hidden="true" />
-                  <span><strong>Trazabilidad HSE</strong> completa minuto a minuto</span>
+                  <span>Firma electrónica con valor legal (Decreto 2364/2012) — segregación de roles</span>
                 </li>
                 <li className="flex items-center gap-2 text-sm text-slate-300">
                   <CheckCircle2 size={16} className="text-emerald-500 shrink-0" aria-hidden="true" />
@@ -202,7 +210,7 @@ export const SafetyOn = () => {
             </div>
             <div
               className="rounded-2xl border border-slate-800 bg-slate-950 p-6 font-mono text-[10px] text-emerald-500/70"
-              aria-label="Log forense de ejemplo Safety On"
+              aria-label="Log forense de ejemplo Veriwork"
             >
               <div className="mb-2 border-b border-slate-800 pb-2 text-slate-500">
                 // FORENSIC_LOG — PERMISO_TRABAJO_ALTURAS
@@ -210,10 +218,12 @@ export const SafetyOn = () => {
               <div className="space-y-1">
                 <p>&gt; TIMESTAMP: 2026-03-23T18:50:42Z</p>
                 <p>&gt; EVENT: PERMIT_APPROVAL_SIGNED</p>
-                <p>&gt; USER_ID: ENG_0492_MARTINEZ</p>
+                <p>&gt; ROLE: PERSONA_COMPETENTE · COORD_ALTURAS</p>
                 <p>&gt; GPS_LOC: 7.0012, -73.8561 (Yondó, ANT)</p>
-                <p className="text-emerald-400">&gt; HASH_SHA256: 8f3c2b1a5e9d8c7b6a5f4e3d2c1b0a...</p>
-                <p className="text-emerald-400">&gt; STATUS: IMMUTABLE_LOCK_ACTIVE</p>
+                <p className="text-emerald-400">&gt; SIG_ALGO: Ed25519 (empresa_key_id: VW-2026-001)</p>
+                <p className="text-emerald-400">&gt; PADES_SEAL: RFC3161 · TSA_HASH: a7f3d...</p>
+                <p className="text-emerald-400">&gt; VERIFY_QR: imelectric.es/v/PT-2026-0492</p>
+                <p className="text-emerald-400">&gt; STATUS: IMMUTABLE · NOTARIAL: NO (low-severity)</p>
               </div>
             </div>
           </div>
@@ -222,7 +232,7 @@ export const SafetyOn = () => {
         {/* CTA */}
         <div className="mt-20 text-center">
           <p className="mb-6 text-slate-400">
-            Su <strong className="text-white">software SST para Colombia</strong> listo para auditoría regulatoria.
+            <strong className="text-white">Veriwork</strong> — software HSE verificable para Colombia y Latinoamérica.
           </p>
           <SafetyOnCta />
         </div>

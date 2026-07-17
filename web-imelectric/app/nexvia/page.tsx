@@ -1,3 +1,4 @@
+import { headers } from "next/headers";
 import type { Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -7,9 +8,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://imelectric.es/nexvia",
   },
-  title: "Nexvia — Gestión de Flotas con HSEQ Digital para Colombia | IMELECTRIC",
+  title: "Nexvia — Tu Flota Bajo Control | HSEQ, Talleres, Conductores y EV para Colombia | IMELECTRIC",
   description:
-    "Software de gestión de flotas con seguridad vial digital, inspección preoperacional, HSEQ e ISO 9001 para PyMEs de transporte en Colombia. Trazabilidad 100%, offline-first y 10× más económico que soluciones enterprise.",
+    "Nexvia: plataforma HSEQ offline-first para PyMEs de transporte colombiano. 4 líneas: HSEQ, Talleres, Personales y EV. Scoring de riesgo sin hardware extra (acelerómetro), pasaporte digital del vehículo, inspección preoperacional e ISO 9001.",
   keywords: [
     "Nexvia gestión flotas Colombia",
     "software gestión flotas Colombia",
@@ -33,9 +34,9 @@ export const metadata: Metadata = {
     "gestión activos transporte Colombia",
   ],
   openGraph: {
-    title: "Nexvia — Gestión de Flotas con HSEQ Digital | IMELECTRIC Colombia",
+    title: "Nexvia — Tu Flota Bajo Control | HSEQ Offline-First para Colombia | IMELECTRIC",
     description:
-      "Inspección preoperacional, seguridad vial digital, trazabilidad HSEQ e ISO 9001 para PyMEs de transporte en Colombia. Offline-first.",
+      "Plataforma HSEQ offline-first: HSEQ, Talleres, Personales y EV. Scoring de riesgo sin hardware adicional, pasaporte digital del vehículo, ISO 9001 y trazabilidad forense para PyMEs de transporte colombiano.",
     url: "https://imelectric.es/nexvia",
     siteName: "IMELECTRIC",
     locale: "es_ES",
@@ -76,7 +77,7 @@ const faqJsonLd = {
       name: "¿Cuánto cuesta Nexvia en comparación con soluciones enterprise de gestión de flotas?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Nexvia está diseñado para PyMEs de transporte en Colombia y es entre 10 y 20 veces más económico que las soluciones enterprise multinacionales de gestión de flotas. El modelo de precios se adapta al tamaño de la flota y los módulos requeridos. Contactar a IMELECTRIC para una auditoría de viabilidad gratuita y cotización según el número de vehículos y conductores.",
+        text: "Nexvia está diseñado para PyMEs de transporte en Colombia con un modelo de precios accesible que se adapta al tamaño de la flota y los módulos requeridos. A diferencia de las soluciones enterprise multinacionales, Nexvia no requiere grandes inversiones en implementación ni licencias inflexibles. Contactar a IMELECTRIC para una auditoría de viabilidad gratuita y cotización según el número de vehículos y conductores.",
       },
     },
     {
@@ -90,12 +91,15 @@ const faqJsonLd = {
   ],
 };
 
-export default function NexviaPage() {
+export default async function NexviaPage() {
+  const nonce = (await headers()).get("x-nonce") ?? undefined;
+
   return (
     <main className="min-h-screen bg-slate-950 text-white">
       <script
         type="application/ld+json"
         suppressHydrationWarning
+        nonce={nonce}
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       <Navbar />
@@ -112,15 +116,15 @@ export default function NexviaPage() {
             Plataforma SaaS — Flotas e HSEQ Digital
           </div>
           <h1 className="mb-4 text-3xl font-extrabold leading-tight text-white sm:text-4xl md:text-5xl">
-            Nexvia: gestión de flotas con HSEQ digital e ISO 9001 para Colombia
+            Nexvia: tu flota, bajo control, incluso sin internet — HSEQ, Talleres, Personales y EV
           </h1>
           <p className="max-w-3xl text-base leading-relaxed text-slate-400 sm:text-lg">
-            Para PyMEs de transporte que necesitan integrar operación, seguridad vial digital
-            y cumplimiento HSEQ sin el costo de soluciones enterprise. Inspección preoperacional,
-            trazabilidad 100% y offline-first para rutas remotas.
+            Plataforma HSEQ offline-first para PyMEs de transporte colombiano. Integra operación,
+            seguridad vial, talleres, gestión de conductores y flota eléctrica en una sola fuente
+            de verdad auditable — con scoring de riesgo sin hardware adicional y pasaporte digital del vehículo.
           </p>
           <div className="mt-6 flex flex-wrap gap-2">
-            {["HSEQ Colombia","ISO 9001 Transporte","Inspección preoperacional","Seguridad vial digital","Offline-First"].map(tag => (
+            {["HSEQ Colombia","Talleres","Gestión de conductores","Flota EV","ISO 9001","Offline-First","Scoring sin hardware"].map(tag => (
               <span key={tag} className="rounded-full border border-slate-800 bg-slate-900 px-3 py-1 text-xs text-slate-400">{tag}</span>
             ))}
           </div>
@@ -160,7 +164,7 @@ export default function NexviaPage() {
           <div className="flex flex-wrap justify-center gap-3">
             {[
               { href: "/fixai-cmms", label: "FixAI CMMS — Mantenimiento con IA" },
-              { href: "/safety-on",  label: "Safety On — HSE y SST Digital" },
+              { href: "/veriwork",   label: "Veriwork — Gestión HSE verificable" },
               { href: "/academia",   label: "Academia Técnica" },
               { href: "/",           label: "← Inicio" },
             ].map(l => (

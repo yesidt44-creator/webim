@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import { FileText, Download, Search, Lightbulb, AlertCircle, ArrowRight } from "lucide-react";
-import { LeadModal } from "./LeadModal";
+import { useState, type FormEvent } from "react";
+import { FileText, Download, Search, Lightbulb, Bell, ArrowRight, CheckCircle2 } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
+import { sendWebForm } from "@/lib/contactSubmit";
 
 /** PDFs servidos desde /public/norms/ */
 type NormPdf = { href: string; fileName: string };
@@ -27,11 +28,6 @@ const NORM_PDF_BY_TITLE: Record<string, NormPdf> = {
   "Resolución 40117 de 2024": {
     href: "/norms/resolucion-40117-2024.pdf",
     fileName: "Resolucion-40117-2024-RETIE.pdf",
-  },
-  /** Marco legal único del sector trabajo — CTA “base consolidada” (mismo PDF que la tarjeta del Decreto 1072) */
-  "Base Normativa Completa 2026": {
-    href: "/norms/decreto-1072-2015.pdf",
-    fileName: "Decreto-1072-2015-Sector-Trabajo-Base-Legal.pdf",
   },
 };
 
@@ -93,36 +89,29 @@ const NORMS = [
 ];
 
 export const NormsLibrary = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [leadTarget, setLeadTarget] = useState<{ title: string; pdf: NormPdf | null }>({
-    title: "",
-    pdf: null,
-  });
+  const [notifyEmail, setNotifyEmail] = useState("");
+  const [authorized, setAuthorized] = useState(false);
+  const [notifyState, setNotifyState] = useState<"idle" | "loading" | "done">("idle");
 
-  const handleOpenModal = (title: string) => {
-    setLeadTarget({
-      title,
-      pdf: NORM_PDF_BY_TITLE[title] ?? null,
-    });
-    setIsModalOpen(true);
+  const handleNotifySubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!authorized) return;
+    setNotifyState("loading");
+    try {
+      await sendWebForm({ formType: "norm_updates", email: notifyEmail, consent: true });
+    } finally {
+      setNotifyState("done");
+    }
   };
 
   return (
     <div className="mt-16 space-y-8">
-      <LeadModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        normTitle={leadTarget.title}
-        downloadUrl={leadTarget.pdf?.href ?? null}
-        downloadFileName={leadTarget.pdf?.fileName}
-      />
-
       <div className="mb-8 flex items-center gap-3">
         <FileText size={28} className="text-emerald-500" />
         <h2 className="text-2xl font-bold text-white md:text-3xl">Biblioteca Normativa SST</h2>
       </div>
 
-      {/* IA + Safety On */}
+      {/* IA + Veriwork */}
       <div className="group relative mb-12 overflow-hidden rounded-3xl border border-emerald-500/30 bg-gradient-to-r from-blue-900/40 to-emerald-900/40 p-8">
         <div className="absolute top-0 right-0 rounded-full bg-white/5 p-24 blur-[80px]"></div>
         <div className="relative z-10 flex flex-col items-center gap-8 md:flex-row">
@@ -130,81 +119,153 @@ export const NormsLibrary = () => {
             <Lightbulb size={40} className="animate-pulse text-emerald-400" />
           </div>
           <div>
-            <h3 className="mb-2 text-xl font-bold text-white">IA Integrada en Safety On</h3>
+            <h3 className="mb-2 text-xl font-bold text-white">IA integrada en Veriwork</h3>
             <p className="text-sm leading-relaxed text-slate-300">
-              Nuestra IA no solo almacena estas normas; las <strong>analiza en tiempo real</strong>. Al realizar un Análisis
-              de Riesgo en la plataforma, la IA cruza su descripción de la tarea con este marco normativo para sugerir
-              controles preventivos automáticos, asegurando que su permiso de trabajo nunca incumpla la ley vigente.
+              El motor de Veriwork no solo almacena estas normas; las <strong>analiza en tiempo real</strong>. Al realizar un
+              análisis de riesgo, el sistema cruza la descripción de la tarea con el marco normativo y alerta sobre
+              controles preventivos omitidos — la persona competente revisa y es quien autoriza el permiso de trabajo.
             </p>
           </div>
         </div>
       </div>
 
+      {/* Tarjetas de normas — descarga directa, sin barrera */}
       <div className="grid gap-6 md:grid-cols-2">
-        {NORMS.map((norm) => (
-          <div
-            key={norm.id}
-            className="group flex flex-col rounded-2xl border border-slate-800 bg-slate-900 p-6 transition-all hover:border-emerald-500/30"
-          >
-            <div className="mb-4 flex items-start justify-between">
-              <span className="rounded bg-slate-800 px-2 py-1 text-[10px] font-black tracking-widest text-slate-400 uppercase transition-colors group-hover:text-emerald-400">
-                {norm.tag}
-              </span>
-              <button
-                type="button"
-                onClick={() => handleOpenModal(norm.title)}
-                className="text-slate-500 transition-colors hover:text-white"
-                aria-label={`Descargar resumen: ${norm.title}`}
-              >
-                <Download size={18} />
-              </button>
-            </div>
-            <h4 className="mb-1 text-lg font-bold text-white">{norm.title}</h4>
-            <p className="mb-4 text-xs font-bold tracking-tighter text-emerald-500 uppercase">{norm.subtitle}</p>
-
-            <div className="flex grow flex-col space-y-4">
-              <div>
-                <span className="mb-1 block text-[10px] font-bold text-slate-500 uppercase">Resumen Ejecutivo:</span>
-                <p className="text-xs leading-relaxed text-slate-400">{norm.summary}</p>
-              </div>
-              <div className="rounded-lg border border-slate-800 bg-slate-950 p-3">
-                <span className="mb-1 flex items-center gap-1 text-[10px] font-bold text-emerald-500 uppercase">
-                  <Search size={10} /> ¿Dónde aplicarla?
-                </span>
-                <p className="text-[11px] leading-snug text-slate-400 italic">{norm.usage}</p>
-              </div>
-            </div>
-
-            <button
-              type="button"
-              onClick={() => handleOpenModal(norm.title)}
-              className="mt-6 flex items-center gap-2 text-[10px] font-bold tracking-widest text-emerald-500 uppercase transition-colors hover:text-emerald-400"
+        {NORMS.map((norm) => {
+          const pdf = NORM_PDF_BY_TITLE[norm.title] ?? null;
+          return (
+            <div
+              key={norm.id}
+              className="group flex flex-col rounded-2xl border border-slate-800 bg-slate-900 p-6 transition-all hover:border-emerald-500/30"
             >
-              Descargar Resumen Técnico <ArrowRight size={12} />
-            </button>
-          </div>
-        ))}
+              <div className="mb-4 flex items-start justify-between">
+                <span className="rounded bg-slate-800 px-2 py-1 text-[10px] font-black tracking-widest text-slate-400 uppercase transition-colors group-hover:text-emerald-400">
+                  {norm.tag}
+                </span>
+                {pdf ? (
+                  <a
+                    href={pdf.href}
+                    download={pdf.fileName}
+                    onClick={() => trackEvent("download_norm", { norm_name: norm.title })}
+                    className="text-slate-500 transition-colors hover:text-white"
+                    aria-label={`Descargar PDF: ${norm.title}`}
+                  >
+                    <Download size={18} />
+                  </a>
+                ) : (
+                  <span className="text-slate-700" aria-label="PDF próximamente">
+                    <Download size={18} />
+                  </span>
+                )}
+              </div>
+
+              <h4 className="mb-1 text-lg font-bold text-white">{norm.title}</h4>
+              <p className="mb-4 text-xs font-bold tracking-tighter text-emerald-500 uppercase">{norm.subtitle}</p>
+
+              <div className="flex grow flex-col space-y-4">
+                <div>
+                  <span className="mb-1 block text-[10px] font-bold text-slate-500 uppercase">Resumen Ejecutivo:</span>
+                  <p className="text-xs leading-relaxed text-slate-400">{norm.summary}</p>
+                </div>
+                <div className="rounded-lg border border-slate-800 bg-slate-950 p-3">
+                  <span className="mb-1 flex items-center gap-1 text-[10px] font-bold text-emerald-500 uppercase">
+                    <Search size={10} /> ¿Dónde aplicarla?
+                  </span>
+                  <p className="text-[11px] leading-snug text-slate-400 italic">{norm.usage}</p>
+                </div>
+              </div>
+
+              {pdf ? (
+                <a
+                  href={pdf.href}
+                  download={pdf.fileName}
+                  onClick={() => trackEvent("download_norm", { norm_name: norm.title })}
+                  className="mt-6 flex items-center gap-2 text-[10px] font-bold tracking-widest text-emerald-500 uppercase transition-colors hover:text-emerald-400"
+                >
+                  Descargar PDF oficial <ArrowRight size={12} />
+                </a>
+              ) : (
+                <span className="mt-6 text-[10px] text-slate-600 uppercase">PDF próximamente</span>
+              )}
+            </div>
+          );
+        })}
       </div>
 
-      <div
-        role="button"
-        tabIndex={0}
-        onClick={() => handleOpenModal("Base Normativa Completa 2026")}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            handleOpenModal("Base Normativa Completa 2026");
-          }
-        }}
-        className="group flex cursor-pointer items-center justify-between rounded-2xl border border-slate-800 bg-slate-900 p-6 transition-all hover:bg-slate-800"
+      {/* Base Normativa Completa — descarga directa */}
+      <a
+        href="/norms/decreto-1072-2015.pdf"
+        download="Decreto-1072-2015-Sector-Trabajo-Base-Legal.pdf"
+        onClick={() => trackEvent("download_norm", { norm_name: "Base Normativa Completa 2026" })}
+        className="group flex items-center justify-between rounded-2xl border border-slate-800 bg-slate-900 p-6 transition-all hover:bg-slate-800"
       >
         <div className="flex items-center gap-4">
-          <AlertCircle className="text-amber-500" size={24} />
+          <Download className="text-amber-500 shrink-0" size={24} />
           <span className="text-sm font-bold tracking-tight text-slate-300">
-            Base legal consolidada: Decreto Único del Sector Trabajo (Decreto 1072 de 2015) — descarga tras registro
+            Base legal consolidada: Decreto Único del Sector Trabajo (Decreto 1072 de 2015)
           </span>
         </div>
-        <ArrowRight size={20} className="text-slate-600 transition-transform group-hover:translate-x-2" />
+        <ArrowRight size={20} className="text-slate-600 transition-transform group-hover:translate-x-2 shrink-0" />
+      </a>
+
+      {/* ── Avisos de actualización — formulario opcional ────────────────────── */}
+      {/* La descarga ya ocurrió arriba. Este CTA es completamente independiente. */}
+      <div className="rounded-2xl border border-slate-700/50 bg-slate-900/50 p-6">
+        <div className="mb-3 flex items-center gap-3">
+          <Bell size={20} className="shrink-0 text-emerald-400" />
+          <p className="text-sm font-bold text-white">
+            ¿Quieres que te avisemos cuando alguna de estas normas se actualice?
+          </p>
+        </div>
+        <p className="mb-4 text-xs leading-relaxed text-slate-500">
+          Opcional — independiente de la descarga. Solo te escribimos cuando haya una actualización normativa relevante.
+        </p>
+
+        {notifyState === "done" ? (
+          <div className="flex items-center gap-2 text-sm text-emerald-400">
+            <CheckCircle2 size={16} />
+            Anotado — te avisamos cuando haya cambios.
+          </div>
+        ) : (
+          <form onSubmit={handleNotifySubmit} className="space-y-3">
+            <input
+              type="email"
+              required
+              value={notifyEmail}
+              onChange={(e) => setNotifyEmail(e.target.value)}
+              placeholder="correo@empresa.com"
+              inputMode="email"
+              autoComplete="email"
+              className="min-h-10 w-full rounded-xl border border-slate-700 bg-slate-950 px-4 text-sm text-white placeholder:text-slate-600 focus:border-emerald-500 focus:outline-none"
+            />
+
+            {/* Corrección A — checkbox de autorización expresa, sin marcar por defecto */}
+            <label className="flex cursor-pointer items-start gap-3">
+              <input
+                type="checkbox"
+                checked={authorized}
+                onChange={(e) => setAuthorized(e.target.checked)}
+                className="mt-0.5 h-4 w-4 shrink-0 rounded border-slate-700 bg-slate-950 accent-emerald-500"
+              />
+              <span className="text-xs leading-relaxed text-slate-400">
+                Autorizo el tratamiento de mi correo para este fin, conforme a la{" "}
+                <a href="/privacidad" className="underline hover:text-slate-300">
+                  política de privacidad
+                </a>
+                .
+              </span>
+            </label>
+
+            {/* Botón deshabilitado hasta que el checkbox esté marcado */}
+            <button
+              type="submit"
+              disabled={!authorized || notifyState === "loading"}
+              className="rounded-xl bg-emerald-600 px-5 py-2 text-sm font-bold text-white transition hover:bg-emerald-500 disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              {notifyState === "loading" ? "Enviando…" : "Suscribir"}
+            </button>
+          </form>
+        )}
       </div>
     </div>
   );

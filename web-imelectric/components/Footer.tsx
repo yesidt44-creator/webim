@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const linkClass =
@@ -32,6 +33,15 @@ export const Footer = () => {
             <p className="max-w-sm text-sm leading-relaxed text-slate-500">
               Ingeniería técnica y digital operando desde Yondó, Antioquia para toda la industria global.
             </p>
+            <div className="mt-5">
+              <Image
+                src="/badges/iso-9001-ll-c.png"
+                alt="Certificación ISO 9001 — LL-C Certification"
+                width={120}
+                height={48}
+                className="opacity-80"
+              />
+            </div>
           </div>
 
           {/* Plataformas y servicios (inicio) */}
@@ -44,13 +54,23 @@ export const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/#safety-on" className={linkClass}>
-                  Safety On
+                <Link href="/#veriwork" className={linkClass}>
+                  Veriwork
                 </Link>
               </li>
               <li>
                 <Link href="/#nexvia" className={linkClass}>
                   Nexvia
+                </Link>
+              </li>
+              <li>
+                <Link href="/shield-ai" className={linkClass}>
+                  Shield AI
+                </Link>
+              </li>
+              <li>
+                <Link href="/falion" className={linkClass}>
+                  Falion
                 </Link>
               </li>
               <li>
@@ -161,15 +181,15 @@ export const Footer = () => {
             <LinkedInGlyph className="h-4 w-4" />
             LinkedIn
           </a>
-          <a href="#" className="transition-colors hover:text-slate-400">
+          <Link href="/privacidad" className="transition-colors hover:text-slate-400">
             Política de Privacidad
-          </a>
-          <a href="#" className="transition-colors hover:text-slate-400">
+          </Link>
+          <Link href="/terminos" className="transition-colors hover:text-slate-400">
             Términos de Servicio
-          </a>
-          <a href="#" className="transition-colors hover:text-slate-400">
+          </Link>
+          <Link href="/cookies" className="transition-colors hover:text-slate-400">
             Cookies
-          </a>
+          </Link>
         </div>
       </div>
     </footer>
