@@ -1,9 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { ArrowRight, WifiOff, Brain } from "lucide-react";
 import { ContactModal } from "./ContactModal";
+import { ProductEcosystemVisual } from "./ProductEcosystemVisual";
 
 export const Hero = () => {
   return (
@@ -61,18 +61,7 @@ export const Hero = () => {
         transition={{ duration: 0.8, delay: 0.2 }}
         className="relative flex w-full justify-center md:justify-end"
       >
-        {/* Móvil: dvh + ancho tipo “teléfono” evita barras de URL y lectura UI; desktop: más alto */}
-        <div className="flex w-full max-w-full justify-center rounded-3xl border border-slate-800 bg-gradient-to-tr from-blue-600/20 to-purple-600/20 p-2 shadow-2xl backdrop-blur-3xl sm:p-3 md:inline-flex md:w-auto md:p-4">
-          <Image
-            src="/fixai-screen-1.png"
-            alt="Fix AI — Tablero de planeación con KPIs de mantenimiento: OTs semana, cumplimiento y backlog"
-            width={540}
-            height={960}
-            priority
-            sizes="(max-width: 640px) 300px, (max-width: 1024px) 360px, 420px"
-            className="mx-auto h-auto w-auto max-w-[min(100%,17.5rem)] rounded-2xl border border-slate-700 object-contain shadow-inner max-sm:max-h-[min(52dvh,28rem)] sm:max-w-[min(100%,20rem)] sm:max-h-[min(58dvh,32rem)] md:max-h-[min(80dvh,720px)] md:max-w-full"
-          />
-        </div>
+        <ProductEcosystemVisual />
       </motion.div>
     </section>
   );
