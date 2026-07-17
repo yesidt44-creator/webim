@@ -1,0 +1,58 @@
+---
+description: Reglas obligatorias de contenido, SEO, seguridad, calidad y despliegue para web-imelectric
+alwaysApply: true
+---
+
+# Reglas del proyecto — web-imelectric
+
+Estas reglas se aplican en cualquier tarea sobre este repositorio. Si una instrucción puntual las contradice, señala la contradicción explícitamente antes de proceder; no la apliques en silencio.
+
+## 1. Contenido y marketing — no inventar, no inflar
+
+- Nunca publiques una cifra específica (porcentaje, tiempo, ahorro o ROI) sin una fuente verificable. Si no hay un dato real medido, usa lenguaje de objetivo o diseño: «diseñado para reducir…». Antes de escribir cualquier número, identifica su fuente.
+- Nunca uses superlativos no verificables como «único», «el mejor», «infalible», «infalsificable» o «nadie puede alterar». Reemplázalos por afirmaciones técnicas precisas y defendibles, por ejemplo: «diseñado para que la evidencia no pueda modificarse sin dejar rastro».
+- Nunca nombres una empresa real como cliente, caso de éxito o referencia (por ejemplo, Ecopetrol) sin autorización explícita confirmada. Esto también aplica a meta-keywords y texto no visible.
+- Nunca uses la marca de un ERP o proveedor de terceros como término comercial (por ejemplo, «SAP PM nativo»). Usa «el ERP del operador» o «compatible con SAP PM y otros ERP» solo en contexto claramente descriptivo, nunca en `<title>`, meta-keywords o H1.
+- Precisión criptográfica y legal obligatoria:
+  - Ed25519 es un algoritmo de firma, no de hash. SHA-256 es el hash.
+  - PAdES es un perfil de firma para PDF, no un certificado.
+  - Una clave de firma por empresa sella la transacción; no identifica por sí sola a la persona firmante. Esa identidad proviene del registro de usuario y sus credenciales.
+- Distingue siempre IA generativa real de automatización basada en reglas. Solo llama «IA» a lo que use efectivamente un modelo o LLM. Alertas, clasificación de régimen y validaciones de umbral son automatización.
+- Usa siempre estos nombres de producto: Fix AI (con espacio), Veriwork (nunca «Safety On» en texto visible ni en copy nuevo), Nexvia, Shield AI y Falion. Verifica que toda pieza nueva —imagen, artículo o componente— no reintroduzca nombres descontinuados.
+- No publiques afirmaciones de cumplimiento normativo (Resolución 0312, Decreto 1072, Resolución 4272, etc.) sin verificarlas contra el texto oficial. Si no se pueden verificar, márcalas explícitamente como pendientes de verificación; nunca las asumas.
+
+## 2. SEO y datos estructurados
+
+- Define un solo `Organization` con `@id` fijo, por ejemplo `https://imelectric.es/#organization`. Todo schema que necesite referenciar la empresa (`provider`, `publisher`, `author`) debe usar `{"@id":"https://imelectric.es/#organization"}` y nunca repetir el objeto completo.
+- `sameAs` del `Organization` contiene únicamente LinkedIn. Imelectric no tiene Facebook, Instagram, X/Twitter, TikTok ni YouTube. No agregues ni inventes redes y no dejes placeholders en footer o navegación.
+- Nunca uses `LocalBusiness`. Imelectric no atiende presencialmente a clientes en un punto fijo. Usa `Organization` y `Service` cuando aplique.
+- Cada uno de los cinco productos debe tener su propio `SoftwareApplication`, con el mismo nivel de detalle. Shield AI también debe incluir este bloque.
+- No declares `offers` ni `price` salvo que sean información pública real. Omite el campo antes que inventar un valor, incluido `0`.
+- Usa un único `<h1>` por página. El eyebrow del hero debe ser `<p>`, nunca `<h2>`.
+- Todo texto de imágenes relevantes —hero y mockups— debe ser texto real seleccionable, no texto incrustado en una imagen. Para composiciones complejas, usa SVG o HTML real.
+- Toda imagen informativa debe tener un `alt` descriptivo y los nombres correctos de producto.
+
+## 3. Seguridad y privacidad
+
+- Todo endpoint público `/api/*` necesita rate limiting y protección anti-bot, como mínimo un honeypot.
+- Analytics —GA4, Clarity o cualquier tracker— solo puede cargar después del consentimiento explícito del usuario, nunca incondicionalmente.
+- No publiques formularios que capturen datos personales sin un checkbox de autorización expresa, desmarcado por defecto, y sin registrar prueba de la autorización: fecha, hora y origen.
+- No publiques `/privacidad`, `/terminos` o `/cookies` con placeholders, notas internas o texto `[PENDIENTE...]` visible. Deben estar completas o llevar `noindex` hasta completarse.
+- Todo cambio a `next.config.ts` —headers o CSP— o a la configuración Nginx del VPS debe probarse con `nginx -t` antes de recargar. El VPS aloja otros tres sitios: nunca modifiques configuración global o compartida sin confirmación explícita.
+- `npm audit` debe reportar cero vulnerabilidades high/critical antes de cualquier despliegue.
+
+## 4. Calidad de código y assets
+
+- No dejes código muerto —componentes sin importar o archivos sin referenciar— sin marcarlo explícitamente como candidato a limpieza en el reporte de la tarea.
+- La extensión de todo asset debe coincidir con su formato real. Verifica los assets nuevos al incorporarlos.
+- Comprime y optimiza imágenes pesadas, PDF y PNG antes de subirlos a `/public`. Ningún PDF normativo debería superar aproximadamente 2–3 MB sin justificación.
+- Nunca uses como asset final un visual principal de marca —hero o ecosistema de productos— generado por IA. Puede servir como referencia de estilo o layout, pero el texto final siempre debe construirse como SVG, HTML o React real.
+
+## 5. Definición de terminado
+
+- No reportes una tarea como completada solo porque funciona en local o en un build de desarrollo. «Terminado» significa verificado con evidencia directa contra `https://imelectric.es` en producción mediante fetch en vivo, `curl` o captura del sitio real.
+- Antes de cerrar cualquier tarea que toque código de cara al usuario, incluye en el reporte:
+  - La rama de Git donde vive el cambio.
+  - Si esa rama es la que despliega a producción.
+  - Si el cambio ya se desplegó o sigue pendiente de `pm2 restart`.
+- Si no puedes verificar producción por falta de acceso SSH o credenciales, dilo explícitamente en lugar de reportar la tarea como cerrada.
