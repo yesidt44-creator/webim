@@ -105,6 +105,10 @@ export const ShieldAI = () => {
             El responsable del SG-SST y el representante legal revisan y firman. Nosotros no firmamos
             por nadie.
           </p>
+          <p className="mb-6 border-l-2 border-violet-500 pl-4 text-sm leading-relaxed text-slate-300">
+            A diferencia de plataformas genéricas de SST adaptadas de otros países, Shield AI nace
+            de la Resolución 0312 y del Decreto 1072 para el contexto empresarial colombiano.
+          </p>
           <div className="flex items-center gap-3 rounded-xl border border-violet-500/20 bg-violet-500/5 p-4 text-sm text-slate-300">
             <CheckCircle2 size={18} className="shrink-0 text-violet-400" />
             <span>

@@ -107,6 +107,11 @@ export const SafetyOn = async () => {
                 cuándo y bajo qué condiciones. <strong className="text-slate-300">Trazabilidad HSE</strong> que el
                 papel no puede ofrecer.
               </p>
+              <p className="mt-3 text-sm leading-relaxed text-slate-400">
+                El modelo combina hash SHA-256, firma Ed25519 y firma PDF conforme al perfil PAdES,
+                diseñado específicamente para el marco colombiano de firma electrónica del Decreto
+                2364 de 2012; no se limita a trasladar un estándar internacional genérico sin anclaje local.
+              </p>
             </div>
           </div>
 

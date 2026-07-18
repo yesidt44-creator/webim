@@ -5,9 +5,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://imelectric.es",
   },
-  title: "IMELECTRIC — Software industrial con IA | Colombia",
+  title: "Software industrial para Latinoamérica | IMELECTRIC",
   description:
-    "Fix AI: PWA de mantenimiento industrial con IA para contratistas. Veriwork: gestión HSE y permisos de trabajo verificables. Nexvia: gestión de flotas HSEQ. Shield AI: SG-SST para toda empresa colombiana. Soluciones para Oil & Gas, manufactura y transporte en Colombia y Latinoamérica.",
+    "Mantenimiento, HSE y SG-SST digitalizados desde Colombia, con profundidad normativa local. Fix AI, Falion, Veriwork, Nexvia y Shield AI para operaciones industriales.",
   keywords: [
     // Fix AI
     "Fix AI CMMS",
@@ -56,9 +56,9 @@ export const metadata: Metadata = {
     "IMELECTRIC",
   ],
   openGraph: {
-    title: "La IA hace el trabajo repetitivo. Tu equipo toma las decisiones. | IMELECTRIC",
+    title: "Software industrial para Latinoamérica | IMELECTRIC",
     description:
-      "Fix AI, Falion, Veriwork, Nexvia y Shield AI automatizan el reporte, la trazabilidad y el cumplimiento normativo — para que tu equipo invierta su tiempo en lo que requiere criterio humano.",
+      "Mantenimiento, HSE y SG-SST digitalizados desde Colombia, con profundidad normativa local para operaciones industriales.",
     url: "https://imelectric.es",
     siteName: "IMELECTRIC",
     locale: "es_CO",
@@ -67,9 +67,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Software industrial con IA para Colombia | IMELECTRIC",
+    title: "Software industrial para Latinoamérica | IMELECTRIC",
     description:
-      "5 plataformas: Fix AI, Falion, Veriwork, Nexvia y Shield AI. La IA acelera, la persona decide.",
+      "Mantenimiento, HSE y SG-SST digitalizados desde Colombia. Fix AI, Falion, Veriwork, Nexvia y Shield AI.",
     images: ["/og-default.png"],
   },
 };
@@ -84,6 +84,11 @@ import { ShieldAI } from "@/components/ShieldAI";
 import { IndustrialServices } from "@/components/IndustrialServices";
 import { Education } from "@/components/Education";
 import { Footer } from "@/components/Footer";
+import { HomeFalionRoi } from "@/components/HomeFalionRoi";
+import { ProductTour } from "@/components/ProductTour";
+import { TrustStrip } from "@/components/TrustStrip";
+import { TestimonialsStaging } from "@/components/TestimonialsStaging";
+import { ProductivitySection } from "@/components/ProductivitySection";
 
 export default function Home() {
   return (
@@ -93,16 +98,25 @@ export default function Home() {
       {/* Contenedor principal con padding superior para compensar el Navbar fijo */}
       <div className="pt-[calc(7.125rem*0.75+1rem)]">
         <Hero />
+        <TrustStrip />
+        <ProductivitySection />
 
         {/* Sección Filosofía IA — anclada desde el CTA del Hero */}
         <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-800 to-transparent" />
 
         <AiPhilosophy />
+
+        <HomeFalionRoi />
         
         {/* Separador sutil */}
         <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-800 to-transparent" />
         
         <PainPoints />
+
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-800 to-transparent" />
+
+        <ProductTour />
+        <TestimonialsStaging />
 
         <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-800 to-transparent" />
 

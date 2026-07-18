@@ -16,16 +16,22 @@ export const Hero = () => {
         <p className="mb-4 text-sm font-semibold leading-snug text-blue-400 sm:text-base">
           Software industrial con IA para contratistas y operadores en Colombia
         </p>
-        <h1 className="mb-6 text-5xl font-extrabold tracking-tight md:text-7xl">
-          La IA hace el trabajo repetitivo.{" "}
-          <span className="text-blue-400">Tu equipo sigue tomando las decisiones.</span>
-        </h1>
-        <p className="mb-8 max-w-lg text-lg leading-relaxed text-slate-400">
-          <strong className="text-white">Fix AI</strong>, <strong className="text-white">Falion</strong>,{" "}
-          <strong className="text-white">Veriwork</strong>, <strong className="text-white">Nexvia</strong> y{" "}
-          <strong className="text-white">Shield AI</strong> automatizan
-          el reporte, la trazabilidad y el cumplimiento normativo de tu operación — para que tu equipo
-          deje de perder horas en tareas repetitivas y las invierta en lo que requiere criterio humano: revisar, aprobar y firmar.
+        <motion.h1
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="mb-6 text-5xl font-extrabold tracking-tight md:text-7xl"
+        >
+          El software industrial que entiende{" "}
+          <span className="text-blue-400">cómo se trabaja en Latinoamérica.</span>
+        </motion.h1>
+        <p className="mb-5 max-w-xl text-lg leading-relaxed text-slate-300">
+          Mantenimiento, HSE y SG-SST digitalizados — construido desde Colombia, con la profundidad
+          normativa que un producto genérico o adaptado de otro país no tiene.
+        </p>
+        <p className="mb-8 max-w-xl leading-relaxed text-slate-400">
+          Cinco plataformas, un mismo principio: la IA hace el trabajo repetitivo — tu equipo sigue
+          revisando, aprobando y firmando.
         </p>
         <div className="flex flex-wrap gap-4">
           <ContactModal>

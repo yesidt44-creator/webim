@@ -80,8 +80,8 @@ export const AiPhilosophy = () => {
             id="ai-philosophy-heading"
             className="mb-6 text-4xl font-extrabold leading-tight text-white md:text-5xl"
           >
-            La IA acelera.{" "}
-            <span className="text-blue-400">La persona decide.</span>
+            La IA hace el trabajo repetitivo.{" "}
+            <span className="text-blue-400">Tu equipo sigue tomando las decisiones.</span>
           </h2>
           <p className="text-lg leading-relaxed text-slate-400">
             Nuestro modelo no es &ldquo;la IA reemplaza al experto&rdquo;. Es lo contrario: la IA elimina la parte

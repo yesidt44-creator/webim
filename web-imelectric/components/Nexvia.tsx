@@ -264,7 +264,7 @@ export const Nexvia = async () => {
         </ul>
 
         {/* Badge ISO 9001 */}
-        <div className="flex items-center justify-center gap-4 py-6">
+        <div className="flex flex-col items-center justify-center gap-4 py-6 text-center sm:flex-row sm:text-left">
           <Image
             src="/badges/iso-9001-ll-c.png"
             alt="Certificación ISO 9001 — LL-C Certification"
@@ -272,9 +272,19 @@ export const Nexvia = async () => {
             height={56}
             className="opacity-90"
           />
-          <p className="text-xs text-slate-500">
-            Empresa certificada <strong className="text-slate-400">ISO 9001:2015</strong>
-          </p>
+          <div className="max-w-md text-xs leading-relaxed">
+            <p className="text-slate-400">
+              Certificado No. 576091 · ISO 9001:2015 · LL-C Certification · vigente hasta jun-2029
+            </p>
+            <a
+              href="https://www.ll-c.info"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-1 inline-block font-semibold text-blue-400 underline underline-offset-2 transition-colors hover:text-blue-300"
+            >
+              Verificar certificado · código 6B39360F-AAF
+            </a>
+          </div>
         </div>
 
         {/* CTA */}

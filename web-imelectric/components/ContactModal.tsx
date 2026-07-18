@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useId, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -19,6 +19,14 @@ const PRIORITY_LABELS: Record<string, string> = {
 
 export const ContactModal = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
+  const fieldId = useId();
+  const fullNameId = `${fieldId}-full-name`;
+  const companyId = `${fieldId}-company`;
+  const emailId = `${fieldId}-email`;
+  const phoneId = `${fieldId}-phone`;
+  const priorityLabelId = `${fieldId}-priority-label`;
+  const messageId = `${fieldId}-message`;
+  const consentId = `${fieldId}-consent`;
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [open, setOpen] = useState(false);
   const [fullName, setFullName] = useState("");
@@ -111,10 +119,14 @@ export const ContactModal = ({ children }: { children: React.ReactNode }) => {
               />
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div className="space-y-2">
-                  <label className="text-xs font-semibold tracking-wider text-slate-400 uppercase">
+                  <label
+                    htmlFor={fullNameId}
+                    className="text-xs font-semibold tracking-wider text-slate-400 uppercase"
+                  >
                     Nombre completo
                   </label>
                   <Input
+                    id={fullNameId}
                     required
                     name="fullName"
                     autoComplete="name"
@@ -125,8 +137,14 @@ export const ContactModal = ({ children }: { children: React.ReactNode }) => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-xs font-semibold tracking-wider text-slate-400 uppercase">Empresa</label>
+                  <label
+                    htmlFor={companyId}
+                    className="text-xs font-semibold tracking-wider text-slate-400 uppercase"
+                  >
+                    Empresa
+                  </label>
                   <Input
+                    id={companyId}
                     required
                     name="company"
                     autoComplete="organization"
@@ -139,10 +157,14 @@ export const ContactModal = ({ children }: { children: React.ReactNode }) => {
               </div>
 
               <div className="space-y-2">
-                <label className="text-xs font-semibold tracking-wider text-slate-400 uppercase">
+                <label
+                  htmlFor={emailId}
+                  className="text-xs font-semibold tracking-wider text-slate-400 uppercase"
+                >
                   Correo corporativo
                 </label>
                 <Input
+                  id={emailId}
                   type="email"
                   required
                   name="email"
@@ -156,10 +178,14 @@ export const ContactModal = ({ children }: { children: React.ReactNode }) => {
               </div>
 
               <div className="space-y-2">
-                <label className="text-xs font-semibold tracking-wider text-slate-400 uppercase">
+                <label
+                  htmlFor={phoneId}
+                  className="text-xs font-semibold tracking-wider text-slate-400 uppercase"
+                >
                   Teléfono <span className="normal-case tracking-normal text-slate-600">(opcional)</span>
                 </label>
                 <Input
+                  id={phoneId}
                   type="tel"
                   name="phone"
                   autoComplete="tel"
@@ -172,11 +198,17 @@ export const ContactModal = ({ children }: { children: React.ReactNode }) => {
               </div>
 
               <div className="space-y-2">
-                <label className="text-xs font-semibold tracking-wider text-slate-400 uppercase">
+                <label
+                  id={priorityLabelId}
+                  className="text-xs font-semibold tracking-wider text-slate-400 uppercase"
+                >
                   Prioridad técnica
                 </label>
                 <Select value={priority} onValueChange={setPriority} required>
-                  <SelectTrigger className="min-h-12 bg-slate-900 text-base text-white border-slate-700">
+                  <SelectTrigger
+                    aria-labelledby={priorityLabelId}
+                    className="min-h-12 bg-slate-900 text-base text-white border-slate-700"
+                  >
                     <SelectValue placeholder="Seleccione un desafío..." />
                   </SelectTrigger>
                   <SelectContent className="border-slate-700 bg-slate-800 text-white">
@@ -189,10 +221,14 @@ export const ContactModal = ({ children }: { children: React.ReactNode }) => {
               </div>
 
               <div className="space-y-2">
-                <label className="text-xs font-semibold tracking-wider text-slate-400 uppercase">
+                <label
+                  htmlFor={messageId}
+                  className="text-xs font-semibold tracking-wider text-slate-400 uppercase"
+                >
                   Mensaje <span className="normal-case tracking-normal text-slate-600">(opcional)</span>
                 </label>
                 <textarea
+                  id={messageId}
                   name="message"
                   rows={3}
                   value={message}
@@ -202,8 +238,12 @@ export const ContactModal = ({ children }: { children: React.ReactNode }) => {
                 />
               </div>
 
-              <label className="flex items-start gap-3 pt-1 text-xs leading-relaxed text-slate-400">
+              <label
+                htmlFor={consentId}
+                className="flex items-start gap-3 pt-1 text-xs leading-relaxed text-slate-400"
+              >
                 <input
+                  id={consentId}
                   type="checkbox"
                   name="consent"
                   required

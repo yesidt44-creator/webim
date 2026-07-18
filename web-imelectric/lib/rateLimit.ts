@@ -51,11 +51,17 @@ export function checkRateLimit(ip: string): RateLimitResult {
   return { allowed: true, remaining: LIMIT - entry.count, retryAfterSecs: 0 };
 }
 
-/** Extract client IP from Next.js request headers (works behind Nginx proxy). */
+/**
+ * Extract the client IP set by the trusted Nginx reverse proxy.
+ *
+ * Production assumes Next.js only accepts traffic from Nginx and that its
+ * `proxy_set_header X-Real-IP $remote_addr` overwrites any client-supplied
+ * value. Do not fall back to X-Forwarded-For: its leftmost entries are
+ * client-controlled with the current `$proxy_add_x_forwarded_for` topology.
+ * Revisit this trust boundary before adding another proxy or exposing Node.
+ */
 export function getClientIp(request: Request): string {
-  const forwarded = request.headers.get("x-forwarded-for");
-  if (forwarded) return forwarded.split(",")[0].trim();
-  return request.headers.get("x-real-ip") ?? "unknown";
+  return request.headers.get("x-real-ip")?.trim() || "unknown";
 }
 
 /** Return a privacy-safe IP label for logs — last octet removed for IPv4. */

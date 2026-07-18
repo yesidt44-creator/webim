@@ -68,6 +68,10 @@ export async function POST(request: Request) {
 
   // ── Prueba de autorización (Art. 9, Ley 1581) ──────────────────────────────
   const consent = body.consent === true;
+  if (!consent) {
+    return NextResponse.json({ error: "Se requiere autorización expresa del titular" }, { status: 400 });
+  }
+
   const receivedAtUtc = new Date().toISOString();
   const consentProof = [
     "",
@@ -93,9 +97,6 @@ export async function POST(request: Request) {
 
     if (!emailOk) {
       return NextResponse.json({ error: "Correo válido es obligatorio" }, { status: 400 });
-    }
-    if (!consent) {
-      return NextResponse.json({ error: "Se requiere autorización expresa del titular" }, { status: 400 });
     }
 
     replyTo = email;
@@ -123,9 +124,6 @@ export async function POST(request: Request) {
     replyTo = email;
 
     if (formType === "contact") {
-      if (!consent) {
-        return NextResponse.json({ error: "Se requiere autorización expresa del titular" }, { status: 400 });
-      }
       const priority = clamp(body.priority);
       if (!priority) {
         return NextResponse.json({ error: "Seleccione una prioridad técnica" }, { status: 400 });

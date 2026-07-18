@@ -33,7 +33,7 @@ export const Footer = () => {
             <p className="max-w-sm text-sm leading-relaxed text-slate-500">
               Ingeniería técnica y digital operando desde Yondó, Antioquia para toda la industria global.
             </p>
-            <div className="mt-5">
+            <div className="mt-5 max-w-xs">
               <Image
                 src="/badges/iso-9001-ll-c.png"
                 alt="Certificación ISO 9001 — LL-C Certification"
@@ -41,9 +41,17 @@ export const Footer = () => {
                 height={48}
                 className="opacity-80"
               />
-              <p className="mt-2 max-w-[140px] text-[10px] leading-snug text-slate-600">
-                Certificado ISO 9001 por LL-C Certification
+              <p className="mt-2 text-xs leading-relaxed text-slate-400">
+                Certificado No. 576091 · ISO 9001:2015 · LL-C Certification · vigente hasta jun-2029
               </p>
+              <a
+                href="https://www.ll-c.info"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-1 inline-block text-xs font-semibold text-blue-400 underline underline-offset-2 transition-colors hover:text-blue-300"
+              >
+                Verificar certificado · código 6B39360F-AAF
+              </a>
             </div>
           </div>
 
@@ -74,6 +82,11 @@ export const Footer = () => {
               <li>
                 <Link href="/falion" className={linkClass}>
                   Falion
+                </Link>
+              </li>
+              <li>
+                <Link href="/consultoria-mantenimiento" className={linkClass}>
+                  Consultoría en mantenimiento
                 </Link>
               </li>
               <li>

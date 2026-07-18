@@ -8,10 +8,12 @@ import {
   Wrench,
   ShieldCheck,
   Truck,
+  ChartNoAxesCombined,
   PackageSearch,
   CircuitBoard,
   Brain,
   FlaskConical,
+  BookOpen,
   Menu,
   X,
 } from "lucide-react";
@@ -61,7 +63,7 @@ export const Navbar = () => {
             >
               Soluciones e Ingeniería <ChevronDown size={16} className="opacity-80" />
             </button>
-            <div className="invisible absolute top-full left-1/2 mt-0 grid w-[800px] max-w-[calc(100vw-2rem)] -translate-x-1/2 grid-cols-2 gap-12 rounded-xl border border-slate-800 bg-slate-900 p-8 opacity-0 shadow-2xl transition-all group-hover:visible group-hover:opacity-100">
+            <div className="invisible absolute top-full left-1/2 mt-0 grid w-[1000px] max-w-[calc(100vw-2rem)] -translate-x-1/2 grid-cols-[1.2fr_1fr_0.8fr] gap-10 rounded-xl border border-slate-800 bg-slate-900 p-8 opacity-0 shadow-2xl transition-all group-hover:visible group-hover:opacity-100">
               <div>
                 <h4 className="mb-4 border-b border-slate-800 pb-2 text-[10px] font-bold tracking-widest text-blue-400 uppercase">
                   Plataformas SaaS IA
@@ -101,9 +103,15 @@ export const Navbar = () => {
               </div>
               <div>
                 <h4 className="mb-4 border-b border-slate-800 pb-2 text-[10px] font-bold tracking-widest text-emerald-400 uppercase">
-                  Servicios de Respuesta Crítica
+                  Servicios de Ingeniería
                 </h4>
                 <div className="space-y-4">
+                  <MenuLink
+                    href="/consultoria-mantenimiento"
+                    icon={<ChartNoAxesCombined size={18} />}
+                    title="Consultoría en Mantenimiento"
+                    desc="Confiabilidad · RCM · RAM"
+                  />
                   <MenuLink
                     href="/#servicios"
                     icon={<PackageSearch size={18} />}
@@ -118,17 +126,22 @@ export const Navbar = () => {
                   />
                 </div>
               </div>
+              <div>
+                <h4 className="mb-4 border-b border-slate-800 pb-2 text-[10px] font-bold tracking-widest text-amber-400 uppercase">
+                  Academia Técnica
+                </h4>
+                <MenuLink
+                  href="/academia"
+                  icon={<BookOpen size={18} />}
+                  title="Academia Técnica"
+                  desc="Herramientas y guías"
+                />
+              </div>
             </div>
           </div>
 
           <Link href="/#nosotros" className="transition hover:text-blue-700">
             Sectores
-          </Link>
-          <Link
-            href="/academia"
-            className="font-bold text-blue-400 underline decoration-2 underline-offset-4 transition hover:text-blue-600"
-          >
-            Academia Técnica
           </Link>
         </div>
 
@@ -198,6 +211,9 @@ export const Navbar = () => {
           </ul>
           <p className="mb-3 mt-4 text-[10px] font-bold tracking-widest text-slate-400 uppercase">Servicios</p>
           <ul className="space-y-1 border-b border-slate-100 pb-4">
+            <MobileNavRow href="/consultoria-mantenimiento" onNavigate={closeMobile}>
+              Consultoría en mantenimiento
+            </MobileNavRow>
             <MobileNavRow href="/#servicios" onNavigate={closeMobile}>
               Suministros críticos
             </MobileNavRow>

@@ -146,6 +146,11 @@ export const FixAI = async () => {
               organización que necesite un{" "}
               <strong className="text-white">CMMS completo</strong> adaptado a su operación real.
             </p>
+            <p className="mb-6 border-l-2 border-blue-500 pl-4 text-sm leading-relaxed text-slate-300">
+              Su flujo de exportación está pensado para el ciclo real de los contratistas colombianos
+              de Oil &amp; Gas: del trabajo ejecutado en campo al formato que recibe el ERP del operador,
+              no como un CMMS genérico traducido.
+            </p>
 
             {/* El problema */}
             <div className="rounded-2xl border border-amber-500/20 bg-amber-500/5 p-5">
@@ -375,7 +380,7 @@ export const FixAI = async () => {
               </li>
             ))}
           </ul>
-          <div className="mt-6 flex items-center gap-4 border-t border-slate-800 pt-5">
+          <div className="mt-6 flex flex-col items-start gap-4 border-t border-slate-800 pt-5 sm:flex-row sm:items-center">
             <Image
               src="/badges/iso-9001-ll-c.png"
               alt="Certificación ISO 9001 — LL-C Certification"
@@ -383,9 +388,19 @@ export const FixAI = async () => {
               height={63}
               className="opacity-90"
             />
-            <p className="text-xs leading-relaxed text-slate-500">
-              Respaldo de compañía certificada <strong className="text-slate-400">ISO 9001:2015</strong> por LL-C Certification.
-            </p>
+            <div className="max-w-md text-xs leading-relaxed">
+              <p className="text-slate-400">
+                Certificado No. 576091 · ISO 9001:2015 · LL-C Certification · vigente hasta jun-2029
+              </p>
+              <a
+                href="https://www.ll-c.info"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-1 inline-block font-semibold text-blue-400 underline underline-offset-2 transition-colors hover:text-blue-300"
+              >
+                Verificar certificado · código 6B39360F-AAF
+              </a>
+            </div>
           </div>
         </div>
 
