@@ -11,6 +11,9 @@ import {
   Lock,
   Building2,
   ArrowRight,
+  BadgeCheck,
+  Leaf,
+  Database,
 } from "lucide-react";
 import { ContactModal } from "./ContactModal";
 
@@ -194,6 +197,53 @@ export const ShieldAI = () => {
                   {s.name}
                 </div>
                 <p className="text-xs leading-relaxed text-slate-400">{s.desc}</p>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Ruta hacia un Sistema de Gestión Integrado */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-20 rounded-3xl border border-slate-800 bg-slate-900/60 p-8 md:p-10"
+        >
+          <h2 className="mb-5 text-3xl font-bold text-white">
+            De cumplir la norma a certificarse: la ruta hacia el SGI
+          </h2>
+          <p className="leading-relaxed text-slate-400">
+            Shield AI resuelve la obligación legal del SG-SST — pero para muchas empresas, cumplir la
+            Resolución 0312 es también el primer paso hacia algo más amplio: un Sistema de Gestión
+            Integrado (SGI). La arquitectura de Shield AI comparte la misma Estructura de Alto Nivel (HLS)
+            que exigen ISO 9001 (calidad), ISO 14001 (ambiental), ISO 45001 (seguridad y salud) e ISO
+            27001 (seguridad de la información). Esto significa que una empresa puede empezar solo con
+            SG-SST y, cuando licitaciones (SECOP), un cliente exigente o la necesidad de exportar lo
+            requieran, activar los demás módulos sin rediseñar el sistema ni duplicar trabajo documental.
+          </p>
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {[
+              {
+                icon: <BadgeCheck size={22} />,
+                title: "ISO 9001 · Calidad",
+                desc: "Gestión de calidad de procesos y satisfacción del cliente.",
+              },
+              {
+                icon: <Leaf size={22} />,
+                title: "ISO 14001 · Ambiental",
+                desc: "Gestión de impacto ambiental de la operación.",
+              },
+              {
+                icon: <Database size={22} />,
+                title: "ISO 27001 · Seguridad de la información",
+                desc: "Protección de datos y activos digitales.",
+              },
+            ].map(({ icon, title, desc }) => (
+              <div key={title} className="rounded-2xl border border-violet-500/20 bg-violet-500/5 p-5">
+                <div className="mb-3 text-violet-400" aria-hidden="true">{icon}</div>
+                <h3 className="font-bold text-white">{title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-400">{desc}</p>
               </div>
             ))}
           </div>

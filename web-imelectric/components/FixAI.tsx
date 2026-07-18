@@ -12,6 +12,7 @@ import {
   Layers,
 } from "lucide-react";
 import { FixAICta } from "./FixAICta";
+import { ProductTour } from "./ProductTour";
 
 const fixAiJsonLd = {
   "@context": "https://schema.org",
@@ -237,41 +238,8 @@ export const FixAI = async () => {
           </div>
         </div>
 
-        {/* ── SCREENSHOTS ─────────────────────────────────────── */}
-        <div className="mb-20">
-          <div className="mb-10 text-center">
-            <p className="mb-2 text-xs font-bold tracking-widest text-slate-500 uppercase">Fix AI en acción</p>
-            <h3 className="text-2xl font-bold text-white">Así lo ve el técnico en campo y el planeador en oficina</h3>
-          </div>
-          <div className="flex flex-wrap justify-center gap-8">
-            <div className="flex flex-col items-center gap-3">
-              <div className="overflow-hidden rounded-3xl border border-slate-700 shadow-2xl shadow-blue-950/50" style={{ width: 240 }}>
-                <Image
-                  src="/fixai-screen-1.png"
-                  alt="Fix AI — Tablero de planeación con KPIs: OTs semana, cumplimiento, backlog y sesiones pendientes"
-                  width={540}
-                  height={960}
-                  className="w-full object-cover"
-                  unoptimized
-                />
-              </div>
-              <p className="text-center text-xs text-slate-500">Dashboard del planeador — KPIs y cumplimiento semanal</p>
-            </div>
-            <div className="flex flex-col items-center gap-3">
-              <div className="overflow-hidden rounded-3xl border border-slate-700 shadow-2xl shadow-blue-950/50" style={{ width: 240 }}>
-                <Image
-                  src="/fixai-screen-2.png"
-                  alt="Fix AI — Formulario de ejecución de OT con clasificación, fecha y encabezado de la orden de trabajo"
-                  width={540}
-                  height={960}
-                  className="w-full object-cover"
-                  unoptimized
-                />
-              </div>
-              <p className="text-center text-xs text-slate-500">Ejecución de OT en campo — paso a paso guiado</p>
-            </div>
-          </div>
-        </div>
+        {/* ── TOUR INTERACTIVO ─────────────────────────────────── */}
+        <ProductTour />
 
         {/* ── FEATURES ────────────────────────────────────────── */}
         <div className="mb-20">

@@ -76,18 +76,11 @@ export const metadata: Metadata = {
 import { Hero } from "@/components/Hero";
 import { AiPhilosophy } from "@/components/AiPhilosophy";
 import { PainPoints } from "@/components/PainPoints";
-import { FixAI } from "@/components/FixAI";
-import { Nexvia } from "@/components/Nexvia";
 import { About } from "@/components/About";
-import { SafetyOn } from "@/components/SafetyOn";
-import { ShieldAI } from "@/components/ShieldAI";
 import { IndustrialServices } from "@/components/IndustrialServices";
 import { Education } from "@/components/Education";
 import { Footer } from "@/components/Footer";
-import { HomeFalionRoi } from "@/components/HomeFalionRoi";
-import { ProductTour } from "@/components/ProductTour";
 import { TrustStrip } from "@/components/TrustStrip";
-import { TestimonialsStaging } from "@/components/TestimonialsStaging";
 import { ProductivitySection } from "@/components/ProductivitySection";
 
 export default function Home() {
@@ -106,8 +99,6 @@ export default function Home() {
 
         <AiPhilosophy />
 
-        <HomeFalionRoi />
-        
         {/* Separador sutil */}
         <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-800 to-transparent" />
         
@@ -115,28 +106,7 @@ export default function Home() {
 
         <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-800 to-transparent" />
 
-        <ProductTour />
-        <TestimonialsStaging />
-
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-800 to-transparent" />
-
-        <FixAI />
-
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-800 to-transparent" />
-
-        <Nexvia />
-
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-800 to-transparent" />
-
         <About />
-
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-800 to-transparent" />
-
-        <SafetyOn />
-
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-800 to-transparent" />
-
-        <ShieldAI />
 
         <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-800 to-transparent" />
 

@@ -15,13 +15,15 @@ import type { ReactNode } from "react";
 
 type ProductCardProps = {
   className: string;
-  headerClassName: string;
+  headerGradient: string;
   icon: ReactNode;
   name: string;
   description: string;
   secondaryDescription?: string;
-  iconClassName: string;
-  shadowClassName: string;
+  iconGradient: string;
+  iconColor: string;
+  shadow: string;
+  hoverShadow: string;
   rotation: number;
   href: string;
 };
@@ -50,13 +52,15 @@ const cardVariants = {
 
 const ProductCard = ({
   className,
-  headerClassName,
+  headerGradient,
   icon,
   name,
   description,
   secondaryDescription,
-  iconClassName,
-  shadowClassName,
+  iconGradient,
+  iconColor,
+  shadow,
+  hoverShadow,
   rotation,
   href,
 }: ProductCardProps) => (
@@ -64,16 +68,26 @@ const ProductCard = ({
     href={href}
     variants={cardVariants}
     custom={rotation}
-    whileHover={{ y: -6, scale: 1.03 }}
+    whileHover={{
+      y: -6,
+      rotate: 0,
+      boxShadow: hoverShadow,
+      transition: { duration: 0.25, ease: "easeOut" },
+    }}
     aria-label={`Conocer ${name}: ${description}`}
-    className={`absolute overflow-hidden rounded-[clamp(0.55rem,1.4vw,1rem)] border border-white/25 bg-slate-50 transition-[box-shadow] duration-300 hover:z-40 focus-visible:z-40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300 ${shadowClassName} ${className}`}
+    className={`absolute overflow-hidden rounded-[clamp(0.55rem,1.4vw,1rem)] border border-white/25 bg-slate-50 hover:z-40 focus-visible:z-40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300 ${className}`}
+    style={{ boxShadow: shadow }}
   >
-    <div className={`flex h-[29%] items-center justify-center px-2 text-xs font-extrabold tracking-tight text-white sm:px-3 sm:text-sm ${headerClassName}`}>
+    <div
+      className="flex h-[29%] items-center justify-center px-2 text-xs font-extrabold tracking-tight text-white sm:px-3 sm:text-sm"
+      style={{ background: headerGradient }}
+    >
       {name}
     </div>
     <div className="flex h-[71%] items-center px-2 sm:gap-[clamp(0.45rem,1.4vw,1rem)] sm:px-[clamp(0.55rem,1.8vw,1.25rem)]">
       <span
-        className={`hidden shrink-0 items-center justify-center rounded-xl ring-1 ring-white/40 shadow-inner sm:flex sm:size-10 lg:size-12 ${iconClassName}`}
+        className="hidden shrink-0 items-center justify-center rounded-xl ring-1 ring-white/60 shadow-inner sm:flex sm:size-10 lg:size-12"
+        style={{ background: iconGradient, color: iconColor }}
         aria-hidden="true"
       >
         {icon}
@@ -115,7 +129,8 @@ const WorkerIcon = () => (
     aria-hidden="true"
     className="size-[70%]"
     viewBox="0 0 48 48"
-    fill="none"
+    fill="currentColor"
+    fillOpacity="0.16"
     stroke="currentColor"
     strokeLinecap="round"
     strokeLinejoin="round"
@@ -160,11 +175,20 @@ export const ProductEcosystemVisual = () => (
 
     <ProductCard
       className="top-[7%] left-[3%] z-20 h-[26%] w-[44%] sm:top-[7%] sm:left-[9%] sm:h-[27%] sm:w-[38%]"
-      headerClassName="bg-gradient-to-r from-blue-950 via-blue-800 to-blue-600"
-      icon={<TimerReset className="size-[66%] drop-shadow-sm" strokeWidth={2.2} />}
-      iconClassName="bg-gradient-to-br from-blue-800 via-blue-500 to-cyan-300 text-white"
-      shadowClassName="shadow-[0_18px_42px_rgba(37,99,235,0.24)] hover:shadow-[0_24px_58px_rgba(37,99,235,0.44)]"
-      rotation={-3}
+      headerGradient="linear-gradient(135deg, #2563EB, #1E3A8A)"
+      icon={
+        <TimerReset
+          className="size-[66%] drop-shadow-sm"
+          fill="currentColor"
+          fillOpacity={0.22}
+          strokeWidth={2.2}
+        />
+      }
+      iconGradient="linear-gradient(135deg, #2563EB20, #1E3A8A40)"
+      iconColor="#1E3A8A"
+      shadow="0 20px 40px -15px rgba(37, 99, 235, 0.35)"
+      hoverShadow="0 30px 50px -15px rgba(37, 99, 235, 0.5)"
+      rotation={-2}
       name="Fix AI"
       description="Reporte en Minutos"
       secondaryDescription="Cumplimiento y Trazabilidad Total"
@@ -172,19 +196,28 @@ export const ProductEcosystemVisual = () => (
     />
     <ProductCard
       className="top-[9%] right-[3%] z-10 h-[26%] w-[44%] sm:top-[10%] sm:right-[8%] sm:h-[27%] sm:w-[38%]"
-      headerClassName="bg-gradient-to-r from-emerald-950 via-emerald-800 to-teal-500"
+      headerGradient="linear-gradient(135deg, #14B8A6, #0F6E56)"
       icon={
         <span className="relative block size-[72%]">
-          <Shield className="absolute inset-0 size-full text-white drop-shadow-sm" strokeWidth={2.1} />
+          <Shield
+            className="absolute inset-0 size-full drop-shadow-sm"
+            fill="currentColor"
+            fillOpacity={0.2}
+            strokeWidth={2.1}
+          />
           <FileCheck2
-            className="absolute right-[-8%] bottom-[-5%] size-[54%] rounded-sm bg-emerald-700 text-emerald-100"
+            className="absolute right-[-8%] bottom-[-5%] size-[54%] rounded-sm"
+            fill="currentColor"
+            fillOpacity={0.3}
             strokeWidth={2.3}
           />
         </span>
       }
-      iconClassName="bg-gradient-to-br from-emerald-800 via-emerald-500 to-teal-300 text-white"
-      shadowClassName="shadow-[0_18px_42px_rgba(15,110,86,0.25)] hover:shadow-[0_24px_58px_rgba(15,110,86,0.46)]"
-      rotation={3}
+      iconGradient="linear-gradient(135deg, #14B8A620, #0F6E5640)"
+      iconColor="#0F6E56"
+      shadow="0 20px 40px -15px rgba(20, 184, 166, 0.35)"
+      hoverShadow="0 30px 50px -15px rgba(20, 184, 166, 0.5)"
+      rotation={2}
       name="Veriwork"
       description="Blindaje Legal HSE"
       secondaryDescription="Aseguramiento Integral de Permisos"
@@ -192,10 +225,19 @@ export const ProductEcosystemVisual = () => (
     />
     <ProductCard
       className="top-[32%] left-[3%] z-10 h-[26%] w-[44%] sm:top-[31%] sm:left-[6%] sm:h-[27%] sm:w-[38%]"
-      headerClassName="bg-gradient-to-r from-sky-900 via-sky-700 to-cyan-400"
-      icon={<Radio className="size-[63%] drop-shadow-sm" strokeWidth={2.2} />}
-      iconClassName="bg-gradient-to-br from-sky-700 via-sky-500 to-cyan-200 text-white"
-      shadowClassName="shadow-[0_18px_42px_rgba(41,128,185,0.25)] hover:shadow-[0_24px_58px_rgba(41,128,185,0.46)]"
+      headerGradient="linear-gradient(135deg, #38BDF8, #2980B9)"
+      icon={
+        <Radio
+          className="size-[63%] drop-shadow-sm"
+          fill="currentColor"
+          fillOpacity={0.22}
+          strokeWidth={2.2}
+        />
+      }
+      iconGradient="linear-gradient(135deg, #38BDF820, #2980B940)"
+      iconColor="#2980B9"
+      shadow="0 20px 40px -15px rgba(56, 189, 248, 0.35)"
+      hoverShadow="0 30px 50px -15px rgba(56, 189, 248, 0.5)"
       rotation={2}
       name="Nexvia"
       description="Tu Flota, Bajo Control"
@@ -204,11 +246,20 @@ export const ProductEcosystemVisual = () => (
     />
     <ProductCard
       className="top-[34%] right-[3%] z-20 h-[26%] w-[44%] sm:top-[34%] sm:right-[5%] sm:h-[27%] sm:w-[38%]"
-      headerClassName="bg-gradient-to-r from-violet-950 via-violet-800 to-fuchsia-500"
-      icon={<ClipboardCheck className="size-[63%] drop-shadow-sm" strokeWidth={2.2} />}
-      iconClassName="bg-gradient-to-br from-violet-800 via-violet-500 to-fuchsia-300 text-white"
-      shadowClassName="shadow-[0_18px_42px_rgba(108,52,131,0.26)] hover:shadow-[0_24px_58px_rgba(108,52,131,0.48)]"
-      rotation={-3}
+      headerGradient="linear-gradient(135deg, #A855F7, #6C3483)"
+      icon={
+        <ClipboardCheck
+          className="size-[63%] drop-shadow-sm"
+          fill="currentColor"
+          fillOpacity={0.22}
+          strokeWidth={2.2}
+        />
+      }
+      iconGradient="linear-gradient(135deg, #A855F720, #6C348340)"
+      iconColor="#6C3483"
+      shadow="0 20px 40px -15px rgba(168, 85, 247, 0.35)"
+      hoverShadow="0 30px 50px -15px rgba(168, 85, 247, 0.5)"
+      rotation={-2}
       name="Shield AI"
       description="SG-SST en Horas"
       secondaryDescription="IA + Auditor SST Certificado"
@@ -231,13 +282,20 @@ export const ProductEcosystemVisual = () => (
       href="/consultoria-mantenimiento"
       variants={cardVariants}
       custom={0}
-      whileHover={{ y: -4, scale: 1.02 }}
+      whileHover={{
+        y: -6,
+        rotate: 0,
+        boxShadow: "0 30px 50px -15px rgba(180, 83, 9, 0.5)",
+        transition: { duration: 0.25, ease: "easeOut" },
+      }}
       aria-label="Conocer Consultoría y Servicios de Ingeniería"
-      className="absolute bottom-[2%] left-1/2 z-30 flex h-[25%] w-[90%] -translate-x-1/2 items-center gap-2 rounded-[clamp(0.65rem,1.6vw,1.05rem)] border-2 border-amber-700 bg-gradient-to-br from-stone-100 to-amber-50 px-3 text-stone-900 shadow-[0_18px_45px_rgba(0,0,0,0.48),0_0_24px_rgba(180,83,9,0.18)] transition-[box-shadow] duration-300 hover:shadow-[0_24px_58px_rgba(0,0,0,0.52),0_0_34px_rgba(180,83,9,0.34)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300 sm:w-[65%] sm:gap-[clamp(0.55rem,1.8vw,1.25rem)] sm:px-[clamp(0.65rem,2vw,1.4rem)]"
+      className="absolute bottom-[2%] left-1/2 z-30 flex h-[25%] w-[90%] -translate-x-1/2 items-center gap-2 rounded-[clamp(0.65rem,1.6vw,1.05rem)] border-2 border-amber-700 bg-gradient-to-br from-stone-100 to-amber-50 px-3 text-stone-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300 sm:w-[65%] sm:gap-[clamp(0.55rem,1.8vw,1.25rem)] sm:px-[clamp(0.65rem,2vw,1.4rem)]"
+      style={{ boxShadow: "0 20px 40px -15px rgba(180, 83, 9, 0.35)" }}
     >
       <span
         aria-hidden="true"
-        className="hidden size-[clamp(2.1rem,5.2vw,4rem)] shrink-0 items-center justify-center rounded-xl bg-amber-100 text-[#B45309] sm:flex"
+        className="hidden size-[clamp(2.1rem,5.2vw,4rem)] shrink-0 items-center justify-center rounded-xl text-[#B45309] sm:flex"
+        style={{ background: "linear-gradient(135deg, #F59E0B20, #B4530940)" }}
       >
         <WorkerIcon />
       </span>

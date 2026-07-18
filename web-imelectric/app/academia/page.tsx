@@ -88,6 +88,11 @@ const articles = [
     title: "RCA, RCM y FMEA: diferencias",
     desc: "Cuándo usar cada metodología y cómo se complementan.",
   },
+  {
+    href: "/academia/gestion-activos-iso-55001",
+    title: "Gestión de activos según ISO 55001",
+    desc: "Del mantenimiento táctico al balance Costo/Riesgo/Desempeño.",
+  },
 ];
 
 const breadcrumbJsonLd = {

@@ -33,6 +33,8 @@ export const metadata: Metadata = {
     "inspección vehicular digital Colombia",
     "control flota seguridad industrial",
     "gestión activos transporte Colombia",
+    "software gestión de calidad transporte",
+    "ISO 9001 software Colombia",
   ],
   openGraph: {
     title: "Nexvia — Tu Flota Bajo Control | HSEQ Offline-First para Colombia | IMELECTRIC",

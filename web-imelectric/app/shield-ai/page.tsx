@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   },
   title: "Shield AI — SG-SST con IA | Res. 0312 | IMELECTRIC",
   description:
-    "Shield AI automatiza el cumplimiento del SG-SST: diagnóstico de brecha contra Res. 0312, generación de evidencia documental, alertas de vencimiento y firma dual con valor legal. Retención documental mínima de 20 años (Decreto 1072). Para toda empresa colombiana obligada por el Decreto 1072.",
+    "Shield AI automatiza el SG-SST y prepara la ruta hacia un SGI Colombia: diagnóstico Res. 0312, evidencia documental y una arquitectura compatible con ISO 9001, 14001, 45001 y 27001. Sistema de gestión integrado software para empresas colombianas.",
   keywords: [
     "Shield AI SG-SST Colombia",
     "software SG-SST Colombia",
@@ -28,6 +28,9 @@ export const metadata: Metadata = {
     "estándares mínimos Resolución 0312",
     "auditoría SG-SST Colombia",
     "software seguridad salud trabajo Colombia",
+    "SGI Colombia",
+    "sistema de gestión integrado software",
+    "ISO 9001 14001 45001 Colombia",
   ],
   openGraph: {
     title: "Shield AI — SG-SST con IA para toda empresa colombiana | IMELECTRIC",

@@ -1,6 +1,15 @@
 "use client";
 
-import { PackageSearch, CircuitBoard, Globe, Zap, ArrowRight, ShieldCheck } from "lucide-react";
+import Link from "next/link";
+import {
+  PackageSearch,
+  CircuitBoard,
+  Globe,
+  Zap,
+  ArrowRight,
+  ShieldCheck,
+  ChartNoAxesCombined,
+} from "lucide-react";
 import { ContactModal } from "./ContactModal";
 
 export const IndustrialServices = () => {
@@ -9,15 +18,15 @@ export const IndustrialServices = () => {
       <div className="mx-auto max-w-7xl px-6">
         <div className="mb-16">
           <h2 className="mb-6 text-3xl font-bold md:text-5xl">
-            Servicios de <span className="text-blue-500">Respuesta Crítica</span>
+            Servicios de <span className="text-blue-500">Ingeniería</span>
           </h2>
           <p className="max-w-2xl leading-relaxed text-slate-400">
-            Más allá del software, somos su brazo ejecutor en campo. Resolvemos la falta de repuestos y la obsolescencia
-            tecnológica para que su operación nunca se detenga.
+            Más allá del software, apoyamos decisiones, activos y operaciones en campo: desde estrategia de mantenimiento
+            hasta suministro de repuestos y recuperación electrónica especializada.
           </p>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-2">
+        <div className="grid gap-8 lg:grid-cols-3">
           {/* Suministros Críticos */}
           <div className="group relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 p-10">
             <div className="absolute top-0 right-0 rounded-full bg-blue-600/5 p-24 blur-[100px] transition-all group-hover:bg-blue-600/10"></div>
@@ -70,6 +79,33 @@ export const IndustrialServices = () => {
                 Agendar Diagnóstico <ArrowRight size={16} />
               </button>
             </ContactModal>
+          </div>
+
+          {/* Consultoría en Mantenimiento */}
+          <div className="group relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 p-10">
+            <div className="absolute top-0 right-0 rounded-full bg-violet-600/5 p-24 blur-[100px] transition-all group-hover:bg-violet-600/10"></div>
+            <ChartNoAxesCombined size={48} className="relative z-10 mb-8 text-violet-400" />
+            <h3 className="relative z-10 mb-4 text-2xl font-bold">
+              Consultoría en Mantenimiento y Confiabilidad
+            </h3>
+            <p className="relative z-10 mb-8 leading-relaxed text-slate-400">
+              Diagnóstico de madurez, diseño de estrategias de mantenimiento (RCM/PM) y gestión de activos — presencial
+              o remota, para pymes y empresas industriales.
+            </p>
+            <div className="relative z-10 mb-8 grid grid-cols-2 gap-4">
+              <div className="flex items-center gap-2 text-xs font-bold text-slate-300">
+                <ChartNoAxesCombined size={14} className="text-violet-400" /> Diagnóstico de Madurez
+              </div>
+              <div className="flex items-center gap-2 text-xs font-bold text-slate-300">
+                <ShieldCheck size={14} className="text-violet-400" /> Estrategias RCM / PM
+              </div>
+            </div>
+            <Link
+              href="/consultoria-mantenimiento"
+              className="relative z-10 flex items-center gap-2 text-sm font-bold text-white transition-all hover:gap-4"
+            >
+              Agendar diagnóstico inicial <ArrowRight size={16} />
+            </Link>
           </div>
         </div>
       </div>

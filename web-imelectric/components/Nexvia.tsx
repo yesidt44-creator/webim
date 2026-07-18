@@ -259,7 +259,7 @@ export const Nexvia = async () => {
           <FeatureItem
             icon={<QrCode size={24} />}
             title="Satisfacción del cliente ISO 9001"
-            text="Encuestas vinculadas al viaje mediante códigos QR para métricas de calidad en tiempo real y cumplimiento ISO 9001."
+            text="Encuestas vinculadas al viaje mediante códigos QR para métricas de calidad en tiempo real y cumplimiento ISO 9001 — gestión de calidad de flotas sin procesos manuales."
           />
         </ul>
 

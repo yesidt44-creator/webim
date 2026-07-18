@@ -919,7 +919,8 @@ const breadcrumbJsonLd = {
 Recursos externos no expresados como `href`: `AnalyticsLoader.tsx` carga `https://www.clarity.ms/tag/{clarityProjectId}` y `@next/third-parties` carga GA4.
 
 - No existe ningún `href="#"` literal.
-- `href="#como-pensamos-la-ia"` y los fragmentos `/#fixai`, `/#veriwork`, `/#nexvia`, `/#servicios`, `/#nosotros`, `/#productos` apuntan a destinos internos existentes.
+- `href="#como-pensamos-la-ia"` y los fragmentos `/#servicios`, `/#nosotros`, `/#productos` apuntan a destinos internos existentes.
+- Los accesos a productos usan páginas dedicadas: `/fixai-cmms`, `/veriwork`, `/nexvia` y `/shield-ai`.
 - El parámetro `?viewAsMember=true` de LinkedIn es un remanente de vista administrativa; el JSON-LD usa la URL pública limpia.
 
 ---

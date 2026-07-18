@@ -35,29 +35,28 @@ export const ProductTour = () => {
     setActiveIndex((current) => (current === screens.length - 1 ? 0 : current + 1));
 
   return (
-    <section
+    <div
       id="tour-fix-ai"
       aria-labelledby="product-tour-heading"
-      className="scroll-mt-28 border-t border-slate-900 bg-slate-950 py-20"
+      className="mb-20"
     >
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="mb-10 max-w-3xl">
-          <p className="mb-3 text-xs font-bold tracking-widest text-emerald-400 uppercase">
-            Producto real · Fix AI
-          </p>
-          <h2
-            id="product-tour-heading"
-            className="mb-4 text-3xl font-extrabold text-white md:text-4xl"
-          >
-            Recorre el flujo desde la orden hasta el reporte
-          </h2>
-          <p className="leading-relaxed text-slate-400">
-            Dos pantallas reales muestran cómo el trabajo de campo se convierte en control para
-            supervisión y en una entrega preparada para el ERP del operador.
-          </p>
-        </div>
+      <div className="mb-10 text-center">
+        <p className="mb-3 text-xs font-bold tracking-widest text-emerald-400 uppercase">
+          Fix AI en acción
+        </p>
+        <h3
+          id="product-tour-heading"
+          className="mb-4 text-3xl font-extrabold text-white md:text-4xl"
+        >
+          Recorre el flujo desde la orden hasta el reporte
+        </h3>
+        <p className="mx-auto max-w-3xl leading-relaxed text-slate-400">
+          Dos pantallas reales muestran cómo el trabajo de campo se convierte en control para
+          supervisión y en una entrega preparada para el ERP del operador.
+        </p>
+      </div>
 
-        <div className="grid items-center gap-8 rounded-3xl border border-slate-800 bg-slate-900/60 p-5 sm:p-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(18rem,1.2fr)] lg:gap-12">
+      <div className="grid items-center gap-8 rounded-3xl border border-slate-800 bg-slate-900/60 p-5 sm:p-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(18rem,1.2fr)] lg:gap-12">
           <div
             id="product-tour-screen"
             className="mx-auto w-full max-w-[21rem] overflow-hidden rounded-2xl border border-slate-700 bg-slate-100"
@@ -77,7 +76,7 @@ export const ProductTour = () => {
             <p className="mb-3 text-xs font-bold tracking-widest text-blue-400 uppercase">
               {active.eyebrow}
             </p>
-            <h3 className="mb-4 text-2xl font-bold text-white md:text-3xl">{active.title}</h3>
+            <h4 className="mb-4 text-2xl font-bold text-white md:text-3xl">{active.title}</h4>
             <p className="mb-7 leading-relaxed text-slate-400">{active.description}</p>
 
             <ol className="mb-8 space-y-3 text-sm text-slate-300">
@@ -142,7 +141,6 @@ export const ProductTour = () => {
             </div>
           </div>
         </div>
-      </div>
-    </section>
+    </div>
   );
 };

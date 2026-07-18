@@ -31,7 +31,7 @@ export const Footer = () => {
               IMELECTRIC<span className="text-blue-500">.</span>
             </div>
             <p className="max-w-sm text-sm leading-relaxed text-slate-500">
-              Ingeniería técnica y digital operando desde Yondó, Antioquia para toda la industria global.
+              Ingeniería técnica y digital operando desde Yondó, Antioquia para la industria colombiana.
             </p>
             <div className="mt-5 max-w-xs">
               <Image
@@ -55,22 +55,22 @@ export const Footer = () => {
             </div>
           </div>
 
-          {/* Plataformas y servicios (inicio) */}
+          {/* Plataformas y servicios */}
           <div>
             <h4 className="mb-6 text-sm font-bold tracking-wide text-white uppercase">Plataformas</h4>
             <ul className="space-y-3 text-sm">
               <li>
-                <Link href="/#fixai" className={linkClass}>
+                <Link href="/fixai-cmms" className={linkClass}>
                   Fix AI
                 </Link>
               </li>
               <li>
-                <Link href="/#veriwork" className={linkClass}>
+                <Link href="/veriwork" className={linkClass}>
                   Veriwork
                 </Link>
               </li>
               <li>
-                <Link href="/#nexvia" className={linkClass}>
+                <Link href="/nexvia" className={linkClass}>
                   Nexvia
                 </Link>
               </li>
@@ -84,6 +84,11 @@ export const Footer = () => {
                   Falion
                 </Link>
               </li>
+            </ul>
+            <h4 className="mt-8 mb-4 text-sm font-bold tracking-wide text-white uppercase">
+              Servicios de Ingeniería
+            </h4>
+            <ul className="space-y-3 text-sm">
               <li>
                 <Link href="/consultoria-mantenimiento" className={linkClass}>
                   Consultoría en mantenimiento
@@ -91,7 +96,12 @@ export const Footer = () => {
               </li>
               <li>
                 <Link href="/#servicios" className={linkClass}>
-                  Servicios de respuesta crítica
+                  Suministros críticos
+                </Link>
+              </li>
+              <li>
+                <Link href="/#servicios" className={linkClass}>
+                  Mantenimiento electrónico
                 </Link>
               </li>
             </ul>
@@ -119,6 +129,11 @@ export const Footer = () => {
               <li>
                 <Link href="/academia/rca-rcm-fmea-diferencias" className={linkClass}>
                   RCA, RCM y FMEA
+                </Link>
+              </li>
+              <li>
+                <Link href="/academia/gestion-activos-iso-55001" className={linkClass}>
+                  Gestión de activos ISO 55001
                 </Link>
               </li>
             </ul>

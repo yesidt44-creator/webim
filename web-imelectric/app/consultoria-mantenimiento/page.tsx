@@ -21,6 +21,15 @@ export const metadata: Metadata = {
   title: "Consultoría en Mantenimiento y Confiabilidad | IMELECTRIC",
   description:
     "Consultoría en mantenimiento industrial, confiabilidad y gestión de activos físicos en Colombia. Diagnóstico de madurez, planes RCM/PM e implementación de KPIs y RAM.",
+  keywords: [
+    "consultoría mantenimiento industrial Colombia",
+    "consultoría confiabilidad Colombia",
+    "diagnóstico madurez mantenimiento",
+    "estrategias RCM PM Colombia",
+    "gestión de activos ISO 55001 Colombia",
+    "consultoría ISO 55001",
+    "asset management Colombia",
+  ],
   openGraph: {
     title: "Consultoría en Mantenimiento y Confiabilidad Industrial | IMELECTRIC",
     description:
@@ -187,6 +196,24 @@ export default async function ConsultoriaMantenimientoPage() {
               </p>
             </article>
           </div>
+        </div>
+      </section>
+
+      <section
+        className="border-y border-slate-800 bg-blue-500/5 px-6 py-20"
+        aria-labelledby="gestion-activos-consultoria"
+      >
+        <div className="mx-auto max-w-4xl rounded-3xl border border-blue-500/30 bg-slate-950 p-8 sm:p-10">
+          <h2 id="gestion-activos-consultoria" className="text-3xl font-bold">
+            Gestión de activos según ISO 55001: del mantenimiento táctico al valor estratégico
+          </h2>
+          <p className="mt-5 leading-relaxed text-slate-300">
+            El paradigma de &quot;reparar lo que se rompe&quot; está superado. La norma ISO 55001 exige alinear el
+            rendimiento del activo físico con los objetivos financieros de la organización — pasar de ver el
+            mantenimiento como un centro de costos a verlo como un generador de rentabilidad. Nuestra consultoría
+            diagnostica dónde está su operación frente a este marco y diseña la ruta para cerrar esa brecha, ya sea que
+            busque solo ordenar su gestión de activos o certificarse formalmente en ISO 55001.
+          </p>
         </div>
       </section>
 
