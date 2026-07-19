@@ -66,7 +66,7 @@ export const Navbar = () => {
             <div className="invisible absolute top-full left-1/2 mt-0 grid w-[1000px] max-w-[calc(100vw-2rem)] -translate-x-1/2 grid-cols-[1.2fr_1fr_0.8fr] gap-10 rounded-xl border border-slate-800 bg-slate-900 p-8 opacity-0 shadow-2xl transition-all group-hover:visible group-hover:opacity-100">
               <div>
                 <h4 className="mb-4 border-b border-slate-800 pb-2 text-[10px] font-bold tracking-widest text-blue-400 uppercase">
-                  Plataformas SaaS IA
+                  Soluciones Digitales con IA
                 </h4>
                 <div className="space-y-4">
                   <MenuLink
@@ -191,7 +191,7 @@ export const Navbar = () => {
           role="navigation"
           aria-label="Menú principal"
         >
-          <p className="mb-3 text-[10px] font-bold tracking-widest text-slate-400 uppercase">Plataformas SaaS IA</p>
+          <p className="mb-3 text-[10px] font-bold tracking-widest text-slate-400 uppercase">Soluciones Digitales con IA</p>
           <ul className="space-y-1 border-b border-slate-100 pb-4">
             <MobileNavRow href="/fixai-cmms" onNavigate={closeMobile}>
               Fix AI

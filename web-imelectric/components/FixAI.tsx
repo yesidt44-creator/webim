@@ -116,15 +116,15 @@ export const FixAI = async () => {
           <div className="max-w-3xl">
 
             {/* Logo */}
-            <div className="mb-8 inline-flex items-center rounded-2xl border border-slate-800 bg-white px-6 py-4 shadow-lg">
+            <div className="mb-8 inline-flex max-w-full items-center rounded-2xl border border-cyan-400/30 bg-gradient-to-br from-slate-900 via-slate-900 to-cyan-950/60 px-4 py-3 shadow-[0_18px_45px_-22px_rgba(34,211,238,0.9)] sm:px-6 sm:py-4">
               <Image
-                src="/fixai-logo.png"
+                src="/fixai-logo-transparent-v2.png"
                 alt="Fix AI — Software de mantenimiento industrial"
-                width={180}
-                height={60}
-                className="h-10 w-auto object-contain"
+                width={1024}
+                height={331}
+                sizes="(max-width: 640px) 72vw, 288px"
+                className="h-auto w-[min(72vw,17rem)] object-contain drop-shadow-[0_8px_22px_rgba(20,184,166,0.22)] sm:w-72"
                 priority
-                unoptimized
               />
             </div>
 

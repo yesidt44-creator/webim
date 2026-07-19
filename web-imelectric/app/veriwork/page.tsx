@@ -1,4 +1,5 @@
 import { headers } from "next/headers";
+import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
@@ -42,6 +43,14 @@ export const metadata: Metadata = {
     siteName: "IMELECTRIC",
     locale: "es_ES",
     type: "website",
+    images: [
+      {
+        url: "/veriwork-marketing-hse.png",
+        width: 1024,
+        height: 356,
+        alt: "Veriwork — gestión HSE inteligente y verificada en operaciones industriales",
+      },
+    ],
   },
 };
 
@@ -135,6 +144,17 @@ export default async function VeriworkPage() {
             {["Firma verificable","Res. 0312 · Dec. 1072","Trabajo en alturas · Res. 4272","Trazabilidad forense","Colombia · Latinoamérica"].map(tag => (
               <span key={tag} className="rounded-full border border-slate-800 bg-slate-900 px-3 py-1 text-xs text-slate-400">{tag}</span>
             ))}
+          </div>
+          <div className="mt-10 overflow-hidden rounded-2xl border border-emerald-500/20 bg-slate-900 shadow-2xl shadow-emerald-950/30 sm:rounded-3xl">
+            <Image
+              src="/veriwork-marketing-hse.png"
+              alt="Veriwork — gestión HSE inteligente, activa, legal y verificada"
+              width={1024}
+              height={356}
+              sizes="(max-width: 768px) calc(100vw - 3rem), 1280px"
+              className="h-auto w-full"
+              priority
+            />
           </div>
         </div>
       </section>

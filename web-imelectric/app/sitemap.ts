@@ -119,6 +119,36 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${base}/academia/pesv-sg-sst-integracion`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${base}/academia/copasst-matriz-legal-plan-trabajo-sgsst`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${base}/academia/plan-mantenimiento-preventivo`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${base}/academia/pega-iso-55001`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${base}/academia/inspeccion-preoperacional-control-flota`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${base}/privacidad`,
       lastModified: new Date(),
       changeFrequency: "yearly",

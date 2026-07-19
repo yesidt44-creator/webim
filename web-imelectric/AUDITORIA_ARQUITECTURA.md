@@ -141,7 +141,7 @@ axe reportó `button-name` crítico sobre el trigger `.w-fit`, correspondiente a
 Incluyen los textos “opcional”, placeholder del selector, texto legal inferior, botón verde de WhatsApp y correo (`components/ContactModal.tsx:158-160`, `175-180`, `238-241`, `256-269`). Las relaciones observadas van aproximadamente de 2,65:1 a 4,23:1 donde se requiere 4,5:1.
 
 **[Mayor] Menú móvil: dos encabezados de sección fallan contraste.**  
-“Plataformas SaaS IA” y “Servicios” usan texto de 10 px `text-slate-400` sobre blanco (`components/Navbar.tsx:181`, `199`), con 2,63:1.
+“Soluciones Digitales con IA” y “Servicios” usan texto de 10 px `text-slate-400` sobre blanco (`components/Navbar.tsx:181`, `199`), con 2,63:1.
 
 **[Menor, positivo] Banner de consentimiento: sin violaciones automáticas AA en el scope auditado.**  
 `components/ConsentBanner.tsx:41-73` expone rol, nombre y controles discernibles. Al ser no modal, no requiere secuestro de foco.

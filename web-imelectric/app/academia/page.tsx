@@ -93,6 +93,31 @@ const articles = [
     title: "Gestión de activos según ISO 55001",
     desc: "Del mantenimiento táctico al balance Costo/Riesgo/Desempeño.",
   },
+  {
+    href: "/academia/pesv-sg-sst-integracion",
+    title: "PESV y SG-SST: por qué el Art. 32 de la Res. 0312 los obliga a integrarse",
+    desc: "Marco legal (Res. 40595 de 2022), tres niveles de exigencia y consecuencias de duplicar sistemas.",
+  },
+  {
+    href: "/academia/copasst-matriz-legal-plan-trabajo-sgsst",
+    title: "COPASST, matriz legal y plan de trabajo anual del SG-SST",
+    desc: "Qué es el COPASST, diferencia con el Vigía, cómo construir la IPEVR y el Plan de Trabajo Anual.",
+  },
+  {
+    href: "/academia/plan-mantenimiento-preventivo",
+    title: "Cómo hacer un plan de mantenimiento preventivo desde cero",
+    desc: "Pasos, criticidad, frecuencias y por qué el Excel deja de funcionar con el tiempo.",
+  },
+  {
+    href: "/academia/pega-iso-55001",
+    title: "Qué es el PEGA y cómo se conecta con ISO 55001",
+    desc: "Plan Estratégico de Gestión de Activos, Resolución CREG 015 de 2018 y primeros pasos.",
+  },
+  {
+    href: "/academia/inspeccion-preoperacional-control-flota",
+    title: "Inspección preoperacional, control de flota y PESV",
+    desc: "Qué registrar día a día, cómo funciona el scoring de conductor y qué es el pasaporte digital del vehículo.",
+  },
 ];
 
 const breadcrumbJsonLd = {

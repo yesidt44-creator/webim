@@ -9,7 +9,7 @@ export const PainPoints = () => {
         <div className="mb-16 text-center">
           <h2 className="mb-4 text-3xl font-bold">Nuestra Suite de Soluciones</h2>
           <p className="mx-auto max-w-2xl text-slate-400">
-            Cinco plataformas SaaS con IA para contratistas industriales, operadores HSEQ, flotas, confiabilidad y empresas colombianas con obligación SG-SST.
+            Cinco soluciones digitales con IA para contratistas industriales, operadores HSEQ, flotas, confiabilidad y empresas colombianas con obligación SG-SST.
           </p>
         </div>
 

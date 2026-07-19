@@ -31,6 +31,10 @@ export const metadata: Metadata = {
     "SGI Colombia",
     "sistema de gestión integrado software",
     "ISO 9001 14001 45001 Colombia",
+    "PESV Resolución 40595",
+    "integración PESV SG-SST",
+    "software PESV Colombia",
+    "artículo 32 resolución 0312 PESV",
   ],
   openGraph: {
     title: "Shield AI — SG-SST con IA para toda empresa colombiana | IMELECTRIC",
@@ -85,6 +89,22 @@ const faqJsonLd = {
       acceptedAnswer: {
         "@type": "Answer",
         text: "No. Shield AI está diseñado para que el responsable interno del SG-SST de la empresa pueda gestionar el cumplimiento sin depender permanentemente de un consultor externo. El sistema provee el diagnóstico, la hoja de ruta, los borradores documentales y las alertas. La empresa puede usar un consultor para el arranque inicial si lo desea, pero la operación diaria del sistema no lo requiere.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Qué empresas están obligadas a tener un PESV en Colombia?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Según la Resolución 40595 de 2022, están obligadas a tener un Plan Estratégico de Seguridad Vial (PESV) las empresas que cuenten con una flota de más de 10 vehículos, que transporten personas o mercancías, o que subcontraten servicios de transporte. La norma define tres niveles de exigencia: Básico (11 a 19 vehículos o conductores), Estándar (20 a 50) y Avanzado (más de 50). El Artículo 32 de la Resolución 0312 de 2019 obliga además a articular el PESV con el SG-SST de la empresa.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿El PESV reemplaza al SG-SST o se integra con él?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "El PESV no reemplaza al SG-SST: ambos sistemas son obligatorios de forma independiente para las empresas que apliquen a cada uno. Sin embargo, el Artículo 32 de la Resolución 0312 de 2019 establece la obligación de articularlos, dado que comparten elementos comunes como el registro de conductores, los exámenes médicos y las capacitaciones. Gestionarlos como sistemas separados genera duplicación documental e inconsistencias. Shield AI integra el ciclo documental del PESV dentro del mismo entorno del SG-SST.",
       },
     },
   ],

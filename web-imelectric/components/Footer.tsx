@@ -57,7 +57,7 @@ export const Footer = () => {
 
           {/* Plataformas y servicios */}
           <div>
-            <h4 className="mb-6 text-sm font-bold tracking-wide text-white uppercase">Plataformas</h4>
+            <h4 className="mb-6 text-sm font-bold tracking-wide text-white uppercase">Soluciones Digitales con IA</h4>
             <ul className="space-y-3 text-sm">
               <li>
                 <Link href="/fixai-cmms" className={linkClass}>
@@ -134,6 +134,21 @@ export const Footer = () => {
               <li>
                 <Link href="/academia/gestion-activos-iso-55001" className={linkClass}>
                   Gestión de activos ISO 55001
+                </Link>
+              </li>
+              <li>
+                <Link href="/academia/pesv-sg-sst-integracion" className={linkClass}>
+                  PESV y SG-SST integrados
+                </Link>
+              </li>
+              <li>
+                <Link href="/academia/copasst-matriz-legal-plan-trabajo-sgsst" className={linkClass}>
+                  COPASST y matrices SG-SST
+                </Link>
+              </li>
+              <li>
+                <Link href="/academia/inspeccion-preoperacional-control-flota" className={linkClass}>
+                  Inspección preoperacional y flota
                 </Link>
               </li>
             </ul>

@@ -202,6 +202,44 @@ export const ShieldAI = () => {
           </div>
         </motion.div>
 
+        {/* PESV — articulación con SG-SST */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-20 rounded-3xl border border-slate-800 bg-slate-900/60 p-8 md:p-10"
+        >
+          <h2 className="mb-5 text-3xl font-bold text-white">
+            ¿Su empresa tiene flota? El PESV es parte de su SG-SST, no un sistema aparte
+          </h2>
+          <p className="leading-relaxed text-slate-400">
+            Si su empresa tiene más de 10 vehículos, transporta personas o mercancías, o subcontrata
+            servicios de transporte, la Resolución 40595 de 2022 le exige un Plan Estratégico de
+            Seguridad Vial (PESV) — y el Artículo 32 de la Resolución 0312 obliga a que este PESV
+            esté articulado con su SG-SST, no gestionado como una isla independiente. Shield AI detecta
+            si su empresa requiere PESV según su tamaño y actividad, y lo integra al mismo ciclo
+            documental del SG-SST — evitando que un coordinador tenga que mantener dos carpetas
+            separadas con la misma información de conductores y vehículos.
+          </p>
+          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+            {[
+              { label: "Básico", sub: "11–19 vehículos o conductores" },
+              { label: "Estándar", sub: "20–50 vehículos o conductores" },
+              { label: "Avanzado", sub: "Más de 50 vehículos o conductores" },
+            ].map(({ label, sub }) => (
+              <div key={label} className="rounded-2xl border border-violet-500/20 bg-violet-500/5 p-5">
+                <p className="font-bold text-white">{label}</p>
+                <p className="mt-1 text-xs leading-relaxed text-slate-400">{sub}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-5 text-xs leading-relaxed text-slate-500">
+            Supervisión a cargo de la Superintendencia de Transporte, el Ministerio de Trabajo y los Organismos de Tránsito.
+            Marco legal: Ley 1503 de 2011, Resolución 40595 de 2022 (que derogó la Res. 1565 de 2014), 4 fases y 24 pasos bajo ciclo PHVA.
+          </p>
+        </motion.div>
+
         {/* Ruta hacia un Sistema de Gestión Integrado */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

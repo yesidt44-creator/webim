@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { headers } from "next/headers";
+import Image from "next/image";
 import {
   ShieldAlert,
   Fingerprint,
@@ -79,6 +80,16 @@ export const SafetyOn = async () => {
         {/* Cabecera */}
         <div className="mb-20 grid items-center gap-12 lg:grid-cols-2">
           <div>
+            <div className="mb-8 inline-flex max-w-full items-center rounded-2xl border border-emerald-400/30 bg-gradient-to-br from-slate-900 via-slate-900 to-emerald-950/60 px-4 py-3 shadow-[0_18px_45px_-22px_rgba(16,185,129,0.9)] sm:px-6 sm:py-4">
+              <Image
+                src="/veriwork-logo-dark.png"
+                alt="Veriwork — Gestión HSE verificable"
+                width={1024}
+                height={333}
+                sizes="(max-width: 640px) 72vw, 288px"
+                className="h-auto w-[min(72vw,17rem)] object-contain drop-shadow-[0_8px_22px_rgba(16,185,129,0.2)] sm:w-72"
+              />
+            </div>
             <p className="mb-4 flex items-center gap-2 text-emerald-500 text-xs font-bold tracking-widest uppercase">
               <ShieldAlert size={20} aria-hidden="true" />
               Gestión HSE verificable — No solo archivada
@@ -143,6 +154,32 @@ export const SafetyOn = async () => {
             />
           </div>
         </div>
+
+        {/* Evidencia visual de operación */}
+        <figure className="mb-20 overflow-hidden rounded-3xl border border-emerald-500/20 bg-slate-900/70 shadow-2xl shadow-emerald-950/20">
+          <Image
+            src="/veriwork-workflow-field.png"
+            alt="Veriwork en campo: análisis de riesgos digital y permisos de trabajo en revisión y aprobación"
+            width={1024}
+            height={571}
+            sizes="(max-width: 768px) calc(100vw - 3rem), 1280px"
+            className="h-auto w-full"
+          />
+          <figcaption className="grid gap-4 border-t border-slate-800 p-6 sm:p-8 lg:grid-cols-[0.7fr_1.3fr] lg:items-center">
+            <div>
+              <p className="text-xs font-bold tracking-widest text-emerald-400 uppercase">
+                Operación HSE conectada
+              </p>
+              <h3 className="mt-2 text-2xl font-bold text-white">
+                Del análisis de riesgos al permiso aprobado
+              </h3>
+            </div>
+            <p className="leading-relaxed text-slate-400">
+              Veriwork reúne la identificación de peligros, la revisión de controles y el estado del permiso de trabajo
+              en una misma trazabilidad digital, lista para verificarse desde campo o durante una auditoría.
+            </p>
+          </figcaption>
+        </figure>
 
         {/* Módulos Técnicos */}
         <h3 className="sr-only">Módulos de Veriwork — software HSE Colombia</h3>

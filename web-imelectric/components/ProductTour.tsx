@@ -9,18 +9,47 @@ const screens = [
   {
     src: "/fixai-screen-2.png",
     alt: "Fix AI — ejecución de una orden de trabajo desde campo",
+    width: 588,
+    height: 1024,
     eyebrow: "Paso 1",
     title: "El técnico ejecuta la OT en campo",
     description:
       "Clasifica la orden, registra la fecha de ejecución y completa la información operativa desde una interfaz preparada para trabajo móvil.",
+    bullets: [
+      "Registra la ejecución y la evidencia desde campo.",
+      "Completa las operaciones y documenta los hallazgos.",
+      "Deja la OT preparada para revisión del supervisor.",
+    ],
   },
   {
-    src: "/fixai-screen-1.png",
-    alt: "Fix AI — tablero de planeación, cumplimiento, backlog y acceso a exportación",
-    eyebrow: "Pasos 2 y 3",
-    title: "El supervisor controla y prepara la entrega",
+    src: "/fixai-screen-supervisor.png",
+    alt: "Fix AI — dashboard del supervisor con avance semanal, sesiones pendientes, hallazgos y aprobación",
+    width: 635,
+    height: 1024,
+    eyebrow: "Paso 2",
+    title: "El supervisor revisa, corrige y aprueba",
     description:
-      "Revisa cumplimiento, backlog y sesiones pendientes desde el tablero; luego accede al flujo de exportación compatible con el ERP del operador.",
+      "Controla el avance semanal, identifica sesiones pendientes y revisa cada OT con sus operaciones, hallazgos y nivel de criticidad antes de aprobarla.",
+    bullets: [
+      "Prioriza las sesiones que necesitan revisión.",
+      "Valida avance, tiempos, hallazgos y sugerencias.",
+      "Aprueba la OT y genera el PDF trazable.",
+    ],
+  },
+  {
+    src: "/fixai-screen-report-email.png",
+    alt: "Correo automático de Fix AI con informe semanal de órdenes de trabajo pendientes",
+    width: 537,
+    height: 1024,
+    eyebrow: "Paso 3",
+    title: "Fix AI informa automáticamente a la operación",
+    description:
+      "Envía informes automáticos semanales de OTs pendientes y puede reportar hallazgos relevantes o cualquier otra novedad que la operación necesite comunicar.",
+    bullets: [
+      "Resume semanalmente las OTs que siguen incompletas.",
+      "Notifica hallazgos relevantes y novedades operativas.",
+      "Adapta destinatarios y contenido a cada operación.",
+    ],
   },
 ] as const;
 
@@ -51,8 +80,8 @@ export const ProductTour = () => {
           Recorre el flujo desde la orden hasta el reporte
         </h3>
         <p className="mx-auto max-w-3xl leading-relaxed text-slate-400">
-          Dos pantallas reales muestran cómo el trabajo de campo se convierte en control para
-          supervisión y en una entrega preparada para el ERP del operador.
+          Tres pantallas reales muestran cómo el trabajo de campo se convierte en control para
+          supervisión, aprobación trazable e informes automáticos para la operación.
         </p>
       </div>
 
@@ -65,8 +94,8 @@ export const ProductTour = () => {
               key={active.src}
               src={active.src}
               alt={active.alt}
-              width={588}
-              height={1024}
+              width={active.width}
+              height={active.height}
               sizes="(max-width: 640px) 85vw, 336px"
               className="h-auto w-full"
             />
@@ -80,18 +109,12 @@ export const ProductTour = () => {
             <p className="mb-7 leading-relaxed text-slate-400">{active.description}</p>
 
             <ol className="mb-8 space-y-3 text-sm text-slate-300">
-              <li className="flex gap-3">
-                <CheckCircle2 className="mt-0.5 shrink-0 text-emerald-400" size={17} />
-                El técnico registra la ejecución y la evidencia.
-              </li>
-              <li className="flex gap-3">
-                <CheckCircle2 className="mt-0.5 shrink-0 text-emerald-400" size={17} />
-                El supervisor revisa avance, pendientes y cumplimiento.
-              </li>
-              <li className="flex gap-3">
-                <CheckCircle2 className="mt-0.5 shrink-0 text-emerald-400" size={17} />
-                El reporte queda preparado para exportarlo al ERP del operador.
-              </li>
+              {active.bullets.map((bullet) => (
+                <li key={bullet} className="flex gap-3">
+                  <CheckCircle2 className="mt-0.5 shrink-0 text-emerald-400" size={17} />
+                  {bullet}
+                </li>
+              ))}
             </ol>
 
             <div className="mb-7 flex flex-wrap gap-3" aria-label="Seleccionar pantalla del tour">

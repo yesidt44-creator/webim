@@ -60,6 +60,46 @@ const faqJsonLd = {
         text: "FMECA (Failure Mode, Effects and Criticality Analysis) añade al FMEA una evaluación de criticidad: combina la probabilidad de ocurrencia de cada modo de falla con la severidad de su efecto para generar un índice de prioridad de riesgo (RPN). Los modos de falla con mayor RPN son los que deben atenderse primero.",
       },
     },
+    {
+      "@type": "Question",
+      name: "¿Qué son los 5 Porqués y cómo se aplican a una falla?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Los 5 Porqués es una técnica de encadenamiento simple: ante una falla, se pregunta '¿por qué ocurrió?' y a la respuesta se le vuelve a preguntar '¿por qué?', repitiendo el ciclo hasta llegar a una causa raíz de nivel sistémico (generalmente entre 3 y 6 iteraciones). Ejemplo: el motor no arranca → ¿por qué? → sin energía → ¿por qué? → fusible fundido → ¿por qué? → sobrecarga por fallo de rodamiento → ¿por qué? → lubricación fuera de programa. La causa raíz no es el fusible, sino la falla del proceso de lubricación. La limitación es que asume una sola cadena causal; en sistemas complejos con causas múltiples, el Árbol de Fallas (FTA) es más adecuado.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Qué es un diagrama de Ishikawa y para qué se usa?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "El diagrama de Ishikawa (también llamado espina de pescado o causa-efecto) organiza las causas potenciales de un problema en categorías típicas: máquina, mano de obra, método, material, entorno y medición. Es útil como herramienta de lluvia de ideas estructurada al inicio de un RCA: permite que el equipo identifique y agrupe las posibles causas antes de priorizarlas. No es un método de análisis causal en sí mismo — es un organizador visual. La profundidad del análisis viene después, con metodologías como los 5 Porqués o el FTA.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Qué es el análisis de Pareto aplicado a fallas industriales?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "El análisis de Pareto aplicado a fallas usa el principio 80/20 para priorizar: el 80% de las consecuencias (tiempo perdido, costos de reparación, accidentes) suele provenir del 20% de las causas o modos de falla. En mantenimiento, permite identificar cuáles equipos, ubicaciones o modos de falla concentran la mayor parte del impacto operacional, para enfocar los recursos de análisis y mejora en ese 20% prioritario antes de intervenir el resto.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Qué es el Árbol de Fallas (FTA) y cuándo se usa en vez de los 5 Porqués?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "El Árbol de Fallas (Fault Tree Analysis, FTA) es una técnica deductiva que parte del evento no deseado (la falla o accidente) y mapea hacia abajo las combinaciones de causas que podrían producirlo, usando compuertas lógicas AND/OR. Se prefiere sobre los 5 Porqués cuando la seguridad es crítica (fallas que pueden causar lesiones graves o pérdidas catastróficas) o cuando el evento puede resultar de múltiples combinaciones de causas simultáneas o independientes. Los 5 Porqués asumen una sola cadena causal lineal; el FTA maneja la ramificación y la combinación de causas.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Qué factores reducen la confiabilidad de un activo industrial?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Los factores más frecuentes que degradan la confiabilidad de un activo físico son: prácticas de mantenimiento deficientes (tareas inadecuadas, frecuencias incorrectas o no ejecutadas), lubricación inadecuada (producto incorrecto, cantidad incorrecta o frecuencia insuficiente), instalación o alineación incorrecta (desalineación de ejes, montaje forzado), operación fuera de los límites de diseño (sobrecargas, velocidades o temperaturas fuera de especificación) y desgaste acelerado por condiciones ambientales (polvo, humedad, vibraciones externas, temperaturas extremas).",
+      },
+    },
   ],
 };
 
@@ -92,7 +132,7 @@ const articleJsonLd = {
   "@type": "Article",
   headline: 'RCA, RCM y FMEA: diferencias y cuándo usar cada uno',
   datePublished: "2026-07-01",
-  dateModified: "2026-07-17",
+  dateModified: "2026-07-18",
   author: {
     "@type": "Organization",
     name: "Equipo de Ingeniería IMELECTRIC",
@@ -159,7 +199,7 @@ export default async function RcaRcmFmeaPage() {
             RCA, RCM y FMEA: diferencias reales y cuándo usar cada metodología de confiabilidad
           </h1>
           <p className="mt-3 text-xs text-slate-500">
-            Publicado: 1 jul 2026 · Actualizado: 17 jul 2026 · Equipo de Ingeniería IMELECTRIC
+            Publicado: 1 jul 2026 · Actualizado: 18 jul 2026 · Equipo de Ingeniería IMELECTRIC
           </p>
           <p className="text-lg leading-relaxed text-slate-400">
             Si trabajas en mantenimiento industrial y has participado en una capacitación de confiabilidad, probablemente escuchaste los tres términos en la misma frase — y probablemente también los escuchaste usados como si fueran intercambiables. No lo son.
@@ -307,6 +347,98 @@ export default async function RcaRcmFmeaPage() {
         <p className="mb-6 leading-relaxed text-slate-400">
           El RCM real requiere un análisis funcional formal, la metodología de las 7 preguntas y un proceso de revisión con participación del operador, el mantenedor y el confiabilista. No se hace en una tarde. Esto no significa que sea inalcanzable — significa que hay que ser honesto sobre qué está haciendo la organización y qué no.
         </p>
+
+        {/* Herramientas complementarias */}
+        <h2 className="mb-4 mt-10 text-2xl font-bold text-white">Los 5 Porqués: potente y limitado a la vez</h2>
+        <p className="mb-4 leading-relaxed text-slate-400">
+          Los <strong className="text-slate-200">5 Porqués</strong> es la técnica de análisis causal más simple y
+          accesible: ante una falla, se pregunta <em>¿por qué ocurrió?</em> y a la respuesta se le vuelve a preguntar
+          <em> ¿por qué?</em>, repitiendo el ciclo hasta llegar a una causa raíz de nivel sistémico.
+        </p>
+        <div className="mb-6 rounded-2xl border border-slate-800 bg-slate-900 p-5 font-mono text-xs leading-loose text-slate-400">
+          <p>Falla: el motor no arranca</p>
+          <p>→ ¿Por qué? Sin energía</p>
+          <p>→ ¿Por qué? Fusible fundido</p>
+          <p>→ ¿Por qué? Sobrecarga por fallo de rodamiento</p>
+          <p>→ ¿Por qué? Lubricación fuera de programa</p>
+          <p className="mt-2 text-slate-500">Causa raíz: fallo del proceso de lubricación — no el fusible.</p>
+        </div>
+        <p className="mb-8 leading-relaxed text-slate-400">
+          Su limitación es que asume una sola cadena causal lineal. En sistemas con causas múltiples o combinadas,
+          el <strong className="text-slate-200">Árbol de Fallas (FTA)</strong> es más adecuado.
+        </p>
+
+        <h2 className="mb-4 mt-10 text-2xl font-bold text-white">El diagrama de Ishikawa como organizador del RCA</h2>
+        <p className="mb-4 leading-relaxed text-slate-400">
+          El <strong className="text-slate-200">diagrama de Ishikawa</strong> (espina de pescado) organiza causas
+          potenciales en categorías — máquina, mano de obra, método, material, entorno y medición — como punto de
+          partida estructurado antes de priorizar hipótesis con los 5 Porqués o el FTA. No es un método de análisis
+          causal en sí mismo: es un organizador visual.
+        </p>
+        <p className="mb-8 text-sm text-slate-500">
+          Herramienta interactiva:{" "}
+          <Link href="/academia/ishikawa" className="text-blue-400 underline hover:text-blue-300">
+            Diagrama de Ishikawa — Academia IMELECTRIC
+          </Link>
+        </p>
+
+        <h2 className="mb-4 mt-10 text-2xl font-bold text-white">Análisis de Pareto: priorizar antes de analizar</h2>
+        <p className="mb-8 leading-relaxed text-slate-400">
+          El <strong className="text-slate-200">análisis de Pareto</strong> aplicado a fallas usa el principio 80/20:
+          el 80% del impacto operacional (tiempo perdido, costo de reparación, accidentes) suele provenir del 20% de
+          los modos de falla o equipos. Antes de invertir tiempo en un RCA profundo, el Pareto indica <em>cuáles</em>{" "}
+          fallas merecen ese esfuerzo. No es una herramienta de análisis causal — es una herramienta de priorización.
+        </p>
+
+        <h2 className="mb-4 mt-10 text-2xl font-bold text-white">Árbol de Fallas (FTA): cuando las causas se combinan</h2>
+        <p className="mb-4 leading-relaxed text-slate-400">
+          El <strong className="text-slate-200">Árbol de Fallas (Fault Tree Analysis, FTA)</strong> parte del evento
+          no deseado y mapea hacia abajo las combinaciones de causas que podrían producirlo, usando compuertas lógicas
+          AND/OR. Se prefiere sobre los 5 Porqués cuando:
+        </p>
+        <ul className="mb-8 space-y-2 text-slate-400">
+          {[
+            "La seguridad es crítica: fallas que pueden causar lesiones graves o pérdidas catastróficas.",
+            "El evento puede resultar de múltiples combinaciones de causas simultáneas o independientes.",
+            "Se necesita calcular la probabilidad cuantitativa del evento no deseado.",
+          ].map((item) => (
+            <li key={item} className="flex gap-3 text-sm">
+              <span className="mt-0.5 shrink-0 text-red-400">→</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+
+        <h2 className="mb-4 mt-10 text-2xl font-bold text-white">Factores que reducen la confiabilidad de un activo</h2>
+        <p className="mb-4 leading-relaxed text-slate-400">
+          Antes de buscar causas en el diseño del equipo o en fallas de fabricación, conviene revisar los factores más
+          frecuentes que degradan la confiabilidad en campo:
+        </p>
+        <div className="mb-10 grid gap-3 sm:grid-cols-2">
+          {[
+            { title: "Prácticas de mantenimiento deficientes", body: "Tareas inadecuadas, frecuencias incorrectas o simplemente no ejecutadas." },
+            { title: "Lubricación inadecuada", body: "Producto incorrecto, cantidad incorrecta o frecuencia insuficiente." },
+            { title: "Instalación o alineación incorrecta", body: "Desalineación de ejes, montaje forzado, aprietes fuera de especificación." },
+            { title: "Operación fuera de límites de diseño", body: "Sobrecargas, velocidades o temperaturas fuera de especificación." },
+            { title: "Condiciones ambientales adversas", body: "Polvo, humedad, vibraciones externas, temperaturas extremas no contempladas en el diseño." },
+          ].map(({ title, body }) => (
+            <div key={title} className="rounded-xl border border-slate-800 bg-slate-900 p-4">
+              <p className="font-bold text-white text-sm">{title}</p>
+              <p className="mt-1 text-xs leading-relaxed text-slate-400">{body}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Preguntas frecuentes */}
+        <h2 className="mb-6 mt-12 text-2xl font-bold text-white">Preguntas frecuentes</h2>
+        <div className="mb-10 space-y-4">
+          {faqJsonLd.mainEntity.map((faq) => (
+            <details key={faq.name} className="rounded-2xl border border-slate-800 bg-slate-900 p-5">
+              <summary className="cursor-pointer font-semibold text-white">{faq.name}</summary>
+              <p className="mt-3 text-sm leading-relaxed text-slate-400">{faq.acceptedAnswer.text}</p>
+            </details>
+          ))}
+        </div>
 
         {/* CTA Fix AI / Falion */}
         <div className="my-10 rounded-2xl border border-blue-500/20 bg-blue-600/5 p-6">
