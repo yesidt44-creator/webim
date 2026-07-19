@@ -6,9 +6,9 @@ import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://imelectric.es/academia/gestion-activos-iso-55001" },
-  title: "Gestión de activos según ISO 55001 | IMELECTRIC",
+  title: "Qué es ISO 55001 y la gestión de activos | IMELECTRIC",
   description:
-    "Qué es la gestión de activos según ISO 55001, cómo se diferencia del mantenimiento táctico y qué preguntas ayudan a iniciar una transición hacia el balance Costo/Riesgo/Desempeño.",
+    "Qué es ISO 55001, su filosofía de valor y Balance Costo/Riesgo/Desempeño, y la diferencia entre mantenimiento táctico y gestión de activos estratégica.",
   keywords: [
     "gestión de activos ISO 55001 Colombia",
     "qué es ISO 55001",
@@ -17,14 +17,14 @@ export const metadata: Metadata = {
     "balance costo riesgo desempeño",
     "gestión estratégica activos físicos",
     "consultoría ISO 55001 Colombia",
-    "taxonomía estándar de equipos",
-    "CAPEX OPEX por activo",
-    "mantenimiento por impacto financiero",
+    "ISO 55001 filosofía gestión de activos",
+    "activos físicos valor estratégico",
+    "mantenimiento táctico vs estratégico",
   ],
   openGraph: {
-    title: "Qué es la Gestión de Activos según ISO 55001 y por Dónde Empezar | IMELECTRIC",
+    title: "Qué es ISO 55001 y la Gestión de Activos | IMELECTRIC",
     description:
-      "Del mantenimiento táctico al valor estratégico: guía inicial sobre ISO 55001, balance Costo/Riesgo/Desempeño y tres preguntas de autodiagnóstico.",
+      "La filosofía de ISO 55001: del mantenimiento táctico al valor estratégico mediante el Balance Costo/Riesgo/Desempeño.",
     url: "https://imelectric.es/academia/gestion-activos-iso-55001",
     siteName: "IMELECTRIC",
     locale: "es_CO",
@@ -38,26 +38,26 @@ const faqJsonLd = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "¿Qué es la gestión de activos según ISO 55001?",
+      name: "¿Qué es ISO 55001 y por qué es diferente del mantenimiento tradicional?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "La gestión de activos según ISO 55001 no se centra en el activo en sí, sino en el valor que aporta a la organización. Exige alinear el rendimiento del activo físico con los objetivos financieros estratégicos y equilibrar Costo, Riesgo y Desempeño.",
+        text: "ISO 55001 es una norma para gestionar activos a partir del valor que aportan a la organización. A diferencia del mantenimiento tradicional, que se concentra en conservar o reparar equipos, conecta las decisiones sobre los activos con los objetivos estratégicos y financieros.",
       },
     },
     {
       "@type": "Question",
-      name: "¿Cuál es la diferencia entre mantenimiento y gestión de activos?",
+      name: "¿Qué es el Balance Costo/Riesgo/Desempeño en gestión de activos?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "El mantenimiento táctico se concentra en ejecutar tareas y reparar lo que se rompe. La gestión de activos estratégica conecta esas decisiones con el valor para la organización, el impacto financiero de las fallas y el balance entre Costo, Riesgo y Desempeño.",
+        text: "Es el criterio para decidir sobre un activo considerando simultáneamente cuánto cuesta intervenirlo o conservarlo, qué riesgos asume la organización y qué desempeño necesita obtener. El objetivo no es minimizar una sola variable, sino encontrar un equilibrio coherente con el valor esperado.",
       },
     },
     {
       "@type": "Question",
-      name: "¿Cómo empiezo a implementar gestión de activos en mi empresa?",
+      name: "¿Cuál es la diferencia entre mantenimiento táctico y gestión de activos estratégica?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Un punto de partida básico es revisar tres condiciones: si la empresa tiene una taxonomía estándar de equipos, si puede trazar CAPEX y OPEX por activo, y si prioriza el mantenimiento según el impacto financiero de cada falla. Las respuestas permiten identificar la brecha inicial frente al enfoque de ISO 55001.",
+        text: "El mantenimiento táctico se concentra en ejecutar tareas y reparar o prevenir fallas. La gestión de activos estratégica relaciona esas decisiones con el valor para la organización, los objetivos financieros y el Balance Costo/Riesgo/Desempeño.",
       },
     },
   ],
@@ -66,7 +66,7 @@ const faqJsonLd = {
 const articleJsonLd = {
   "@context": "https://schema.org",
   "@type": "Article",
-  headline: "Qué es la gestión de activos según ISO 55001 y por dónde empezar",
+  headline: "Qué es ISO 55001 y la filosofía de la gestión de activos",
   datePublished: "2026-07-18",
   dateModified: "2026-07-18",
   author: {
@@ -138,7 +138,7 @@ export default async function GestionActivosIso55001Page() {
             Gestión de Activos · ISO 55001
           </div>
           <h1 className="mb-4 text-4xl font-extrabold tracking-tight md:text-5xl">
-            Qué es la gestión de activos según ISO 55001 y por dónde empezar
+            Qué es ISO 55001 y la filosofía de la gestión de activos
           </h1>
           <p className="mt-3 text-xs text-slate-500">
             Publicado: 18 jul 2026 · Equipo de Ingeniería IMELECTRIC
@@ -190,22 +190,6 @@ export default async function GestionActivosIso55001Page() {
           esperado por la organización.
         </p>
 
-        <h2 className="mb-4 mt-10 text-2xl font-bold text-white">
-          Tres preguntas para saber por dónde empezar
-        </h2>
-        <div className="mb-10 space-y-3">
-          {[
-            "¿Tiene una taxonomía estándar de equipos?",
-            "¿Tiene trazabilidad de CAPEX/OPEX por activo?",
-            "¿Prioriza el mantenimiento por impacto financiero?",
-          ].map((question, index) => (
-            <div key={question} className="flex gap-4 rounded-xl border border-slate-800 bg-slate-900 p-4">
-              <span className="shrink-0 font-mono text-sm font-bold text-blue-400">{index + 1}</span>
-              <p className="text-sm leading-relaxed text-slate-300">{question}</p>
-            </div>
-          ))}
-        </div>
-
         <div className="my-10 rounded-2xl border border-blue-500/20 bg-blue-600/5 p-6">
           <p className="mb-1 text-xs font-bold tracking-widest text-blue-400 uppercase">
             Del mantenimiento táctico al valor estratégico
@@ -229,6 +213,15 @@ export default async function GestionActivosIso55001Page() {
               <p className="mt-3 text-sm leading-relaxed text-slate-400">{faq.acceptedAnswer.text}</p>
             </details>
           ))}
+        </div>
+
+        <div className="mt-10 rounded-2xl border border-slate-800 bg-slate-900 p-6">
+          <p className="text-sm leading-relaxed text-slate-300">
+            ¿Buscas el documento práctico para implementar esto en tu operación?{" "}
+            <Link href="/academia/pega-iso-55001" className="font-semibold text-blue-400 hover:text-blue-300">
+              Conoce qué es el PEGA y cómo se conecta con esta norma →
+            </Link>
+          </p>
         </div>
 
         <div className="mt-12 flex flex-wrap gap-4 border-t border-slate-800 pt-8">

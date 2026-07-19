@@ -8,18 +8,18 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://imelectric.es/academia/pega-iso-55001" },
   title: "Qué es el PEGA y cómo se conecta con ISO 55001 | IMELECTRIC",
   description:
-    "Qué es el Plan Estratégico de Gestión de Activos (PEGA), su relación con ISO 55001, la Resolución CREG 015 de 2018 para operadores eléctricos y por qué muchas organizaciones tienen dudas al construirlo.",
+    "Qué es un PEGA, qué debe contener, los primeros pasos para construirlo y cómo aplica la Resolución CREG 015 de 2018 a operadores de red eléctrica en Colombia.",
   keywords: [
     "PEGA Plan Estratégico Gestión Activos",
     "ISO 55001 Colombia",
     "gestión de activos Colombia",
     "CREG 015 2018 ISO 55001",
-    "asset management Colombia",
+    "cómo construir un PEGA",
     "consultoría ISO 55001 Colombia",
     "gestión activos sector eléctrico Colombia",
     "CGMC ACIEM Colombia",
     "implementar ISO 55001 empresa",
-    "mantenimiento estratégico activos físicos",
+    "contenido Plan Estratégico Gestión Activos",
   ],
   openGraph: {
     title: "Qué es el PEGA y cómo se conecta con ISO 55001 | IMELECTRIC",
@@ -38,10 +38,10 @@ const faqJsonLd = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "¿Qué es un Plan Estratégico de Gestión de Activos (PEGA)?",
+      name: "¿Qué es un Plan Estratégico de Gestión de Activos (PEGA) y qué debe contener?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "El Plan Estratégico de Gestión de Activos (PEGA) es el documento que traduce los objetivos estratégicos de la organización en decisiones sobre cómo gestionar sus activos físicos durante su ciclo de vida. Define qué activos se conservarán, cuándo se renovarán, cómo se equilibrarán los costos, los riesgos y el desempeño, y cómo se asignará el presupuesto de CAPEX y OPEX en función del valor que cada activo aporta a la organización.",
+        text: "El PEGA es el documento que convierte los objetivos de la organización en una hoja de ruta para sus activos físicos. Debe delimitar el alcance y los objetivos, describir el portafolio y su estado, establecer criterios de priorización durante el ciclo de vida, definir iniciativas y recursos, y asignar responsables, indicadores y revisiones.",
       },
     },
     {
@@ -54,10 +54,10 @@ const faqJsonLd = {
     },
     {
       "@type": "Question",
-      name: "¿Cuál es la diferencia entre mantenimiento y gestión de activos?",
+      name: "¿Cuáles son los primeros pasos para construir un PEGA en mi empresa?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "El mantenimiento se concentra en conservar el activo en condiciones de operación (reparar, lubricar, inspeccionar). La gestión de activos amplía la perspectiva: conecta las decisiones de mantenimiento con los objetivos financieros de la organización, evalúa el ciclo de vida completo del activo (adquisición, operación, disposición) y equilibra el costo, el riesgo y el desempeño esperado. El mantenimiento es un componente dentro de la gestión de activos, no su equivalente.",
+        text: "El primer paso es acordar el alcance y los objetivos que debe apoyar el PEGA. Después se consolida el inventario con una taxonomía común, se evalúan el estado, los riesgos y los costos de los activos, se priorizan iniciativas de ciclo de vida y finalmente se asignan responsables, recursos, indicadores y una frecuencia de revisión.",
       },
     },
   ],
@@ -125,42 +125,48 @@ export default async function PegaIso55001Page() {
           </h1>
           <p className="mt-3 text-xs text-slate-500">Publicado: 18 jul 2026 · Equipo de Ingeniería IMELECTRIC</p>
           <p className="mt-5 text-lg leading-relaxed text-slate-400">
-            Muchas organizaciones industriales tienen dudas al construir su PEGA. Esta guía explica qué contiene, qué
-            dice ISO 55001 al respecto y cuáles son los drivers regulatorios concretos en Colombia.
+            Esta guía se concentra en el documento práctico: qué debe contener un PEGA, cómo iniciar su construcción y
+            cuál es su driver regulatorio concreto para operadores de red eléctrica en Colombia.
           </p>
         </div>
       </section>
 
       <article className="mx-auto max-w-3xl px-6 py-16">
+        <div className="mb-10 rounded-2xl border border-slate-800 bg-slate-900 p-6">
+          <p className="text-sm leading-relaxed text-slate-300">
+            Si todavía no tienes claro qué es ISO 55001 y por qué importa, empieza por{" "}
+            <Link
+              href="/academia/gestion-activos-iso-55001"
+              className="font-semibold text-blue-400 hover:text-blue-300"
+            >
+              esta introducción →
+            </Link>
+            . Aquí nos enfocamos en el documento práctico: el PEGA.
+          </p>
+        </div>
 
         <h2 className="mb-4 text-2xl font-bold text-white">Qué es el PEGA</h2>
         <p className="mb-6 leading-relaxed text-slate-400">
           El <strong className="text-slate-200">Plan Estratégico de Gestión de Activos (PEGA)</strong> es el documento
           que traduce los objetivos estratégicos de la organización en decisiones sobre cómo gestionar sus activos
-          físicos durante su ciclo de vida completo. No es un plan de mantenimiento: va más arriba.
+          físicos durante su ciclo de vida completo.
         </p>
         <p className="mb-8 leading-relaxed text-slate-400">
-          El PEGA define qué activos se conservarán, cuándo se renovarán, cómo se equilibrarán los costos, los riesgos
-          y el desempeño esperado, y cómo se asignará el presupuesto de{" "}
-          <strong className="text-slate-200">CAPEX y OPEX</strong> en función del valor que cada activo aporta a la
-          organización. En términos de{" "}
-          <strong className="text-slate-200">ISO 55001</strong>, el PEGA es la materialización del{" "}
-          <em>Strategic Asset Management Plan (SAMP)</em>.
+          En el marco de ISO 55001, funciona como la hoja de ruta que conecta las decisiones sobre adquisición,
+          operación, mantenimiento, renovación y disposición con prioridades, responsables y recursos definidos.
         </p>
 
-        <h2 className="mb-4 text-2xl font-bold text-white">Por qué muchas organizaciones tienen dudas al construirlo</h2>
+        <h2 className="mb-4 text-2xl font-bold text-white">Qué debe contener un PEGA</h2>
         <p className="mb-6 leading-relaxed text-slate-400">
-          El PEGA requiere que el área de mantenimiento hable el idioma de la dirección financiera: justificar
-          inversiones en reemplazo de activos con datos de riesgo, confiabilidad y costo total de vida. Esa traducción
-          no es trivial, especialmente en organizaciones donde el mantenimiento ha operado históricamente como un centro
-          de costos sin visibilidad estratégica.
+          No existe una plantilla única que sirva para todas las organizaciones. Como estructura práctica, el
+          documento debe dejar claros estos componentes:
         </p>
-
-        <div className="mb-10 grid gap-4 sm:grid-cols-3">
+        <div className="mb-10 grid gap-4 sm:grid-cols-2">
           {[
-            { title: "¿Qué activos conservar?", body: "Decisión de CAPEX sustentada en análisis de riesgo y costo de vida." },
-            { title: "¿Cuándo renovar?", body: "Criterios de reemplazo basados en confiabilidad, no solo en antigüedad." },
-            { title: "¿Cómo equilibrar Costo/Riesgo/Desempeño?", body: "La métrica estratégica que conecta el activo con el resultado del negocio." },
+            { title: "Alcance y objetivos", body: "Qué activos, sedes y procesos cubre, y qué objetivos de la organización debe apoyar." },
+            { title: "Portafolio y estado actual", body: "Inventario con taxonomía común, condición, criticidad y datos disponibles de cada grupo de activos." },
+            { title: "Criterios e iniciativas", body: "Cómo se priorizan adquisición, mantenimiento, renovación y disposición, con sus proyectos asociados." },
+            { title: "Gobierno y seguimiento", body: "Responsables, recursos, indicadores, calendario de revisión y mecanismo para actualizar el documento." },
           ].map(({ title, body }) => (
             <div key={title} className="rounded-2xl border border-blue-500/20 bg-blue-500/5 p-5">
               <p className="font-bold text-white">{title}</p>
@@ -186,22 +192,20 @@ export default async function PegaIso55001Page() {
           crecido alrededor de esta disciplina en el país.
         </p>
 
-        <h2 className="mb-4 text-2xl font-bold text-white">Mantenimiento vs. gestión de activos: la diferencia clave</h2>
-        <div className="mb-10 grid gap-4 sm:grid-cols-2">
-          <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
-            <h3 className="font-bold text-white">Mantenimiento</h3>
-            <p className="mt-3 text-sm leading-relaxed text-slate-400">
-              Conservar el activo en condiciones de operación: reparar, lubricar, inspeccionar. Horizonte: la próxima
-              falla o la próxima tarea programada.
-            </p>
-          </div>
-          <div className="rounded-2xl border border-blue-500/30 bg-blue-500/5 p-6">
-            <h3 className="font-bold text-white">Gestión de activos</h3>
-            <p className="mt-3 text-sm leading-relaxed text-slate-400">
-              Conectar cada decisión de mantenimiento con el valor para la organización, evaluando el ciclo de vida
-              completo. Horizonte: el resultado del negocio a largo plazo.
-            </p>
-          </div>
+        <h2 className="mb-4 text-2xl font-bold text-white">Primeros pasos para construirlo</h2>
+        <div className="mb-10 space-y-3">
+          {[
+            "Acordar el alcance del PEGA y los objetivos de la organización que debe apoyar.",
+            "Consolidar el inventario de activos con una taxonomía común y datos confiables.",
+            "Evaluar el estado, la criticidad, los riesgos y los costos disponibles por activo o familia.",
+            "Priorizar las iniciativas de adquisición, mantenimiento, renovación y disposición.",
+            "Asignar responsables, recursos, indicadores y una frecuencia formal de revisión.",
+          ].map((step, index) => (
+            <div key={step} className="flex gap-4 rounded-xl border border-slate-800 bg-slate-900 p-4">
+              <span className="shrink-0 font-mono text-sm font-bold text-blue-400">{index + 1}</span>
+              <p className="text-sm leading-relaxed text-slate-300">{step}</p>
+            </div>
+          ))}
         </div>
 
         <div className="my-10 rounded-2xl border border-blue-500/20 bg-blue-600/5 p-6">
