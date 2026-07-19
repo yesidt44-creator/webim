@@ -21,13 +21,50 @@ export const CONTACT_PRODUCTS = [
 
 export type ContactProduct = (typeof CONTACT_PRODUCTS)[number];
 
-const PRODUCT_TITLES: Record<ContactProduct, string> = {
-  "Fix AI": "Solicitar demo de Fix AI",
-  Veriwork: "Solicitar demo de Veriwork",
-  Nexvia: "Solicitar demo de Nexvia",
-  "Shield AI": "Solicitar demo de Shield AI",
-  Falion: "Solicitar acceso a Falion",
-  "Consultoría en mantenimiento": "Solicitar asesoría en mantenimiento",
+type ContactCopy = {
+  title: string;
+  subtitle: string;
+  submitLabel: string;
+};
+
+const GENERIC_COPY: ContactCopy = {
+  title: "Hablemos de su operación",
+  subtitle: "Déjenos sus datos y auditaremos la viabilidad técnica para su planta.",
+  submitLabel: "Solicitar Análisis Técnico",
+};
+
+const PRODUCT_COPY: Record<ContactProduct, ContactCopy> = {
+  "Fix AI": {
+    title: "Solicitar demo de Fix AI",
+    subtitle: "Cuéntenos de su operación de mantenimiento y le mostramos Fix AI en acción.",
+    submitLabel: "Solicitar Demo Técnica",
+  },
+  Veriwork: {
+    title: "Agendar asesoría — Veriwork",
+    subtitle:
+      "Cuéntenos sobre su operación HSE y evaluamos cómo Veriwork puede blindar sus permisos de trabajo.",
+    submitLabel: "Agendar Asesoría Personalizada",
+  },
+  Nexvia: {
+    title: "Solicitar demo de Nexvia",
+    subtitle: "Cuéntenos sobre su flota y le mostramos cómo Nexvia la mantiene bajo control, incluso sin señal.",
+    submitLabel: "Solicitar Demo Técnica",
+  },
+  "Shield AI": {
+    title: "Solicitar diagnóstico — Shield AI",
+    subtitle: "Cuéntenos el tamaño y riesgo de su empresa y le indicamos su régimen SG-SST aplicable.",
+    submitLabel: "Solicitar Diagnóstico Gratuito",
+  },
+  Falion: {
+    title: "Acceso a la fase de pruebas — Falion",
+    subtitle: "Cuéntenos sobre sus activos y evaluamos si hay ajuste técnico para la fase de pruebas.",
+    submitLabel: "Solicitar Acceso",
+  },
+  "Consultoría en mantenimiento": {
+    title: "Agendar Asesoría — Consultoría en Mantenimiento",
+    subtitle: "Cuéntenos el estado actual de su operación y diseñamos el primer diagnóstico.",
+    submitLabel: "Agendar Asesoría",
+  },
 };
 
 type ContactModalProps = {
@@ -60,6 +97,7 @@ export const ContactModal = ({ children, product, sourceCta }: ContactModalProps
   const [selectedProduct, setSelectedProduct] = useState<ContactProduct | "">(product ?? "");
   const [authorized, setAuthorized] = useState(false);
   const [feedback, setFeedback] = useState<SubmitFeedback>({ status: "idle", message: "" });
+  const modalCopy = selectedProduct ? PRODUCT_COPY[selectedProduct] : GENERIC_COPY;
 
   const handleOpenChange = (nextOpen: boolean) => {
     setOpen(nextOpen);
@@ -127,12 +165,8 @@ export const ContactModal = ({ children, product, sourceCta }: ContactModalProps
         <div className="grid md:grid-cols-5">
           <div className="md:col-span-3 p-6 sm:p-8">
             <DialogHeader className="mb-6">
-              <DialogTitle className="text-2xl font-bold tracking-tight">
-                {selectedProduct ? PRODUCT_TITLES[selectedProduct] : "Hablemos de su operación"}
-              </DialogTitle>
-              <p className="mt-2 text-sm text-slate-400">
-                Déjenos sus datos y auditaremos la viabilidad técnica para su planta.
-              </p>
+              <DialogTitle className="text-2xl font-bold tracking-tight">{modalCopy.title}</DialogTitle>
+              <p className="mt-2 text-sm text-slate-400">{modalCopy.subtitle}</p>
             </DialogHeader>
 
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -307,7 +341,7 @@ export const ContactModal = ({ children, product, sourceCta }: ContactModalProps
                   "Reintentar envío"
                 ) : (
                   <>
-                    Solicitar análisis técnico <ArrowRight className="ml-2 h-4 w-4" />
+                    {modalCopy.submitLabel} <ArrowRight className="ml-2 h-4 w-4" />
                   </>
                 )}
               </Button>

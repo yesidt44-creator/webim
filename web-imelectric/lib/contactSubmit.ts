@@ -24,7 +24,7 @@ export async function sendWebForm(payload: Record<string, unknown>): Promise<Web
     }
 
     if (res.status === 503 && data.configured === false) {
-      return { status: "mailto", reason: data.message || "Servidor sin Resend" };
+      return { status: "mailto", reason: data.message || "Servidor SMTP no configurado" };
     }
 
     return { status: "error", message: data.error || "No se pudo enviar el formulario." };

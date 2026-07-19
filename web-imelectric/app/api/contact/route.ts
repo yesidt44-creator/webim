@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 import { checkRateLimit, getClientIp, maskIp } from "@/lib/rateLimit";
 
 export const runtime = "nodejs";
@@ -122,10 +122,6 @@ export async function POST(request: Request) {
     `Formulario de origen: ${formType}`,
   ].join("\n");
 
-  const to = process.env.CONTACT_TO_EMAIL || "contacto@imelectric.es";
-  const from = process.env.RESEND_FROM_EMAIL?.trim() || "IMELECTRIC Web <onboarding@resend.dev>";
-  const apiKey = process.env.RESEND_API_KEY?.trim();
-
   let subject: string;
   let text: string;
   let html: string;
@@ -215,36 +211,55 @@ export async function POST(request: Request) {
     }
   }
 
-  if (!apiKey) {
+  const smtpHost = process.env.SMTP_HOST?.trim();
+  const smtpPort = Number(process.env.SMTP_PORT);
+  const smtpUser = process.env.SMTP_USER?.trim();
+  const smtpPassword = process.env.SMTP_PASSWORD?.trim();
+  const smtpFrom = process.env.SMTP_FROM?.trim() || smtpUser;
+  const to = process.env.CONTACT_TO_EMAIL?.trim() || "contacto@imelectric.es";
+
+  if (!smtpHost || !Number.isInteger(smtpPort) || smtpPort <= 0 || !smtpUser || !smtpPassword || !smtpFrom) {
     return NextResponse.json(
       {
         ok: false,
         configured: false,
-        message: "Servidor de correo no configurado (RESEND_API_KEY).",
+        message: "Servidor de correo no configurado.",
       },
       { status: 503 },
     );
   }
 
   try {
-    const resend = new Resend(apiKey);
-    const { error } = await resend.emails.send({
-      from,
-      to: [to],
-      ...(replyTo ? { replyTo } : {}),
+    const transporter = nodemailer.createTransport({
+      host: smtpHost,
+      port: smtpPort,
+      secure: true,
+      auth: {
+        user: smtpUser,
+        pass: smtpPassword,
+      },
+      connectionTimeout: 10_000,
+      greetingTimeout: 10_000,
+      socketTimeout: 15_000,
+    });
+
+    const info = await transporter.sendMail({
+      from: smtpFrom,
+      to,
+      replyTo,
       subject,
       text,
       html,
     });
 
-    if (error) {
-      console.error("[api/contact] Resend:", error);
+    if (info.accepted.length === 0) {
+      console.error("[api/contact] SMTP_REJECTED_ALL");
       return NextResponse.json({ error: "No se pudo enviar el correo. Intente más tarde." }, { status: 502 });
     }
 
     return NextResponse.json({ ok: true, configured: true });
   } catch (e) {
-    console.error("[api/contact]", e);
-    return NextResponse.json({ error: "Error interno al enviar" }, { status: 500 });
+    console.error("[api/contact] SMTP:", e);
+    return NextResponse.json({ error: "No se pudo enviar el correo. Intente más tarde." }, { status: 502 });
   }
 }

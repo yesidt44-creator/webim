@@ -44,11 +44,16 @@ En el panel de Node.js de Hostinger (o en un archivo `.env` que el panel permita
 
 | Variable | Uso |
 |----------|-----|
-| `RESEND_API_KEY` | Envío de correos desde `/api/contact` (formularios). Sin esto, la API responde 503 y el navegador usa **mailto** como respaldo. |
-| `RESEND_FROM_EMAIL` | Remitente verificado en Resend (ej. `IMELECTRIC <notificas@tudominio.com>`). |
-| `CONTACT_TO_EMAIL` | Bandeja donde recibes leads (por defecto en código: `contacto@imelectric.es`). |
+| `SMTP_HOST` | Servidor SMTP de Hostinger: `smtp.hostinger.com`. |
+| `SMTP_PORT` | Puerto SMTP seguro: `465`. |
+| `SMTP_USER` | Usuario del buzón: `contacto@imelectric.es`. |
+| `SMTP_PASSWORD` | Contraseña real del buzón. Configurar solo en el VPS; nunca subir a Git. |
+| `SMTP_FROM` | Remitente de los formularios: `contacto@imelectric.es`. |
+| `CONTACT_TO_EMAIL` | Bandeja que recibe los leads: `contacto@imelectric.es`. |
 | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Opcional — Google Analytics. |
 | `NEXT_PUBLIC_CLARITY_PROJECT_ID` | Opcional — Microsoft Clarity. |
+
+El endpoint `/api/contact` envía mediante el servidor SMTP del propio hosting con Nodemailer; no depende de un proveedor transaccional externo. Si la configuración SMTP está incompleta, responde `503` y el frontend ofrece `mailto:` como respaldo.
 
 Copia desde `web-imelectric/.env.example` como referencia; **no subas** `.env` con secretos al repositorio.
 
