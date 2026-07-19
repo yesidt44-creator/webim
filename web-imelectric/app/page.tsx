@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://imelectric.es",
   },
-  title: "Software industrial para Latinoamérica | IMELECTRIC",
+  title: "Software industrial con IA | IMELECTRIC",
   description:
     "Mantenimiento, HSE y SG-SST digitalizados desde Colombia, con profundidad normativa local. Fix AI, Falion, Veriwork, Nexvia y Shield AI para operaciones industriales.",
   keywords: [
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     "IMELECTRIC",
   ],
   openGraph: {
-    title: "Software industrial para Latinoamérica | IMELECTRIC",
+    title: "Software industrial con IA | IMELECTRIC",
     description:
       "Mantenimiento, HSE y SG-SST digitalizados desde Colombia, con profundidad normativa local para operaciones industriales.",
     url: "https://imelectric.es",
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Software industrial para Latinoamérica | IMELECTRIC",
+    title: "Software industrial con IA | IMELECTRIC",
     description:
       "Mantenimiento, HSE y SG-SST digitalizados desde Colombia. Fix AI, Falion, Veriwork, Nexvia y Shield AI.",
     images: ["/og-default.png"],
