@@ -54,7 +54,11 @@ export const SSTAcademy = () => {
                 <DclNumberInput label="Factor Seguridad (m)" value={sf} min={0.3} max={1} step={0.1} onChange={setSf} />
               </div>
 
-              <div className="mt-6 flex items-end justify-between border-t border-slate-800 pt-6">
+              <div
+                role="status"
+                aria-live="polite"
+                className="mt-6 flex items-end justify-between border-t border-slate-800 pt-6"
+              >
                 <div>
                   <div className="text-[10px] font-bold text-slate-500 uppercase">Requerimiento de Claridad (DCL)</div>
                   <div className={`text-4xl font-black ${dcl > 5 ? "text-amber-500" : "text-emerald-500"}`}>

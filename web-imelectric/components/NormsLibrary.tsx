@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useId, useState, type FormEvent } from "react";
 import { FileText, Download, Search, Lightbulb, Bell, ArrowRight, CheckCircle2 } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
 import { sendWebForm } from "@/lib/contactSubmit";
@@ -89,19 +89,39 @@ const NORMS = [
 ];
 
 export const NormsLibrary = () => {
+  const fieldId = useId();
+  const notifyEmailId = `${fieldId}-notify-email`;
+  const notifyConsentId = `${fieldId}-notify-consent`;
   const [notifyEmail, setNotifyEmail] = useState("");
   const [authorized, setAuthorized] = useState(false);
-  const [notifyState, setNotifyState] = useState<"idle" | "loading" | "done">("idle");
+  const [notifyState, setNotifyState] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [notifyMessage, setNotifyMessage] = useState("");
 
   const handleNotifySubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!authorized) return;
+    const hpValue = String(new FormData(e.currentTarget).get("_hp") ?? "");
     setNotifyState("loading");
-    try {
-      await sendWebForm({ formType: "norm_updates", email: notifyEmail, consent: true });
-    } finally {
-      setNotifyState("done");
+    setNotifyMessage("");
+
+    const result = await sendWebForm({
+      formType: "norm_updates",
+      email: notifyEmail,
+      consent: true,
+      _hp: hpValue,
+    });
+
+    if (result.status === "sent") {
+      setNotifyState("success");
+      return;
     }
+
+    setNotifyState("error");
+    setNotifyMessage(
+      result.status === "mailto"
+        ? "No pudimos registrar tu correo en este momento. Intenta nuevamente en unos minutos."
+        : result.message,
+    );
   };
 
   return (
@@ -221,14 +241,27 @@ export const NormsLibrary = () => {
           Opcional — independiente de la descarga. Solo te escribimos cuando haya una actualización normativa relevante.
         </p>
 
-        {notifyState === "done" ? (
-          <div className="flex items-center gap-2 text-sm text-emerald-400">
+        {notifyState === "success" ? (
+          <div role="status" aria-live="polite" className="flex items-center gap-2 text-sm text-emerald-400">
             <CheckCircle2 size={16} />
             Anotado — te avisamos cuando haya cambios.
           </div>
         ) : (
           <form onSubmit={handleNotifySubmit} className="space-y-3">
             <input
+              type="text"
+              name="_hp"
+              defaultValue=""
+              autoComplete="off"
+              tabIndex={-1}
+              aria-hidden="true"
+              style={{ position: "absolute", opacity: 0, left: "-9999px", width: 0, height: 0 }}
+            />
+            <label htmlFor={notifyEmailId} className="block text-xs font-semibold text-slate-300">
+              Correo para avisos normativos
+            </label>
+            <input
+              id={notifyEmailId}
               type="email"
               required
               value={notifyEmail}
@@ -240,8 +273,9 @@ export const NormsLibrary = () => {
             />
 
             {/* Corrección A — checkbox de autorización expresa, sin marcar por defecto */}
-            <label className="flex cursor-pointer items-start gap-3">
+            <label htmlFor={notifyConsentId} className="flex cursor-pointer items-start gap-3">
               <input
+                id={notifyConsentId}
                 type="checkbox"
                 checked={authorized}
                 onChange={(e) => setAuthorized(e.target.checked)}
@@ -264,6 +298,17 @@ export const NormsLibrary = () => {
             >
               {notifyState === "loading" ? "Enviando…" : "Suscribir"}
             </button>
+
+            {notifyState === "error" ? (
+              <div
+                role="alert"
+                aria-live="polite"
+                className="rounded-xl border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-200"
+              >
+                <p>{notifyMessage}</p>
+                <p className="mt-1 text-xs text-red-300">Tu correo se conserva. Puedes intentar nuevamente.</p>
+              </div>
+            ) : null}
           </form>
         )}
       </div>

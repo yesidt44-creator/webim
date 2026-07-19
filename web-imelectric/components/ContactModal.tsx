@@ -7,24 +7,47 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { MessageCircle, Mail, AlertTriangle, ArrowRight } from "lucide-react";
+import { MessageCircle, Mail, AlertTriangle, ArrowRight, CheckCircle2, CircleAlert } from "lucide-react";
 import { sendWebForm, openMailtoContact } from "@/lib/contactSubmit";
 
-const PRIORITY_LABELS: Record<string, string> = {
-  papeleo: "Digitalizar reportes de campo",
-  suministros: "Suministro crítico de repuestos",
-  electronica: "Mantenimiento electrónico",
-  otro: "Otro",
+export const CONTACT_PRODUCTS = [
+  "Fix AI",
+  "Veriwork",
+  "Nexvia",
+  "Shield AI",
+  "Falion",
+  "Consultoría en mantenimiento",
+] as const;
+
+export type ContactProduct = (typeof CONTACT_PRODUCTS)[number];
+
+const PRODUCT_TITLES: Record<ContactProduct, string> = {
+  "Fix AI": "Solicitar demo de Fix AI",
+  Veriwork: "Solicitar demo de Veriwork",
+  Nexvia: "Solicitar demo de Nexvia",
+  "Shield AI": "Solicitar demo de Shield AI",
+  Falion: "Solicitar acceso a Falion",
+  "Consultoría en mantenimiento": "Solicitar asesoría en mantenimiento",
 };
 
-export const ContactModal = ({ children }: { children: React.ReactNode }) => {
+type ContactModalProps = {
+  children: React.ReactNode;
+  product?: ContactProduct;
+  sourceCta: string;
+};
+
+type SubmitFeedback =
+  | { status: "idle"; message: "" }
+  | { status: "success" | "error" | "mailto"; message: string };
+
+export const ContactModal = ({ children, product, sourceCta }: ContactModalProps) => {
   const pathname = usePathname();
   const fieldId = useId();
   const fullNameId = `${fieldId}-full-name`;
   const companyId = `${fieldId}-company`;
   const emailId = `${fieldId}-email`;
   const phoneId = `${fieldId}-phone`;
-  const priorityLabelId = `${fieldId}-priority-label`;
+  const productLabelId = `${fieldId}-product-label`;
   const messageId = `${fieldId}-message`;
   const consentId = `${fieldId}-consent`;
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -34,23 +57,35 @@ export const ContactModal = ({ children }: { children: React.ReactNode }) => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
-  const [priority, setPriority] = useState("");
+  const [selectedProduct, setSelectedProduct] = useState<ContactProduct | "">(product ?? "");
   const [authorized, setAuthorized] = useState(false);
+  const [feedback, setFeedback] = useState<SubmitFeedback>({ status: "idle", message: "" });
+
+  const handleOpenChange = (nextOpen: boolean) => {
+    setOpen(nextOpen);
+    if (nextOpen) {
+      setSelectedProduct(product ?? "");
+      setFeedback({ status: "idle", message: "" });
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!priority) {
-      window.alert("Seleccione una prioridad técnica.");
+    if (!selectedProduct) {
+      setFeedback({ status: "error", message: "Seleccione un producto o servicio para continuar." });
       return;
     }
     if (!authorized) {
-      window.alert("Debe autorizar el tratamiento de sus datos personales para continuar.");
+      setFeedback({
+        status: "error",
+        message: "Debe autorizar el tratamiento de sus datos personales para continuar.",
+      });
       return;
     }
-    const priorityLabel = PRIORITY_LABELS[priority] || priority;
     // Read honeypot from the raw form — not from React state (bots fill DOM inputs)
     const hpValue = String(new FormData(e.currentTarget).get("_hp") ?? "");
     setIsSubmitting(true);
+    setFeedback({ status: "idle", message: "" });
     try {
       const result = await sendWebForm({
         formType: "contact",
@@ -59,34 +94,26 @@ export const ContactModal = ({ children }: { children: React.ReactNode }) => {
         email,
         phone: phone.trim() || undefined,
         message: message.trim() || undefined,
-        priority: priorityLabel,
+        product: selectedProduct,
         sourcePage: pathname || "/",
+        sourceCta,
         consent: authorized,
         _hp: hpValue,
       });
 
       if (result.status === "sent") {
-        window.alert("Solicitud enviada correctamente. Un ingeniero se pondrá en contacto pronto.");
-        setOpen(false);
-        setFullName("");
-        setCompany("");
-        setEmail("");
-        setPhone("");
-        setMessage("");
-        setPriority("");
-        setAuthorized(false);
+        setFeedback({
+          status: "success",
+          message: "Solicitud enviada correctamente. Un ingeniero se pondrá en contacto.",
+        });
       } else if (result.status === "mailto") {
-        openMailtoContact(fullName, company, email, priorityLabel);
-        window.alert(
-          "Se abrirá su aplicación de correo para completar el envío. Si no ocurre, escriba a contacto@imelectric.es o use WhatsApp.",
-        );
-        setOpen(false);
+        setFeedback({
+          status: "mailto",
+          message:
+            "El envío automático no está disponible. Abre tu aplicación de correo y pulsa Enviar allí para completar la solicitud.",
+        });
       } else {
-        openMailtoContact(fullName, company, email, priorityLabel);
-        window.alert(
-          `${result.message}\n\nSe intentó abrir su correo como alternativa. También puede escribirnos por WhatsApp.`,
-        );
-        setOpen(false);
+        setFeedback({ status: "error", message: result.message });
       }
     } finally {
       setIsSubmitting(false);
@@ -94,13 +121,15 @@ export const ContactModal = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="max-h-[90dvh] overflow-y-auto border-slate-800 bg-slate-950 p-0 text-slate-50 sm:max-w-[800px] [-webkit-overflow-scrolling:touch]">
         <div className="grid md:grid-cols-5">
           <div className="md:col-span-3 p-6 sm:p-8">
             <DialogHeader className="mb-6">
-              <DialogTitle className="text-2xl font-bold tracking-tight">Hablemos de su operación</DialogTitle>
+              <DialogTitle className="text-2xl font-bold tracking-tight">
+                {selectedProduct ? PRODUCT_TITLES[selectedProduct] : "Hablemos de su operación"}
+              </DialogTitle>
               <p className="mt-2 text-sm text-slate-400">
                 Déjenos sus datos y auditaremos la viabilidad técnica para su planta.
               </p>
@@ -199,23 +228,28 @@ export const ContactModal = ({ children }: { children: React.ReactNode }) => {
 
               <div className="space-y-2">
                 <label
-                  id={priorityLabelId}
+                  id={productLabelId}
                   className="text-xs font-semibold tracking-wider text-slate-400 uppercase"
                 >
-                  Prioridad técnica
+                  Producto o servicio
                 </label>
-                <Select value={priority} onValueChange={setPriority} required>
+                <Select
+                  value={selectedProduct}
+                  onValueChange={(value) => setSelectedProduct(value as ContactProduct)}
+                  required
+                >
                   <SelectTrigger
-                    aria-labelledby={priorityLabelId}
+                    aria-labelledby={productLabelId}
                     className="min-h-12 bg-slate-900 text-base text-white border-slate-700"
                   >
-                    <SelectValue placeholder="Seleccione un desafío..." />
+                    <SelectValue placeholder="Seleccione una opción..." />
                   </SelectTrigger>
                   <SelectContent className="border-slate-700 bg-slate-800 text-white">
-                    <SelectItem value="papeleo">Digitalizar reportes de campo</SelectItem>
-                    <SelectItem value="suministros">Suministro crítico de repuestos</SelectItem>
-                    <SelectItem value="electronica">Mantenimiento electrónico</SelectItem>
-                    <SelectItem value="otro">Otro</SelectItem>
+                    {CONTACT_PRODUCTS.map((item) => (
+                      <SelectItem key={item} value={item}>
+                        {item}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </div>
@@ -262,17 +296,64 @@ export const ContactModal = ({ children }: { children: React.ReactNode }) => {
 
               <Button
                 type="submit"
-                disabled={isSubmitting || !authorized}
+                disabled={isSubmitting || feedback.status === "success"}
                 className="mt-4 h-12 w-full bg-blue-600 text-base font-bold text-white transition-all hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {isSubmitting ? (
                   "Enviando…"
+                ) : feedback.status === "success" ? (
+                  "Solicitud enviada"
+                ) : feedback.status === "error" || feedback.status === "mailto" ? (
+                  "Reintentar envío"
                 ) : (
                   <>
                     Solicitar análisis técnico <ArrowRight className="ml-2 h-4 w-4" />
                   </>
                 )}
               </Button>
+
+              {feedback.status !== "idle" ? (
+                <div
+                  role={feedback.status === "error" ? "alert" : "status"}
+                  aria-live="polite"
+                  className={`rounded-xl border p-3 text-sm ${
+                    feedback.status === "success"
+                      ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-200"
+                      : feedback.status === "mailto"
+                        ? "border-amber-500/30 bg-amber-500/10 text-amber-100"
+                        : "border-red-500/30 bg-red-500/10 text-red-200"
+                  }`}
+                >
+                  <div className="flex items-start gap-2">
+                    {feedback.status === "success" ? (
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+                    ) : (
+                      <CircleAlert className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+                    )}
+                    <p>{feedback.message}</p>
+                  </div>
+                  {feedback.status === "mailto" && selectedProduct ? (
+                    <button
+                      type="button"
+                      onClick={() =>
+                        openMailtoContact({
+                          fullName,
+                          company,
+                          email,
+                          phone,
+                          message,
+                          product: selectedProduct,
+                          sourcePage: pathname || "/",
+                          sourceCta,
+                        })
+                      }
+                      className="mt-3 rounded-lg border border-amber-400/40 px-3 py-2 font-semibold text-amber-100 transition hover:bg-amber-500/10"
+                    >
+                      Abrir mi correo para completar el envío
+                    </button>
+                  ) : null}
+                </div>
+              ) : null}
 
               <p className="text-center text-xs text-slate-500">
                 Usaremos estos datos únicamente para responder tu solicitud.{" "}

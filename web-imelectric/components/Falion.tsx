@@ -223,7 +223,7 @@ export const Falion = () => {
               <p className="text-sm text-slate-400">
                 ¿Tu operación quiere participar en la fase de pruebas? El acceso es limitado.
               </p>
-              <ContactModal>
+              <ContactModal product="Falion" sourceCta="Solicitar acceso a la fase de pruebas">
                 <button
                   type="button"
                   className="mt-4 flex items-center gap-2 rounded-xl bg-blue-600 px-8 py-3 font-bold text-white shadow-lg shadow-blue-900/40 transition hover:bg-blue-500"

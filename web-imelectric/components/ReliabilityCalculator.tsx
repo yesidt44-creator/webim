@@ -232,7 +232,11 @@ export const ReliabilityCalculator = () => {
           </button>
         </div>
 
-        <div className="rounded-2xl border border-slate-800 bg-slate-950/70 p-8">
+        <div
+          role="status"
+          aria-live="polite"
+          className="rounded-2xl border border-slate-800 bg-slate-950/70 p-8"
+        >
           {result ? (
             <div className="space-y-4 animate-in fade-in duration-500">
               <div>

@@ -307,7 +307,7 @@ export const ShieldAI = () => {
             <strong className="text-white">Sin consultores. Sin burocracia.</strong>
           </p>
           <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-            <ContactModal>
+            <ContactModal product="Shield AI" sourceCta="Solicitar diagnóstico gratuito">
               <button
                 type="button"
                 className="flex items-center gap-2 rounded-xl bg-violet-600 px-10 py-4 font-bold text-white shadow-lg shadow-violet-900/50 transition hover:bg-violet-500"
@@ -315,12 +315,6 @@ export const ShieldAI = () => {
                 Solicitar diagnóstico gratuito <ArrowRight size={20} />
               </button>
             </ContactModal>
-            <a
-              href="/shield-ai"
-              className="flex items-center gap-2 rounded-xl border border-slate-700 px-8 py-4 text-sm font-semibold text-slate-300 transition hover:border-violet-500/50 hover:text-violet-400"
-            >
-              Ver página completa →
-            </a>
           </div>
         </motion.div>
       </div>

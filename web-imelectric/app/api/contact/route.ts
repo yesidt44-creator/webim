@@ -5,6 +5,14 @@ import { checkRateLimit, getClientIp, maskIp } from "@/lib/rateLimit";
 export const runtime = "nodejs";
 
 const MAX = 600;
+const CONTACT_PRODUCTS = [
+  "Fix AI",
+  "Veriwork",
+  "Nexvia",
+  "Shield AI",
+  "Falion",
+  "Consultoría en mantenimiento",
+] as const;
 
 function clamp(v: unknown): string {
   const s = String(v ?? "").trim();
@@ -20,9 +28,37 @@ function escapeHtml(s: string): string {
     .replace(/"/g, "&quot;");
 }
 
+function isPlainObject(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function isAllowedRequestUrl(value: string): boolean {
+  try {
+    const url = new URL(value);
+    if (url.protocol === "https:" && (url.hostname === "imelectric.es" || url.hostname === "www.imelectric.es")) {
+      return true;
+    }
+    return url.hostname === "localhost" || url.hostname === "127.0.0.1";
+  } catch {
+    return false;
+  }
+}
+
 export async function POST(request: Request) {
   const ip = getClientIp(request);
   const masked = maskIp(ip);
+
+  const contentType = request.headers.get("content-type")?.split(";", 1)[0]?.trim().toLowerCase();
+  if (contentType !== "application/json") {
+    return NextResponse.json({ error: "Content-Type debe ser application/json" }, { status: 415 });
+  }
+
+  const origin = request.headers.get("origin");
+  const referer = request.headers.get("referer");
+  if ((origin && !isAllowedRequestUrl(origin)) || (!origin && referer && !isAllowedRequestUrl(referer))) {
+    console.warn(`[api/contact] ORIGIN_BLOCKED ip=${masked}`);
+    return NextResponse.json({ error: "Origen de solicitud no permitido" }, { status: 403 });
+  }
 
   // ── Rate limiting ──────────────────────────────────────────────────────────
   const rl = checkRateLimit(ip);
@@ -42,12 +78,17 @@ export async function POST(request: Request) {
   }
 
   // ── Parse body ─────────────────────────────────────────────────────────────
-  let body: Record<string, unknown>;
+  let parsedBody: unknown;
   try {
-    body = await request.json();
+    parsedBody = await request.json();
   } catch {
     return NextResponse.json({ error: "JSON inválido" }, { status: 400 });
   }
+
+  if (!isPlainObject(parsedBody)) {
+    return NextResponse.json({ error: "El cuerpo debe ser un objeto JSON" }, { status: 400 });
+  }
+  const body = parsedBody;
 
   // ── Honeypot ───────────────────────────────────────────────────────────────
   // Field "_hp" is hidden from real users (opacity:0, tabIndex=-1, aria-hidden).
@@ -124,14 +165,18 @@ export async function POST(request: Request) {
     replyTo = email;
 
     if (formType === "contact") {
-      const priority = clamp(body.priority);
-      if (!priority) {
-        return NextResponse.json({ error: "Seleccione una prioridad técnica" }, { status: 400 });
+      const product = clamp(body.product);
+      if (!CONTACT_PRODUCTS.includes(product as (typeof CONTACT_PRODUCTS)[number])) {
+        return NextResponse.json({ error: "Seleccione un producto o servicio válido" }, { status: 400 });
       }
-      subject = `[Web IMELECTRIC] Consulta: ${priority}`;
+      subject = `[Web IMELECTRIC] Consulta: ${product}`;
       const phone = clamp(body.phone);
       const message = clamp(body.message);
       const sourcePage = clamp(body.sourcePage) || "/";
+      const sourceCta = clamp(body.sourceCta);
+      if (!sourceCta) {
+        return NextResponse.json({ error: "Falta el CTA de origen" }, { status: 400 });
+      }
       text = [
         "Nueva consulta desde el formulario de contacto (web IMELECTRIC).",
         "",
@@ -139,8 +184,9 @@ export async function POST(request: Request) {
         `Empresa: ${company}`,
         `Correo: ${email}`,
         `Teléfono: ${phone || "(no indicado)"}`,
-        `Prioridad / interés: ${priority}`,
+        `Producto / servicio: ${product}`,
         `Página de origen: ${sourcePage}`,
+        `CTA de origen: ${sourceCta}`,
         `Mensaje: ${message || "(sin mensaje)"}`,
         consentProof,
         "",

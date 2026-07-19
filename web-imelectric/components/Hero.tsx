@@ -34,7 +34,7 @@ export const Hero = () => {
           revisando, aprobando y firmando.
         </p>
         <div className="flex flex-wrap gap-4">
-          <ContactModal>
+          <ContactModal sourceCta="Solicitar demo">
             <button
               type="button"
               className="flex items-center gap-2 rounded-lg bg-blue-600 px-8 py-4 font-bold text-white shadow-lg shadow-blue-900/20 transition hover:bg-blue-700"

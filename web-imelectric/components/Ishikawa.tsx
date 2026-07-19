@@ -44,6 +44,8 @@ export const Ishikawa = () => {
     window.print();
   };
 
+  const causeCount = Object.values(causes).reduce((total, categoryCauses) => total + categoryCauses.length, 0);
+
   return (
     <div className="mt-8 rounded-3xl border border-slate-800 bg-slate-900 p-8 shadow-2xl md:p-12 print:border-none print:bg-white print:text-black print:shadow-none">
       <div className="mb-8 flex flex-col items-start justify-between gap-4 border-b border-slate-800 pb-6 md:flex-row md:items-center print:border-gray-300">
@@ -77,6 +79,9 @@ export const Ishikawa = () => {
           className="w-full border-b border-slate-700 bg-transparent pb-2 text-xl font-bold text-white transition focus:border-red-500 focus:outline-none md:text-2xl print:text-red-700"
         />
       </div>
+      <p className="sr-only" role="status" aria-live="polite">
+        {causeCount} causas registradas para {problem}.
+      </p>
 
       {/* Las 6M (Cuerpo del Pescado) */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

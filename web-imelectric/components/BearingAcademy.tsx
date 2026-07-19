@@ -256,7 +256,7 @@ function NomenclatureDecoder() {
       <input className={inputCls} type="text" value={ref} onChange={e => setRef(e.target.value)}
         placeholder="Ej: 6205-2RS/C3 ó NU207" style={{textTransform:"uppercase"}} />
       {decoded.length > 0 && (
-        <div className="space-y-2">
+        <div aria-live="polite" className="space-y-2">
           {decoded.map((p, i) => (
             <div key={i} className={`rounded-xl border p-3 ${i===0?"border-blue-500/30 bg-blue-500/10":i===decoded.length-1&&suffixPart(ref)?"border-emerald-500/30 bg-emerald-500/10":"border-slate-800 bg-slate-900/60"}`}>
               <div className="mb-0.5 text-[10px] font-bold tracking-widest text-slate-500 uppercase">{p.label}</div>
@@ -307,7 +307,7 @@ function VisualInspector() {
         ))}
       </div>
       {fm && (
-        <div className="rounded-2xl border border-slate-800 bg-slate-900 p-5 space-y-4">
+        <div role="status" aria-live="polite" className="rounded-2xl border border-slate-800 bg-slate-900 p-5 space-y-4">
           <div className="flex items-start justify-between gap-3">
             <div>
               <div className="text-base font-bold text-white">{fm.name}</div>
@@ -396,7 +396,7 @@ function BearingSearch() {
         </div>
       )}
       {results.length > 0 && (
-        <div className="space-y-4">
+        <div role="status" aria-live="polite" className="space-y-4">
           {results.map(([key,b])=>(
             <div key={key} className="rounded-2xl border border-slate-800 bg-slate-900 p-5">
               <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
@@ -427,7 +427,7 @@ function BearingSearch() {
         </div>
       )}
       {results.length===0 && query.length>0 && mode==="ref" && (
-        <p className="py-6 text-center text-sm text-slate-500">Sin resultados para <span className="font-mono text-slate-300">&ldquo;{query}&rdquo;</span></p>
+        <p role="status" aria-live="polite" className="py-6 text-center text-sm text-slate-500">Sin resultados para <span className="font-mono text-slate-300">&ldquo;{query}&rdquo;</span></p>
       )}
     </div>
   );
@@ -455,7 +455,7 @@ function MeasurementGuide() {
           </button>
         ))}
       </div>
-      <div className="rounded-2xl border border-slate-800 bg-slate-900 p-5 space-y-3">
+      <div aria-live="polite" className="rounded-2xl border border-slate-800 bg-slate-900 p-5 space-y-3">
         <h4 className="font-bold text-white">{steps[step].title}</h4>
         <p className="text-sm leading-relaxed text-slate-300">{steps[step].content}</p>
         <div className="rounded-xl border border-amber-500/20 bg-amber-500/10 p-3">
@@ -482,7 +482,7 @@ function MeasurementGuide() {
 function BrandComparison() {
   const [selected, setSelected] = useState<number|null>(null);
   return (
-    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    <div aria-live="polite" className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {BRAND_DATA.map((b,i)=>(
         <button key={i} onClick={()=>setSelected(i===selected?null:i)} className={`rounded-2xl border p-4 text-left transition-all ${selected===i?"border-blue-500/40 bg-blue-500/10":"border-slate-800 bg-slate-900 hover:border-slate-700"}`}>
           <div className="flex items-center justify-between">
@@ -532,7 +532,7 @@ function ConditionChecklist() {
 
   return (
     <div className="space-y-3">
-      <p className={`text-center text-sm ${verdict.cls}`}>{verdict.text}</p>
+      <p role="status" aria-live="polite" className={`text-center text-sm ${verdict.cls}`}>{verdict.text}</p>
       {items.map(item=>(
         <label key={item.id} onClick={()=>toggle(item.id)}
           className={`flex cursor-pointer gap-3 rounded-xl p-3 transition-all ${checks[item.id]?(item.severity==="danger"?"border border-red-500/20 bg-red-500/10":"border border-amber-500/20 bg-amber-500/10"):"border border-slate-800 bg-slate-900/50 hover:border-slate-700"}`}>

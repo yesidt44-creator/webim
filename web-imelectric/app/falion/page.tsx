@@ -111,7 +111,7 @@ export default async function FalionPage() {
           </p>
 
           <div className="flex flex-wrap justify-center gap-4">
-            <ContactModal>
+            <ContactModal product="Falion" sourceCta="Solicitar acceso a la fase de pruebas">
               <button
                 type="button"
                 className="flex items-center gap-2 rounded-2xl bg-blue-600 px-8 py-4 font-bold text-white shadow-2xl shadow-blue-900/50 transition hover:bg-blue-500"
@@ -141,7 +141,7 @@ export default async function FalionPage() {
           <p className="mb-8 text-slate-400">
             Falion nunca ejecuta cambios automáticamente en tu CMMS. El ingeniero revisa cada propuesta antes de que se convierta en acción.
           </p>
-          <ContactModal>
+          <ContactModal product="Falion" sourceCta="Hablar con el equipo de IMELECTRIC">
             <button
               type="button"
               className="rounded-2xl bg-blue-600 px-10 py-4 font-bold text-white shadow-2xl shadow-blue-900/50 transition hover:bg-blue-500"

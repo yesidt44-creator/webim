@@ -81,6 +81,9 @@ export const Fmeca = () => {
           </p>
         </div>
       </div>
+      <p className="sr-only" role="status" aria-live="polite">
+        {failures.length} modos de falla registrados en la matriz.
+      </p>
 
       <div className="overflow-x-auto rounded-xl border border-slate-800 print:border-gray-300">
         <table className="w-full border-collapse text-left">

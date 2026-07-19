@@ -44,7 +44,7 @@ export const IndustrialServices = () => {
                 <Zap size={14} className="text-blue-500" /> Logística de Emergencia
               </div>
             </div>
-            <ContactModal>
+            <ContactModal sourceCta="Consultar Componente">
               <button
                 type="button"
                 className="relative z-10 flex items-center gap-2 text-sm font-bold text-white transition-all hover:gap-4"
@@ -71,12 +71,12 @@ export const IndustrialServices = () => {
                 <Zap size={14} className="text-emerald-500" /> Ingeniería de Reversa
               </div>
             </div>
-            <ContactModal>
+            <ContactModal sourceCta="Agendar Asesoría Personalizada">
               <button
                 type="button"
                 className="relative z-10 flex items-center gap-2 text-sm font-bold text-white transition-all hover:gap-4"
               >
-                Agendar Diagnóstico <ArrowRight size={16} />
+                Agendar Asesoría Personalizada <ArrowRight size={16} />
               </button>
             </ContactModal>
           </div>
@@ -104,7 +104,7 @@ export const IndustrialServices = () => {
               href="/consultoria-mantenimiento"
               className="relative z-10 flex items-center gap-2 text-sm font-bold text-white transition-all hover:gap-4"
             >
-              Agendar diagnóstico inicial <ArrowRight size={16} />
+              Agendar Asesoría Personalizada <ArrowRight size={16} />
             </Link>
           </div>
         </div>

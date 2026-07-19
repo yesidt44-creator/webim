@@ -70,7 +70,7 @@ const organizationJsonLd = {
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "customer support",
-    email: "hola@imelectric.es",
+    email: "contacto@imelectric.es",
     availableLanguage: ["Spanish"],
   },
   knowsAbout: [

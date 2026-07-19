@@ -127,12 +127,12 @@ export default async function ConsultoriaMantenimientoPage() {
             criticidad de activos en una estrategia de mantenimiento clara, medible y ejecutable.
           </p>
           <div className="mt-8">
-            <ContactModal>
+            <ContactModal product="Consultoría en mantenimiento" sourceCta="Agendar Asesoría">
               <button
                 type="button"
                 className="rounded-xl bg-amber-600 px-7 py-4 font-bold text-white shadow-lg shadow-amber-950/30 transition-colors hover:bg-amber-500"
               >
-                Agendar diagnóstico inicial
+                Agendar Asesoría
               </button>
             </ContactModal>
           </div>
@@ -273,12 +273,12 @@ export default async function ConsultoriaMantenimientoPage() {
             Cuéntenos el estado actual de su operación y definiremos el alcance inicial con su equipo.
           </p>
           <div className="mt-8">
-            <ContactModal>
+            <ContactModal product="Consultoría en mantenimiento" sourceCta="Agendar Asesoría">
               <button
                 type="button"
                 className="rounded-xl bg-amber-600 px-7 py-4 font-bold text-white transition-colors hover:bg-amber-500"
               >
-                Agendar diagnóstico inicial
+                Agendar Asesoría
               </button>
             </ContactModal>
           </div>
