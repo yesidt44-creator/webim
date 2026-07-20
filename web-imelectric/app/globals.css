@@ -5,6 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* Coincide con el fondo del video del ecosistema (medido en render ~#000009). */
+  --color-canvas: #000009;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);

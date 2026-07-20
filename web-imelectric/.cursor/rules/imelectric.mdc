@@ -39,6 +39,7 @@ Estas reglas se aplican en cualquier tarea sobre este repositorio. Si una instru
 - No publiques formularios que capturen datos personales sin un checkbox de autorización expresa, desmarcado por defecto, y sin registrar prueba de la autorización: fecha, hora y origen.
 - No publiques `/privacidad`, `/terminos` o `/cookies` con placeholders, notas internas o texto `[PENDIENTE...]` visible. Deben estar completas o llevar `noindex` hasta completarse.
 - Todo cambio a `next.config.ts` —headers o CSP— o a la configuración Nginx del VPS debe probarse con `nginx -t` antes de recargar. El VPS aloja otros tres sitios: nunca modifiques configuración global o compartida sin confirmación explícita.
+- `media-src 'self'` (antes `'none'`) se habilitó el 2026-07-19 de forma deliberada para servir el video del hero (`/imelectric-ecosistema.webm` / `.mp4`) desde el mismo dominio. No abrir `media-src` a dominios externos sin una decisión explícita de seguridad.
 - `npm audit` debe reportar cero vulnerabilidades high/critical antes de cualquier despliegue.
 
 ## 4. Calidad de código y assets

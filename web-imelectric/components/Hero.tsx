@@ -7,11 +7,12 @@ import { ProductEcosystemVisual } from "./ProductEcosystemVisual";
 
 export const Hero = () => {
   return (
-    <section className="mx-auto grid max-w-7xl items-center gap-8 px-4 pt-8 pb-16 sm:gap-10 sm:px-6 md:grid-cols-2 md:gap-12 md:pb-20">
+    <section className="mx-auto flex max-w-7xl flex-col gap-8 px-4 pt-8 pb-16 sm:gap-10 sm:px-6 md:pb-20">
       <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
+        className="mx-auto max-w-3xl text-center"
       >
         <p className="mb-4 text-sm font-semibold leading-snug text-blue-400 sm:text-base">
           Software industrial con IA para contratistas y operadores en Colombia
@@ -20,20 +21,32 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="mb-6 text-5xl font-extrabold tracking-tight md:text-7xl"
+          className="mb-6 text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
         >
           El software industrial que entiende{" "}
           <span className="text-blue-400">cómo se trabaja en Latinoamérica.</span>
         </motion.h1>
-        <p className="mb-5 max-w-xl text-lg leading-relaxed text-slate-300">
+        <p className="mx-auto max-w-2xl text-lg leading-relaxed text-slate-300">
           Mantenimiento, HSE y SG-SST digitalizados — construido desde Colombia, con la profundidad
           normativa que un producto genérico o adaptado de otro país no tiene.
         </p>
-        <p className="mb-8 max-w-xl leading-relaxed text-slate-400">
+      </motion.div>
+
+      <div className="w-full">
+        <ProductEcosystemVisual />
+      </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className="mx-auto max-w-3xl text-center"
+      >
+        <p className="mx-auto mb-8 max-w-2xl leading-relaxed text-slate-400">
           Cinco plataformas, un mismo principio: la IA hace el trabajo repetitivo — tu equipo sigue
           revisando, aprobando y firmando.
         </p>
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap items-center justify-center gap-4">
           <ContactModal sourceCta="Solicitar demo">
             <button
               type="button"
@@ -48,7 +61,7 @@ export const Hero = () => {
           >
             Ver cómo pensamos la IA ↓
           </a>
-          <div className="flex flex-wrap items-center gap-4 border-l border-slate-800 pl-4 font-mono text-sm text-slate-500">
+          <div className="flex flex-wrap items-center justify-center gap-4 border-l border-slate-800 pl-4 font-mono text-sm text-slate-500">
             <div className="flex items-center gap-2">
               <Brain size={16} className="text-blue-500" />
               Compatible con el ERP del operador
@@ -59,15 +72,6 @@ export const Hero = () => {
             </div>
           </div>
         </div>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="relative flex w-full justify-center md:justify-end"
-      >
-        <ProductEcosystemVisual />
       </motion.div>
     </section>
   );

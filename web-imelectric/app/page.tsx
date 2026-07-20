@@ -85,7 +85,7 @@ import { ProductivitySection } from "@/components/ProductivitySection";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-50 font-sans selection:bg-blue-500/30">
+    <main className="min-h-screen bg-canvas text-slate-50 font-sans selection:bg-blue-500/30">
       <Navbar />
       
       {/* Contenedor principal con padding superior para compensar el Navbar fijo */}

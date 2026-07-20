@@ -24,7 +24,7 @@ export function proxy(request: NextRequest) {
     "img-src 'self' data: https:",
     // GA4 y Clarity hacen fetch/XHR a estos dominios — connect-src los permite.
     "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://*.clarity.ms",
-    "media-src 'none'",
+    "media-src 'self'",
     "frame-src 'none'",
     "object-src 'none'",
     "base-uri 'self'",

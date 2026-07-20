@@ -203,7 +203,7 @@ server {
     add_header X-Frame-Options           "DENY" always;
     add_header Referrer-Policy           "strict-origin-when-cross-origin" always;
     add_header Permissions-Policy        "camera=(), microphone=(), geolocation=(), payment=()" always;
-    add_header Content-Security-Policy   "default-src 'none'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.clarity.ms; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://*.clarity.ms; media-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" always;
+    add_header Content-Security-Policy   "default-src 'none'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.clarity.ms; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://*.clarity.ms; media-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" always;
     # ───────────────────────────────────────────────────────────────────────
 
     location / {

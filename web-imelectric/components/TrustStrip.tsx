@@ -19,7 +19,7 @@ const trustItems = [
 export const TrustStrip = () => (
   <section aria-label="Respaldo y experiencia de IMELECTRIC" className="border-y border-slate-800 bg-slate-900/70">
     <div className="mx-auto grid max-w-7xl gap-px bg-slate-800 sm:grid-cols-2 lg:grid-cols-4">
-      <div className="flex min-h-24 items-center gap-3 bg-slate-950 px-5 py-4">
+      <div className="flex min-h-24 items-center gap-3 bg-canvas px-5 py-4">
         <Image
           src="/badges/iso-9001-ll-c.png"
           alt="Certificación ISO 9001 — LL-C Certification"
@@ -37,7 +37,7 @@ export const TrustStrip = () => (
       </div>
 
       {trustItems.map((item) => (
-        <div key={item.text} className="flex min-h-24 items-center gap-3 bg-slate-950 px-5 py-4">
+        <div key={item.text} className="flex min-h-24 items-center gap-3 bg-canvas px-5 py-4">
           <span className="shrink-0 text-blue-400" aria-hidden="true">
             {item.icon}
           </span>
