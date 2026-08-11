@@ -9,7 +9,7 @@ export const ProductEcosystemVisual = () => (
     viewport={{ once: true, amount: 0.25 }}
     transition={{ duration: 0.7, ease: "easeOut" }}
     aria-label="Ecosistema de productos y servicios de IMELECTRIC: Fix AI, Veriwork, Nexvia, Shield AI, Falion y Consultoría"
-    className="relative mx-auto w-full max-w-5xl"
+    className="relative mx-auto aspect-[1256/732] w-full max-w-5xl"
   >
     {/* Glow pulsante detrás */}
     <motion.div
@@ -27,7 +27,7 @@ export const ProductEcosystemVisual = () => (
     />
 
     <video
-      className="relative z-0 h-auto w-full"
+      className="h-full w-full object-contain mix-blend-lighten shadow-[0_0_80px_40px_rgba(56,189,248,0.12)] [mask-image:radial-gradient(ellipse_at_center,_black_30%,_transparent_80%,_transparent_100%)]"
       width={1256}
       height={732}
       autoPlay
@@ -35,11 +35,9 @@ export const ProductEcosystemVisual = () => (
       loop
       playsInline
       preload="metadata"
-      poster="/imelectric-ecosistema-poster.jpg"
       aria-hidden="true"
     >
-      <source src="/imelectric-ecosistema.webm" type="video/webm" />
-      <source src="/imelectric-ecosistema.mp4" type="video/mp4" />
+      <source src="/imelectric-animacion.mp4" type="video/mp4" />
     </video>
   </motion.figure>
 );
