@@ -107,6 +107,8 @@ export const ProductTour = () => {
               alt={active.alt}
               width={active.width}
               height={active.height}
+              quality={95}
+              unoptimized
               sizes={
                 isDesktopBoard
                   ? "(max-width: 1024px) 92vw, 1024px"
