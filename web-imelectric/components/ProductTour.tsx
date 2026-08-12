@@ -22,10 +22,10 @@ const screens = [
     ],
   },
   {
-    src: "/fixai-screen-supervisor.png",
-    alt: "Fix AI — dashboard del supervisor con avance semanal, sesiones pendientes, hallazgos y aprobación",
-    width: 635,
-    height: 1024,
+    src: "/fixai-screen-supervisor.jpg",
+    alt: "Fix AI — tablero del supervisor en PC: revisión de OT, sugerencias de texto y aprobación con PDF",
+    width: 1024,
+    height: 530,
     eyebrow: "Paso 2",
     title: "El supervisor revisa, corrige y aprueba",
     description:
@@ -56,6 +56,7 @@ const screens = [
 export const ProductTour = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const active = screens[activeIndex];
+  const isDesktopBoard = active.width > active.height;
 
   const showPrevious = () =>
     setActiveIndex((current) => (current === 0 ? screens.length - 1 : current - 1));
@@ -85,10 +86,20 @@ export const ProductTour = () => {
         </p>
       </div>
 
-      <div className="grid items-center gap-8 rounded-3xl border border-slate-800 bg-slate-900/60 p-5 sm:p-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(18rem,1.2fr)] lg:gap-12">
+      <div
+        className={`grid items-center gap-8 rounded-3xl border border-slate-800 bg-slate-900/60 p-5 sm:p-8 lg:gap-12 ${
+          isDesktopBoard
+            ? "lg:grid-cols-1"
+            : "lg:grid-cols-[minmax(0,0.8fr)_minmax(18rem,1.2fr)]"
+        }`}
+      >
           <div
             id="product-tour-screen"
-            className="mx-auto w-full max-w-[21rem] overflow-hidden rounded-2xl border border-slate-700 bg-slate-100"
+            className={`mx-auto w-full overflow-hidden rounded-2xl border border-slate-700 ${
+              isDesktopBoard
+                ? "max-w-5xl bg-slate-950"
+                : "max-w-[21rem] bg-slate-100"
+            }`}
           >
             <Image
               key={active.src}
@@ -96,12 +107,16 @@ export const ProductTour = () => {
               alt={active.alt}
               width={active.width}
               height={active.height}
-              sizes="(max-width: 640px) 85vw, 336px"
+              sizes={
+                isDesktopBoard
+                  ? "(max-width: 1024px) 92vw, 1024px"
+                  : "(max-width: 640px) 85vw, 336px"
+              }
               className="h-auto w-full"
             />
           </div>
 
-          <div>
+          <div className={isDesktopBoard ? "mx-auto w-full max-w-3xl" : undefined}>
             <p className="mb-3 text-xs font-bold tracking-widest text-blue-400 uppercase">
               {active.eyebrow}
             </p>
