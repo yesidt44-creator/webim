@@ -9,13 +9,14 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://imelectric.es/fixai-cmms",
   },
-  title: "Fix AI — CMMS con IA para contratistas | IMELECTRIC",
+  title: "Fix AI — Control de ejecución del plan de mantenimiento | IMELECTRIC",
   description:
-    "Fix AI es una PWA de gestión de mantenimiento industrial con IA para contratistas. Reporte de campo offline, exportación compatible con el ERP del operador, supervisión digital y módulo Falion de confiabilidad. Sin doble digitación, sin penalizaciones por OTs sin cerrar.",
+    "Fix AI: control de ejecución del plan de mantenimiento para contratistas industriales. Visibilidad de lo ejecutado vs. lo planeado, operación offline, exportación al ERP del operador y módulo Falion — sin doble digitación ni integración API.",
   keywords: [
     "Fix AI CMMS",
     "software mantenimiento industrial Colombia",
     "PWA mantenimiento industrial Colombia",
+    "control ejecución plan mantenimiento",
     "reporte OT digital Colombia",
     "CMMS Oil Gas Colombia contratistas",
     "software mantenimiento offline campo",
@@ -33,9 +34,9 @@ export const metadata: Metadata = {
     "Fix AI IMELECTRIC",
   ],
   openGraph: {
-    title: "Fix AI — Mantenimiento Industrial con IA para Contratistas | IMELECTRIC",
+    title: "Fix AI — Control de ejecución del plan de mantenimiento | IMELECTRIC",
     description:
-      "PWA con IA para contratistas de mantenimiento. Reporte offline, exportación para el ERP del operador, supervisión y módulo Falion de confiabilidad. Sin doble digitación.",
+      "Control de ejecución del plan de mantenimiento para contratistas. Offline-first, trazabilidad ejecutado vs. pendiente, exportación al ERP del operador y módulo Falion.",
     url: "https://imelectric.es/fixai-cmms",
     siteName: "IMELECTRIC",
     locale: "es_ES",
@@ -52,7 +53,7 @@ const faqJsonLd = {
       name: "¿Qué es Fix AI y en qué se diferencia de un CMMS tradicional?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Fix AI es una aplicación web progresiva (PWA) de gestión de mantenimiento industrial con inteligencia artificial diseñada para contratistas. A diferencia de un CMMS tradicional, no requiere integraciones API ni licencias adicionales del ERP del operador: importa el programa semanal, acompaña la ejecución en campo y exporta los reportes listos para cargar en el ERP (compatible con SAP PM IW38/IW41 y otros formatos). También puede operar como CMMS completo cuando la organización lo necesita.",
+        text: "Fix AI es una aplicación web progresiva (PWA) de control de ejecución del plan de mantenimiento con inteligencia artificial, diseñada para contratistas. A diferencia de un CMMS tradicional, no requiere integraciones API ni licencias adicionales del ERP del operador: importa el programa semanal, acompaña la ejecución en campo, hace visible lo ejecutado frente a lo planeado y exporta los reportes listos para cargar en el ERP (compatible con SAP PM IW38/IW41 y otros formatos). También puede operar como CMMS completo cuando la organización lo necesita.",
       },
     },
     {
@@ -115,12 +116,12 @@ export default async function FixAICmmsPage() {
             PWA · Gestión de Mantenimiento Industrial con IA
           </div>
           <h1 className="mb-4 text-3xl font-extrabold leading-tight text-white sm:text-4xl md:text-5xl">
-            Fix AI: todo registrado, nada se te escapa
+            Fix AI: control de ejecución del plan de mantenimiento para contratistas industriales
           </h1>
           <p className="max-w-3xl text-base leading-relaxed text-slate-400 sm:text-lg">
-            Software de mantenimiento industrial con IA para contratistas.
-            Reporte de campo offline, exportación compatible con el ERP del operador, supervisión digital y módulo Falion de
-            confiabilidad — sin doble digitación ni integraciones complejas.
+            Control diario de lo ejecutado frente a lo planeado, visibilidad para supervisor, planeador,
+            programador y administrador, y exportación compatible con el ERP del operador — sin doble
+            digitación ni acceso a API.
           </p>
           <div className="mt-6 flex flex-wrap gap-2">
             {["Compatible con el ERP del operador","Offline-First","Exportación IW38/IW41","Falion IA","Colombia · Latinoamérica"].map(tag => (
