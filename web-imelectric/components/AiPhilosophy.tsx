@@ -8,7 +8,7 @@ const items = [
     icon: <Brain size={28} />,
     step: "01",
     heading: "La IA observa y procesa",
-    body: "Captura datos del campo, cruza normativas, calcula métricas de confiabilidad, detecta anomalías y prepara borradores de reportes. Todo lo que consume horas sin requerir criterio.",
+    body: "Captura datos del campo, cruza normativas, calcula métricas de confiabilidad, detecta anomalías y organiza la información operativa. Todo lo que consume horas sin requerir criterio.",
   },
   {
     icon: <UserCheck size={28} />,
@@ -20,7 +20,7 @@ const items = [
     icon: <Zap size={28} />,
     step: "03",
     heading: "El registro queda con rastro auditable",
-    body: "Una vez firmado, el documento recibe sello de tiempo y firma criptográfica. La cadena de decisión queda documentada minuto a minuto: quién aprobó, qué, cuándo y bajo qué condiciones. Diseñado para que la evidencia no pueda modificarse sin dejar rastro.",
+    body: "Una vez firmado, el registro queda asociado a quien lo aprobó y a una marca de tiempo. La cadena de decisión queda documentada: quién aprobó, qué y cuándo. Diseñado para trazabilidad operativa y auditoría.",
   },
 ];
 
@@ -29,7 +29,7 @@ const products = [
     icon: <Wrench size={20} />,
     name: "Fix AI",
     color: "blue",
-    desc: "La IA genera el borrador del reporte de OT a partir de lo que el técnico habla o escribe en campo. El supervisor revisa y cierra. Sin doble digitación.",
+    desc: "Control de ejecución del plan de mantenimiento: lo ejecutado frente a lo planeado, en campo y offline. El supervisor cierra y aprueba; Falion asiste bajo control humano.",
   },
   {
     icon: <ShieldCheck size={20} />,
@@ -137,7 +137,7 @@ export const AiPhilosophy = () => {
             </div>
             <ul className="space-y-3">
               {[
-                "Fix AI prepara el reporte · el supervisor lo cierra",
+                "Fix AI muestra ejecutado vs. planeado · el supervisor cierra y aprueba",
                 "Veriwork alerta sobre riesgos · el coord. HSE autoriza",
                 "Nexvia calcula el scoring · el despachador decide",
                 "Shield AI genera la evidencia · el responsable la firma",

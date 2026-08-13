@@ -54,18 +54,18 @@ export const ProductivitySection = () => (
       <div className="grid gap-6 lg:grid-cols-3">
         <ProductivityCard
           product="Fix AI"
-          headline="80% menos tiempo de reporte, de campo a ERP"
+          headline="Ejecutado vs. planeado, visible desde el campo hasta el ERP"
           icon={<TimerReset size={25} strokeWidth={2.2} aria-hidden="true" />}
           accentClassName="bg-gradient-to-br from-blue-800 via-blue-600 to-cyan-400"
           body={
             <p>
-              Un reporte en papel o Excel toma 15–20 minutos, se pierde en el camino hacia el ERP y
-              llega sin trazabilidad ni datos de calidad — con un digitador re-transcribiendo a mano.
-              Con Fix AI, el mismo reporte toma 5 minutos*, es trazable desde el primer minuto y los
-              checklists capturan la realidad operativa real del equipo.
+              Sin control de ejecución, el plan de mantenimiento vive en Excel, se pierde en papel y
+              llega al ERP tarde o incompleto. Fix AI captura en campo —también offline—, deja ver lo
+              ejecutado frente a lo planeado y exporta por archivo hacia el ERP del operador, sin
+              doble digitación. Falion asiste en análisis de confiabilidad bajo control del
+              supervisor.
             </p>
           }
-          footnote="Reducción medida en pruebas de campo internas."
         />
 
         <ProductivityCard

@@ -37,7 +37,7 @@ export const Navbar = () => {
 
   return (
     <nav className="fixed top-0 z-50 w-full border-b border-slate-200 bg-white shadow-sm">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6">
+      <div className="mx-auto flex h-[calc(7.125rem*0.75+0.5rem)] max-w-7xl items-center justify-between gap-3 px-4 sm:px-6">
         <Link
           href="/"
           className="relative flex min-w-0 shrink-0 items-center rounded-sm bg-white"
@@ -73,7 +73,7 @@ export const Navbar = () => {
                     href="/fixai-cmms"
                     icon={<Wrench size={18} />}
                     title="Fix AI"
-                    desc="Mantenimiento ISO 14224"
+                    desc="Control de ejecución del plan"
                   />
                   <MenuLink
                     href="/veriwork"

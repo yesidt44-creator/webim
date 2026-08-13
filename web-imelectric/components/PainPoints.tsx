@@ -20,14 +20,15 @@ export const PainPoints = () => {
               <Wrench size={40} />
             </div>
             <h3 className="mb-2 text-2xl font-bold">Fix AI</h3>
-            <p className="mb-4 text-sm font-bold text-blue-400">PWA de Mantenimiento Industrial</p>
+            <p className="mb-4 text-sm font-bold text-blue-400">Control de ejecución del plan</p>
             <p className="mb-6 flex-grow text-sm text-slate-400">
-              Para contratistas de mantenimiento: reporte de campo offline, exportación lista para el ERP del operador sin
-              doble digitación y módulo <strong className="text-slate-300">Falion</strong> de IA para
-              análisis de confiabilidad. El técnico reporta y firma en segundos; el supervisor revisa y aprueba antes de que el reporte llegue al ERP.
+              Para contratistas de mantenimiento: control diario de lo ejecutado frente a lo planeado,
+              operación offline y exportación por archivo hacia el ERP del operador — sin API ni doble
+              digitación. Roles de supervisor, planeador y programador; módulo{" "}
+              <strong className="text-slate-300">Falion</strong> de IA bajo control humano.
             </p>
             <div className="mb-6 border-t border-slate-800 pt-4 text-xs text-slate-500">
-              Sin integraciones API · Sin licencias adicionales · Operativo en días
+              Sin integraciones API · Offline-first · Operativo en días
             </div>
             <div className="flex flex-col gap-2">
               <a
