@@ -5,6 +5,22 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* Acento de marca: blue-* remapeado a amber-* (mismo escalón de luminosidad,
+     mismos modificadores de opacidad en las clases existentes) para que el
+     azul genérico de Tailwind se vea como el ámbar de marca sin tocar los
+     ~400 usos de bg/text/border-blue-* ya presentes en los componentes. */
+  --color-blue-50: var(--color-amber-50);
+  --color-blue-100: var(--color-amber-100);
+  --color-blue-200: var(--color-amber-200);
+  --color-blue-300: var(--color-amber-300);
+  --color-blue-400: var(--color-amber-400);
+  --color-blue-500: var(--color-amber-500);
+  --color-blue-600: var(--color-amber-600);
+  --color-blue-700: var(--color-amber-700);
+  --color-blue-800: var(--color-amber-800);
+  --color-blue-900: var(--color-amber-900);
+  --color-blue-950: var(--color-amber-950);
+
   /* Coincide con el fondo del video del ecosistema (medido en render ~#000009). */
   --color-canvas: #000009;
   --color-background: var(--background);

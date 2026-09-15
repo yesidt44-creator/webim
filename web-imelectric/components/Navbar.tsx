@@ -176,7 +176,7 @@ export const Navbar = () => {
           <ContactModal sourceCta="Contactar">
             <button
               type="button"
-              className="rounded-full bg-blue-950 px-3 py-2 text-xs font-bold text-white shadow-md transition hover:bg-blue-900 sm:px-5 sm:text-sm"
+              className="rounded-full bg-blue-600 px-3 py-2 text-xs font-bold text-white shadow-md transition hover:bg-blue-700 sm:px-5 sm:text-sm"
             >
               Contactar
             </button>
