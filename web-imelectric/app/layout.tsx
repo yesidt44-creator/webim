@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     locale: "es_CO",
     siteName: "IMELECTRIC",
     title: "IMELECTRIC — Software industrial con IA",
-    description: "Fix AI, Falion, Veriwork, Nexvia y Shield AI para operaciones industriales en Colombia.",
+    description: "Fix AI (CMMS) disponible hoy. Próximamente: Falion, Veriwork, Nexvia y Shield AI.",
     images: [
       {
         url: "/og-default.png",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "IMELECTRIC — Software industrial con IA",
-    description: "Fix AI, Falion, Veriwork, Nexvia y Shield AI para operaciones industriales en Colombia.",
+    description: "Fix AI (CMMS) disponible hoy. Próximamente: Falion, Veriwork, Nexvia y Shield AI.",
     images: ["/og-default.png"],
   },
 };
@@ -65,7 +65,7 @@ const organizationJsonLd = {
   logo: "https://imelectric.es/imelectric-logo.png",
   sameAs: ["https://www.linkedin.com/company/imelectric/"],
   description:
-    "Empresa colombiana de software industrial con IA. Desarrolla Fix AI (CMMS), Falion (Confiabilidad RCA), Veriwork (HSE), Nexvia (Flotas) y Shield AI (SG-SST) para contratistas industriales y operadores en Colombia y Latinoamérica.",
+    "Empresa colombiana de software industrial con IA. Fix AI (CMMS) ya está disponible; Falion (Confiabilidad RCA), Veriwork (HSE), Nexvia (Flotas) y Shield AI (SG-SST) están en desarrollo. Para contratistas industriales y operadores en Colombia y Latinoamérica.",
   areaServed: ["Colombia", "Latinoamérica"],
   contactPoint: {
     "@type": "ContactPoint",
@@ -85,6 +85,24 @@ const organizationJsonLd = {
     "Análisis de causa raíz RCA",
     "FMECA y Weibull industrial",
   ],
+};
+
+const localBusinessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "IMELECTRIC",
+  url: "https://imelectric.es",
+  image: "https://imelectric.es/imelectric-logo.png",
+  telephone: "+573026002877",
+  email: "contacto@imelectric.es",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Carrera 56 #54-40, Barrio Jorge Eliécer Gaitán",
+    addressLocality: "Yondó",
+    addressRegion: "Antioquia",
+    addressCountry: "CO",
+  },
+  areaServed: ["Colombia", "Latinoamérica"],
 };
 
 const websiteJsonLd = {
@@ -112,6 +130,12 @@ export default async function RootLayout({
           suppressHydrationWarning
           nonce={nonce}
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+          nonce={nonce}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
         />
         <script
           type="application/ld+json"

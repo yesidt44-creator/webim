@@ -64,25 +64,37 @@ export const Footer = () => {
                   Fix AI
                 </Link>
               </li>
-              <li>
+              <li className="flex items-center gap-2">
                 <Link href="/veriwork" className={linkClass}>
                   Veriwork
                 </Link>
+                <span className="rounded-full bg-slate-800 px-2 py-0.5 text-[10px] font-bold tracking-wide text-slate-400 uppercase">
+                  Próximamente
+                </span>
               </li>
-              <li>
+              <li className="flex items-center gap-2">
                 <Link href="/nexvia" className={linkClass}>
                   Nexvia
                 </Link>
+                <span className="rounded-full bg-slate-800 px-2 py-0.5 text-[10px] font-bold tracking-wide text-slate-400 uppercase">
+                  Próximamente
+                </span>
               </li>
-              <li>
+              <li className="flex items-center gap-2">
                 <Link href="/shield-ai" className={linkClass}>
                   Shield AI
                 </Link>
+                <span className="rounded-full bg-slate-800 px-2 py-0.5 text-[10px] font-bold tracking-wide text-slate-400 uppercase">
+                  Próximamente
+                </span>
               </li>
-              <li>
+              <li className="flex items-center gap-2">
                 <Link href="/falion" className={linkClass}>
                   Falion
                 </Link>
+                <span className="rounded-full bg-slate-800 px-2 py-0.5 text-[10px] font-bold tracking-wide text-slate-400 uppercase">
+                  Próximamente
+                </span>
               </li>
             </ul>
             <h4 className="mt-8 mb-4 text-sm font-bold tracking-wide text-white uppercase">
@@ -185,7 +197,7 @@ export const Footer = () => {
                   +57 302 600 2877
                 </a>
               </li>
-              <li>Yondó, Antioquia, CO</li>
+              <li>Cra 56 #54-40, B. Jorge Eliécer Gaitán, Yondó, Antioquia, CO</li>
               <li>
                 <a
                   href={LINKEDIN_URL}

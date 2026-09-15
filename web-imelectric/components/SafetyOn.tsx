@@ -11,6 +11,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { SafetyOnCta } from "./SafetyOnCta";
+import { ComingSoonBanner } from "./ComingSoonBanner";
 
 const safetyOnJsonLd = {
   "@context": "https://schema.org",
@@ -77,6 +78,7 @@ export const SafetyOn = async () => {
       />
 
       <div className="mx-auto max-w-7xl px-6">
+        <ComingSoonBanner product="Veriwork" />
         {/* Cabecera */}
         <div className="mb-20 grid items-center gap-12 lg:grid-cols-2">
           <div>

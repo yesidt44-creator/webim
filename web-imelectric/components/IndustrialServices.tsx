@@ -12,6 +12,48 @@ import {
 } from "lucide-react";
 import { ContactModal } from "./ContactModal";
 
+const services = [
+  {
+    icon: PackageSearch,
+    accent: "blue",
+    title: "Suministros Críticos",
+    text: "Localización y suministro de componentes electrónicos y mecánicos críticos que el mercado local no ofrece. Reducimos drásticamente los tiempos de espera en paradas de planta y estaciones de tratamiento.",
+    tags: [
+      { icon: Globe, label: "Red Global de Aliados" },
+      { icon: Zap, label: "Logística de Emergencia" },
+    ],
+    cta: { label: "Consultar Componente", type: "modal" as const },
+  },
+  {
+    icon: CircuitBoard,
+    accent: "emerald",
+    title: "Mantenimiento Electrónico de Alta Especialidad",
+    text: "Prolongamos la vida útil de sus activos tecnológicos más complejos. Intervención experta en PLCs, Variadores de Frecuencia y tarjetas electrónicas industriales, evitando la obsolescencia forzada.",
+    tags: [
+      { icon: ShieldCheck, label: "Recuperación de Activos" },
+      { icon: Zap, label: "Ingeniería de Reversa" },
+    ],
+    cta: { label: "Agendar Asesoría Personalizada", type: "modal" as const },
+  },
+  {
+    icon: ChartNoAxesCombined,
+    accent: "violet",
+    title: "Consultoría en Mantenimiento y Confiabilidad",
+    text: "Diagnóstico de madurez, diseño de estrategias de mantenimiento (RCM/PM) y gestión de activos — presencial o remota, para pymes y empresas industriales.",
+    tags: [
+      { icon: ChartNoAxesCombined, label: "Diagnóstico de Madurez" },
+      { icon: ShieldCheck, label: "Estrategias RCM / PM" },
+    ],
+    cta: { label: "Agendar Asesoría Personalizada", type: "link" as const, href: "/consultoria-mantenimiento" },
+  },
+];
+
+const accentClasses = {
+  blue: { chip: "bg-blue-500/15 text-blue-400", tag: "text-blue-500" },
+  emerald: { chip: "bg-emerald-500/15 text-emerald-500", tag: "text-emerald-500" },
+  violet: { chip: "bg-violet-500/15 text-violet-400", tag: "text-violet-400" },
+};
+
 export const IndustrialServices = () => {
   return (
     <section id="servicios" className="scroll-mt-28 border-t border-slate-900 bg-slate-900/20 py-24">
@@ -26,87 +68,52 @@ export const IndustrialServices = () => {
           </p>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-3">
-          {/* Suministros Críticos */}
-          <div className="group relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 p-10">
-            <div className="absolute top-0 right-0 rounded-full bg-blue-600/5 p-24 blur-[100px] transition-all group-hover:bg-blue-600/10"></div>
-            <PackageSearch size={48} className="relative z-10 mb-8 text-blue-500" />
-            <h3 className="relative z-10 mb-4 text-2xl font-bold">Suministros Críticos</h3>
-            <p className="relative z-10 mb-8 leading-relaxed text-slate-400">
-              Localización y suministro de componentes electrónicos y mecánicos críticos que el mercado local no ofrece.
-              Reducimos drásticamente los tiempos de espera en paradas de planta y estaciones de tratamiento.
-            </p>
-            <div className="relative z-10 mb-8 grid grid-cols-2 gap-4">
-              <div className="flex items-center gap-2 text-xs font-bold text-slate-300">
-                <Globe size={14} className="text-blue-500" /> Red Global de Aliados
-              </div>
-              <div className="flex items-center gap-2 text-xs font-bold text-slate-300">
-                <Zap size={14} className="text-blue-500" /> Logística de Emergencia
-              </div>
-            </div>
-            <ContactModal sourceCta="Consultar Componente">
-              <button
-                type="button"
-                className="relative z-10 flex items-center gap-2 text-sm font-bold text-white transition-all hover:gap-4"
+        <div className="grid overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 lg:grid-cols-3">
+          {services.map((service, i) => {
+            const Icon = service.icon;
+            const accent = accentClasses[service.accent as keyof typeof accentClasses];
+            return (
+              <div
+                key={service.title}
+                className={`flex flex-col p-10 ${i > 0 ? "border-t border-slate-800 lg:border-t-0 lg:border-l" : ""}`}
               >
-                Consultar Componente <ArrowRight size={16} />
-              </button>
-            </ContactModal>
-          </div>
-
-          {/* Mantenimiento Electrónico */}
-          <div className="group relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 p-10">
-            <div className="absolute top-0 right-0 rounded-full bg-emerald-600/5 p-24 blur-[100px] transition-all group-hover:bg-emerald-600/10"></div>
-            <CircuitBoard size={48} className="relative z-10 mb-8 text-emerald-500" />
-            <h3 className="relative z-10 mb-4 text-2xl font-bold">Mantenimiento Electrónico de Alta Especialidad</h3>
-            <p className="relative z-10 mb-8 leading-relaxed text-slate-400">
-              Prolongamos la vida útil de sus activos tecnológicos más complejos. Intervención experta en PLCs, Variadores
-              de Frecuencia y tarjetas electrónicas industriales, evitando la obsolescencia forzada.
-            </p>
-            <div className="relative z-10 mb-8 grid grid-cols-2 gap-4">
-              <div className="flex items-center gap-2 text-xs font-bold text-slate-300">
-                <ShieldCheck size={14} className="text-emerald-500" /> Recuperación de Activos
+                <div className={`mb-8 inline-flex h-12 w-12 items-center justify-center rounded-xl ${accent.chip}`}>
+                  <Icon size={24} />
+                </div>
+                <h3 className="mb-4 text-2xl font-bold">{service.title}</h3>
+                <p className="mb-8 leading-relaxed text-slate-400">{service.text}</p>
+                <div className="mb-8 grid grid-cols-2 gap-4">
+                  {service.tags.map((tag) => {
+                    const TagIcon = tag.icon;
+                    return (
+                      <div key={tag.label} className="flex items-center gap-2 text-xs font-bold text-slate-300">
+                        <TagIcon size={14} className={accent.tag} /> {tag.label}
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="mt-auto">
+                  {service.cta.type === "modal" ? (
+                    <ContactModal sourceCta={service.cta.label}>
+                      <button
+                        type="button"
+                        className="flex items-center gap-2 text-sm font-bold text-white transition-all hover:gap-4"
+                      >
+                        {service.cta.label} <ArrowRight size={16} />
+                      </button>
+                    </ContactModal>
+                  ) : (
+                    <Link
+                      href={service.cta.href}
+                      className="flex items-center gap-2 text-sm font-bold text-white transition-all hover:gap-4"
+                    >
+                      {service.cta.label} <ArrowRight size={16} />
+                    </Link>
+                  )}
+                </div>
               </div>
-              <div className="flex items-center gap-2 text-xs font-bold text-slate-300">
-                <Zap size={14} className="text-emerald-500" /> Ingeniería de Reversa
-              </div>
-            </div>
-            <ContactModal sourceCta="Agendar Asesoría Personalizada">
-              <button
-                type="button"
-                className="relative z-10 flex items-center gap-2 text-sm font-bold text-white transition-all hover:gap-4"
-              >
-                Agendar Asesoría Personalizada <ArrowRight size={16} />
-              </button>
-            </ContactModal>
-          </div>
-
-          {/* Consultoría en Mantenimiento */}
-          <div className="group relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 p-10">
-            <div className="absolute top-0 right-0 rounded-full bg-violet-600/5 p-24 blur-[100px] transition-all group-hover:bg-violet-600/10"></div>
-            <ChartNoAxesCombined size={48} className="relative z-10 mb-8 text-violet-400" />
-            <h3 className="relative z-10 mb-4 text-2xl font-bold">
-              Consultoría en Mantenimiento y Confiabilidad
-            </h3>
-            <p className="relative z-10 mb-8 leading-relaxed text-slate-400">
-              Diagnóstico de madurez, diseño de estrategias de mantenimiento (RCM/PM) y gestión de activos — presencial
-              o remota, para pymes y empresas industriales.
-            </p>
-            <div className="relative z-10 mb-8 grid grid-cols-2 gap-4">
-              <div className="flex items-center gap-2 text-xs font-bold text-slate-300">
-                <ChartNoAxesCombined size={14} className="text-violet-400" /> Diagnóstico de Madurez
-              </div>
-              <div className="flex items-center gap-2 text-xs font-bold text-slate-300">
-                <ShieldCheck size={14} className="text-violet-400" /> Estrategias RCM / PM
-              </div>
-            </div>
-            <Link
-              href="/consultoria-mantenimiento"
-              className="relative z-10 flex items-center gap-2 text-sm font-bold text-white transition-all hover:gap-4"
-            >
-              Agendar Asesoría Personalizada <ArrowRight size={16} />
-            </Link>
-          </div>
+            );
+          })}
         </div>
       </div>
     </section>

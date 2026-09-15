@@ -16,6 +16,7 @@ import {
   Database,
 } from "lucide-react";
 import { ContactModal } from "./ContactModal";
+import { ComingSoonBanner } from "./ComingSoonBanner";
 
 const features = [
   {
@@ -80,6 +81,7 @@ export const ShieldAI = () => {
       {/* JSON-LD movido a app/shield-ai/page.tsx (Server Component) para poder recibir nonce */}
 
       <div className="mx-auto max-w-7xl px-6">
+        <ComingSoonBanner product="Shield AI" />
         {/* Cabecera */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

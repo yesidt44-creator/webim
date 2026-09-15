@@ -13,6 +13,7 @@ import {
   AlertTriangle,
 } from "lucide-react";
 import { NexviaCta } from "./NexviaCta";
+import { ComingSoonBanner } from "./ComingSoonBanner";
 
 const nexviaJsonLd = {
   "@context": "https://schema.org",
@@ -78,6 +79,7 @@ export const Nexvia = async () => {
       />
 
       <div className="mx-auto max-w-7xl px-6">
+        <ComingSoonBanner product="Nexvia" />
         {/* Cabecera */}
         <div className="mb-20 max-w-3xl">
           <p className="mb-4 flex items-center gap-2 text-blue-500 text-xs font-bold tracking-widest uppercase">

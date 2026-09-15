@@ -77,6 +77,7 @@ import { Hero } from "@/components/Hero";
 import { AiPhilosophy } from "@/components/AiPhilosophy";
 import { PainPoints } from "@/components/PainPoints";
 import { About } from "@/components/About";
+import { Coverage } from "@/components/Coverage";
 import { IndustrialServices } from "@/components/IndustrialServices";
 import { Education } from "@/components/Education";
 import { Footer } from "@/components/Footer";
@@ -107,6 +108,10 @@ export default function Home() {
         <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-800 to-transparent" />
 
         <About />
+
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-800 to-transparent" />
+
+        <Coverage />
 
         <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-800 to-transparent" />
 

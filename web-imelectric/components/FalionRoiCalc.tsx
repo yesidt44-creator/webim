@@ -84,15 +84,17 @@ export const FalionRoiCalc = () => {
       <div className="grid gap-4 sm:grid-cols-3">
         <div className="rounded-2xl border border-slate-800 bg-slate-900 p-5 text-center">
           <p className="mb-1 text-xs font-bold tracking-widest text-slate-500 uppercase">Horas liberadas / mes</p>
-          <p className="text-3xl font-extrabold text-white">~{(hoursSaved * analysts).toLocaleString("es-CO")} h</p>
+          <p className="font-mono text-3xl font-extrabold tabular-nums text-white">
+            ~{(hoursSaved * analysts).toLocaleString("es-CO")} h
+          </p>
         </div>
         <div className="rounded-2xl border border-slate-800 bg-slate-900 p-5 text-center">
           <p className="mb-1 text-xs font-bold tracking-widest text-slate-500 uppercase">Ahorro estimado / mes</p>
-          <p className="text-3xl font-extrabold text-white">{fmt(moneySaved)}</p>
+          <p className="font-mono text-3xl font-extrabold tabular-nums text-white">{fmt(moneySaved)}</p>
         </div>
         <div className="rounded-2xl border border-blue-500/30 bg-blue-600/10 p-5 text-center">
           <p className="mb-1 text-xs font-bold tracking-widest text-blue-400 uppercase">ROI mes 1 (estimado)</p>
-          <p className="text-3xl font-extrabold text-blue-300">~{Math.round(roi)}×</p>
+          <p className="font-mono text-3xl font-extrabold tabular-nums text-blue-300">~{Math.round(roi)}×</p>
         </div>
       </div>
 

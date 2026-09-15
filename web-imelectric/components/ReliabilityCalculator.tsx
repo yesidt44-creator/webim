@@ -241,20 +241,28 @@ export const ReliabilityCalculator = () => {
             <div className="space-y-4 animate-in fade-in duration-500">
               <div>
                 <div className="text-xs font-bold text-slate-500 uppercase">MTBF</div>
-                <div className="text-3xl font-extrabold text-white">{result.mtbf.toFixed(2)} h</div>
+                <div className="font-mono text-3xl font-extrabold tabular-nums text-white">
+                  {result.mtbf.toFixed(2)} h
+                </div>
               </div>
               <div>
                 <div className="text-xs font-bold text-slate-500 uppercase">MTTR</div>
-                <div className="text-2xl font-bold text-slate-200">{result.mttr.toFixed(2)} h</div>
+                <div className="font-mono text-2xl font-bold tabular-nums text-slate-200">
+                  {result.mttr.toFixed(2)} h
+                </div>
               </div>
               <div>
                 <div className="text-xs font-bold text-slate-500 uppercase">Disponibilidad</div>
-                <div className="text-2xl font-bold text-emerald-400">{result.availability.toFixed(2)}%</div>
+                <div className="font-mono text-2xl font-bold tabular-nums text-emerald-400">
+                  {result.availability.toFixed(2)}%
+                </div>
               </div>
               {result.reliability !== null && (
                 <div>
                   <div className="text-xs font-bold text-slate-500 uppercase">Confiabilidad R(t)</div>
-                  <div className="text-2xl font-bold text-blue-400">{result.reliability.toFixed(2)}%</div>
+                  <div className="font-mono text-2xl font-bold tabular-nums text-blue-400">
+                    {result.reliability.toFixed(2)}%
+                  </div>
                 </div>
               )}
             </div>

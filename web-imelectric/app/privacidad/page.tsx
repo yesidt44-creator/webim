@@ -40,7 +40,8 @@ export default function PrivacidadPage() {
             <strong className="text-slate-200">NIT:</strong> 900.809.312-1
           </p>
           <p>
-            <strong className="text-slate-200">Domicilio:</strong> Yondó, Antioquia, Colombia.
+            <strong className="text-slate-200">Domicilio:</strong> Carrera 56 #54-40, Barrio Jorge Eliécer
+            Gaitán, Yondó, Antioquia, Colombia.
           </p>
           <p>
             <strong className="text-slate-200">Canal de atención Habeas Data:</strong>{" "}
@@ -169,7 +170,10 @@ export default function PrivacidadPage() {
             Última actualización: 16 de julio de 2026. Este documento puede ser actualizado; la versión vigente
             es la publicada en esta página.
           </p>
-          <p className="mt-2">IMELECTRIC S.A.S. · Yondó, Antioquia, Colombia · contacto@imelectric.es</p>
+          <p className="mt-2">
+            IMELECTRIC S.A.S. · Carrera 56 #54-40, B. Jorge Eliécer Gaitán, Yondó, Antioquia, Colombia ·
+            contacto@imelectric.es
+          </p>
           <div className="mt-3 flex flex-wrap gap-4">
             <Link href="/terminos" className="hover:text-slate-400">
               Términos de Servicio

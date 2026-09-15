@@ -12,6 +12,7 @@ import {
 import Link from "next/link";
 import { ContactModal } from "./ContactModal";
 import { FalionRoiCalc } from "./FalionRoiCalc";
+import { ComingSoonBanner } from "./ComingSoonBanner";
 
 const differentiators = [
   {
@@ -91,6 +92,7 @@ export const Falion = () => {
       {/* JSON-LD movido a app/falion/page.tsx (Server Component) para poder recibir nonce */}
 
       <div className="mx-auto max-w-7xl px-6 py-24">
+        <ComingSoonBanner product="Falion" />
 
         {/* ── EL PROBLEMA ─────────────────────────────────────────── */}
         <motion.div

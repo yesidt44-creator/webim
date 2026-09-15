@@ -41,7 +41,8 @@ export default function TerminosPage() {
         <Section title="2. Identidad del prestador de servicios">
           <p>
             <strong className="text-slate-200">IMELECTRIC S.A.S.</strong>, sociedad por acciones simplificada,
-            constituida bajo las leyes de la República de Colombia, con domicilio en Yondó, Antioquia.
+            constituida bajo las leyes de la República de Colombia, con domicilio en Carrera 56 #54-40,
+            Barrio Jorge Eliécer Gaitán, Yondó, Antioquia.
           </p>
           <p>
             Correo de contacto:{" "}
@@ -118,8 +119,8 @@ export default function TerminosPage() {
         <Section title="9. Ley aplicable y jurisdicción">
           <p>
             Estos Términos se rigen por las leyes de la República de Colombia. Cualquier controversia derivada
-            del uso de este sitio se someterá a los jueces y tribunales competentes con domicilio en Yondó,
-            Antioquia, Colombia.
+            del uso de este sitio se someterá a los jueces y tribunales competentes con domicilio en Carrera
+            56 #54-40, Barrio Jorge Eliécer Gaitán, Yondó, Antioquia, Colombia.
           </p>
         </Section>
 
@@ -136,7 +137,10 @@ export default function TerminosPage() {
             Última actualización: 16 de julio de 2026. Este documento puede ser actualizado; la versión vigente
             es la publicada en esta página.
           </p>
-          <p className="mt-2">IMELECTRIC S.A.S. · Yondó, Antioquia, Colombia · contacto@imelectric.es</p>
+          <p className="mt-2">
+            IMELECTRIC S.A.S. · Carrera 56 #54-40, B. Jorge Eliécer Gaitán, Yondó, Antioquia, Colombia ·
+            contacto@imelectric.es
+          </p>
           <div className="mt-3 flex flex-wrap gap-4">
             <Link href="/privacidad" className="hover:text-slate-400">
               Política de Tratamiento de Datos
