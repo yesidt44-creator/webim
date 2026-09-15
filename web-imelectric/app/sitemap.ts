@@ -83,6 +83,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.85,
     },
     {
+      url: `${base}/academia/mantenimiento-inteligente`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
       url: `${base}/academia/cmms-vs-gmao`,
       lastModified: new Date(),
       changeFrequency: "monthly",

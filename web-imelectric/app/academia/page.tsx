@@ -64,6 +64,11 @@ const tools = [
 
 const articles = [
   {
+    href: "/academia/mantenimiento-inteligente",
+    title: "Mantenimiento inteligente: qué es y cómo aumenta la productividad",
+    desc: "Los tres pilares, en qué se diferencia del predictivo y cómo empezar sin comprar de más.",
+  },
+  {
     href: "/academia/cmms-vs-gmao",
     title: "CMMS vs GMAO: qué es cada uno",
     desc: "Diferencias reales, cuándo aplicar cada término y cómo encaja Fix AI.",
