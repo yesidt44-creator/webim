@@ -2,4 +2,4 @@
 
 | ID | Nombre | Estado | Fecha | Siguiente paso |
 | --- | --- | --- | --- | --- |
-| IDEA-001 | Gestión de inmuebles rentados | semilla | 2026-10-17 | Responder preguntas 1, 2, 4, 7, 8 y 9 |
+| IDEA-001 | Gestión de inmuebles rentados | explorando | 2026-10-17 | Entrevistar 10 a 15 propietarios directos y pedir cotización a aseguradoras |
